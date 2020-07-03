@@ -5,8 +5,8 @@ An interactive webboard application built on Angular to excel learning experienc
 
 ## Dependencies🗃:
 - [Angular]
-- [Bootsstrap]
-- [jQuery]:
+- [Bootstrap]
+- [jQuery]
 - [Nodejs with express]
 - [Firebase]
 
@@ -42,7 +42,7 @@ Yayy! Your application is served locally in localhost:4200
 #### Please consider contributing to the project, with your ideas, your artwork, and your code.
 
 [Angular]:<https://angular.io/>
-[Bootsstrap]:<https://getbootstrap.com/>
+[Bootstrap]:<https://getbootstrap.com/>
 [jQuery]:<https://jquery.com/>
 [Nodejs with express]:<https://expressjs.com/>
 [Firebase]:<https://firebase.google.com/>
