@@ -1,10 +1,47 @@
-.main{
+.wrapper{
+  display:flex;
   position: relative;
 
-  .canvasElement{
-    position:absolute;
+  .sidebar{
+    position: fixed;
+    width: 200px;
+    height:100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    padding: 10px 5px;
+    border-top-right-radius: 20px;
+    // list-style: none;
+
+    h2{
+      font-family: 'Lato', sans-serif;
+      font-size: 30px;
+    }
+
+    ul{
+      list-style-type: none;
+      padding: 5px;
+
+      .color{
+        color: black;
+        font-weight: 600px;
+      }
+    }
   }
-  .toolbox{
-    position:absolute;
+
+
+  .page-buttons{
+    display:flexbox
+  }
+}
+
+.main{
+  margin-left: 200px;
+}
+
+.heading{
+  margin-top:30px;
+}
+.basic-tools{
+  .btn{
+    margin-right:10px;
   }
 }
