@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, Renderer } from '@angular/core';
 import {Pages} from '../../../interfaces/pages'
+declare const pdfjsLib:any
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -18,7 +19,9 @@ export class BoardComponent implements OnInit {
   mouseControl:boolean = false;
   page:number;
   notebook:Pages[]=[];
-
+  // for PDF.js
+  pdf_js:any;
+  no_of_pages: any;
   //## content declarations
   ctx:any;
 
@@ -55,6 +58,31 @@ export class BoardComponent implements OnInit {
   //setting the Width and Height to the canvas element
   this.renderer.setElementAttribute(this.canvasElement, 'width', this.scrWidth);
   this.renderer.setElementAttribute(this.canvasElement, 'height', this.scrHeight);
+
+
+   this.pdf_js = pdfjsLib.getDocument('../../../assets/Fourier_series.pdf')
+   this.addPdf(1)
+  }
+
+  addPdf(page_number){
+    this.pdf_js.promise.then(doc => {
+      console.log("PDF LOADED");
+      console.log("THis pdf has ", doc._pdfInfo.numPages);
+      this.no_of_pages = doc._pdfInfo.numPages
+
+      doc.getPage(page_number).then(page => {
+        let canvas:any = document.getElementById("my_canvas")
+        let context:any = canvas.getContext("2d")
+        let viewport:any = page.getViewport({ scale: 2 })
+        viewport.height = '200px';
+        viewport.width = '200px';
+        page.render({
+          canvasContext: context,
+          viewport: viewport
+        })
+      })
+
+    })
   }
 
   //pen Button
@@ -126,6 +154,7 @@ export class BoardComponent implements OnInit {
     // this.notebook.push(present);
     this.page = this.page + 1;
     this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+    this.addPdf(this.page+1)
 
     //if it already exists
     if(this.notebook[this.page]){
@@ -141,7 +170,8 @@ export class BoardComponent implements OnInit {
 
   }
   prevPage(){
-    //save the state
+    if(this.page > 0){
+          //save the state
     let present = {
       pageNumber: this.page,
       image: this.canvasElement.toDataURL(),
@@ -178,6 +208,7 @@ export class BoardComponent implements OnInit {
     // }
 
     console.log(this.page);
+    }
   }
 
   upsert(array, pageNumber, obj) {
