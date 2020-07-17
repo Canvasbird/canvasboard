@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener, Renderer } from '@angular/core';
 import {Pages} from '../../../interfaces/pages'
+import {Tracking} from '../../../interfaces/tracking'
+import { log } from 'util';
 declare const pdfjsLib:any
 @Component({
   selector: 'app-board',
@@ -22,8 +24,14 @@ export class BoardComponent implements OnInit {
   // for PDF.js
   pdf_js:any;
   no_of_pages: any;
+  //PDF tracking
+  pageTracking:Tracking[] = [];
   //## content declarations
   ctx:any;
+
+  // fileUpload
+  filePath:string;
+
 
   //# toolbox declarations
   //## Normal pen
@@ -41,7 +49,7 @@ export class BoardComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
         this.scrHeight = window.innerHeight;
-        this.scrWidth = window.innerWidth;
+        this.scrWidth = window.innerWidth-220;
   }
 
   constructor(public renderer:Renderer) {
@@ -58,24 +66,20 @@ export class BoardComponent implements OnInit {
   //setting the Width and Height to the canvas element
   this.renderer.setElementAttribute(this.canvasElement, 'width', this.scrWidth);
   this.renderer.setElementAttribute(this.canvasElement, 'height', this.scrHeight);
-
-
-   this.pdf_js = pdfjsLib.getDocument('../../../assets/Fourier_series.pdf')
-   this.addPdf(1)
   }
 
   addPdf(page_number){
     this.pdf_js.promise.then(doc => {
       console.log("PDF LOADED");
       console.log("THis pdf has ", doc._pdfInfo.numPages);
-      this.no_of_pages = doc._pdfInfo.numPages
+      // this.no_of_pages = doc._pdfInfo.numPages
 
       doc.getPage(page_number).then(page => {
         let canvas:any = document.getElementById("my_canvas")
         let context:any = canvas.getContext("2d")
-        let viewport:any = page.getViewport({ scale: 2 })
-        viewport.height = '200px';
-        viewport.width = '200px';
+        let viewport:any = page.getViewport({ scale: 1})
+        // viewport.height = '200px';
+        // viewport.width = '200px';
         page.render({
           canvasContext: context,
           viewport: viewport
@@ -137,7 +141,58 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  nextPage(){
+
+  localUrl: any[];
+
+  showPreviewImage(event: any) {
+    //checking if file is uploading
+    if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+        reader.onload = (event: any) => {
+            this.localUrl = event.target.result;
+            this.pdf_js = pdfjsLib.getDocument(this.localUrl)
+
+            this.pdf_js.promise.then(doc => {
+              console.log("PDF LOADED");
+              console.log("THis pdf has ", doc._pdfInfo.numPages);
+              this.no_of_pages = doc._pdfInfo.numPages
+
+            //once the whole file is uploaded
+            // this.function_PDF_tracking(this.no_of_pages)
+            this.addPdf(1)
+            })
+
+        }
+        reader.readAsDataURL(event.target.files[0]);
+        console.log("Local URL", this.localUrl);
+    }
+}
+
+function_PDF_tracking(num){
+  //setting up pdf tracking
+  for(let i=0;i<num;i++) {
+    console.log(i);
+
+    //by default 1st page is visited
+    if(i==0){
+      let obj = {}
+      obj["page"] = i+1
+      obj["status"] = "visited"
+      console.log(obj);
+      // this.pageTracking.push(obj)
+    }else{
+    let obj = {
+      page: i+1,
+      status: "novisit"
+    }
+    console.log(obj);
+    // this.pageTracking.push(obj)
+    }
+  }
+  console.log("All my pages", this.pageTracking);
+}
+
+  async nextPage(){
     //save the state
     let present = {
       pageNumber: this.page,
@@ -146,18 +201,47 @@ export class BoardComponent implements OnInit {
       date: Date.now()
     };
 
+    console.log(present,"Added to my notebook");
     //checking if that page number is there or not
     // if found then update else append
-    this.upsert(this.notebook, this.page,present)
-    console.log(this.notebook);
-    // console.log(present);
-    // this.notebook.push(present);
-    this.page = this.page + 1;
-    this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
-    this.addPdf(this.page+1)
+    this.upsert(this.notebook, this.page ,present)
+    this.pdfTick(this.pageTracking, this.page);
+    //Going to new page
+    console.log("Stored page number", this.page);
 
-    //if it already exists
+    this.page = this.page + 1;
+    console.log("New page number", this.page);
+
+    // clearing my rect
+    this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+
+    // if pdf page is already rendered then dont add.. else add the pdf
+    let temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page)
+    if(temp >-1){
+      //page number is already there in pagetracking
+      console.log("Page number found in tracking list so not adding");
+
+    }else{
+      console.log("As page number is not found in tracking list we are adding it");
+
+      await this.addPdf(this.page+1)
+    }
+
+    // for(let i=0;i<this.pageTracking.length;i++){
+    //   //page is already rendered
+    //   if(this.page<=this.pageTracking.length){
+    //     console.log("Not adding");
+    //   }
+    //   else{
+    //     await this.addPdf(this.page+1)
+    //   }
+    // }
+
+    //if it already exists append
     if(this.notebook[this.page]){
+      console.log("Loading page", this.page);
+
+      // this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
       let image = new Image();
 
       image.onload = (event) => {
@@ -179,9 +263,12 @@ export class BoardComponent implements OnInit {
       date: Date.now()
     };
 
+
     //checking if that page number is there or not
     // if found then update else append
     this.upsert(this.notebook, this.page ,present)
+    console.log("Stroing the page number which prev is pressed", present);
+
     console.log(this.notebook);
 
     this.page = this.page - 1;
@@ -209,6 +296,25 @@ export class BoardComponent implements OnInit {
 
     console.log(this.page);
     }
+  }
+  pdfTick(array,pageNumber){
+    if(pageNumber <= this.no_of_pages){
+      const i = array.findIndex(_item => _item.pageNumber === pageNumber);
+      if (i > -1) {
+      } // Page number found
+      else{
+          let obj = {
+            pageNumber: pageNumber,
+            status:"visited",
+          }
+          array.push(obj);
+          console.log("PDF TRACKING", obj);
+
+      } //page not found
+
+      console.log("My final Array",this.pageTracking);
+    }
+
   }
 
   upsert(array, pageNumber, obj) {
