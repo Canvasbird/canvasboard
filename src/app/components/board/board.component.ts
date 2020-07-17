@@ -209,6 +209,8 @@ function_PDF_tracking(num){
     //Going to new page
     console.log("Stored page number", this.page);
 
+
+    //new page configurations
     this.page = this.page + 1;
     console.log("New page number", this.page);
 
@@ -251,6 +253,7 @@ function_PDF_tracking(num){
       image.src = this.notebook[this.page].image;
     }
 
+    console.log("Man at end", this.notebook);
 
   }
   prevPage(){
@@ -263,6 +266,8 @@ function_PDF_tracking(num){
       date: Date.now()
     };
 
+    //adding it to the tracking list as this page is visited
+    this.pdfTick(this.pageTracking, this.page);
 
     //checking if that page number is there or not
     // if found then update else append
@@ -296,6 +301,8 @@ function_PDF_tracking(num){
 
     console.log(this.page);
     }
+
+    console.log("Man at end", this.notebook);
   }
   pdfTick(array,pageNumber){
     if(pageNumber <= this.no_of_pages){
