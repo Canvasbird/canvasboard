@@ -77,8 +77,8 @@ export class BoardComponent implements OnInit {
       doc.getPage(page_number).then(page => {
         let canvas:any = document.getElementById("my_canvas")
         let context:any = canvas.getContext("2d")
-        let viewport:any = page.getViewport({ scale: 1})
-        // viewport.height = '200px';
+        let viewport:any = page.getViewport({ scale: 1.3})
+        viewport.height=this.scrHeight
         // viewport.width = '200px';
         page.render({
           canvasContext: context,
