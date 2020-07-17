@@ -26,6 +26,7 @@ export class BoardComponent implements OnInit {
   no_of_pages: any;
   //PDF tracking
   pageTracking:Tracking[] = [];
+  pdf_added_boolean:boolean = false
   //## content declarations
   ctx:any;
 
@@ -79,6 +80,7 @@ export class BoardComponent implements OnInit {
         let context:any = canvas.getContext("2d")
         let viewport:any = page.getViewport({ scale: 1.3})
         viewport.height=this.scrHeight
+        this.pdf_added_boolean = true
         // viewport.width = '200px';
         page.render({
           canvasContext: context,
@@ -217,7 +219,8 @@ function_PDF_tracking(num){
     // clearing my rect
     this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
 
-    // if pdf page is already rendered then dont add.. else add the pdf
+    if(this.pdf_added_boolean){
+          // if pdf page is already rendered then dont add.. else add the pdf
     let temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page)
     if(temp >-1){
       //page number is already there in pagetracking
@@ -227,6 +230,7 @@ function_PDF_tracking(num){
       console.log("As page number is not found in tracking list we are adding it");
 
       await this.addPdf(this.page+1)
+    }
     }
 
     // for(let i=0;i<this.pageTracking.length;i++){
@@ -336,6 +340,17 @@ function_PDF_tracking(num){
       console.log("New page!!");
 
     } //adding new page number
+  }
+
+  downloadAsJSON(){
+    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.notebook));
+    var a = document.createElement('a');
+    a.href = 'data:' + data;
+    a.download = 'data.json';
+    a.innerHTML = 'download JSON';
+
+    var container = document.getElementById('container');
+    container.appendChild(a);
   }
 
 }
