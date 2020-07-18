@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   width="400"
+   height="400"
+   id="svg2180">
+  <defs
+     id="defs2182" />
+  <g
+     style="opacity:1;display:inline"
+     id="layer1">
+    <g
+       style="stroke:#a9a9a9;stroke-opacity:1"
+       id="g8191">
+      <path
+         d="M 20,0 L 20,400"
+         style="fill:none;fill-rule:evenodd;stroke:#a9a9a9;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="path1872" />
+      <use
+         transform="translate(20,0)"
+         style="stroke:#a9a9a9;stroke-opacity:1"
+         id="use8185"
+         x="0"
+         y="0"
+         width="400"
+         height="400"
+         xlink:href="#path1872" />
+      <use
+         transform="translate(40,0)"
+         style="stroke:#a9a9a9;stroke-opacity:1"
+         id="use8187"
+         x="0"
+         y="0"
+         width="400"
+         height="400"
+         xlink:href="#path1872" />
+      <use
+         transform="translate(60,0)"
+         style="stroke:#a9a9a9;stroke-opacity:1"
+         id="use8189"
+         x="0"
+         y="0"
+         width="400"
+         height="400"
+         xlink:href="#path1872" />
+    </g>
+    <use
+       transform="translate(100,0)"
+       id="use8197"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#g8191" />
+    <use
+       transform="translate(200,0)"
+       id="use8199"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#g8191" />
+    <use
+       transform="translate(300,0)"
+       id="use8201"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#g8191" />
+    <use
+       transform="matrix(0,1,-1,0,400,0)"
+       id="use8203"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#g8191" />
+    <use
+       transform="translate(0,100)"
+       id="use8205"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#use8203" />
+    <use
+       transform="translate(0,200)"
+       id="use8207"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#use8203" />
+    <use
+       transform="translate(0,300)"
+       id="use8209"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#use8203" />
+  </g>
+  <g
+     style="display:inline"
+     id="layer2">
+    <g
+       style="stroke:#366;stroke-opacity:1"
+       id="g8225">
+      <path
+         d="M 100,0 L 100,400"
+         style="fill:none;fill-rule:evenodd;stroke:#366;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="path8215" />
+      <use
+         transform="translate(100,0)"
+         style="stroke:#366;stroke-opacity:1"
+         id="use8217"
+         x="0"
+         y="0"
+         width="400"
+         height="400"
+         xlink:href="#path8215" />
+      <use
+         transform="translate(200,0)"
+         style="stroke:#366;stroke-opacity:1"
+         id="use8219"
+         x="0"
+         y="0"
+         width="400"
+         height="400"
+         xlink:href="#path8215" />
+    </g>
+    <use
+       transform="matrix(0,1,-1,0,400,0)"
+       id="use8232"
+       x="0"
+       y="0"
+       width="400"
+       height="400"
+       xlink:href="#g8225" />
+  </g>
+  <g
+     id="layer3">
+    <rect
+       width="399"
+       height="399"
+       x="0.5"
+       y="0.5"
+       style="fill:none;stroke:#366;stroke-opacity:1"
+       id="rect10078" />
+  </g>
+</svg>

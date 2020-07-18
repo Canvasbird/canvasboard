@@ -12,9 +12,11 @@ export class BoardComponent implements OnInit {
 
   //referring the canvas element
   @ViewChild('myCanvas',null) canvas:any;
+  @ViewChild('backgroundImage',null) background:any;
 
   //# Essentials
   canvasElement: any;
+  backgroundCanvas:any;
   scrHeight:any;
   scrWidth:any;
   globalListenFunc: Function;
@@ -44,7 +46,14 @@ export class BoardComponent implements OnInit {
   normalPen_endX:number;
   normalPen_endY:number;
 
-
+ //for Brush
+ brush:boolean = false;
+ brush_startX:number;
+ brush_startY:number;
+ brush_currentX:number;
+ brush_currentY:number;
+ brush_endX:number;
+ brush_endY:number;
 
   //getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
@@ -67,6 +76,11 @@ export class BoardComponent implements OnInit {
   //setting the Width and Height to the canvas element
   this.renderer.setElementAttribute(this.canvasElement, 'width', this.scrWidth);
   this.renderer.setElementAttribute(this.canvasElement, 'height', this.scrHeight);
+
+  //for background
+  this.backgroundCanvas = this.background.nativeElement;
+  this.renderer.setElementAttribute(this.backgroundCanvas, 'width', this.scrWidth);
+  this.renderer.setElementAttribute(this.backgroundCanvas, 'height', this.scrHeight);
   }
 
   addPdf(page_number){
@@ -252,6 +266,9 @@ function_PDF_tracking(num){
 
       image.onload = (event) => {
         this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+        console.log("Image width",image.width);
+        image.width = this.scrWidth
+
         this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
       }
       image.src = this.notebook[this.page].image;
@@ -353,4 +370,24 @@ function_PDF_tracking(num){
     container.appendChild(a);
   }
 
+
+  //Add normal paper
+  addNormalPaper(){
+    let ctx:any = document.getElementById("backgroundImage")
+    if (ctx.getContext) {
+      ctx = ctx.getContext('2d');
+      var img1 = new Image();
+      img1.onload = (event) => {
+        //draw background image
+        console.log(img1.width);
+        img1.width = 1000
+        img1.height = 1000
+
+        ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
+
+
+    };
+    img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true"
+    }
+  }
 }
