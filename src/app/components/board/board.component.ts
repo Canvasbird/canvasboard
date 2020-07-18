@@ -36,6 +36,9 @@ export class BoardComponent implements OnInit {
   filePath:string;
 
 
+  //tools
+  penColour:any;
+
   //# toolbox declarations
   //## Normal pen
   normalPen:boolean = false;
@@ -136,7 +139,7 @@ export class BoardComponent implements OnInit {
           this.ctx.moveTo(this.normalPen_startX,this.normalPen_startY);
           this.ctx.lineTo(this.normalPen_currentX,this.normalPen_currentY);
           this.ctx.closePath();
-          // this.ctx.strokeStyle = this.colour_selector;
+          this.ctx.strokeStyle = this.penColour;
           // this.ctx.lineWidth = this.line_width;
           this.ctx.stroke();
 
@@ -389,5 +392,12 @@ function_PDF_tracking(num){
     };
     img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true"
     }
+  }
+
+  colourPick(){
+    console.log("Colour changed");
+    let data:any = document.getElementById("myColor")
+    this.penColour = data.value
+    console.log(this.penColour,"Colour");
   }
 }
