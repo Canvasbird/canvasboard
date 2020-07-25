@@ -410,7 +410,7 @@ function_PDF_tracking(num){
 
 
     };
-    img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/math.png?raw=true"
+    img1.src = "https://raw.githubusercontent.com/Canvasbird/canvasboard/master/src/assets/paperType/mathYellow.svg"
     }
   }
 
