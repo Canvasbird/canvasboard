@@ -375,7 +375,7 @@ function_PDF_tracking(num){
 
 
   //Add normal paper
-  addNormalPaper(){
+  addRuledPaper(){
     let ctx:any = document.getElementById("backgroundImage")
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
