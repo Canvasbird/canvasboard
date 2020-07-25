@@ -394,6 +394,46 @@ function_PDF_tracking(num){
     }
   }
 
+  //Add math paper
+  addMathPaper(){
+    let ctx:any = document.getElementById("backgroundImage")
+    if (ctx.getContext) {
+      ctx = ctx.getContext('2d');
+      var img1 = new Image();
+      img1.onload = (event) => {
+        //draw background image
+        console.log(img1.width);
+        // img1.width = 1000
+        // img1.height = 1000
+
+        ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
+
+
+    };
+    img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/math.png?raw=true"
+    }
+  }
+
+// Add graph paper
+addGraphPaper(){
+  let ctx:any = document.getElementById("backgroundImage")
+  if (ctx.getContext) {
+    ctx = ctx.getContext('2d');
+    var img1 = new Image();
+    img1.onload = (event) => {
+      //draw background image
+      console.log(img1.width);
+      // img1.width = 1000
+      // img1.height = 1000
+
+      ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
+
+
+  };
+  img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true"
+  }
+}
+
   colourPick(){
     console.log("Colour changed");
     let data:any = document.getElementById("myColor")
