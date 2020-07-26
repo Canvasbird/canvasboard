@@ -39,9 +39,14 @@ export class BoardComponent implements OnInit {
   //tools
   penColour:any;
 
+  // basic_tools booleans
+basic_tools = {
+  normalPen: false,
+  brushPen:false,
+}
+
   //# toolbox declarations
   //## Normal pen
-  normalPen:boolean = false;
   normalPen_startX:number;
   normalPen_startY:number;
   normalPen_currentX:number;
@@ -49,14 +54,14 @@ export class BoardComponent implements OnInit {
   normalPen_endX:number;
   normalPen_endY:number;
 
- //for Brush
- brush:boolean = false;
- brush_startX:number;
- brush_startY:number;
- brush_currentX:number;
- brush_currentY:number;
- brush_endX:number;
- brush_endY:number;
+ calligraphy_tool = {
+   calligraphy_startX:-1,
+   calligraphy_startY:-1,
+   calligraphy_currentX:-1,
+   calligraphy_currentY:-1,
+   calligraphy_endX:-1,
+   calligraphy_endY:-1,
+ }
 
   //getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
@@ -111,26 +116,31 @@ export class BoardComponent implements OnInit {
   //pen Button
   penButton(){
     console.log("Working!");
-    //Enabling brush and disabiling other tools
-    this.normalPen = true;
-    //disabling others
+    //Enabling pen and disabiling other tools
+    Object.keys(this.basic_tools).forEach( (key)=>{
+      this.basic_tools[key] = false;
+    })
+    //Enabling only normal pen
+    this.basic_tools.normalPen = true;
 
     // post checking
-    if(this.normalPen){
+    if(this.basic_tools.normalPen){
       //When mouse is pressed down
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true
-        console.log("Mouse down");
-
-        // taking mouse down X and Y coordinates
-        this.normalPen_startX = e.offsetX
-        this.normalPen_startY = e.offsetY
+        
+        if(this.mouseControl && this.basic_tools.normalPen){
+          console.log("Mouse down");
+          // taking mouse down X and Y coordinates
+          this.normalPen_startX = e.offsetX
+          this.normalPen_startY = e.offsetY
+        }
       })
 
       //When Mouse is moving
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
-        if(this.mouseControl){
-          console.log("Mouse is moving!");
+        if(this.mouseControl && this.basic_tools.normalPen){
+          console.log("Mouse is moving! for pen");
 
           this.normalPen_currentX = e.offsetX
           this.normalPen_currentY = e.offsetY
@@ -160,6 +170,69 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  brushButton(){
+    console.log("Brush is working");
+    //Enabling brush and disabiling other tools
+    Object.keys(this.basic_tools).forEach( (key)=>{
+      this.basic_tools[key] = false;
+    })
+    this.basic_tools.brushPen = true;
+
+    if(this.basic_tools.brushPen){
+      this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
+        this.mouseControl = true
+        
+        if(this.mouseControl && this.basic_tools.brushPen){
+          // taking mouse down X and Y coordinates
+          console.log("Mouse down");
+          this.calligraphy_tool.calligraphy_startX = e.offsetX
+          this.calligraphy_tool.calligraphy_startY = e.offsetY 
+        }
+      })
+
+      this.globalListenFunc= this.renderer.listen('document','mousemove', e=> {
+        if(this.mouseControl && this.basic_tools.brushPen){
+          console.log("Mouse is moving for brish");
+
+          this.calligraphy_tool.calligraphy_currentX = e.offsetX
+          this.calligraphy_tool.calligraphy_currentY = e.offsetY
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.calligraphy_tool.calligraphy_startX,this.calligraphy_tool.calligraphy_startY);
+          this.ctx.lineTo(this.calligraphy_tool.calligraphy_currentX,this.calligraphy_tool.calligraphy_currentY);
+          this.ctx.closePath();
+          this.ctx.stroke();
+
+          for(let i=0; i<5;i++){
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.calligraphy_tool.calligraphy_startX+i,this.calligraphy_tool.calligraphy_startY+i);
+          this.ctx.lineTo(this.calligraphy_tool.calligraphy_currentX+i,this.calligraphy_tool.calligraphy_currentY+i);
+          this.ctx.closePath();
+          this.ctx.stroke();
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.calligraphy_tool.calligraphy_startX-i,this.calligraphy_tool.calligraphy_startY-i);
+          this.ctx.lineTo(this.calligraphy_tool.calligraphy_currentX-i,this.calligraphy_tool.calligraphy_currentY-i);
+          this.ctx.closePath();
+          this.ctx.stroke();
+          }
+
+          this.calligraphy_tool.calligraphy_startX = this.calligraphy_tool.calligraphy_currentX;
+          this.calligraphy_tool.calligraphy_startY = this.calligraphy_tool.calligraphy_currentY;
+
+        }
+      })
+
+      //When mouse is moved up
+      this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
+        this.mouseControl = false;
+        console.log("Mouse up");
+        this.calligraphy_tool.calligraphy_endX = e.offsetX;
+        this.calligraphy_tool.calligraphy_endY = e.offsetY;
+      });
+
+    }
+  }
 
   localUrl: any[];
 
