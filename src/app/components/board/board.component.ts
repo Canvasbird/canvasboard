@@ -170,7 +170,7 @@ basic_tools = {
     }
   }
 
-  brushButton(){
+  calligraphyButton(){
     console.log("Brush is working");
     //Enabling brush and disabiling other tools
     Object.keys(this.basic_tools).forEach( (key)=>{
