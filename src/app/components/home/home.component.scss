@@ -1,0 +1,63 @@
+.container{
+
+  .links{
+    width: 100%;
+    text-align: center;
+    // border: 1px solid red;
+    ul{
+      margin: 2px auto;
+      line-height: 1.4;
+      padding-left: 0;
+    }
+    li{
+      display: inline;
+      text-align: center;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+  .header{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 60px;
+  }
+  .sub-header{
+    font-family: 'Questrial', sans-serif;
+    font-size: 30px;
+    line-height: 31px;
+    .webboard{
+      color: #EE6D9E;
+      font-weight: bold;
+    }
+    .Schools{
+      color: #1551EC;
+      font-weight: bold;
+    }
+    .Colleges{
+      color: #5217F9;
+      font-weight: bold;
+    }
+    .Universities{
+      color: #9513E4;
+      font-weight: bold;
+    }
+  }
+  .board{
+    width: 90%;
+    margin-top: 70px;
+  }
+
+  .features{
+    margin-top: 100px;
+    .pdf-img{
+      width: 50%;
+    }
+    .feature1-heading{
+      color: #EE6D9E;
+      font-family: Poppins;
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 45px;
+    }
+  }
+}
