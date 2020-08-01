@@ -1,6 +1,23 @@
-# Canvasboard
-> <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong>
+<p align="center">
+  <a href="https://github.com/goliakshay357/covid19-dashboard">
+    <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Canvasboard</h3>
+
+  <p align="center">
+    An Interactive Webboard for Schools, Colleges and Universities. 
+    <br />
+    <a href="https://github.com/Canvasbird/canvasboard/"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://github.com/Canvasbird/canvasboard/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Canvasbird/canvasboard/issues">Request Feature</a>
+  </p>
+</p>
+</br>
 ## Project Overview:
+> <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong>
 An interactive webboard application built on Angular to excel learning experience in schools,Colleges and Universities. Our main goal is to create a standalone web application which simplifies the prepping,in-class teaching and learning experience for its users (Teachers, Students).
 
 ## Dependencies🗃:
