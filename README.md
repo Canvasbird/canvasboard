@@ -40,6 +40,11 @@ Yayy! Your application is served locally in localhost:4200
 
 ## Contributing🤝 
 #### Please consider contributing to the project, with your ideas, your artwork, and your code.
+1. Fork it!
+2. Create your branch: git checkout -b branch-name
+3. Commit your changes: git commit -am 'Add some feature or solve bug'
+4. Push to the branch: git push origin branch-name
+### Submit a pull request :D
 
 [Angular]:<https://angular.io/>
 [Bootstrap]:<https://getbootstrap.com/>
