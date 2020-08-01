@@ -17,6 +17,7 @@
 </p>
 </br>
 ## Project Overview:
+
 > <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong>
 An interactive webboard application built on Angular to excel learning experience in schools,Colleges and Universities. Our main goal is to create a standalone web application which simplifies the prepping,in-class teaching and learning experience for its users (Teachers, Students).
 
