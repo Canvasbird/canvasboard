@@ -8,6 +8,7 @@ import { BoardComponent } from './components/board/board.component';
 import { FileExplorerComponent } from './components/file-explorer/file-explorer.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LoginComponent } from './components/login/login.component';
     BoardComponent,
     FileExplorerComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
