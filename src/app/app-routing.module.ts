@@ -4,7 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent} from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {FileExplorerComponent} from './components/file-explorer/file-explorer.component'
+import { BoardComponent } from './components/board/board.component';
 
+//guard
+import { AuthGuard } from './shared/auth.guard'
 
 const routes: Routes = [
   {
@@ -23,6 +28,21 @@ const routes: Routes = [
   {
     path:'sign-up',
     component: SignUpComponent
+  },
+  {
+    path:'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'file-explorer',
+    component: FileExplorerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'board',
+    component: BoardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
