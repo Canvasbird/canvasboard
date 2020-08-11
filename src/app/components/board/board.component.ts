@@ -43,6 +43,7 @@ export class BoardComponent implements OnInit {
 basic_tools = {
   normalPen: false,
   brushPen:false,
+  highlighter: false,
 }
 
   //# toolbox declarations
@@ -62,6 +63,14 @@ basic_tools = {
    calligraphy_endX:-1,
    calligraphy_endY:-1,
  }
+ highlighter_tool = {
+  highlighter_startX:-1,
+  highlighter_startY:-1,
+  highlighter_currentX:-1,
+  highlighter_currentY:-1,
+  highlighter_endX:-1,
+  highlighter_endY:-1,
+}
 
   //getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
@@ -128,7 +137,7 @@ basic_tools = {
       //When mouse is pressed down
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true
-        
+
         if(this.mouseControl && this.basic_tools.normalPen){
           console.log("Mouse down");
           // taking mouse down X and Y coordinates
@@ -181,12 +190,12 @@ basic_tools = {
     if(this.basic_tools.brushPen){
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true
-        
+
         if(this.mouseControl && this.basic_tools.brushPen){
           // taking mouse down X and Y coordinates
           console.log("Mouse down");
           this.calligraphy_tool.calligraphy_startX = e.offsetX
-          this.calligraphy_tool.calligraphy_startY = e.offsetY 
+          this.calligraphy_tool.calligraphy_startY = e.offsetY
         }
       })
 
@@ -229,6 +238,74 @@ basic_tools = {
         console.log("Mouse up");
         this.calligraphy_tool.calligraphy_endX = e.offsetX;
         this.calligraphy_tool.calligraphy_endY = e.offsetY;
+      });
+
+    }
+  }
+
+    highlighterButton(){
+    console.log("Brush is working");
+    //Enabling brush and disabiling other tools
+    Object.keys(this.basic_tools).forEach( (key)=>{
+      this.basic_tools[key] = false;
+    })
+    this.basic_tools.highlighter = true;
+
+    if(this.basic_tools.highlighter){
+      this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
+        this.mouseControl = true
+
+        if(this.mouseControl && this.basic_tools.highlighter){
+          // taking mouse down X and Y coordinates
+          console.log("Mouse down");
+          this.highlighter_tool.highlighter_startX = e.offsetX
+          this.highlighter_tool.highlighter_startY = e.offsetY
+        }
+      })
+
+      this.globalListenFunc= this.renderer.listen('document','mousemove', e=> {
+        if(this.mouseControl && this.basic_tools.highlighter){
+          console.log("Mouse is moving for brish");
+
+          this.highlighter_tool.highlighter_currentX = e.offsetX
+          this.highlighter_tool.highlighter_currentY = e.offsetY
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.highlighter_tool.highlighter_startX,this.highlighter_tool.highlighter_startY);
+          this.ctx.lineTo(this.highlighter_tool.highlighter_currentX,this.highlighter_tool.highlighter_currentY);
+          this.ctx.closePath();
+          this.ctx.stroke();
+
+          for(let i=0; i<5;i++){
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.highlighter_tool.highlighter_startX+i,this.highlighter_tool.highlighter_startY+i);
+          this.ctx.lineTo(this.highlighter_tool.highlighter_currentX+i,this.highlighter_tool.highlighter_currentY+i);
+          this.ctx.closePath();
+          this.ctx.stroke();
+          this.ctx.strokeStyle = "rgb(58,150,270)";
+          this.ctx.lineWidth = 10;
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(this.highlighter_tool.highlighter_startX-i,this.highlighter_tool.highlighter_startY-i);
+          this.ctx.lineTo(this.highlighter_tool.highlighter_currentX-i,this.highlighter_tool.highlighter_currentY-i);
+          this.ctx.closePath();
+          this.ctx.stroke();
+          this.ctx.strokeStyle = "rgb(58,150,270)";
+          this.ctx.lineWidth = 10;
+          }
+
+          this.highlighter_tool.highlighter_startX = this.highlighter_tool.highlighter_currentX;
+          this.highlighter_tool.highlighter_startY = this.highlighter_tool.highlighter_currentY;
+
+        }
+      })
+
+      //When mouse is moved up
+      this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
+        this.mouseControl = false;
+        console.log("Mouse up");
+        this.highlighter_tool.highlighter_endX = e.offsetX;
+        this.highlighter_tool.highlighter_endY = e.offsetY;
       });
 
     }
@@ -507,10 +584,25 @@ addGraphPaper(){
   }
 }
 
-  colourPick(){
+  colourPick(opacity = 1){
     console.log("Colour changed");
     let data:any = document.getElementById("myColor")
-    this.penColour = data.value
-    console.log(this.penColour,"Colour");
+
+    //changing the value to RGB format
+    // #XXXXXX -> ["XX", "XX", "XX"]
+    let value = data.value.match(/[A-Za-z0-9]{2}/g);
+    // ["XX", "XX", "XX"] -> [n, n, n]
+    value = value.map(function(v) { return parseInt(v, 16) });
+    // [n, n, n] -> rgb(n,n,n)
+    let rgbConverted = "rgb(" + value.join(",") +","+opacity+ ")";
+    console.log(rgbConverted,"Colour Changed");
+    this.penColour = rgbConverted;
+  }
+  rgbConverter(hexValue,opacity=1){
+    //changing the value to RGB format
+    let value = hexValue.match(/[A-Za-z0-9]{2}/g);
+    value = value.map(function(v) { return parseInt(v, 16) });
+    let rgbConverted = "rgb(" + value.join(",") +","+opacity+ ")";
+    return rgbConverted
   }
 }
