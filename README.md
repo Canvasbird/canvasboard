@@ -11,8 +11,9 @@
     <a href="https://github.com/Canvasbird/canvasboard/"><strong>Explore the docs »</strong></a>
     <br />
     <a href="https://github.com/Canvasbird/canvasboard/issues">Report Bug</a>
-    ·
+    .
     <a href="https://github.com/Canvasbird/canvasboard/issues">Request Feature</a>
+    .
     <a href="https://gitter.im/canvasbird/canvasboard-frontend">IRC Channel</a>
   
   </p>
