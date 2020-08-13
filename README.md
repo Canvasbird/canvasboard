@@ -32,8 +32,11 @@ An interactive webboard application built on Angular to excel learning experienc
 - [Angular]
 - [Bootstrap]
 - [jQuery]
+- [FabricJS]
 - [Nodejs with express]
-- [Firebase]
+- [MongoDB]
+
+
 
 ## Running the canvasboard application:
 Make sure NodeJS and Angular CLI is installed locally in your system.
@@ -76,4 +79,6 @@ Yayy! Your application is served locally in localhost:4200
 [jQuery]:<https://jquery.com/>
 [Nodejs with express]:<https://expressjs.com/>
 [Firebase]:<https://firebase.google.com/>
+[MongoDB]:<https://www.mongodb.com/>
+[FabricJS]:<http://fabricjs.com/>
 
