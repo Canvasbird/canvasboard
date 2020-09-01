@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/goliakshay357/covid19-dashboard">
+  <a href="#">
     <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
   </a>
 
