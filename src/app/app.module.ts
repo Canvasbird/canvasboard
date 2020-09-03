@@ -13,6 +13,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './shared/auth.guard';
+import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AuthGuard } from './shared/auth.guard';
     LoginComponent,
     SignUpComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    SubjectDashboardComponent
   ],
   imports: [
     BrowserModule,
