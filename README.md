@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/goliakshay357/covid19-dashboard">
+  <a href="#">
     <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -11,8 +11,11 @@
     <a href="https://github.com/Canvasbird/canvasboard/"><strong>Explore the docs »</strong></a>
     <br />
     <a href="https://github.com/Canvasbird/canvasboard/issues">Report Bug</a>
-    ·
+    .
     <a href="https://github.com/Canvasbird/canvasboard/issues">Request Feature</a>
+    .
+    <a href="https://gitter.im/canvasbird/canvasboard-frontend">IRC Channel</a>
+  
   </p>
 </p>
 </br>
@@ -29,8 +32,11 @@ An interactive webboard application built on Angular to excel learning experienc
 - [Angular]
 - [Bootstrap]
 - [jQuery]
+- [FabricJS]
 - [Nodejs with express]
-- [Firebase]
+- [MongoDB]
+
+
 
 ## Running the canvasboard application:
 Make sure NodeJS and Angular CLI is installed locally in your system.
@@ -73,4 +79,6 @@ Yayy! Your application is served locally in localhost:4200
 [jQuery]:<https://jquery.com/>
 [Nodejs with express]:<https://expressjs.com/>
 [Firebase]:<https://firebase.google.com/>
+[MongoDB]:<https://www.mongodb.com/>
+[FabricJS]:<http://fabricjs.com/>
 
