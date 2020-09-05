@@ -10,6 +10,7 @@ import { BoardComponent } from './components/board/board.component';
 
 //guard
 import { AuthGuard } from './shared/auth.guard'
+import { NewBoardComponent } from './components/new-board/new-board.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path:'board',
     component: BoardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'creative-board',
+    component: NewBoardComponent,
     canActivate: [AuthGuard]
   },
   {
