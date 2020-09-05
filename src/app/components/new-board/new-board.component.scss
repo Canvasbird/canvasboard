@@ -1,0 +1,40 @@
+.container{
+  // ..............MAIN.....................
+  .main{
+    .main-box{
+      display:block
+    }
+  }
+  //................. TOOLBOX.....................
+.toolbox{
+  .toolbox-main{
+    display:flex;
+
+    .tool{
+      // height: 100px;
+      // width: 100px;
+    }
+    // .box1{
+    //   background-color: red;
+    // }
+    // .box2{
+    //   background-color: blue;
+    // }
+    // .box3{
+    //   background-color: yellow;
+    // }
+    // .box4{
+    //   background-color: pink;
+    // }
+    // .box5{
+    //   background-color: green;
+    // }
+  }
+}
+}
+
+//Essentials
+[contentEditable=true]:empty:not(:focus):before{
+  content:attr(data-text);
+  color:rgb(175, 175, 175);
+}
