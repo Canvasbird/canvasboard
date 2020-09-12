@@ -180,6 +180,14 @@ export class NewBoardComponent implements OnInit {
                 </svg>
               </button>
             </div>
+            <!-- Image upload button -->
+            <div class="tool box1 m-1" id="add-image-upload-${uid}">
+              <button class="btn btn-light">
+                <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+              </button>
+            </div>
               <!-- more -->
               <div class="tool box5 m-1">
                 <button class="btn btn-light">
@@ -360,6 +368,14 @@ export class NewBoardComponent implements OnInit {
                 </svg>
               </button>
             </div>
+            <!-- Image upload button -->
+            <div class="tool box1 m-1" id="add-image-upload-${uid}">
+              <button class="btn btn-light">
+                <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+              </button>
+            </div>
               <!-- more -->
               <div class="tool box5 m-1">
                 <button class="btn btn-light">
@@ -508,6 +524,20 @@ export class NewBoardComponent implements OnInit {
       // Add code snippet
       $(`#add-code-snippet-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
+      });
+
+      // Add upload image
+      $(`#add-image-upload-${uid}`).click(() => {
+        const imageURL = prompt('Enter Your image URL here');
+        const isConfirmed = confirm('The image you selected is correct?');
+        if (this.validURL(imageURL)) {
+          $(`#original-${uid}`).append(
+            `<img src=${imageURL} id="cb-image-${uid}"></img>`
+          );
+          $(`#cb-image-${uid}`).css('width', '100%');
+        } else {
+          alert('Please enter a valid URL!!');
+        }
       });
     } catch (err) {
       console.log('Error', err);
@@ -659,6 +689,14 @@ export class NewBoardComponent implements OnInit {
               <button class="btn btn-light">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-slash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0zm-.999-3.124a.5.5 0 0 1 .33.625l-4 13a.5.5 0 0 1-.955-.294l4-13a.5.5 0 0 1 .625-.33z"/>
+                </svg>
+              </button>
+            </div>
+            <!-- Image upload button -->
+            <div class="tool box1 m-1" id="add-image-upload-${uid}">
+              <button class="btn btn-light">
+                <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
               </button>
             </div>
@@ -842,6 +880,14 @@ export class NewBoardComponent implements OnInit {
                 </svg>
               </button>
             </div>
+            <!-- Image upload button -->
+            <div class="tool box1 m-1" id="add-image-upload-${uid}">
+              <button class="btn btn-light">
+                <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+              </button>
+            </div>
               <!-- more -->
               <div class="tool box5 m-1">
                 <button class="btn btn-light">
@@ -995,6 +1041,20 @@ export class NewBoardComponent implements OnInit {
       $(`#add-code-snippet-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
       });
+
+      // Add upload image
+      $(`#add-image-upload-${uid}`).click(() => {
+        const imageURL = prompt('Enter Your image URL here');
+        const isConfirmed = confirm('The image you selected is correct?');
+        if (this.validURL(imageURL)) {
+          $(`#original-${uid}`).append(
+            `<img src=${imageURL} id="cb-image-${uid}"></img>`
+          );
+          $(`#cb-image-${uid}`).css('width', '100%');
+        } else {
+          alert('Please enter a valid URL!!');
+        }
+      });
     } catch (err) {
       console.log('Error', err);
     }
@@ -1009,5 +1069,16 @@ export class NewBoardComponent implements OnInit {
         return false;
       }
     });
+  }
+
+  // Check url validity
+  validURL(str) {
+    const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    return !!pattern.test(str);
   }
 }
