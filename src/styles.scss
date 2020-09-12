@@ -1,57 +1,76 @@
 /* You can add global styles to this file, and also import other style files */
 
-.marginTopTwo{
-    margin-top: 2%;
+.marginTopTwo {
+  margin-top: 2%;
 }
-.borderBlack{
-    border: 2px solid black;
+
+.borderBlack {
+  border: 2px solid black;
 }
-.marginBottomTwo{
-    margin-bottom: 2%;
+
+.marginBottomTwo {
+  margin-bottom: 2%;
 }
-.marginRightTwo{
-    margin-right: 2%;
+
+.marginRightTwo {
+  margin-right: 2%;
 }
-.cursorHand{
-    cursor: pointer;
+
+.cursorHand {
+  cursor: pointer;
 }
-.paddingOne{
-    padding:1%;
+
+.paddingOne {
+  padding: 1%;
 }
-.colorWhite{
-    color: white;
+
+.colorWhite {
+  color: white;
 }
+
 /* You can add global styles to this file, and also import other style files */
 // .............. TOOLBOX UTILITIES..................
-.cb-H1{
+.cb-H1 {
   font-size: 2em;
 }
-.cb-H2{
+
+.cb-H2 {
   font-size: 1.5em;
 }
-.cb-H3{
+
+.cb-H3 {
   font-size: 1.3em;
 }
 
-.toolbox-main{
-  position:absolute;
-  display:flex;
-  background-color:white;
+.toolbox-main {
+  position: absolute;
+  display: flex;
+  background-color: white;
   right: 0px;
   border-radius: 5px;
   z-index: 1000;
 }
 
 // for background colors
-.cb-background-red{
-  background-color: #F78080;
+.cb-background-red {
+  background-color: #f78080;
 }
-.cb-background-green{
-  background-color: #94E794;
+
+.cb-background-green {
+  background-color: #94e794;
 }
-.cb-background-yellow{
-  background-color: #F6EC89;
+
+.cb-background-yellow {
+  background-color: #f6ec89;
 }
-.cb-background-blue{
-  background-color: #96C7F7;
+
+.cb-background-blue {
+  background-color: #96c7f7;
+}
+
+// code snippet style
+.cb-code-snippet {
+  background-color: black;
+  color: #e6db74;
+  font-family: "Inconsolata", monospace;
 }
