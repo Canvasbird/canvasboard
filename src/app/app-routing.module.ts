@@ -7,6 +7,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FileExplorerComponent} from './components/file-explorer/file-explorer.component'
 import { BoardComponent } from './components/board/board.component';
+import { SubmissionComponent } from './components/submission/submission.component';
 
 //guard
 import { AuthGuard } from './shared/auth.guard'
@@ -46,6 +47,11 @@ const routes: Routes = [
     path:'board',
     component: BoardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path:'submission',
+    component: SubmissionComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path:'creative-board',
