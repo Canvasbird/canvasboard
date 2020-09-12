@@ -7,6 +7,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FileExplorerComponent} from './components/file-explorer/file-explorer.component'
 import { BoardComponent } from './components/board/board.component';
+import { AssignmentComponent } from './components/assignment/assignment.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 
 //guard
@@ -47,6 +48,11 @@ const routes: Routes = [
     path:'board',
     component: BoardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path:'assignment',
+    component: AssignmentComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path:'submission',
