@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { BoardComponent } from './components/board/board.component';
+import { SubmissionComponent } from './components/submission/submission.component';
 import { FileExplorerComponent } from './components/file-explorer/file-explorer.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,12 +17,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './shared/auth.guard';
 import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 import { NewBoardComponent } from './components/new-board/new-board.component';
-
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BoardComponent,
+    SubmissionComponent,
     FileExplorerComponent,
     FooterComponent,
     LoginComponent,
@@ -28,12 +31,14 @@ import { NewBoardComponent } from './components/new-board/new-board.component';
     DashboardComponent,
     NavbarComponent,
     SubjectDashboardComponent,
-    NewBoardComponent
+    NewBoardComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
