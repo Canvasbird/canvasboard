@@ -21,22 +21,10 @@ export class NewBoardComponent implements OnInit {
   ngOnInit() {
     //Initials
     this.disableTitleEnter();
-
-    // /////////////////////////////////////////////////////////////////
-    // ......................... DISABLING ENTER KEYWORD .........................
-    $("#original[contenteditable]").keypress(function (evt) {
-      var keycode = evt.charCode || evt.keyCode;
-      if (keycode == 13) {
-        //Enter key's keycode
-        return false;
-      }
-    });
-    // ............................. Initialing with a div..................................
     this.addAfterBlockEditor("sub-title", 0);
-    // ////////////////////////////////////////////////////////////////////
+
   }
 
-  // ........................ UTILITY FUNCTIONS ...........................
 
   //.........................ADDING BLOCK AFTER THE DIV FUNCTION.................
   addAfterBlockEditor = (id, checker) => {

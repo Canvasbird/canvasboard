@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="container mt-3 border">
+    <h3>
+      Canvasboard learning Managment
+    </h3>
+  </div>
+  <div class="container mt-3 border">
+    <h4>
+        {{assignmentTitle}}
+    </h4>
+    <h5>
+        {{assignmentSubTitle}}
+    </h5>
+    <h6 class="pl-5">
+      {{assignmentContent}}
+    </h6>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Due Date: 11/11/11</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Time Left: 12hrs</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Status: Pending</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="file-upload mt-3">
+      <h5>File submissions:</h5>
+      <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+        <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
+      
+        <h3>Drag and Drop file here</h3>
+        <h3>or</h3>
+        <h3>Browse for File</h3>
+      </div>
+      <div class="files-list">
+        <div class="single-file" *ngFor="let file of files; let i = index">
+          <div class="file-icon" style="width: 50px">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve">
+              <polygon style="fill:#EDEADA;" points="51.5,14 37.5,0 6.5,0 6.5,58 51.5,58 " />
+              <g>
+                <path style="fill:#CEC9AE;"
+                  d="M16.5,23h25c0.552,0,1-0.447,1-1s-0.448-1-1-1h-25c-0.552,0-1,0.447-1,1S15.948,23,16.5,23z" />
+                <path style="fill:#CEC9AE;"
+                  d="M16.5,15h10c0.552,0,1-0.447,1-1s-0.448-1-1-1h-10c-0.552,0-1,0.447-1,1S15.948,15,16.5,15z" />
+                <path style="fill:#CEC9AE;"
+                  d="M41.5,29h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,29,41.5,29z" />
+                <path style="fill:#CEC9AE;"
+                  d="M41.5,37h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,37,41.5,37z" />
+                <path style="fill:#CEC9AE;"
+                  d="M41.5,45h-25c-0.552,0-1,0.447-1,1s0.448,1,1,1h25c0.552,0,1-0.447,1-1S42.052,45,41.5,45z" />
+              </g>
+              <polygon style="fill:#CEC9AE;" points="37.5,0 37.5,14 51.5,14 " />
+            </svg>
+          </div>
+          <div class="info">
+            <h4 class="name">
+              {{ file?.name }}
+            </h4>
+            <p class="size">
+              {{ formatBytes(file?.size, 2) }}
+            </p>
+          </div>
+      
+          <div class="delete" (click)="deleteFile(i)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18">
+              <path fill="#B1B1B1" fill-rule="nonzero"
+                d="M1 16c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v10zm3.17-7.83a.996.996 0 0 1 1.41 0L7 9.59l1.42-1.42a.996.996 0 1 1 1.41 1.41L8.41 11l1.42 1.42a.996.996 0 1 1-1.41 1.41L7 12.41l-1.42 1.42a.996.996 0 1 1-1.41-1.41L5.59 11 4.17 9.58a.996.996 0 0 1 0-1.41zM10.5 1L9.79.29C9.61.11 9.35 0 9.09 0H4.91c-.26 0-.52.11-.7.29L3.5 1H1c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1h-2.5z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h5> Comments: </h5>
+    <div class="form-group">
+      <textarea class="form-control" rows="3" [(ngModel)]="assignmentComments"></textarea>
+    </div>
+    <div class="container mt-3 mb-3">
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    </div>
+    <h5> Teacher's Comments: </h5>
+    <h6 class="pl-5">{{teacherComments}}</h6>
+  </div>
+</div>

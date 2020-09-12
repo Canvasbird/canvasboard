@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { AssignmentComponent } from './components/assignment/assignment.component';
 import { BoardComponent } from './components/board/board.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 import { FileExplorerComponent } from './components/file-explorer/file-explorer.component';
@@ -22,6 +23,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
   declarations: [
     AppComponent,
     HomeComponent,
+    AssignmentComponent,
     BoardComponent,
     SubmissionComponent,
     FileExplorerComponent,
@@ -32,7 +34,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     NavbarComponent,
     SubjectDashboardComponent,
     NewBoardComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,

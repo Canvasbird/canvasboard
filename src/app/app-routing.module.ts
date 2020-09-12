@@ -7,12 +7,14 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FileExplorerComponent} from './components/file-explorer/file-explorer.component'
 import { BoardComponent } from './components/board/board.component';
+import { AssignmentComponent } from './components/assignment/assignment.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 
 //guard
 import { AuthGuard } from './shared/auth.guard'
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path:'assignment',
+    component: AssignmentComponent,
+    // canActivate: [AuthGuard]
+  },
+  {
     path:'submission',
     component: SubmissionComponent,
     // canActivate: [AuthGuard]
@@ -60,6 +67,11 @@ const routes: Routes = [
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'subject',
+    component: SubjectDashboardComponent,
     // canActivate: [AuthGuard]
   },
   {

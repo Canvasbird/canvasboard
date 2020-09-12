@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-subject-dashboard',
@@ -7,9 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+     ) { }
+  user = 'teacher';
+  imageInfo: any;
+
+  @ViewChild('uploadContent', { read: ElementRef, static: false }) uploadContent: ElementRef;
 
   ngOnInit() {
   }
+
+  uploading() {
+    this.uploadContent.nativeElement.click();
+  }
+
+  uploadingContent(imageInput: any) {
+    const file = imageInput.files[0];
+    const fileReader = new FileReader();
+  }
+
+uploadNewCourseContent(imageInput: any) {
+  const file = imageInput.files[0];
+  const fileReader = new FileReader();
+}
 
 }
