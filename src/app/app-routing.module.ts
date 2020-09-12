@@ -13,6 +13,7 @@ import { SubmissionComponent } from './components/submission/submission.componen
 import { AuthGuard } from './shared/auth.guard'
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'subject',
+    component: SubjectDashboardComponent,
     // canActivate: [AuthGuard]
   },
   {
