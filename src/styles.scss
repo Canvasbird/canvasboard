@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+// .............. TOOLBOX UTILITIES..................
+.cb-H1{
+  font-size: 2em;
+}
+.cb-H2{
+  font-size: 1.5em;
+}
+.cb-H3{
+  font-size: 1.3em;
+}
+
+.toolbox-main{
+  position:absolute;
+  display:flex;
+  background-color:white;
+  right: 0px;
+  border-radius: 5px;
+  z-index: 1000;
+}
