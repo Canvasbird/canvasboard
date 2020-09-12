@@ -17,7 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './shared/auth.guard';
 import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 import { NewBoardComponent } from './components/new-board/new-board.component';
-
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,8 @@ import { NewBoardComponent } from './components/new-board/new-board.component';
     DashboardComponent,
     NavbarComponent,
     SubjectDashboardComponent,
-    NewBoardComponent
+    NewBoardComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,

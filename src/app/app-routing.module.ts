@@ -12,6 +12,7 @@ import { SubmissionComponent } from './components/submission/submission.componen
 //guard
 import { AuthGuard } from './shared/auth.guard'
 import { NewBoardComponent } from './components/new-board/new-board.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,11 @@ const routes: Routes = [
     path:'creative-board',
     component: NewBoardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: '**',
