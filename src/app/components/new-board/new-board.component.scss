@@ -1,19 +1,20 @@
-.container {
-  // ..............MAIN.....................
-  .main {
-    // style for creative-board title
-    .cb-title {
-      .heading {
-        margin-bottom: 0px;
-        padding-top: 1rem;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #999999;
-      }
 
-      .heading:focus {
-        outline: none;
-      }
+.container{
+  // ..............MAIN.....................
+  .main{
+    .cb-title{
+    .heading{
+      margin-bottom: 0px;
+      padding-top:1rem;
+      padding-bottom:10px;
+      border-bottom:2px solid #999999;
     }
+
+    .heading:focus{
+      outline: none;
+    }
+    }
+
 
     .main-box{
       display:block;
@@ -71,16 +72,38 @@
     }
   }
   //................. TOOLBOX.....................
-  .toolbox {
-    margin-top: 10px;
-    .toolbox-main{
-      display:flex;
-    }
-  }
+.toolbox{
+  margin-top: 10px;
+  .toolbox-main{
+    display:flex;
+
+
 }
 
-//Essentials
-[contentEditable="true"]:empty:not(:focus):before {
-  content: attr(data-text);
-  color: rgb(175, 175, 175);
+
+.quill {
+  padding: 20px;
 }
+
+::ng-deep .ql-toolbar.ql-snow {
+  border-radius: 10px;
+}
+}
+}
+.creative-board-main:focus{
+  outline: none;
+}
+
+.red{
+  background: red;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+  content:attr(data-text)
+}
+
+.inline-flex{
+  display: inline-flex;
+}
+
+
