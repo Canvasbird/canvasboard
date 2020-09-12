@@ -29,7 +29,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     NavbarComponent,
     SubjectDashboardComponent,
     NewBoardComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,

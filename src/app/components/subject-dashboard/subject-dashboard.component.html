@@ -1,1 +1,171 @@
-<p>subject-dashboard works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <h2>Subject Name</h2>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-outline-dark" style="float: right;">
+                <strong style="padding:10px;">
+                    &#8592;Dashboard
+                </strong>
+            </button>
+        </div>
+    </div>
+    <div class="row marginTopTwo" *ngIf="user === 'teacher'">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="text-align: center;">
+            <button type="button" class="btn btn-outline-dark" >
+                <strong style="padding:10px;">
+                    Launch Board
+                </strong>
+            </button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="text-align: center;">
+            <button type="button" class="btn btn-outline-dark" >
+                <strong style="padding:10px;">
+                    Launch Creative Board
+                </strong>
+            </button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="text-align: center;">
+            <button type="button" class="btn btn-outline-dark" >
+                <strong style="padding:10px;">
+                    Diary
+                </strong>
+            </button>
+        </div>
+    </div>
+    <!-- My Diary -->
+    <div class="row marginTopTwo" *ngIf="user === 'Student'">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <input type="textarea">
+        </div>
+    </div>
+    <div class="row marginTopTwo borderBlack">
+        <div class="col-lg-12 col-md-12">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <h5>Board Notes Folder</h5>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <a style="text-decoration: none;float: right;">view all</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 marginTopTwo marginBottomTwo">
+            <div class="card" style="width: 18rem;float: left; margin-left: 4%;" *ngFor="let i of [1,2,3]">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="row marginTopTwo">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <strong>
+                <h5>Assignment & Exam Files:</h5>
+            </strong>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf=" user === 'teacher' ">
+            <button type="button" class="btn btn-outline-dark" style="float: right;" data-toggle="modal" data-target="#exampleModal">
+                <strong style="padding:10px;">
+                    New Assignment
+                </strong>
+            </button>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borderBlack marginTopTwo" *ngFor="let i of [1,2,3]">
+            <!-- teacher -->
+            <div class="row" *ngIf="user === 'teacher'">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    Assignment {{i}}
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    Submitted count
+                </div>
+            </div>
+            <!-- students -->
+            <div class="row" *ngIf="user === 'student' ">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    Assignment {{i}}
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    Date
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    Submitted / Not
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginTopTwo">
+            <ul class="list-group ">
+                <li class="list-group-item" *ngFor="let i of [1,2,3]">Assignment {{i}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- list of all students -- In Teachers Section -->
+    <div class="row marginTopTwo " *ngIf="true">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borderBlack">
+            <div class="marginTopTwo marginBottomTwo">
+                <span style="padding:1%; cursor:pointer; margin-right: 2%; background-image: linear-gradient(-45deg, #f761a1 0, #8c1bab 100%);" *ngFor="let i of [1,2,3,4]">
+                     Student{{i}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- MODAL -->
+<div class="modal" tabindex="-1" id="exampleModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Assignment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+          <div class="form-group">
+            <label for="title"><strong>Title</strong></label>
+            <input type="text" class="form-control" id="title"  placeholder="Enter title">
+          </div>
+          <div class="form-group">
+            <label for="subtitle"><strong>Subtitle</strong></label>
+            <input type="text" class="form-control" id="subtitle"  placeholder="Enter subtitle">
+          </div>
+          <div class="form-group">
+            <label for="content"><strong>Content</strong></label>
+            <input type="textarea" class="form-control" id="content"  placeholder="Enter content">
+          </div>
+          <div class="form-group">
+              <input #uploadContent type="file" name="file" accept="image/pdf/video/doc*" style="display: none;" 
+              (change)="uploadingContent(uploadContent)" />
+
+            <button type="button" class="btn btn-outline-dark" (click)="uploading()">
+                <strong style="padding:10px;">
+                    Files to attach
+                </strong>
+            </button>
+            <div>
+                <small>only images, pdf or word files can be uploaded</small>
+            </div>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
