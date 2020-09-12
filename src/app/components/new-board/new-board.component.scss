@@ -15,14 +15,66 @@
       }
     }
 
-    .main-box {
-      display: block;
+    .main-box{
+      display:block;
+      margin-top: 5px;
+
+      .cb-box-1{
+        width: 100%;
+        // max-width: 630px;
+        margin-top:1px;
+        margin-bottom:1px;
+        position: relative;
+
+        .cb-top-toolbox{
+          position: absolute;
+          bottom:15px;
+          width: 100%;
+        }
+        .cb-bottom-toolbox{
+          position: absolute;
+          top: 10px;
+          width: 100%;
+        }
+
+        .cb-box-2{
+          color:red;
+          background-color: pink;
+          padding-top: 3px;
+          padding-bottom: 3px;
+          .cb-box-3{
+            display:flex;
+            .edit{
+              max-width: 100%;
+              width: 100%;
+              white-space: pre-wrap;
+              word-break: break-all;
+            }
+
+            .edit:focus{
+              outline: none;
+            }
+          }
+        }
+
+        .cb-toolbox{
+          margin-top:10%;
+        }
+
+        .cb-more-toolbox{
+          position: relative;
+          display: none;
+        }
+
+
+      }
     }
   }
   //................. TOOLBOX.....................
   .toolbox {
-    .toolbox-main {
-      display: flex;
+    margin-top: 10px;
+    .toolbox-main{
+      display:flex;
     }
   }
 }
