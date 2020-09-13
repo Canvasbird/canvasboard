@@ -26,12 +26,19 @@ export class RestService {
     }).subscribe( res => {
       console.log(res);
       this.boardId = JSON.parse(JSON.stringify(res)).board_id;
+
+      this.getBoardData(this.boardId)
     });
+
+    console.log(this.boardId,"THIS ");
+
   }
 
-  getBoardData() {
+  getBoardData(boardId) {
+    console.log("Inside get",this.boardId);
+
     this.xAuthToken = localStorage.getItem('token');
-    this.http.get(environment.apiHost + '/api/v1/user/get/boards', {
+    this.http.get(environment.apiHost + `/api/v1/user/get/board?board_id=${boardId}`, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
