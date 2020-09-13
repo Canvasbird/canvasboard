@@ -43,6 +43,7 @@
           background-color: pink;
           padding-top: 3px;
           padding-bottom: 3px;
+          border-radius: 5px;
           .cb-box-3{
             display:flex;
             .edit{
@@ -50,6 +51,7 @@
               width: 100%;
               white-space: pre-wrap;
               word-break: break-all;
+
             }
 
             .edit:focus{
@@ -109,7 +111,7 @@
 
 .col-cb-1-custom{
   padding-top: 8px;
-  max-width: 31px;
+  max-width: 3%;
 }
 
 

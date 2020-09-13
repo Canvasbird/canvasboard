@@ -51,23 +51,23 @@ export class NewBoardComponent implements OnInit {
       <div id="cb-box-1-${uid}" class="cb-box-1">
       <div class="row mx-0">
         <!-- plug for dragging -->
-        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
           </svg>
         </div>
-        <div class="col-10 px-0">
+        <div class="col-10 px-0" style="max-width: 90%; flex: 0 0 90%;">
           <!-- content box -->
-          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
+          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2" style="margin-left: 3px; border-radius: 5px;">
             <div class="cb-box-3">
-              <div id="original-${uid}" class="edit" contenteditable="true">
+              <div id="original-${uid}" class="edit" contenteditable="true" style="padding-left: 3px;">
 
               </div>
             </div>
           </div>
         </div>
         <!-- menu icon -->
-        <div id="show-more-toolbox-${uid}" class="col-1 px-0">
+        <div id="show-more-toolbox-${uid}" class="col-1 px-0" style="max-width: 5%; flex: 0 0 5%;">
           <!-- menu button -->
           <div class="cb-toolbox">
            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
@@ -253,23 +253,23 @@ export class NewBoardComponent implements OnInit {
       <div id="cb-box-1-${uid}" class="cb-box-1">
       <div class="row mx-0" >
         <!-- plug for dragging -->
-        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
           </svg>
         </div>
-        <div class="col-10 px-0">
+        <div class="col-10 px-0" style="max-width: 90%; flex: 0 0 90%;">
           <!-- content box -->
-          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
+          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2" style="margin-left: 3px; border-radius: 5px;">
             <div class="cb-box-3">
-              <div id="original-${uid}" class="edit" contenteditable="true">
+              <div id="original-${uid}" class="edit" contenteditable="true" style="padding-left: 3px;">
 
               </div>
             </div>
           </div>
         </div>
         <!-- menu icon -->
-        <div id="show-more-toolbox-${uid}" class="col-1 px-0">
+        <div id="show-more-toolbox-${uid}" class="col-1 px-0" style="max-width: 5%; flex: 0 0 5%;">
           <!-- menu button -->
           <div class="cb-toolbox">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
@@ -617,23 +617,23 @@ export class NewBoardComponent implements OnInit {
       <div id="cb-box-1-${uid}" class="cb-box-1">
       <div class="row mx-0">
         <!-- plug for dragging -->
-        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
           </svg>
         </div>
-        <div class="col-10 px-0">
+        <div class="col-10 px-0" style="max-width: 90%; flex: 0 0 90%;">
           <!-- content box -->
-          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
+          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2" style="margin-left: 3px; border-radius: 5px;">
             <div class="cb-box-3">
-              <div id="original-${uid}" class="edit" contenteditable="true">
+              <div id="original-${uid}" class="edit" contenteditable="true" style="padding-left: 3px;">
 
               </div>
             </div>
           </div>
         </div>
         <!-- menu icon -->
-        <div id="show-more-toolbox-${uid}" class="col-1 px-0">
+        <div id="show-more-toolbox-${uid}" class="col-1 px-0" style="max-width: 5%; flex: 0 0 5%;">
           <!-- menu button -->
           <div class="cb-toolbox">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
@@ -819,23 +819,23 @@ export class NewBoardComponent implements OnInit {
       <div id="cb-box-1-${uid}" class="cb-box-1">
       <div class="row mx-0">
         <!-- plug for dragging -->
-        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
           </svg>
         </div>
-        <div class="col-10 px-0">
+        <div class="col-10 px-0" style="max-width: 90%; flex: 0 0 90%;">
           <!-- content box -->
-          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
+          <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2" style="margin-left: 3px; border-radius: 5px;">
             <div class="cb-box-3">
-              <div id="original-${uid}" class="edit" contenteditable="true">
+              <div id="original-${uid}" class="edit" contenteditable="true" style="padding-left: 3px;">
 
               </div>
             </div>
           </div>
         </div>
         <!-- menu icon -->
-        <div id="show-more-toolbox-${uid}" class="col-1 px-0">
+        <div id="show-more-toolbox-${uid}" class="col-1 px-0" style="max-width: 5%; flex: 0 0 5%;">
           <!-- menu button -->
           <div class="cb-toolbox">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
