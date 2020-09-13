@@ -8,9 +8,23 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private http:AuthService) { }
+  userName = '';
+  instituteName = '';
+  email = '';
+  password = '';
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  signUp(): any {
+    this.authService.signUpReqObj = {};
+    this.authService.signUpReqObj.email_id = this.email;
+    this.authService.signUpReqObj.password = this.password;
+    this.authService.signUpReqObj.user_name = this.userName;
+    this.authService.signUpReqObj.institute_name = this.instituteName;
+    this.authService.signUp();
   }
 
 }

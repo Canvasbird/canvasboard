@@ -10,7 +10,7 @@ import { BoardComponent } from './components/board/board.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 
-//guard
+// guard
 import { AuthGuard } from './shared/auth.guard'
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
@@ -18,24 +18,24 @@ import { SubjectDashboardComponent } from './components/subject-dashboard/subjec
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path:'home',
+    path: 'home',
     component: HomeComponent
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'sign-up',
+    path: 'sign-up',
     component: SignUpComponent
   },
   {
-    path:'dashboard',
+    path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard]
   },

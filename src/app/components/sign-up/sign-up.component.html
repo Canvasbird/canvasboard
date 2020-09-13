@@ -11,28 +11,28 @@
         </div>
         <div class="form-group">
           <label for="inputUsername"><strong>Username</strong></label>
-          <input type="text" class="form-control" id="inputUsername" placeholder="Enter Username">
+          <input type="text" class="form-control" id="inputUsername" placeholder="Enter Username" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}">
         </div>
         <div class="form-group">
           <label for="exampleInputInstitute"><strong>Institute Name</strong></label>
-          <input type="text" class="form-control" id="exampleInputInstitute" aria-describedby="instituteHelp" placeholder="Enter Institute">
+          <input type="text" class="form-control" id="exampleInputInstitute" aria-describedby="instituteHelp" placeholder="Enter Institute" [(ngModel)]="instituteName" [ngModelOptions]="{standalone: true}">
           <small id="instituteHelp" class="form-text text-muted">Optional</small>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1"><strong>Email address</strong></label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1"><strong>Password</strong></label>
-          <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
           <small id="passwordHelp" class="form-text text-muted">Min 6 characters</small>
         </div>
         <div class="form-group">
           <a>Forgot Password?</a>
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-outline-dark"><strong style="padding:10px">Login</strong></button>
+          <button type="button" class="btn btn-outline-dark" (click)="signUp()"><strong style="padding:10px">Sign Up</strong></button>
           <p style="font-size: 15px;">Already have an account?<a routerLink="/login">Login!</a></p>
         </div>
         <hr>
