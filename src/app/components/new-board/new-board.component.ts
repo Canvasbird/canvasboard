@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { v4 as uuidv4 } from "uuid";
 import { fabric } from 'fabric';
+import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 
 declare var $: any;
 
@@ -20,6 +21,12 @@ export class NewBoardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+
+    //sortable-js
+    let mainEl = document.getElementById('main-box');
+    let sortable = Sortable.create(mainEl);
+
+    //disbale enter on title
     this.disableTitleEnter();
 
     // ......................... DISABLING ENTER KEYWORD .........................
@@ -42,9 +49,14 @@ export class NewBoardComponent implements OnInit {
       if (checker === 0) {
         $(`#${id}`).after(`
       <div id="cb-box-1-${uid}" class="cb-box-1">
-      <div class="row">
-
-        <div class="col-11 px-1">
+      <div class="row mx-0">
+        <!-- plug for dragging -->
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+        </div>
+        <div class="col-10 px-0">
           <!-- content box -->
           <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
             <div class="cb-box-3">
@@ -239,8 +251,14 @@ export class NewBoardComponent implements OnInit {
       if (checker === 1) {
         $(`#cb-box-1-${id}`).after(`
       <div id="cb-box-1-${uid}" class="cb-box-1">
-      <div class="row">
-        <div class="col-11 px-1">
+      <div class="row mx-0" >
+        <!-- plug for dragging -->
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+        </div>
+        <div class="col-10 px-0">
           <!-- content box -->
           <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
             <div class="cb-box-3">
@@ -526,7 +544,7 @@ export class NewBoardComponent implements OnInit {
         console.log("Working canvas board");
         $(`#original-${uid}`).append(`
           <div id="canvas-menu-box" class="canvas-menu-box">
-             <input id="canvas-menu-box-${uid}" type="color">
+             <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
           </div>
           <canvas id="canvas-${uid}" class="shadow"></canvas>
         `)
@@ -597,8 +615,14 @@ export class NewBoardComponent implements OnInit {
       if (checker === 0) {
         $(`#${id}`).before(`
       <div id="cb-box-1-${uid}" class="cb-box-1">
-      <div class="row">
-        <div class="col-11 px-1">
+      <div class="row mx-0">
+        <!-- plug for dragging -->
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+        </div>
+        <div class="col-10 px-0">
           <!-- content box -->
           <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
             <div class="cb-box-3">
@@ -793,8 +817,14 @@ export class NewBoardComponent implements OnInit {
       if (checker === 1) {
         $(`#cb-box-1-${id}`).before(`
       <div id="cb-box-1-${uid}" class="cb-box-1">
-      <div class="row">
-        <div class="col-11 px-1">
+      <div class="row mx-0">
+        <!-- plug for dragging -->
+        <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 31px;">
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+        </div>
+        <div class="col-10 px-0">
           <!-- content box -->
           <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
             <div class="cb-box-3">
@@ -1084,7 +1114,7 @@ export class NewBoardComponent implements OnInit {
         console.log("Working canvas board");
         $(`#original-${uid}`).append(`
           <div id="canvas-menu-box" class="canvas-menu-box">
-             <input id="canvas-menu-box-${uid}" type="color">
+             <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
           </div>
           <canvas id="canvas-${uid}" class="shadow"></canvas>
         `)

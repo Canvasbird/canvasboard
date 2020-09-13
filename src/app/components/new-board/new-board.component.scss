@@ -60,6 +60,7 @@
 
         .cb-toolbox{
           margin-top:10%;
+          padding-left:20px;
         }
 
         .cb-more-toolbox{
@@ -106,4 +107,14 @@
   display: inline-flex;
 }
 
+.col-cb-1-custom{
+  padding-top: 8px;
+  max-width: 31px;
+}
 
+
+.cb-container-main{
+  min-height: 80vh;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}

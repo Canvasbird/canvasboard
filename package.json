@@ -24,6 +24,7 @@
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.4.0",
+    "sortablejs": "^1.10.2",
     "tslib": "^1.10.0",
     "uniqid": "^5.2.0",
     "zone.js": "~0.9.1"
