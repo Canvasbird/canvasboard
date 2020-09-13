@@ -2,13 +2,13 @@
 <!-- Icons -->
 <div class="container mt-3">
   <div class="d-flex">
-    <button class="btn btn-primary ml-auto mr-2">Save</button>
-    <button class="btn btn-primary mr-2">Save</button>
+    <button class="btn btn-primary ml-auto mr-2" (click)="saveData()">Save as JSON</button>
+    <button class="btn btn-primary mr-2">Save as PDF</button>
   </div>
 </div>
 
 <div class="container shadow mt-2 cb-container-main">
-  <div class="main">
+  <div class="main" id="main">
     <!-----------------title---------------------->
     <div class="cb-title">
       <h2

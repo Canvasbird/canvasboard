@@ -1,43 +1,37 @@
-import { Component, OnInit } from "@angular/core";
-import { v4 as uuidv4 } from "uuid";
+import { Component, OnInit } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 
 declare var $: any;
 
 @Component({
-  selector: "app-new-board",
-  templateUrl: "./new-board.component.html",
-  styleUrls: ["./new-board.component.scss"],
+  selector: 'app-new-board',
+  templateUrl: './new-board.component.html',
+  styleUrls: ['./new-board.component.scss'],
 })
+
 export class NewBoardComponent implements OnInit {
-  /**
-   * Quill editor style
-   */
-  quillEditorStyle = {
-    height: "320px",
-  };
 
   constructor() {}
 
   ngOnInit() {
+    // sortable-js
+    const mainEl = document.getElementById('main-box');
+    const sortable = Sortable.create(mainEl);
 
-    //sortable-js
-    let mainEl = document.getElementById('main-box');
-    let sortable = Sortable.create(mainEl);
-
-    //disbale enter on title
+    // disbale enter on title
     this.disableTitleEnter();
 
     // ......................... DISABLING ENTER KEYWORD .........................
-    $("#original[contenteditable]").keypress((evt) => {
+    $('#original[contenteditable]').keypress((evt) => {
       const keycode = evt.charCode || evt.keyCode;
       if (keycode === 13) {
         // Enter key's keycode
         return false;
       }
     });
-    this.addAfterBlockEditor("sub-title", 0);
+    this.addAfterBlockEditor('sub-title', 0);
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
@@ -454,11 +448,11 @@ export class NewBoardComponent implements OnInit {
       $(`#show-more-toolbox-${uid}`).hover(
         // display block
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css("display", "block");
+          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'block');
         },
         //  display none
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css("display", "none");
+          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
         }
       );
       // Adding click action of above button
@@ -482,72 +476,72 @@ export class NewBoardComponent implements OnInit {
 
       // Adding H1 Tags
       $(`#add-h1-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H2 cb-H3").addClass("cb-H1");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
       });
 
       // Adding H2 Tags
       $(`#add-h2-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H3").addClass("cb-H2");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
       });
 
       // Adding H3 Tags
       $(`#add-h3-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2").addClass("cb-H3");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
       });
 
       // Adding Paragraphs
       $(`#add-p-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2 cb-H3");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
       });
 
       // Adding red background color
       $(`#add-background-cb-red-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-yellow cb-background-green cb-background-blue"
+            'cb-background-yellow cb-background-green cb-background-blue'
           )
-          .addClass("cb-background-red");
+          .addClass('cb-background-red');
       });
       // Adding blue background color
       $(`#add-background-cb-blue-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-yellow cb-background-green cb-background-red"
+            'cb-background-yellow cb-background-green cb-background-red'
           )
-          .addClass("cb-background-blue");
+          .addClass('cb-background-blue');
       });
       // Adding green background color
       $(`#add-background-cb-green-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-yellow cb-background-blue cb-background-red"
+            'cb-background-yellow cb-background-blue cb-background-red'
           )
-          .addClass("cb-background-green");
+          .addClass('cb-background-green');
       });
       // Adding yellow background color
       $(`#add-background-cb-yellow-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-green cb-background-blue cb-background-red"
+            'cb-background-green cb-background-blue cb-background-red'
           )
-          .addClass("cb-background-yellow");
+          .addClass('cb-background-yellow');
       });
       // Adding Original background color
       $(`#add-background-cb-light-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).removeClass(
-          "cb-background-green cb-background-blue cb-background-red cb-background-yellow"
+          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
         );
       });
-      //Adding Canvas board
-      $(`#add-canvas-cb-${uid}`).click( () => {
-        let parentWidth = $(`#original-${uid}`).width()
-        console.log("Working canvas board");
+      // Adding Canvas board
+      $(`#add-canvas-cb-${uid}`).click(() => {
+        const parentWidth = $(`#original-${uid}`).width();
+        console.log('Working canvas board');
         $(`#original-${uid}`).append(`
           <div id="canvas-menu-box" class="canvas-menu-box">
              <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
           </div>
           <canvas id="canvas-${uid}" class="shadow"></canvas>
-        `)
+        `);
         // This code(styles) should not be added it will cause problems in fabric
 
         var canvas = new fabric.Canvas(`canvas-${uid}`);
@@ -555,15 +549,14 @@ export class NewBoardComponent implements OnInit {
         canvas.setHeight('400');
         canvas.setWidth(parentWidth);
 
-        //changing pen color
+        // changing pen color
         // canvas.freeDrawingBrush.color
-        $(`#canvas-menu-box-${uid}`).on('change', ()=> {
-          let color:any = document.getElementById(`canvas-menu-box-${uid}`)
-          let data = color.value
-          canvas.freeDrawingBrush.color = data
+        $(`#canvas-menu-box-${uid}`).on('change', () => {
+          let color: any = document.getElementById(`canvas-menu-box-${uid}`);
+          let data = color.value;
+          canvas.freeDrawingBrush.color = data;
         });
-
-      })
+      });
 
       // Add ordered list
       $(`#add-ordered-list-${uid}`).click(() => {
@@ -585,24 +578,24 @@ export class NewBoardComponent implements OnInit {
 
       // Add code snippet
       $(`#add-code-snippet-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).addClass("cb-code-snippet");
+        $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
       });
 
       // Add upload image
       $(`#add-image-upload-${uid}`).click(() => {
-        const imageURL = prompt("Enter Your image URL here");
-        const isConfirmed = confirm("The image you selected is correct?");
+        const imageURL = prompt('Enter Your image URL here');
+        const isConfirmed = confirm('The image you selected is correct?');
         if (this.validURL(imageURL)) {
           $(`#original-${uid}`).append(
             `<img src=${imageURL} id="cb-image-${uid}"></img>`
           );
-          $(`#cb-image-${uid}`).css("width", "100%");
+          $(`#cb-image-${uid}`).css('width', '100%');
         } else {
-          alert("Please enter a valid URL!!");
+          alert('Please enter a valid URL!!');
         }
       });
     } catch (err) {
-      console.log("Error", err);
+      console.log('Error', err);
     }
   };
 
@@ -1020,11 +1013,11 @@ export class NewBoardComponent implements OnInit {
       $(`#show-more-toolbox-${uid}`).hover(
         // display block
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css("display", "block");
+          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'block');
         },
         //  display none
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css("display", "none");
+          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
         }
       );
       // Adding click action of above button
@@ -1048,92 +1041,92 @@ export class NewBoardComponent implements OnInit {
 
       // Adding H1 Tags
       $(`#add-h1-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H2 cb-H3").addClass("cb-H1");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
       });
 
       // Adding H2 Tags
       $(`#add-h2-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H3").addClass("cb-H2");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
       });
 
       // Adding H3 Tags
       $(`#add-h3-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2").addClass("cb-H3");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
       });
 
       // Adding Paragraphs
       $(`#add-p-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2 cb-H3");
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
       });
 
       // Adding red background color
       $(`#add-background-cb-red-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-yellow cb-background-green cb-background-blue"
+            'cb-background-yellow cb-background-green cb-background-blue'
           )
-          .addClass("cb-background-red");
+          .addClass('cb-background-red');
       });
 
       // Adding blue background color
       $(`#add-background-cb-blue-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-yellow cb-background-green cb-background-red"
+            'cb-background-yellow cb-background-green cb-background-red'
           )
-          .addClass("cb-background-blue");
+          .addClass('cb-background-blue');
       });
 
       // Adding green background color
       $(`#add-background-cb-green-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-yellow cb-background-blue cb-background-red"
+            'cb-background-yellow cb-background-blue cb-background-red'
           )
-          .addClass("cb-background-green");
+          .addClass('cb-background-green');
       });
 
       // Adding yellow background color
       $(`#add-background-cb-yellow-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            "cb-background-green cb-background-blue cb-background-red"
+            'cb-background-green cb-background-blue cb-background-red'
           )
-          .addClass("cb-background-yellow");
+          .addClass('cb-background-yellow');
       });
 
       // Adding Original background color
       $(`#add-background-cb-light-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).removeClass(
-          "cb-background-green cb-background-blue cb-background-red cb-background-yellow"
+          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
         );
       });
-      //Adding Canvas board
-      $(`#add-canvas-cb-${uid}`).click( () => {
-        let parentWidth = $(`#original-${uid}`).width()
-        console.log("Working canvas board");
+
+      // Adding Canvas board
+      $(`#add-canvas-cb-${uid}`).click(() => {
+        const parentWidth = $(`#original-${uid}`).width();
+        console.log('Working canvas board');
         $(`#original-${uid}`).append(`
           <div id="canvas-menu-box" class="canvas-menu-box">
              <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
           </div>
           <canvas id="canvas-${uid}" class="shadow"></canvas>
-        `)
+        `);
         // This code(styles) should not be added it will cause problems in fabric
 
-        var canvas = new fabric.Canvas(`canvas-${uid}`);
+        const canvas = new fabric.Canvas(`canvas-${uid}`);
         canvas.isDrawingMode = true;
         canvas.setHeight('400');
         canvas.setWidth(parentWidth);
 
-        //changing pen color
+        // changing pen color
         // canvas.freeDrawingBrush.color
-        $(`#canvas-menu-box-${uid}`).on('change', ()=> {
-          let color:any = document.getElementById(`canvas-menu-box-${uid}`)
-          let data = color.value
-          canvas.freeDrawingBrush.color = data
+        $(`#canvas-menu-box-${uid}`).on('change', () => {
+          const color: any = document.getElementById(`canvas-menu-box-${uid}`);
+          const data = color.value;
+          canvas.freeDrawingBrush.color = data;
         });
-
-      })
+      });
 
       // Add ordered list
       $(`#add-ordered-list-${uid}`).click(() => {
@@ -1155,30 +1148,30 @@ export class NewBoardComponent implements OnInit {
 
       // Add code snippet
       $(`#add-code-snippet-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).addClass("cb-code-snippet");
+        $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
       });
 
       // Add upload image
       $(`#add-image-upload-${uid}`).click(() => {
-        const imageURL = prompt("Enter Your image URL here");
-        const isConfirmed = confirm("The image you selected is correct?");
+        const imageURL = prompt('Enter Your image URL here');
+        const isConfirmed = confirm('The image you selected is correct?');
         if (this.validURL(imageURL)) {
           $(`#original-${uid}`).append(
             `<img src=${imageURL} id="cb-image-${uid}"></img>`
           );
-          $(`#cb-image-${uid}`).css("width", "100%");
+          $(`#cb-image-${uid}`).css('width', '100%');
         } else {
-          alert("Please enter a valid URL!!");
+          alert('Please enter a valid URL!!');
         }
       });
     } catch (err) {
-      console.log("Error", err);
+      console.log('Error', err);
     }
-  };
+  }
   // ......................... ESSENTIALS.............................
 
   disableTitleEnter() {
-    $("#title[contenteditable]").keypress((evt) => {
+    $('#title[contenteditable]').keypress((evt) => {
       const keycode = evt.charCode || evt.keyCode;
       if (keycode === 13) {
         // Enter key's keycode
@@ -1190,14 +1183,20 @@ export class NewBoardComponent implements OnInit {
   // Check url validity
   validURL(str) {
     const pattern = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
-      "i"
+      '^(https?:\\/\\/)?' + // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$',
+      'i'
     ); // fragment locator
     return !!pattern.test(str);
+  }
+
+  // Save board data
+  saveData() {
+    const htmlData = document.getElementById('main').innerHTML.trim();
+    console.log('HTML DATA', htmlData);
   }
 }
