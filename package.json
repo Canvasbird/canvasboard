@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "bootstrap": "^4.5.0",
+    "chart.js": "^2.9.3",
     "fabric": "^4.1.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",

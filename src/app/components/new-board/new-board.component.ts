@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
+import {Chart} from 'chart.js';
+
 
 declare var $: any;
 
@@ -13,7 +15,13 @@ declare var $: any;
 })
 
 export class NewBoardComponent implements OnInit {
-
+  
+  fileToUpload: File = null;
+  uniqueChartID = (function() {
+    var id = 0;
+    return function() { return id++; };
+  })();
+  
   constructor( private apiService: RestService) {}
 
   ngOnInit() {
@@ -204,6 +212,15 @@ export class NewBoardComponent implements OnInit {
                  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
               </svg>
               </button>
+            </div>
+            <!-- Chart from JSON -->
+            <div class="tool box1 m-1">
+                <input type="file"
+                id="file-${uid}"
+                accept=".json"
+                #fileUpload
+                class="btn btn-light"
+                (change)="onFileChanged($event)">
             </div>
               <!-- more -->
               <div class="tool box5 m-1">
@@ -407,6 +424,16 @@ export class NewBoardComponent implements OnInit {
               </svg>
               </button>
             </div>
+            <!-- Chart from JSON -->
+            <div class="tool box1 m-1">
+                <input type="file"
+                id="file-${uid}"
+                accept=".json"
+                #fileUpload
+                class="btn btn-light"
+                (change)="onFileChanged($event)">
+            </div>
+
               <!-- more -->
               <div class="tool box5 m-1">
                 <button class="btn btn-light">
@@ -595,6 +622,138 @@ export class NewBoardComponent implements OnInit {
           alert('Please enter a valid URL!!');
         }
       });
+      
+      // Upload JSON file
+      $(`#file-${uid}`).change((ev) => {
+        this.fileToUpload = ev.target.files[0];
+        console.log("File Read working")
+        const fileReader = new FileReader();
+        fileReader.readAsText(this.fileToUpload, "UTF-8");
+        fileReader.onload = () => {
+          //Parse the JSON into an array of data points
+          let dataObject = JSON.parse(fileReader.result as string);
+
+          // ---- Create canvas for chart ----
+          $(`#original-${uid}`).append(`
+        <canvas id="chart-${uid}" class="shadow"></canvas>
+      `)
+          //Setting Width and height to screen
+          $(`#chart-${uid}`).height(400).width('100%')
+          //Setting background color to white
+          $(`#chart-${uid}`).css("background-color", "white")
+
+          // End Creating canvas
+
+
+          // Helper function to toggle data on click
+          function toggleDataSeries(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+              e.dataSeries.visible = false;
+            } else {
+              e.dataSeries.visible = true;
+            }
+            chart.render();
+          }
+
+          // Labels for the data
+          let dKeys = Object.keys(dataObject[0]);
+          let XAxisName;
+
+          // Get the data array suitable for chartjs
+          function getData() {
+            let datasetsArr = []
+            let xAxisLabels = []
+            dKeys.forEach((dLabel, index) => {
+              // If label is of x-axis(which should be at the end)
+              if (index == dKeys.length - 1) {
+                XAxisName = dLabel;
+
+                dataObject.forEach((dataPoint, i) => {
+
+                  //X-axis data pushed into x-axis labels
+                  xAxisLabels.push(dataPoint[dLabel]);
+
+                });
+              }
+
+              //If label is not of X-axis
+              else {
+
+                // Dataset corresponding to label
+                let dSet = { label: dLabel, data: [], fill: false, backgroundColor: [], borderColor: [] }
+
+                let r = Math.floor(Math.random() * 255);
+                let g = Math.floor(Math.random() * 255);
+                let b = Math.floor(Math.random() * 255);
+                dSet.backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ",0.2)");
+                dSet.borderColor.push("rgb(" + r + ", " + g + ", " + b + ")");
+
+                dataObject.forEach((dataPoint, i) => {
+                  //Push each data point corresponding to label into label's dataset
+                  dSet.data.push(dataPoint[dLabel]);
+
+                  //Randomise the colours
+                });
+
+                //Push the dataset into data array
+                datasetsArr.push(dSet);
+              }
+
+            })
+
+            console.log("Data compatible with chart js", { labels: xAxisLabels, datasets: datasetsArr });
+
+            return { labels: xAxisLabels, datasets: datasetsArr };
+
+          }
+
+
+          let ctx = $(`#chart-${uid}`);
+          console.log($(`#chart-${uid}`));
+
+          let chart = new Chart(ctx, {
+            type: 'line',
+            title: {
+              text: "Chart " + this.uniqueChartID()
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              verticalAlign: "top",
+              horizontalAlign: "center",
+              dockInsidePlotArea: true,
+              itemclick: toggleDataSeries
+            },
+            data: getData(),
+            options: {
+              responsive: true,
+              title: "Chart ",
+              scales: {
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    //X axis name to be displayed
+                    labelString: XAxisName,
+                  }
+                }]
+              }
+            }
+          });
+          chart.render();
+
+
+          console.log("Data Object", dataObject);
+        }
+        fileReader.onerror = (error) => {
+          console.log(error);
+        }
+
+
+
+      });  
+    
     } catch (err) {
       console.log('Error', err);
     }
@@ -770,6 +929,16 @@ export class NewBoardComponent implements OnInit {
               </svg>
               </button>
             </div>
+            <!-- Chart from JSON -->
+            <div class="tool box1 m-1">
+                <input type="file"
+                id="file-${uid}"
+                accept=".json"
+                #fileUpload
+                class="btn btn-light"
+                (change)="onFileChanged($event)">
+            </div>
+
               <!-- more -->
               <div class="tool box5 m-1">
                 <button class="btn btn-light">
@@ -972,6 +1141,16 @@ export class NewBoardComponent implements OnInit {
               </svg>
               </button>
             </div>
+            <!-- Chart from JSON -->
+            <div class="tool box1 m-1">
+                <input type="file"
+                id="file-${uid}"
+                accept=".json"
+                #fileUpload
+                class="btn btn-light"
+                (change)="onFileChanged($event)">
+            </div>
+
               <!-- more -->
               <div class="tool box5 m-1">
                 <button class="btn btn-light">
@@ -1165,6 +1344,136 @@ export class NewBoardComponent implements OnInit {
           alert('Please enter a valid URL!!');
         }
       });
+      // Upload JSON file
+      $(`#file-${uid}`).change((ev) => {
+        this.fileToUpload = ev.target.files[0];
+        console.log("File Read working")
+        const fileReader = new FileReader();
+        fileReader.readAsText(this.fileToUpload, "UTF-8");
+        fileReader.onload = () => {
+          //Parse the JSON into an array of data points
+          let dataObject = JSON.parse(fileReader.result as string);
+
+          // ---- Create canvas for chart ----
+          $(`#original-${uid}`).append(`
+        <canvas id="chart-${uid}" class="shadow"></canvas>
+      `)
+          //Setting Width and height to screen
+          $(`#chart-${uid}`).height(400).width('100%')
+          //Setting background color to white
+          $(`#chart-${uid}`).css("background-color", "white")
+
+          // End Creating canvas
+
+
+          // Helper function to toggle data on click
+          function toggleDataSeries(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+              e.dataSeries.visible = false;
+            } else {
+              e.dataSeries.visible = true;
+            }
+            chart.render();
+          }
+
+          // Labels for the data
+          let dKeys = Object.keys(dataObject[0]);
+          let XAxisName;
+
+          // Get the data array suitable for chartjs
+          function getData() {
+            let datasetsArr = []
+            let xAxisLabels = []
+            dKeys.forEach((dLabel, index) => {
+              // If label is of x-axis(which should be at the end)
+              if (index == dKeys.length - 1) {
+                XAxisName = dLabel;
+
+                dataObject.forEach((dataPoint, i) => {
+
+                  //X-axis data pushed into x-axis labels
+                  xAxisLabels.push(dataPoint[dLabel]);
+
+                });
+              }
+
+              //If label is not of X-axis
+              else {
+
+                // Dataset corresponding to label
+                let dSet = { label: dLabel, data: [], fill: false, backgroundColor: [], borderColor: [] }
+
+                let r = Math.floor(Math.random() * 255);
+                let g = Math.floor(Math.random() * 255);
+                let b = Math.floor(Math.random() * 255);
+                dSet.backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ",0.2)");
+                dSet.borderColor.push("rgb(" + r + ", " + g + ", " + b + ")");
+
+                dataObject.forEach((dataPoint, i) => {
+                  //Push each data point corresponding to label into label's dataset
+                  dSet.data.push(dataPoint[dLabel]);
+
+                  //Randomise the colours
+                });
+
+                //Push the dataset into data array
+                datasetsArr.push(dSet);
+              }
+
+            })
+
+            console.log("Data compatible with chart js", { labels: xAxisLabels, datasets: datasetsArr });
+
+            return { labels: xAxisLabels, datasets: datasetsArr };
+
+          }
+
+
+          let ctx = $(`#chart-${uid}`);
+          console.log($(`#chart-${uid}`));
+
+          let chart = new Chart(ctx, {
+            type: 'line',
+            title: {
+              text: "Chart " + this.uniqueChartID()
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              verticalAlign: "top",
+              horizontalAlign: "center",
+              dockInsidePlotArea: true,
+              itemclick: toggleDataSeries
+            },
+            data: getData(),
+            options: {
+              responsive: true,
+              title: "Chart ",
+              scales: {
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    //X axis name to be displayed
+                    labelString: XAxisName,
+                  }
+                }]
+              }
+            }
+          });
+          chart.render();
+
+
+          console.log("Data Object", dataObject);
+        }
+        fileReader.onerror = (error) => {
+          console.log(error);
+        }
+
+
+
+      });  
     } catch (err) {
       console.log('Error', err);
     }
