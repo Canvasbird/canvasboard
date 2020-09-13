@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { v4 as uuidv4 } from 'uuid';
+import { Component, OnInit } from "@angular/core";
+import { v4 as uuidv4 } from "uuid";
+import { fabric } from 'fabric';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-new-board',
-  templateUrl: './new-board.component.html',
-  styleUrls: ['./new-board.component.scss'],
+  selector: "app-new-board",
+  templateUrl: "./new-board.component.html",
+  styleUrls: ["./new-board.component.scss"],
 })
 export class NewBoardComponent implements OnInit {
   /**
    * Quill editor style
    */
   quillEditorStyle = {
-    height: '320px',
+    height: "320px",
   };
 
   constructor() {}
@@ -22,14 +23,14 @@ export class NewBoardComponent implements OnInit {
     this.disableTitleEnter();
 
     // ......................... DISABLING ENTER KEYWORD .........................
-    $('#original[contenteditable]').keypress((evt) => {
+    $("#original[contenteditable]").keypress((evt) => {
       const keycode = evt.charCode || evt.keyCode;
       if (keycode === 13) {
         // Enter key's keycode
         return false;
       }
     });
-    this.addAfterBlockEditor('sub-title', 0);
+    this.addAfterBlockEditor("sub-title", 0);
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
@@ -42,6 +43,7 @@ export class NewBoardComponent implements OnInit {
         $(`#${id}`).after(`
       <div id="cb-box-1-${uid}" class="cb-box-1">
       <div class="row">
+
         <div class="col-11 px-1">
           <!-- content box -->
           <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2">
@@ -56,11 +58,11 @@ export class NewBoardComponent implements OnInit {
         <div id="show-more-toolbox-${uid}" class="col-1 px-0">
           <!-- menu button -->
           <div class="cb-toolbox">
-            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-            </svg>
+           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+           <path fill-rule="evenodd"
+            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+           </svg>
           </div>
 
           <!-- expand toolbox -->
@@ -186,6 +188,14 @@ export class NewBoardComponent implements OnInit {
                 <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
+              </button>
+            </div>
+            <!-- Canvas Board -->
+            <div class="tool box1 m-1">
+              <button class="btn btn-light" id="add-canvas-cb-${uid}">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              </svg>
               </button>
             </div>
               <!-- more -->
@@ -244,11 +254,11 @@ export class NewBoardComponent implements OnInit {
         <div id="show-more-toolbox-${uid}" class="col-1 px-0">
           <!-- menu button -->
           <div class="cb-toolbox">
-            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor"
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
               xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd"
-                d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-            </svg>
+                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+              </svg>
           </div>
 
           <!-- expand toolbox -->
@@ -374,6 +384,14 @@ export class NewBoardComponent implements OnInit {
                 <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
+              </button>
+            </div>
+            <!-- Canvas Board -->
+            <div class="tool box1 m-1">
+              <button class="btn btn-light" id="add-canvas-cb-${uid}">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              </svg>
               </button>
             </div>
               <!-- more -->
@@ -418,11 +436,11 @@ export class NewBoardComponent implements OnInit {
       $(`#show-more-toolbox-${uid}`).hover(
         // display block
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'block');
+          $(`#cb-expand-more-toolbox-${uid}`).css("display", "block");
         },
         //  display none
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
+          $(`#cb-expand-more-toolbox-${uid}`).css("display", "none");
         }
       );
       // Adding click action of above button
@@ -446,62 +464,88 @@ export class NewBoardComponent implements OnInit {
 
       // Adding H1 Tags
       $(`#add-h1-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H2 cb-H3").addClass("cb-H1");
       });
 
       // Adding H2 Tags
       $(`#add-h2-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H3").addClass("cb-H2");
       });
 
       // Adding H3 Tags
       $(`#add-h3-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2").addClass("cb-H3");
       });
 
       // Adding Paragraphs
       $(`#add-p-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2 cb-H3");
       });
 
       // Adding red background color
       $(`#add-background-cb-red-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-yellow cb-background-green cb-background-blue'
+            "cb-background-yellow cb-background-green cb-background-blue"
           )
-          .addClass('cb-background-red');
+          .addClass("cb-background-red");
       });
       // Adding blue background color
       $(`#add-background-cb-blue-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-yellow cb-background-green cb-background-red'
+            "cb-background-yellow cb-background-green cb-background-red"
           )
-          .addClass('cb-background-blue');
+          .addClass("cb-background-blue");
       });
       // Adding green background color
       $(`#add-background-cb-green-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-yellow cb-background-blue cb-background-red'
+            "cb-background-yellow cb-background-blue cb-background-red"
           )
-          .addClass('cb-background-green');
+          .addClass("cb-background-green");
       });
       // Adding yellow background color
       $(`#add-background-cb-yellow-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-green cb-background-blue cb-background-red'
+            "cb-background-green cb-background-blue cb-background-red"
           )
-          .addClass('cb-background-yellow');
+          .addClass("cb-background-yellow");
       });
       // Adding Original background color
       $(`#add-background-cb-light-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).removeClass(
-          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
+          "cb-background-green cb-background-blue cb-background-red cb-background-yellow"
         );
       });
+      //Adding Canvas board
+      $(`#add-canvas-cb-${uid}`).click( () => {
+        let parentWidth = $(`#original-${uid}`).width()
+        console.log("Working canvas board");
+        $(`#original-${uid}`).append(`
+          <div id="canvas-menu-box" class="canvas-menu-box">
+             <input id="canvas-menu-box-${uid}" type="color">
+          </div>
+          <canvas id="canvas-${uid}" class="shadow"></canvas>
+        `)
+        // This code(styles) should not be added it will cause problems in fabric
+
+        var canvas = new fabric.Canvas(`canvas-${uid}`);
+        canvas.isDrawingMode = true;
+        canvas.setHeight('400');
+        canvas.setWidth(parentWidth);
+
+        //changing pen color
+        // canvas.freeDrawingBrush.color
+        $(`#canvas-menu-box-${uid}`).on('change', ()=> {
+          let color:any = document.getElementById(`canvas-menu-box-${uid}`)
+          let data = color.value
+          canvas.freeDrawingBrush.color = data
+        });
+
+      })
 
       // Add ordered list
       $(`#add-ordered-list-${uid}`).click(() => {
@@ -523,26 +567,26 @@ export class NewBoardComponent implements OnInit {
 
       // Add code snippet
       $(`#add-code-snippet-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
+        $(`#cb-box-2-${uid}`).addClass("cb-code-snippet");
       });
 
       // Add upload image
       $(`#add-image-upload-${uid}`).click(() => {
-        const imageURL = prompt('Enter Your image URL here');
-        const isConfirmed = confirm('The image you selected is correct?');
+        const imageURL = prompt("Enter Your image URL here");
+        const isConfirmed = confirm("The image you selected is correct?");
         if (this.validURL(imageURL)) {
           $(`#original-${uid}`).append(
             `<img src=${imageURL} id="cb-image-${uid}"></img>`
           );
-          $(`#cb-image-${uid}`).css('width', '100%');
+          $(`#cb-image-${uid}`).css("width", "100%");
         } else {
-          alert('Please enter a valid URL!!');
+          alert("Please enter a valid URL!!");
         }
       });
     } catch (err) {
-      console.log('Error', err);
+      console.log("Error", err);
     }
-  }
+  };
 
   // .........................ADDING BLOCK BEFORE DIV FUNCTION...................
   addBeforeBlockEditor = (id, checker) => {
@@ -568,10 +612,10 @@ export class NewBoardComponent implements OnInit {
         <div id="show-more-toolbox-${uid}" class="col-1 px-0">
           <!-- menu button -->
           <div class="cb-toolbox">
-            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
             </svg>
           </div>
 
@@ -698,6 +742,14 @@ export class NewBoardComponent implements OnInit {
                 <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                 </svg>
+              </button>
+            </div>
+            <!-- Canvas Board -->
+            <div class="tool box1 m-1">
+              <button class="btn btn-light" id="add-canvas-cb-${uid}">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              </svg>
               </button>
             </div>
               <!-- more -->
@@ -756,11 +808,11 @@ export class NewBoardComponent implements OnInit {
         <div id="show-more-toolbox-${uid}" class="col-1 px-0">
           <!-- menu button -->
           <div class="cb-toolbox">
-            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-            </svg>
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+          </svg>
           </div>
 
           <!-- expand toolbox -->
@@ -888,6 +940,14 @@ export class NewBoardComponent implements OnInit {
                 </svg>
               </button>
             </div>
+            <!-- Canvas Board -->
+            <div class="tool box1 m-1">
+              <button class="btn btn-light" id="add-canvas-cb-${uid}">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              </svg>
+              </button>
+            </div>
               <!-- more -->
               <div class="tool box5 m-1">
                 <button class="btn btn-light">
@@ -930,11 +990,11 @@ export class NewBoardComponent implements OnInit {
       $(`#show-more-toolbox-${uid}`).hover(
         // display block
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'block');
+          $(`#cb-expand-more-toolbox-${uid}`).css("display", "block");
         },
         //  display none
         () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
+          $(`#cb-expand-more-toolbox-${uid}`).css("display", "none");
         }
       );
       // Adding click action of above button
@@ -958,66 +1018,92 @@ export class NewBoardComponent implements OnInit {
 
       // Adding H1 Tags
       $(`#add-h1-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H2 cb-H3").addClass("cb-H1");
       });
 
       // Adding H2 Tags
       $(`#add-h2-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H3").addClass("cb-H2");
       });
 
       // Adding H3 Tags
       $(`#add-h3-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2").addClass("cb-H3");
       });
 
       // Adding Paragraphs
       $(`#add-p-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
+        $(`#cb-box-2-${uid}`).removeClass("cb-H1 cb-H2 cb-H3");
       });
 
       // Adding red background color
       $(`#add-background-cb-red-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-yellow cb-background-green cb-background-blue'
+            "cb-background-yellow cb-background-green cb-background-blue"
           )
-          .addClass('cb-background-red');
+          .addClass("cb-background-red");
       });
 
       // Adding blue background color
       $(`#add-background-cb-blue-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-yellow cb-background-green cb-background-red'
+            "cb-background-yellow cb-background-green cb-background-red"
           )
-          .addClass('cb-background-blue');
+          .addClass("cb-background-blue");
       });
 
       // Adding green background color
       $(`#add-background-cb-green-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-yellow cb-background-blue cb-background-red'
+            "cb-background-yellow cb-background-blue cb-background-red"
           )
-          .addClass('cb-background-green');
+          .addClass("cb-background-green");
       });
 
       // Adding yellow background color
       $(`#add-background-cb-yellow-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
           .removeClass(
-            'cb-background-green cb-background-blue cb-background-red'
+            "cb-background-green cb-background-blue cb-background-red"
           )
-          .addClass('cb-background-yellow');
+          .addClass("cb-background-yellow");
       });
 
       // Adding Original background color
       $(`#add-background-cb-light-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).removeClass(
-          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
+          "cb-background-green cb-background-blue cb-background-red cb-background-yellow"
         );
       });
+      //Adding Canvas board
+      $(`#add-canvas-cb-${uid}`).click( () => {
+        let parentWidth = $(`#original-${uid}`).width()
+        console.log("Working canvas board");
+        $(`#original-${uid}`).append(`
+          <div id="canvas-menu-box" class="canvas-menu-box">
+             <input id="canvas-menu-box-${uid}" type="color">
+          </div>
+          <canvas id="canvas-${uid}" class="shadow"></canvas>
+        `)
+        // This code(styles) should not be added it will cause problems in fabric
+
+        var canvas = new fabric.Canvas(`canvas-${uid}`);
+        canvas.isDrawingMode = true;
+        canvas.setHeight('400');
+        canvas.setWidth(parentWidth);
+
+        //changing pen color
+        // canvas.freeDrawingBrush.color
+        $(`#canvas-menu-box-${uid}`).on('change', ()=> {
+          let color:any = document.getElementById(`canvas-menu-box-${uid}`)
+          let data = color.value
+          canvas.freeDrawingBrush.color = data
+        });
+
+      })
 
       // Add ordered list
       $(`#add-ordered-list-${uid}`).click(() => {
@@ -1039,30 +1125,30 @@ export class NewBoardComponent implements OnInit {
 
       // Add code snippet
       $(`#add-code-snippet-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
+        $(`#cb-box-2-${uid}`).addClass("cb-code-snippet");
       });
 
       // Add upload image
       $(`#add-image-upload-${uid}`).click(() => {
-        const imageURL = prompt('Enter Your image URL here');
-        const isConfirmed = confirm('The image you selected is correct?');
+        const imageURL = prompt("Enter Your image URL here");
+        const isConfirmed = confirm("The image you selected is correct?");
         if (this.validURL(imageURL)) {
           $(`#original-${uid}`).append(
             `<img src=${imageURL} id="cb-image-${uid}"></img>`
           );
-          $(`#cb-image-${uid}`).css('width', '100%');
+          $(`#cb-image-${uid}`).css("width", "100%");
         } else {
-          alert('Please enter a valid URL!!');
+          alert("Please enter a valid URL!!");
         }
       });
     } catch (err) {
-      console.log('Error', err);
+      console.log("Error", err);
     }
-  }
+  };
   // ......................... ESSENTIALS.............................
 
   disableTitleEnter() {
-    $('#title[contenteditable]').keypress((evt) => {
+    $("#title[contenteditable]").keypress((evt) => {
       const keycode = evt.charCode || evt.keyCode;
       if (keycode === 13) {
         // Enter key's keycode
@@ -1073,12 +1159,15 @@ export class NewBoardComponent implements OnInit {
 
   // Check url validity
   validURL(str) {
-    const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-      '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    const pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locator
     return !!pattern.test(str);
   }
 }
