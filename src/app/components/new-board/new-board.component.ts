@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
+import { RestService } from '../../services/rest.service';
 
 declare var $: any;
 
@@ -13,7 +14,7 @@ declare var $: any;
 
 export class NewBoardComponent implements OnInit {
 
-  constructor() {}
+  constructor( private apiService: RestService) {}
 
   ngOnInit() {
     // sortable-js
@@ -1196,7 +1197,9 @@ export class NewBoardComponent implements OnInit {
 
   // Save board data
   saveData() {
-    const htmlData = document.getElementById('main').innerHTML.trim();
-    console.log('HTML DATA', htmlData);
+    const boardTitle = document.getElementById('cb-title').innerHTML.trim();
+    const boardlData = document.getElementById('main-box').innerHTML.trim();
+    this.apiService.saveBoardData(boardTitle, boardlData);
+    // this.apiService.getBoardData();
   }
 }
