@@ -15,7 +15,7 @@ import { AuthGuard } from './shared/auth.guard'
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
-
+import { ContributionComponent } from './components/contribution/contribution.component'
 const routes: Routes = [
   {
     path: '',
@@ -33,6 +33,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent
+  },
+  {
+    path: 'contribution',
+    component: ContributionComponent
   },
   {
     path: 'dashboard',

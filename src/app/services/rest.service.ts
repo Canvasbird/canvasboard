@@ -27,7 +27,7 @@ export class RestService {
       console.log(res);
       this.boardId = JSON.parse(JSON.stringify(res)).board_id;
 
-      this.getBoardData(this.boardId)
+      // this.getBoardData(this.boardId)
     });
 
     console.log(this.boardId,"THIS ");

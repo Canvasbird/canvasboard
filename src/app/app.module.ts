@@ -19,6 +19,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { ContributionComponent } from './components/contribution/contribution.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     SubjectDashboardComponent,
     NewBoardComponent,
     UserDashboardComponent,
+    ContributionComponent,
   ],
   imports: [
     BrowserModule,
