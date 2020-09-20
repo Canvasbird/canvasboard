@@ -6,7 +6,7 @@
   <h3 align="center">Canvasboard🌈</h3>
 
   <p align="center">
-    An Interactive Webboard for Schools, Colleges and Universities. 
+    An interactive Webboard and Learning Management tool for Schools, Colleges, and Universities🌎
     <br />
     <a href="https://github.com/Canvasbird/canvasboard/"><strong>Explore the docs »</strong></a>
     <br />
