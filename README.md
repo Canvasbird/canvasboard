@@ -36,8 +36,6 @@ Online teaching has become the new norm for most of the Institutes/Schools/Colle
 <img src="https://img.shields.io/badge/-Jquery-black?style=flat-square&amp;logo=Jquery" alt="Jquery" class="screenshot"><br>
 <img src="https://img.shields.io/badge/-FabricJS-yellow?style=flat-square&amp;logo=fabricjs" alt="FabricJS" class="screenshot"><br>
 <img src="https://img.shields.io/badge/-Nodejs-black?style=flat-square&amp;logo=Node.js" alt="Nodejs" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-koa-E34A86?style=flat-square&amp;logo=koa" alt="Koa" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-Strapi-black?style=flat-square&amp;logo=strapi" alt="Strapi" class="screenshot"><br>
 <img src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&amp;logo=mongodb" alt="MongoDB" class="screenshot"><br>
 <img src="https://img.shields.io/badge/-FastAPI-darkblue?style=flat-square&amp;logo=fastapi" alt="FastAPI" class="screenshot"><br>
 <img src="https://img.shields.io/badge/Amazon%20AWS-232F3E?style=flat-square&amp;logo=amazon-aws" alt="Amazon AWS" class="screenshot"><br></p>
