@@ -3,7 +3,7 @@
     <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Canvasboard</h3>
+  <h3 align="center">Canvasboard🌈</h3>
 
   <p align="center">
     An Interactive Webboard for Schools, Colleges and Universities. 
@@ -24,61 +24,26 @@
 
  > <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong>
 
-An interactive webboard application built on Angular to excel learning experience in schools,Colleges and Universities. Our main goal is to create a standalone web application which simplifies the prepping,in-class teaching and learning experience for its users (Teachers, Students).
+Online teaching has become the new norm for most of the Institutes/Schools/Colleges amidst the pandemic. There are still many institutes for which they are facing issues during online teachings in terms of Flexibility, Costs, etc. Canvasboard is an interactive learning management tool built using web technologies to enhance teaching as well as learning experience considering the current COVID19 crisis.
 
-<img src="src/assets/home/home_scr.png" alt="dashboard" width="880">
+<img src="https://github.com/goliakshay357/hack-images/blob/master/hack2.png?raw=true" alt="dashboard" width="880">
 
 ## Dependencies🗃:
-- [Angular]
-- [Bootstrap]
-- [jQuery]
-- [FabricJS]
-- [Nodejs with express]
-- [MongoDB]
+<p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&amp;logo=bootstrap" alt="Bootstrap" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-Jquery-black?style=flat-square&amp;logo=Jquery" alt="Jquery" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-FabricJS-yellow?style=flat-square&amp;logo=fabricjs" alt="FabricJS" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-Nodejs-black?style=flat-square&amp;logo=Node.js" alt="Nodejs" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-koa-E34A86?style=flat-square&amp;logo=koa" alt="Koa" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-Strapi-black?style=flat-square&amp;logo=strapi" alt="Strapi" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&amp;logo=mongodb" alt="MongoDB" class="screenshot"><br>
+<img src="https://img.shields.io/badge/-FastAPI-darkblue?style=flat-square&amp;logo=fastapi" alt="FastAPI" class="screenshot"><br>
+<img src="https://img.shields.io/badge/Amazon%20AWS-232F3E?style=flat-square&amp;logo=amazon-aws" alt="Amazon AWS" class="screenshot"><br></p>
 
 
 
-## Running the canvasboard application:
-Make sure NodeJS and Angular CLI is installed locally in your system.
-To verify NodeJS is installed, type the following command to check the node version
-```bash
-node -v
-```
-To verify NPM version is installed, type the following command to check the npm version
-```bash
-npm -v
-```
-
-## How to set up locally💻:
-1. Clone the repository from GitHub and cd into the directory
-```bash
-git clone "https://github.com/Canvasbird/canvasboard.git"
-cd canvasboard
-```
-2. Install node modules ( Make sure you are in the root directory )
-```bash
-npm install
-```
-3. Once node modules are installed, Serve the application locally with polling value 2000
-```bash
-ng serve -o --poll=2000
-```
-
-Yayy! Your application is served locally in localhost:4200
+## Running the canvasboard application. [Link](https://github.com/Canvasbird/canvasboard/wiki/Cloning-Canvasboard-frontend)
 
 ## Contributing🤝 
-#### Please consider contributing to the project, with your ideas, your artwork, and your code.
-1. Fork it!
-2. Create your branch: git checkout -b branch-name
-3. Commit your changes: git commit -am 'Add some feature or solve bug'
-4. Push to the branch: git push origin branch-name
-### Submit a pull request :D
 
-[Angular]:<https://angular.io/>
-[Bootstrap]:<https://getbootstrap.com/>
-[jQuery]:<https://jquery.com/>
-[Nodejs with express]:<https://expressjs.com/>
-[Firebase]:<https://firebase.google.com/>
-[MongoDB]:<https://www.mongodb.com/>
-[FabricJS]:<http://fabricjs.com/>
-
+Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
