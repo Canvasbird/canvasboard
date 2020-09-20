@@ -27,6 +27,8 @@
 Online teaching has become the new norm for most of the Institutes/Schools/Colleges amidst the pandemic. There are still many institutes for which they are facing issues during online teachings in terms of Flexibility, Costs, etc. Canvasboard is an interactive learning management tool built using web technologies to enhance teaching as well as learning experience considering the current COVID19 crisis.
 
 <img src="https://github.com/goliakshay357/hack-images/blob/master/hack2.png?raw=true" alt="dashboard" width="880">
+<img src="https://github.com/goliakshay357/hack-images/blob/master/graph.png?raw=true" alt="dashboard" width="880">
+<img src="https://github.com/goliakshay357/hack-images/blob/master/Screenshot%20from%202020-09-13%2020-38-40.png?raw=true" alt="dashboard" width="880">
 
 ## Dependencies🗃:
 <p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot"><br>
@@ -42,7 +44,7 @@ Online teaching has become the new norm for most of the Institutes/Schools/Colle
 
 
 
-## Running the canvasboard application. [Link](https://github.com/Canvasbird/canvasboard/wiki/Cloning-Canvasboard-frontend)
+<strong>Running the canvasboard application.</strong> [Link](https://github.com/Canvasbird/canvasboard/wiki/Cloning-Canvasboard-frontend)
 
 ## Contributing🤝 
 
