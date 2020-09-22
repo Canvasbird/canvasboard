@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="#">
     <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
@@ -63,6 +63,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px;" alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
     <td align="center"><a href="http://goliakshay.vercel.app"><img src="https://avatars2.githubusercontent.com/u/32712438?v=4" width="100px;" alt=""/><br /><sub><b>Goli Akshay Sujith</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=goliakshay357" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rohitkatlaa"><img src="https://avatars2.githubusercontent.com/u/42460632?v=4" width="100px;" alt=""/><br /><sub><b>Rohit Katlaa</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rohitkatlaa" title="Code">💻</a></td>
+    <td align="center"><a href="https://kartikchandra14.github.io"><img src="https://avatars1.githubusercontent.com/u/29736729?v=4" width="100px;" alt=""/><br /><sub><b>kc</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kartikchandra14" title="Code">💻</a></td>
   </tr>
 </table>
 
