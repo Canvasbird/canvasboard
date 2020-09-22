@@ -1,4 +1,7 @@
 <p align="center">
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="#">
     <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
   </a>
@@ -47,3 +50,22 @@ Online teaching has become the new norm for most of the Institutes/Schools/Colle
 ## Contributing🤝 
 
 Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px;" alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
