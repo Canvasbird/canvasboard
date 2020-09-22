@@ -1,7 +1,4 @@
 <p align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="#">
     <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
   </a>
@@ -21,7 +18,11 @@
   
   </p>
 </p>
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 </br>
+
+
 
 ## Project Overview:
 
