@@ -15,13 +15,13 @@ declare var $: any;
 })
 
 export class NewBoardComponent implements OnInit {
-  
+
   fileToUpload: File = null;
   uniqueChartID = (function() {
     var id = 0;
     return function() { return id++; };
   })();
-  
+
   constructor( private apiService: RestService) {}
 
   ngOnInit() {
@@ -622,7 +622,7 @@ export class NewBoardComponent implements OnInit {
           alert('Please enter a valid URL!!');
         }
       });
-      
+
       // Upload JSON file
       $(`#file-${uid}`).change((ev) => {
         this.fileToUpload = ev.target.files[0];
@@ -752,8 +752,8 @@ export class NewBoardComponent implements OnInit {
 
 
 
-      });  
-    
+      });
+
     } catch (err) {
       console.log('Error', err);
     }
@@ -1473,7 +1473,7 @@ export class NewBoardComponent implements OnInit {
 
 
 
-      });  
+      });
     } catch (err) {
       console.log('Error', err);
     }
