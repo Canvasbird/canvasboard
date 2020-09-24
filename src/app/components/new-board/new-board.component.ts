@@ -4,7 +4,7 @@ import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
 import {Chart} from 'chart.js';
-
+import {AddH1Component} from '../../plugins/@cb-h1'
 
 declare var $: any;
 
@@ -17,12 +17,15 @@ declare var $: any;
 export class NewBoardComponent implements OnInit {
 
   fileToUpload: File = null;
+  AddH1Component: any;
   uniqueChartID = (function() {
     var id = 0;
     return function() { return id++; };
   })();
 
-  constructor( private apiService: RestService) {}
+  constructor( private apiService: RestService) {
+    this.AddH1Component = new AddH1Component()
+  }
 
   ngOnInit() {
     // sortable-js
@@ -295,9 +298,9 @@ export class NewBoardComponent implements OnInit {
         }
       });
       //Add H1 Tag
-      this.addH1TagHTMLCode(uid);
+      this.AddH1Component.addH1TagHTMLCode(uid);
       // Adding H1 Tags
-      this.addH1TagClickFunction(uid);
+      this.AddH1Component.addH1TagClickFunction(uid);
 
 
       // Adding H2 Tags
