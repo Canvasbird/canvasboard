@@ -45,7 +45,7 @@ export class NewBoardComponent implements OnInit {
 
   // ......................... BLOCK BUILDING FUNCITON............................
   blockFunction = (uid) => {
-    return (`
+    let data = `
     <div id="cb-box-1-${uid}" class="cb-box-1">
     <div class="row mx-0">
       <!-- plug for dragging -->
@@ -85,16 +85,6 @@ export class NewBoardComponent implements OnInit {
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
               <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
             </svg>
-              </button>
-            </div>
-            <!-- H1 tag -->
-            <div class="tool box1 m-1">
-              <button class="btn btn-light" id="add-h1-box2-${uid}">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-h1" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M8.637 13V3.669H7.379V7.62H2.758V3.67H1.5V13h1.258V8.728h4.62V13h1.259zm5.329 0V3.669h-1.244L10.5 5.316v1.265l2.16-1.565h.062V13h1.244z" />
-                </svg>
               </button>
             </div>
             <!-- h2 tag -->
@@ -253,7 +243,8 @@ export class NewBoardComponent implements OnInit {
     </div>
   </div>
 
-    `)
+    `
+    return data
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
@@ -303,11 +294,11 @@ export class NewBoardComponent implements OnInit {
           $(`#cb-box-1-${uid}`).remove();
         }
       });
-
+      //Add H1 Tag
+      this.addH1TagHTMLCode(uid);
       // Adding H1 Tags
-      $(`#add-h1-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
-      });
+      this.addH1TagClickFunction(uid);
+
 
       // Adding H2 Tags
       $(`#add-h2-box2-${uid}`).click(() => {
@@ -903,6 +894,21 @@ export class NewBoardComponent implements OnInit {
   }
 
   //H1 Tag
+  addH1TagHTMLCode = (uid) => {
+    $(`#cb-buttons-${uid}`).append(`
+    <!-- H1 tag -->
+    <div class="tool box1 m-1">
+      <button class="btn btn-light" id="add-h1-box2-${uid}">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-h1" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M8.637 13V3.669H7.379V7.62H2.758V3.67H1.5V13h1.258V8.728h4.62V13h1.259zm5.329 0V3.669h-1.244L10.5 5.316v1.265l2.16-1.565h.062V13h1.244z" />
+        </svg>
+      </button>
+    </div>
+    `)
+  }
+
   addH1TagClickFunction = (uid) => {
       // Adding H1 Tags
       $(`#add-h1-box2-${uid}`).click(() => {
