@@ -31,4 +31,8 @@ export class AddH1Component {
         });
     }
 
+    addH1TagToolBox = (uid) => {
+      $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
+    }
+
 }

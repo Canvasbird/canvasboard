@@ -112,6 +112,10 @@
 .col-cb-1-custom{
   padding-top: 8px;
   max-width: 3%;
+
+  svg {
+    margin-top:50%;
+  }
 }
 
 
@@ -119,4 +123,50 @@
   min-height: 80vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+}
+
+// navbar
+.nav {
+  height:90%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top:0;
+  left: 0;
+  margin-top: 60px;
+  transition:0.3s;
+  overflow-x: hidden;
+  // border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  .close {
+    position: absolute;
+    top: 0px;
+    right: 22px;
+  }
+}
+.slide {
+  position: fixed;
+  margin-left: 0.5%;
+}
+
+.cb-ul {
+  margin-top: 10px;
+  width: 100%;
+
+  .header {
+    margin-left: 5%;
+  }
+  .text-tools{
+    margin-left: 5%;
+  }
+  .color-cards-tools {
+    margin-left: 5%;
+  }
+  .plugins {
+    margin-left: 5%;
+  }
+  .cb-graphs {
+    margin-left: 5%;
+  }
 }

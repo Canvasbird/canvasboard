@@ -4,7 +4,11 @@ import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
 import {Chart} from 'chart.js';
+
+// Importing Plugins
 import {AddH1Component} from '../../plugins/@cb-h1'
+import {AddCanvasBoard} from '../../plugins/cb-whiteboard'
+import {AddH2Component} from '../../plugins/cb-h2'
 
 declare var $: any;
 
@@ -17,7 +21,12 @@ declare var $: any;
 export class NewBoardComponent implements OnInit {
 
   fileToUpload: File = null;
+
+  // Initializing plugins
   AddH1Component: any;
+  AddH2Component: any;
+  AddCanvasBoard:any;
+
   uniqueChartID = (function() {
     var id = 0;
     return function() { return id++; };
@@ -25,6 +34,8 @@ export class NewBoardComponent implements OnInit {
 
   constructor( private apiService: RestService) {
     this.AddH1Component = new AddH1Component()
+    this.AddH2Component = new AddH2Component()
+    this.AddCanvasBoard = new AddCanvasBoard()
   }
 
   ngOnInit() {
@@ -53,8 +64,8 @@ export class NewBoardComponent implements OnInit {
     <div class="row mx-0">
       <!-- plug for dragging -->
       <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+        <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-grip-horizontal" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
         </svg>
       </div>
       <div class="col-10 px-0" style="max-width: 90%; flex: 0 0 90%;">
@@ -88,16 +99,6 @@ export class NewBoardComponent implements OnInit {
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
               <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
             </svg>
-              </button>
-            </div>
-            <!-- h2 tag -->
-            <div class="tool box2 m-1">
-              <button class="btn btn-light" id="add-h2-box2-${uid}">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-h2" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7.638 13V3.669H6.38V7.62H1.759V3.67H.5V13h1.258V8.728h4.62V13h1.259zm3.022-6.733v-.048c0-.889.63-1.668 1.716-1.668.957 0 1.675.608 1.675 1.572 0 .855-.554 1.504-1.067 2.085l-3.513 3.999V13H15.5v-1.094h-4.245v-.075l2.481-2.844c.875-.998 1.586-1.784 1.586-2.953 0-1.463-1.155-2.556-2.919-2.556-1.941 0-2.966 1.326-2.966 2.74v.049h1.223z" />
-                </svg>
               </button>
             </div>
             <!-- h3 tag -->
@@ -177,49 +178,6 @@ export class NewBoardComponent implements OnInit {
               </svg>
             </button>
           </div>
-          <!-- Code snippet button -->
-          <div class="tool box1 m-1" id="add-code-snippet-${uid}">
-            <button class="btn btn-light">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-slash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0zm-.999-3.124a.5.5 0 0 1 .33.625l-4 13a.5.5 0 0 1-.955-.294l4-13a.5.5 0 0 1 .625-.33z"/>
-              </svg>
-            </button>
-          </div>
-          <!-- Image upload button -->
-          <div class="tool box1 m-1" id="add-image-upload-${uid}">
-            <button class="btn btn-light">
-              <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-              </svg>
-            </button>
-          </div>
-          <!-- Canvas Board -->
-          <div class="tool box1 m-1">
-            <button class="btn btn-light" id="add-canvas-cb-${uid}">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-               <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-            </svg>
-            </button>
-          </div>
-          <!-- Chart from JSON -->
-          <div class="tool box1 m-1">
-              <input type="file"
-              id="file-${uid}"
-              accept=".json"
-              #fileUpload
-              class="btn btn-light"
-              (change)="onFileChanged($event)">
-          </div>
-            <!-- more -->
-            <div class="tool box5 m-1">
-              <button class="btn btn-light">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                </svg>
-              </button>
-            </div>
             <!-- top -->
             <div class="tool box5 m-1">
               <button class="btn btn-light" id="add-new-box-prev-${uid}">
@@ -251,7 +209,7 @@ export class NewBoardComponent implements OnInit {
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
-  addAfterBlockEditor = (id, checker) => {
+  addAfterBlockEditor = (id, checker, category=null) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
@@ -267,6 +225,27 @@ export class NewBoardComponent implements OnInit {
           this.blockFunction(uid)
         );
       } // end of if case 1
+
+      if(checker === 2) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddH1Component.addH1TagToolBox(uid)
+      }
+
+      if(checker === 3) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddCanvasBoard.addCanvasBoardToolbox(uid)
+      }
+
+      if(checker === 4) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddH2Component.addH2TagToolBox(uid)
+      }
 
       // hiding and showing the TOOLBOX
       $(`#show-more-toolbox-${uid}`).hover(
@@ -297,16 +276,17 @@ export class NewBoardComponent implements OnInit {
           $(`#cb-box-1-${uid}`).remove();
         }
       });
-      //Add H1 Tag
+      //Add H1 HTML and click Function
       this.AddH1Component.addH1TagHTMLCode(uid);
-      // Adding H1 Tags
       this.AddH1Component.addH1TagClickFunction(uid);
 
+      // Adding H2 HTML and click function
+      this.AddH2Component.addH2TagHTMLCode(uid);
+      this.AddH2Component.addH2TagClickFunction(uid);
 
-      // Adding H2 Tags
-      $(`#add-h2-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
-      });
+      // // Add Canvasboard Tag
+      // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
+      // this.AddCanvasBoard.addCanvasBoardClickFunction(uid);
 
       // Adding H3 Tags
       $(`#add-h3-box2-${uid}`).click(() => {
@@ -355,31 +335,6 @@ export class NewBoardComponent implements OnInit {
         $(`#cb-box-2-${uid}`).removeClass(
           'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
         );
-      });
-      // Adding Canvas board
-      $(`#add-canvas-cb-${uid}`).click(() => {
-        const parentWidth = $(`#original-${uid}`).width();
-        console.log('Working canvas board');
-        $(`#original-${uid}`).append(`
-          <div id="canvas-menu-box" class="canvas-menu-box">
-             <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
-          </div>
-          <canvas id="canvas-${uid}" class="shadow"></canvas>
-        `);
-        // This code(styles) should not be added it will cause problems in fabric
-
-        var canvas = new fabric.Canvas(`canvas-${uid}`);
-        canvas.isDrawingMode = true;
-        canvas.setHeight('400');
-        canvas.setWidth(parentWidth);
-
-        // changing pen color
-        // canvas.freeDrawingBrush.color
-        $(`#canvas-menu-box-${uid}`).on('change', () => {
-          let color: any = document.getElementById(`canvas-menu-box-${uid}`);
-          let data = color.value;
-          canvas.freeDrawingBrush.color = data;
-        });
       });
 
       // Add ordered list
@@ -603,15 +558,13 @@ export class NewBoardComponent implements OnInit {
         }
       });
 
-      // Adding H1 Tags
-      $(`#add-h1-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
-      });
+      //Add H1 HTML and click Function
+      this.AddH1Component.addH1TagHTMLCode(uid);
+      this.AddH1Component.addH1TagClickFunction(uid);
 
-      // Adding H2 Tags
-      $(`#add-h2-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
-      });
+      // Adding H2 HTML and click function
+      this.AddH2Component.addH2TagHTMLCode(uid);
+      this.AddH2Component.addH2TagClickFunction(uid);
 
       // Adding H3 Tags
       $(`#add-h3-box2-${uid}`).click(() => {
@@ -913,9 +866,30 @@ export class NewBoardComponent implements OnInit {
   }
 
   addH1TagClickFunction = (uid) => {
-      // Adding H1 Tags
       $(`#add-h1-box2-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
       });
+  }
+
+  openSlideMenu = () => {
+    document.getElementById('menu').style.width = '250px';
+    document.getElementById('content').style.marginLeft = '250px';
+  }
+  closeSlideMenu = () => {
+    document.getElementById('menu').style.width = '0';
+    document.getElementById('content').style.marginLeft = '0';
+  }
+
+  // H1 TAG TOOLBOX CLICK FUNCTIONALY
+  cbToolBoxH1Tag = () => {
+    this.addAfterBlockEditor('main-box',2);
+  }
+  // H2 TAG TOOLBOX CLICK FUNCTIONALITY
+  cbToolboxH2Tag = () => {
+    this.addAfterBlockEditor('main-box',4)
+  }
+  // Canvasboard TOOLBOX CLICK FUNCTION
+  addCanvasBoard = () => {
+    this.addAfterBlockEditor('main-box',3);
   }
 }
