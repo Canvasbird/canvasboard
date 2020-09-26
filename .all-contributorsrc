@@ -40,6 +40,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "john-afolabi",
+      "name": "John Afolabi",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19263499?v=4",
+      "profile": "http://johnafolabi.com",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
