@@ -1,0 +1,69 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Kajol-Kumari",
+      "name": "kajol",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/44888949?v=4",
+      "profile": "https://www.linkedin.com/in/kajol-kumari-73245b166/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "goliakshay357",
+      "name": "Goli Akshay Sujith",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/32712438?v=4",
+      "profile": "http://goliakshay.vercel.app",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rohitkatlaa",
+      "name": "Rohit Katlaa",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/42460632?v=4",
+      "profile": "https://github.com/rohitkatlaa",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kartikchandra14",
+      "name": "kc",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/29736729?v=4",
+      "profile": "https://kartikchandra14.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "john-afolabi",
+      "name": "John Afolabi",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19263499?v=4",
+      "profile": "http://johnafolabi.com",
+      "contributions": [
+        "design"
+      ]
+    },
+    {
+      "login": "aravindveluri",
+      "name": "arvi178",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43075004?v=4",
+      "profile": "https://github.com/aravindveluri",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "canvasboard",
+  "projectOwner": "Canvasbird",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
