@@ -1,6 +1,6 @@
 <p align="center">
   <a href="#">
-    <img src="https://github.com/Canvasbird/canvasbird-documentation/blob/master/documents/Canvasboard.png?raw=true" alt="Logo">
+    <img src="https://github.com/Canvasbird/canvasbird-documentation/blob/master/documents/Canvasboard.png?raw=true" alt="Logo" width="800">
 </p>
 
 
