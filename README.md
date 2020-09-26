@@ -1,24 +1,14 @@
 <p align="center">
   <a href="#">
-    <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Canvasboard🌈</h3>
-
-  <p align="center">
-    An interactive Webboard and Learning Management tool for Schools, Colleges, and Universities🌎
-    <br />
-    <a href="https://github.com/Canvasbird/canvasboard/"><strong>Explore the docs »</strong></a>
-    <br />
-    <a href="https://github.com/Canvasbird/canvasboard/issues">Report Bug</a>
-    .
-    <a href="https://github.com/Canvasbird/canvasboard/issues">Request Feature</a>
-    .
-    <a href="https://gitter.im/canvasbird/canvasboard-frontend">IRC Channel</a>
-  
-  </p>
+    <img src="https://github.com/Canvasbird/canvasbird-documentation/blob/master/documents/Canvasboard.png?raw=true" alt="Logo" width="800">
 </p>
+
+
+[![Gitter](https://badges.gitter.im/canvasbird/canvasboard-frontend.svg)](https://gitter.im/canvasbird/canvasboard-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 </br>
+
+
 
 ## Project Overview:
 
@@ -47,3 +37,27 @@ Online teaching has become the new norm for most of the Institutes/Schools/Colle
 ## Contributing🤝 
 
 Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px;" alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://goliakshay.vercel.app"><img src="https://avatars2.githubusercontent.com/u/32712438?v=4" width="100px;" alt=""/><br /><sub><b>Goli Akshay Sujith</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=goliakshay357" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rohitkatlaa"><img src="https://avatars2.githubusercontent.com/u/42460632?v=4" width="100px;" alt=""/><br /><sub><b>Rohit Katlaa</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rohitkatlaa" title="Code">💻</a></td>
+    <td align="center"><a href="https://kartikchandra14.github.io"><img src="https://avatars1.githubusercontent.com/u/29736729?v=4" width="100px;" alt=""/><br /><sub><b>kc</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kartikchandra14" title="Code">💻</a></td>
+    <td align="center"><a href="http://johnafolabi.com"><img src="https://avatars0.githubusercontent.com/u/19263499?v=4" width="100px;" alt=""/><br /><sub><b>John Afolabi</b></sub></a><br /><a href="#design-john-afolabi" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/aravindveluri"><img src="https://avatars3.githubusercontent.com/u/43075004?v=4" width="100px;" alt=""/><br /><sub><b>arvi178</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=aravindveluri" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
