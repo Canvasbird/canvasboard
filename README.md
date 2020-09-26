@@ -1,24 +1,10 @@
 <p align="center">
   <a href="#">
-    <img src="src/assets/home/logo_color.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Canvasboard🌈</h3>
-
-  <p align="center">
-    An interactive Webboard and Learning Management tool for Schools, Colleges, and Universities🌎
-    <br />
-    <a href="https://github.com/Canvasbird/canvasboard/"><strong>Explore the docs »</strong></a>
-    <br />
-    <a href="https://github.com/Canvasbird/canvasboard/issues">Report Bug</a>
-    .
-    <a href="https://github.com/Canvasbird/canvasboard/issues">Request Feature</a>
-    .
-    <a href="https://gitter.im/canvasbird/canvasboard-frontend">IRC Channel</a>
-  
-  </p>
+    <img src="https://github.com/Canvasbird/canvasbird-documentation/blob/master/documents/Canvasboard.png?raw=true" alt="Logo">
 </p>
 
+
+[![Gitter](https://badges.gitter.im/canvasbird/canvasboard-frontend.svg)](https://gitter.im/canvasbird/canvasboard-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 </br>
 
