@@ -1,13 +1,33 @@
 <!-- navbar -->
 <app-navbar></app-navbar>
 <!-- main -->
+
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="buttons">
-      <button class="btn btn-outline-primary" routerLink="/creative-board"><strong>Launch Creative Board</strong></button>
-      <button class="btn btn-outline-primary" routerLink="/board"><strong>Launch Board</strong></button>
-      <button class="btn btn-outline-danger" routerLink="/files"><strong>File Explorer</strong></button>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <h3 style="color: black;"><strong>Welcome User!👋</strong></h3>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="buttons mt-2">
+    <button class="btn btn-outline-primary" routerLink="/creative-board"><strong>Launch Creative Board</strong></button>
+    <button class="btn btn-outline-primary" routerLink="/board"><strong>Launch Board</strong></button>
+    <button class="btn btn-outline-danger" routerLink="/files"><strong>File Explorer</strong></button>
+  </div>
+
+  <!-- Folders -->
+  <div class="cb-files-container">
+    <div class="cb-box"*ngFor="let data of data" (click)="navigateToFiles($event, data)">
+      <img src="{{data.imageURL}}" alt="demo">
+      <h2>{{data.title}}</h2>
+      <p>{{data.subtitle}}</p>
+      <div class="labels d-flex flex-wrap">
+        <span class="badge badge-danger">Label1</span>
+        <span class="badge badge-danger">label2</span>
+      </div>
     </div>
   </div>
-</div>
+
+
 
