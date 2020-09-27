@@ -16,6 +16,7 @@ import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 import { ContributionComponent } from './components/contribution/contribution.component'
+import { FilesComponent } from './components/files/files.component';
 const routes: Routes = [
   {
     path: '',
@@ -52,6 +53,10 @@ const routes: Routes = [
     path:'board',
     component: BoardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'files',
+    component: FilesComponent,
   },
   {
     path:'assignment',

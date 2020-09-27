@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiHost: 'http://165.22.208.128:4004'
+  apiHost: 'https://api.canvasboard.live'
 };
 
 /*

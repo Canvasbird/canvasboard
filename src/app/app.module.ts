@@ -20,6 +20,7 @@ import { SubjectDashboardComponent } from './components/subject-dashboard/subjec
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
+import { FilesComponent } from './components/files/files.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { ContributionComponent } from './components/contribution/contribution.co
     NewBoardComponent,
     UserDashboardComponent,
     ContributionComponent,
+    FilesComponent,
   ],
   imports: [
     BrowserModule,
