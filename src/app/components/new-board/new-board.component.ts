@@ -9,6 +9,9 @@ import {Chart} from 'chart.js';
 import {AddH1Component} from '../../plugins/@cb-h1'
 import {AddCanvasBoard} from '../../plugins/cb-whiteboard'
 import {AddH2Component} from '../../plugins/cb-h2'
+import {AddH3Component} from '../../plugins/cb-h3'
+import {AddParaComponent} from '../../plugins/cb-p'
+import {AddRedBackgroundComponent} from '../../plugins/color-background/cb-redbackground'
 
 declare var $: any;
 
@@ -25,6 +28,10 @@ export class NewBoardComponent implements OnInit {
   // Initializing plugins
   AddH1Component: any;
   AddH2Component: any;
+  AddH3Component: any;
+  AddParaComponent:any;
+
+  AddRedBackgroundComponent:any;
   AddCanvasBoard:any;
 
   uniqueChartID = (function() {
@@ -35,6 +42,9 @@ export class NewBoardComponent implements OnInit {
   constructor( private apiService: RestService) {
     this.AddH1Component = new AddH1Component()
     this.AddH2Component = new AddH2Component()
+    this.AddH3Component = new AddH3Component()
+    this.AddParaComponent = new AddParaComponent()
+    this.AddRedBackgroundComponent = new AddRedBackgroundComponent()
     this.AddCanvasBoard = new AddCanvasBoard()
   }
 
@@ -99,34 +109,6 @@ export class NewBoardComponent implements OnInit {
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
               <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
             </svg>
-              </button>
-            </div>
-            <!-- h3 tag -->
-            <div class="tool box3 m-1">
-              <button class="btn btn-light" id="add-h3-box2-${uid}">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-h3" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7.637 13V3.669H6.379V7.62H1.758V3.67H.5V13h1.258V8.728h4.62V13h1.259zm3.625-4.272h1.018c1.142 0 1.935.67 1.949 1.674.013 1.005-.78 1.737-2.01 1.73-1.08-.007-1.853-.588-1.935-1.32H9.108c.069 1.327 1.224 2.386 3.083 2.386 1.935 0 3.343-1.155 3.309-2.789-.027-1.51-1.251-2.16-2.037-2.249v-.068c.704-.123 1.764-.91 1.723-2.229-.035-1.353-1.176-2.4-2.954-2.385-1.873.006-2.857 1.162-2.898 2.358h1.196c.062-.69.711-1.299 1.696-1.299.998 0 1.695.622 1.695 1.525.007.922-.718 1.592-1.695 1.592h-.964v1.074z" />
-                </svg>
-              </button>
-            </div>
-            <!-- paragraph -->
-            <div class="tool box4 m-1">
-              <button class="btn btn-light" id="add-p-box2-${uid}">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-text-paragraph" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z" />
-                </svg>
-              </button>
-            </div>
-            <!-- Red Background color button -->
-            <div class="tool box1 m-1">
-              <button class="btn btn-danger" id="add-background-cb-red-${uid}">
-                <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"/>
-                </svg>
               </button>
             </div>
             <!-- Green Background color button -->
@@ -247,6 +229,26 @@ export class NewBoardComponent implements OnInit {
         this.AddH2Component.addH2TagToolBox(uid)
       }
 
+      if(checker === 5) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddH3Component.addH3TagToolBox(uid)
+      }
+
+      if(checker === 6) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddParaComponent.addParaTagToolBox(uid)
+      }
+      if(checker === 7) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddRedBackgroundComponent.addRedBackgroundToolBox(uid)
+      }
+
       // hiding and showing the TOOLBOX
       $(`#show-more-toolbox-${uid}`).hover(
         // display block
@@ -276,6 +278,7 @@ export class NewBoardComponent implements OnInit {
           $(`#cb-box-1-${uid}`).remove();
         }
       });
+
       //Add H1 HTML and click Function
       this.AddH1Component.addH1TagHTMLCode(uid);
       this.AddH1Component.addH1TagClickFunction(uid);
@@ -284,28 +287,22 @@ export class NewBoardComponent implements OnInit {
       this.AddH2Component.addH2TagHTMLCode(uid);
       this.AddH2Component.addH2TagClickFunction(uid);
 
+      // Adding H3 Tags
+      this.AddH3Component.addH3TagHTMLCode(uid);
+      this.AddH3Component.addH3TagClickFunction(uid);
+
+      //Adding para tags
+      this.AddParaComponent.addParaTagHTMLCode(uid);
+      this.AddParaComponent.addParaTagClickFunction(uid);
+
+      //Adding red background toolbox
+      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
+      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
+
       // // Add Canvasboard Tag
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
       // this.AddCanvasBoard.addCanvasBoardClickFunction(uid);
 
-      // Adding H3 Tags
-      $(`#add-h3-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
-      });
-
-      // Adding Paragraphs
-      $(`#add-p-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
-      });
-
-      // Adding red background color
-      $(`#add-background-cb-red-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-green cb-background-blue'
-          )
-          .addClass('cb-background-red');
-      });
       // Adding blue background color
       $(`#add-background-cb-blue-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`)
@@ -567,14 +564,16 @@ export class NewBoardComponent implements OnInit {
       this.AddH2Component.addH2TagClickFunction(uid);
 
       // Adding H3 Tags
-      $(`#add-h3-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
-      });
+      this.AddH3Component.addH3TagHTMLCode(uid);
+      this.AddH3Component.addH3TagClickFunction(uid);
 
-      // Adding Paragraphs
-      $(`#add-p-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
-      });
+      //Adding para tags
+      this.AddParaComponent.addParaTagHTMLCode(uid);
+      this.AddParaComponent.addParaTagClickFunction(uid);
+
+      //Adding red background toolbox
+      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
+      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
 
       // Adding red background color
       $(`#add-background-cb-red-${uid}`).click(() => {
@@ -880,7 +879,7 @@ export class NewBoardComponent implements OnInit {
     document.getElementById('content').style.marginLeft = '0';
   }
 
-  // H1 TAG TOOLBOX CLICK FUNCTIONALY
+  // H1 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolBoxH1Tag = () => {
     this.addAfterBlockEditor('main-box',2);
   }
@@ -888,8 +887,22 @@ export class NewBoardComponent implements OnInit {
   cbToolboxH2Tag = () => {
     this.addAfterBlockEditor('main-box',4)
   }
+  // H3 TAG TOOLBOX CLICK FUNCTIONALITY
+  cbToolboxH3Tag = () => {
+    this.addAfterBlockEditor('main-box',5)
+  }
   // Canvasboard TOOLBOX CLICK FUNCTION
   addCanvasBoard = () => {
     this.addAfterBlockEditor('main-box',3);
   }
+  // Adding paragraph
+  cbToolboxParaTag = () => {
+    this.addAfterBlockEditor('main-box',6);
+  }
+
+  //Adding Red background color
+  cbToolboxRedBackground = () => {
+    this.addAfterBlockEditor('main-box',7);
+  }
+
 }
