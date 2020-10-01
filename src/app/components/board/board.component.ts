@@ -37,7 +37,7 @@ export class BoardComponent implements OnInit {
 
 
   //tools
-  penColour:any;
+  penColour:red, blue, green, black;
 
   // basic_tools booleans
 basic_tools = {
