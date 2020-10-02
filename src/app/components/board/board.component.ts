@@ -141,7 +141,7 @@ export class BoardComponent implements OnInit {
   }
 
   //pen Button
-  penButton(penWidth: number, penColor: any, penComposite: string){
+  penButton(penWidth: number = null, penColor: any = null, penComposite: string = null){
 
     console.log("Working!");
     this.enableTool('normalPen');
