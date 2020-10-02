@@ -1,3 +1,15 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .button {
+      color:lightgrey;
+      text-align:center;
+      text-decoration:none;
+      font-size:16px;
+      cursor:pointer;
+    }
+  </style>
+</head>
 <p align="center">
   <a href="#">
     <img src="https://github.com/Canvasbird/canvasbird-documentation/blob/master/documents/Canvasboard.png?raw=true" alt="Logo" width="800">
@@ -37,6 +49,7 @@ Online teaching has become the new norm for most of the Institutes/Schools/Colle
 ## Contributing🤝 
 
 Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
+ <a href="https://github.com/Canvasbird/canvasboard/"><button type="button" class="button">Become a Contributor<i class="fa fa-rocket" style="color:orange"></i></button></a>
 
 ## Contributors ✨
 
