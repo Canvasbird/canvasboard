@@ -58,6 +58,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "rebelchris",
+      "name": "Chris Bongers",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/554874?v=4",
+      "profile": "https://daily-dev-tips.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
