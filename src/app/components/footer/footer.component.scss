@@ -9,3 +9,13 @@ footer {
     padding-left: 0px;
   }
 }
+
+.image-logo {
+  margin: 0px;
+}
+
+@media (max-width: 576px) {
+  .margin-top {
+    margin-top: 10px !important;
+  }
+}
