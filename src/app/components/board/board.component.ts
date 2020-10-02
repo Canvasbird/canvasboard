@@ -38,13 +38,16 @@ export class BoardComponent implements OnInit {
 
   //tools
   penColour:any;
+  defaultWidth:number = 1;
+  defaultComposite:string = 'source-over';
 
   // basic_tools booleans
-basic_tools = {
-  normalPen: false,
-  brushPen:false,
-  highlighter: false,
-}
+  basic_tools = {
+    normalPen: false,
+    brushPen:false,
+    highlighter: false,
+    eraser: false
+  }
 
   //# toolbox declarations
   //## Normal pen
@@ -54,6 +57,9 @@ basic_tools = {
   normalPen_currentY:number;
   normalPen_endX:number;
   normalPen_endY:number;
+  normalPen_width:number;
+  normalPen_color:any;
+  normalPen_composite:string;
 
  calligraphy_tool = {
    calligraphy_startX:-1,
@@ -71,6 +77,10 @@ basic_tools = {
   highlighter_endX:-1,
   highlighter_endY:-1,
 }
+  eraser_tool = {
+    width: 20,
+    color: 'rgba(1,0,0)'
+  }
 
   //getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
@@ -122,15 +132,19 @@ basic_tools = {
     })
   }
 
-  //pen Button
-  penButton(){
-    console.log("Working!");
-    //Enabling pen and disabiling other tools
-    Object.keys(this.basic_tools).forEach( (key)=>{
+  //Enabling <selectedTool> and disabling other tools
+  enableTool(selectedTool: string){
+    Object.keys(this.basic_tools).forEach((key)=>{
       this.basic_tools[key] = false;
     })
-    //Enabling only normal pen
-    this.basic_tools.normalPen = true;
+    this.basic_tools[selectedTool] = true;
+  }
+
+  //pen Button
+  penButton(penWidth: number, penColor: any, penComposite: string){
+
+    console.log("Working!");
+    this.enableTool('normalPen');
 
     // post checking
     if(this.basic_tools.normalPen){
@@ -143,6 +157,9 @@ basic_tools = {
           // taking mouse down X and Y coordinates
           this.normalPen_startX = e.offsetX
           this.normalPen_startY = e.offsetY
+          this.normalPen_width = penWidth ? penWidth : this.defaultWidth;
+          this.normalPen_color = penColor ? penColor : this.penColour;
+          this.normalPen_composite = penComposite ? penComposite : this.defaultComposite;
         }
       })
 
@@ -158,8 +175,9 @@ basic_tools = {
           this.ctx.moveTo(this.normalPen_startX,this.normalPen_startY);
           this.ctx.lineTo(this.normalPen_currentX,this.normalPen_currentY);
           this.ctx.closePath();
-          this.ctx.strokeStyle = this.penColour;
-          // this.ctx.lineWidth = this.line_width;
+          this.ctx.strokeStyle = this.normalPen_color;
+          this.ctx.lineWidth = this.normalPen_width;
+          this.ctx.globalCompositeOperation = this.normalPen_composite;
           this.ctx.stroke();
 
           // console.log(e,"Mouse move");
@@ -180,12 +198,9 @@ basic_tools = {
   }
 
   calligraphyButton(){
+
     console.log("Brush is working");
-    //Enabling brush and disabiling other tools
-    Object.keys(this.basic_tools).forEach( (key)=>{
-      this.basic_tools[key] = false;
-    })
-    this.basic_tools.brushPen = true;
+    this.enableTool('brushPen');
 
     if(this.basic_tools.brushPen){
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
@@ -211,6 +226,9 @@ basic_tools = {
           this.ctx.lineTo(this.calligraphy_tool.calligraphy_currentX,this.calligraphy_tool.calligraphy_currentY);
           this.ctx.closePath();
           this.ctx.stroke();
+          this.ctx.strokeStyle = this.penColour;
+          this.ctx.lineWidth = this.defaultWidth;
+          this.ctx.globalCompositeOperation = this.defaultComposite
 
           for(let i=0; i<5;i++){
           this.ctx.beginPath();
@@ -243,13 +261,14 @@ basic_tools = {
     }
   }
 
-    highlighterButton(){
+  eraserButton(){
+    this.penButton(this.eraser_tool.width, this.eraser_tool.color, 'destination-out');
+  }
+
+  highlighterButton(){
+
     console.log("Brush is working");
-    //Enabling brush and disabiling other tools
-    Object.keys(this.basic_tools).forEach( (key)=>{
-      this.basic_tools[key] = false;
-    })
-    this.basic_tools.highlighter = true;
+    this.enableTool('highlighter');
 
     if(this.basic_tools.highlighter){
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
@@ -270,6 +289,7 @@ basic_tools = {
           this.highlighter_tool.highlighter_currentX = e.offsetX
           this.highlighter_tool.highlighter_currentY = e.offsetY
 
+          this.ctx.globalCompositeOperation = this.defaultComposite
           this.ctx.beginPath();
           this.ctx.moveTo(this.highlighter_tool.highlighter_startX,this.highlighter_tool.highlighter_startY);
           this.ctx.lineTo(this.highlighter_tool.highlighter_currentX,this.highlighter_tool.highlighter_currentY);
@@ -385,6 +405,7 @@ function_PDF_tracking(num){
 
     // clearing my rect
     this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+    this.ctx.globalCompositeOperation = this.defaultComposite;
 
     if(this.pdf_added_boolean){
           // if pdf page is already rendered then dont add.. else add the pdf
@@ -456,6 +477,7 @@ function_PDF_tracking(num){
     image.onload = (event) => {
       this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
       this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
+      this.ctx.globalCompositeOperation = this.defaultComposite;
     }
     image.src = this.notebook[this.page].image;
 
