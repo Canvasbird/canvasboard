@@ -53,6 +53,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://kartikchandra14.github.io"><img src="https://avatars1.githubusercontent.com/u/29736729?v=4" width="100px;" alt=""/><br /><sub><b>kc</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kartikchandra14" title="Code">💻</a></td>
     <td align="center"><a href="http://johnafolabi.com"><img src="https://avatars0.githubusercontent.com/u/19263499?v=4" width="100px;" alt=""/><br /><sub><b>John Afolabi</b></sub></a><br /><a href="#design-john-afolabi" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/aravindveluri"><img src="https://avatars3.githubusercontent.com/u/43075004?v=4" width="100px;" alt=""/><br /><sub><b>arvi178</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=aravindveluri" title="Code">💻</a></td>
+    <td align="center"><a href="https://daily-dev-tips.com"><img src="https://avatars1.githubusercontent.com/u/554874?v=4" width="100px;" alt=""/><br /><sub><b>Chris Bongers</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rebelchris" title="Code">💻</a></td>
   </tr>
 </table>
 
