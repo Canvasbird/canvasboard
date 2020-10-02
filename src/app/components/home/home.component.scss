@@ -20,33 +20,44 @@
       margin-right: 1rem;
     }
   }
-  .header{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 60px;
-  }
-  .sub-header{
-    font-family: 'Questrial', sans-serif;
-    font-size: 30px;
-    line-height: 31px;
-    .webboard{
-      color: #EE6D9E;
-      font-weight: bold;
-    }
-    .Schools{
-      color: #1551EC;
-      font-weight: bold;
-    }
-    .Colleges{
-      color: #5217F9;
-      font-weight: bold;
-    }
-    .Universities{
-      color: #9513E4;
-      font-weight: bold;
+  .header_div {
+    display: block;
+    margin: 0 40px;
+    .header {
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 60px;
+      // border: 2px solid blue;
     }
   }
-  .board{
+  .sub-header_div {
+    display: block;
+    margin: auto;
+    .sub-header {
+      font-family: "Questrial", sans-serif;
+      font-size: 30px;
+      line-height: 31px;
+      // border: 2px solid blue;
+      .webboard {
+        color: #ee6d9e;
+        font-weight: bold;
+      }
+      .Schools {
+        color: #1551ec;
+        font-weight: bold;
+      }
+      .Colleges {
+        color: #5217f9;
+        font-weight: bold;
+      }
+      .Universities {
+        color: #9513e4;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .board {
     width: 90%;
     margin-top: 70px;
   }
@@ -62,6 +73,22 @@
       font-weight: bold;
       font-size: 30px;
       line-height: 45px;
+    }
+  }
+
+  @media (max-width: 530px) {
+    .header_div {
+      .header {
+        font-size: 10vw;
+      }
+    }
+  }
+  @media (max-width: 430px) {
+    .links {
+      li {
+        margin-left: 3px;
+        margin-right: 3px;
+      }
     }
   }
 }
