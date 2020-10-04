@@ -57,6 +57,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://alinebrito.com"><img src="https://avatars1.githubusercontent.com/u/14023536?v=4" width="100px;" alt=""/><br /><sub><b>Aline Brito</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=alinebrito" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/joshyide"><img src="https://avatars3.githubusercontent.com/u/25023919?v=4" width="100px;" alt=""/><br /><sub><b>Joshua Ide</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=joshyide" title="Code">💻</a></td>
   </tr>
 </table>
 
