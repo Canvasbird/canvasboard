@@ -18,17 +18,29 @@
       text-align: center;
       margin-left: 1rem;
       margin-right: 1rem;
+      padding-top: 0.5rem;
     }
   }
+
   .header{
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 60px;
+    font-size: 42px;
+
+    @media (min-width: 768px) {
+        font-size: 60px;
+    }
   }
+
+
   .sub-header{
     font-family: 'Questrial', sans-serif;
-    font-size: 30px;
+    font-size: 24px;
     line-height: 31px;
+
+    @media (min-width: 768px) {
+      font-size: 30px;
+  }
     .webboard{
       color: #EE6D9E;
       font-weight: bold;
