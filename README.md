@@ -3,9 +3,9 @@
     <img src="https://github.com/Canvasbird/canvasbird-documentation/blob/master/documents/Canvasboard.png?raw=true" alt="Logo" width="800">
 </p>
 
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
 [![Gitter](https://badges.gitter.im/canvasbird/canvasboard-frontend.svg)](https://gitter.im/canvasbird/canvasboard-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 </br>
 
 
@@ -38,6 +38,9 @@ Online teaching has become the new norm for most of the Institutes/Schools/Colle
 
 Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
 
+## Related Repositories❤️
+- [canvasbird/canvasboard-backend](https://github.com/Canvasbird/canvasboard-backend): Canvasboard Backend built on NodeJS
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -58,6 +61,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://alinebrito.com"><img src="https://avatars1.githubusercontent.com/u/14023536?v=4" width="100px;" alt=""/><br /><sub><b>Aline Brito</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=alinebrito" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/joshyide"><img src="https://avatars3.githubusercontent.com/u/25023919?v=4" width="100px;" alt=""/><br /><sub><b>Joshua Ide</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=joshyide" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/umar07"><img src="https://avatars1.githubusercontent.com/u/11666006?v=4" width="100px;" alt=""/><br /><sub><b>Umar Masud</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=umar07" title="Code">💻</a></td>
   </tr>
 </table>
 
