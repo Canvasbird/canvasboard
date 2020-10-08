@@ -12,6 +12,7 @@ import {AddH2Component} from '../../plugins/cb-h2'
 import {AddH3Component} from '../../plugins/cb-h3'
 import {AddParaComponent} from '../../plugins/cb-p'
 import {AddRedBackgroundComponent} from '../../plugins/color-background/cb-redbackground'
+import {AddFontMonospaceComponent} from '../../plugins/monospace'
 
 declare var $: any;
 
@@ -33,6 +34,7 @@ export class NewBoardComponent implements OnInit {
 
   AddRedBackgroundComponent:any;
   AddCanvasBoard:any;
+  AddFontMonospaceComponent:any;
 
   uniqueChartID = (function() {
     var id = 0;
@@ -46,6 +48,7 @@ export class NewBoardComponent implements OnInit {
     this.AddParaComponent = new AddParaComponent()
     this.AddRedBackgroundComponent = new AddRedBackgroundComponent()
     this.AddCanvasBoard = new AddCanvasBoard()
+    this.AddFontMonospaceComponent = new AddFontMonospaceComponent()
   }
 
   ngOnInit() {
@@ -247,6 +250,12 @@ export class NewBoardComponent implements OnInit {
           this.blockFunction(uid)
         );
         this.AddRedBackgroundComponent.addRedBackgroundToolBox(uid)
+      }
+      if(checker === 11) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddFontMonospaceComponent.addMonospaceFontToolBox(uid)
       }
 
       // hiding and showing the TOOLBOX
@@ -903,6 +912,11 @@ export class NewBoardComponent implements OnInit {
   //Adding Red background color
   cbToolboxRedBackground = () => {
     this.addAfterBlockEditor('main-box',7);
+  }
+
+  // Adding Monoscpace font
+  cbToolboxMonospace = () => {
+    this.addAfterBlockEditor('main-box',11);
   }
 
 }
