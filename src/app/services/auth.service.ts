@@ -78,6 +78,8 @@ export class AuthService {
       alert("Please verify your email account for sign in");
     } else if (error.message === "Incorrect password") {
       alert("Incorrect username or password.");
+    } else if (error.message === "User not found.") {
+      alert("This email address does not correspond to a registered account.");
     }
   }
 }
