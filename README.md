@@ -64,6 +64,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/umar07"><img src="https://avatars1.githubusercontent.com/u/11666006?v=4" width="100px;" alt=""/><br /><sub><b>Umar Masud</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=umar07" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/karma200020"><img src="https://avatars1.githubusercontent.com/u/39916499?v=4" width="100px;" alt=""/><br /><sub><b>abhishek kumar mishra</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=karma200020" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/matheusmosca"><img src="https://avatars0.githubusercontent.com/u/42419282?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Mosca</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=matheusmosca" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/saidhanush1212"><img src="https://avatars2.githubusercontent.com/u/32712645?v=4" width="100px;" alt=""/><br /><sub><b>saidhanush1212</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=saidhanush1212" title="Code">💻</a></td>
   </tr>
 </table>
 
