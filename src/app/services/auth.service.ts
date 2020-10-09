@@ -33,6 +33,7 @@ export class AuthService {
         },
         (err) => {
           console.log(err);
+          this.loginErrorAlert(err);
           this.loginLoad = false;
         }
       );
@@ -69,6 +70,14 @@ export class AuthService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  loginErrorAlert({ error }: ErrorEvent) {
+    if (error.message === "Please verify your email-id") {
+      alert("Please verify your email account for sign in");
+    } else if (error.message === "Incorrect password") {
+      alert("Incorrect username or password.");
     }
   }
 }
