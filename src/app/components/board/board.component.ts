@@ -37,7 +37,8 @@ export class BoardComponent implements OnInit {
 
 
   //tools
-  penColour:any;
+  penColour:any='rgba(0,0,0)';
+  penWidth:number = 1;
   defaultWidth:number = 1;
   defaultComposite:string = 'source-over';
 
@@ -79,7 +80,8 @@ export class BoardComponent implements OnInit {
 }
   eraser_tool = {
     width: 20,
-    color: 'rgba(1,0,0)'
+    color: 'rgba(1,0,0)',
+    composite: 'destination-out'
   }
 
   //getting screen Width and height automatically triggers when dimension changes
@@ -138,21 +140,26 @@ export class BoardComponent implements OnInit {
       this.basic_tools[key] = false;
     })
     this.basic_tools[selectedTool] = true;
+
+    //Enable size button to Eraser tool.
+    if(this.basic_tools.eraser){
+      this.enableSizeButtons();
+    }
+    else{
+      this.disableSizeButtons();
+    }
   }
 
-  //pen Button
-  penButton(penWidth: number = null, penColor: any = null, penComposite: string = null){
-
-    console.log("Working!");
-    this.enableTool('normalPen');
+  //pen 
+  pen(penWidth: number = null, penColor: any = null, penComposite: string = null){
 
     // post checking
-    if(this.basic_tools.normalPen){
+    if(this.basic_tools.normalPen || this.basic_tools.eraser){
       //When mouse is pressed down
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true
 
-        if(this.mouseControl && this.basic_tools.normalPen){
+        if(this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)){
           console.log("Mouse down");
           // taking mouse down X and Y coordinates
           this.normalPen_startX = e.offsetX
@@ -165,7 +172,7 @@ export class BoardComponent implements OnInit {
 
       //When Mouse is moving
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
-        if(this.mouseControl && this.basic_tools.normalPen){
+        if(this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)){
           console.log("Mouse is moving! for pen");
 
           this.normalPen_currentX = e.offsetX
@@ -227,7 +234,7 @@ export class BoardComponent implements OnInit {
           this.ctx.closePath();
           this.ctx.stroke();
           this.ctx.strokeStyle = this.penColour;
-          this.ctx.lineWidth = this.defaultWidth;
+          this.ctx.lineWidth = this.penWidth;
           this.ctx.globalCompositeOperation = this.defaultComposite
 
           for(let i=0; i<5;i++){
@@ -261,8 +268,40 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  penButton(){
+    this.enableTool('normalPen');
+    this.pen();
+  }
+
   eraserButton(){
-    this.penButton(this.eraser_tool.width, this.eraser_tool.color, 'destination-out');
+    this.enableTool('eraser');
+    this.pen(this.eraser_tool.width, this.eraser_tool.color, this.eraser_tool.composite);
+  }
+
+  setSize(size:number){
+    this.pen(size, this.eraser_tool.color, this.eraser_tool.composite);
+  }
+
+  disableButton(id:string){
+    (<HTMLInputElement> document.getElementById(id)).disabled = true;
+  }
+
+  enableButton(id:string){
+    (<HTMLInputElement> document.getElementById(id)).disabled = false;
+  }
+
+  disableSizeButtons(){
+    this.disableButton("btn-size-1");
+    this.disableButton("btn-size-10");
+    this.disableButton("btn-size-20");
+    this.disableButton("btn-size-50");
+  }
+
+  enableSizeButtons(){
+    this.enableButton("btn-size-1");
+    this.enableButton("btn-size-10");
+    this.enableButton("btn-size-20");
+    this.enableButton("btn-size-50");
   }
 
   highlighterButton(){
