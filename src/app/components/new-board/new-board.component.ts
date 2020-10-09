@@ -260,7 +260,6 @@ export class NewBoardComponent implements OnInit {
         );
         this.AddFontMonospaceComponent.addMonospaceFontToolBox(uid)
       }
-      console.log({checker})
       if(checker === 12) {
         $(`#${id}`).append(
           this.blockFunction(uid)
