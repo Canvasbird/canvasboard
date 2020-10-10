@@ -574,14 +574,23 @@ function_PDF_tracking(num){
   }
 
   downloadAsJSON(){
-    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.notebook));
-    var a = document.createElement('a');
+    const present = {
+      pageNumber: this.page,
+      image: this.canvasElement.toDataURL(),
+      date: Date.now()
+    };
+
+    this.upsert(this.notebook, this.page ,present)
+
+    const data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.notebook));
+    let a = document.createElement('a');
     a.href = 'data:' + data;
     a.download = 'data.json';
     a.innerHTML = 'download JSON';
 
-    var container = document.getElementById('container');
-    container.appendChild(a);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 
 
