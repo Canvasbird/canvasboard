@@ -13,6 +13,7 @@ import {AddH3Component} from '../../plugins/cb-h3'
 import {AddParaComponent} from '../../plugins/cb-p'
 import {AddRedBackgroundComponent} from '../../plugins/color-background/cb-redbackground'
 import {AddFontMonospaceComponent} from '../../plugins/monospace'
+import {AddFontPlayfairComponent} from "../../plugins/playfair"
 
 declare var $: any;
 
@@ -35,6 +36,7 @@ export class NewBoardComponent implements OnInit {
   AddRedBackgroundComponent:any;
   AddCanvasBoard:any;
   AddFontMonospaceComponent:any;
+  AddFontPlayfairComponent:any;
 
   uniqueChartID = (function() {
     var id = 0;
@@ -49,6 +51,7 @@ export class NewBoardComponent implements OnInit {
     this.AddRedBackgroundComponent = new AddRedBackgroundComponent()
     this.AddCanvasBoard = new AddCanvasBoard()
     this.AddFontMonospaceComponent = new AddFontMonospaceComponent()
+    this.AddFontPlayfairComponent = new AddFontPlayfairComponent()
   }
 
   ngOnInit() {
@@ -256,6 +259,12 @@ export class NewBoardComponent implements OnInit {
           this.blockFunction(uid)
         );
         this.AddFontMonospaceComponent.addMonospaceFontToolBox(uid)
+      }
+      if(checker === 12) {
+        $(`#${id}`).append(
+          this.blockFunction(uid)
+        );
+        this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid)
       }
 
       // hiding and showing the TOOLBOX
@@ -917,6 +926,11 @@ export class NewBoardComponent implements OnInit {
   // Adding Monoscpace font
   cbToolboxMonospace = () => {
     this.addAfterBlockEditor('main-box',11);
+  }
+
+  // Adding Playfair font
+  cbToolboxPlayfair = () => {
+    this.addAfterBlockEditor('main-box',12);
   }
 
 }
