@@ -4,6 +4,7 @@ import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
 import {Chart} from 'chart.js';
+import Swal from 'sweetalert2';
 
 // Importing Plugins
 import {AddH1Component} from '../../plugins/@cb-h1'
@@ -385,7 +386,7 @@ export class NewBoardComponent implements OnInit {
           );
           $(`#cb-image-${uid}`).css('width', '100%');
         } else {
-          alert('Please enter a valid URL!!');
+          Swal.fire({ icon: 'warning', text: "Please enter a valid URL!!" });
         }
       });
 
@@ -695,7 +696,7 @@ export class NewBoardComponent implements OnInit {
           );
           $(`#cb-image-${uid}`).css('width', '100%');
         } else {
-          alert('Please enter a valid URL!!');
+          Swal.fire({ icon: 'warning', text: "Please enter a valid URL!!" });
         }
       });
       // Upload JSON file

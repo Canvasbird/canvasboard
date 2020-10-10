@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -47,12 +48,13 @@ export class AuthService {
         (res) => {
           console.log(res);
           this.signUpResObj = res;
-          alert(this.signUpResObj.message);
+          Swal.fire({ icon: 'success', text: this.signUpResObj.message });
           this.router.navigate(['/login']);
           this.signUpLoad = false;
         },
         (err) => {
           console.log(err);
+          Swal.fire({ icon: 'error', text: err.error.message });
           this.signUpLoad = false;
         }
       );
@@ -75,11 +77,14 @@ export class AuthService {
 
   loginErrorAlert({ error }: ErrorEvent) {
     if (error.message === "Please verify your email-id") {
-      alert("Please verify your email account for sign in");
+      Swal.fire({ icon: 'warning', text: "Please verify your email account for sign in" });
     } else if (error.message === "Incorrect password") {
-      alert("Incorrect username or password.");
+      Swal.fire({ icon: 'error', text: "Incorrect username or password."});
     } else if (error.message === "User not found.") {
-      alert("This email address does not correspond to a registered account.");
+      Swal.fire({ 
+        icon: 'warning',
+        text: "This email address does not correspond to a registered account."
+      });
     }
   }
 }
