@@ -68,7 +68,7 @@
 
   .sub-box{
     .box{
-      height:40px;
+      height:30px;
       width:40px;
       background-color:#ffffff;
       // background-color: #2f4353;
@@ -97,7 +97,18 @@
       font-size: 15px;
       margin-right: 5px;
     }
+    .btn-color-tool{
+      width: 25px;
+      height: 25px;
+      margin: 2px;
+    }
+    .input-color-tool{
+      width: 30px;
+      height: 30px;
+      margin: 2px;
+    }
   }
+
   .width-picker{
     margin-top:10px;
     .title{
@@ -171,8 +182,9 @@
     margin:1px;
     border: 1px solid;
   }
-
-
+  .btn-size-tool{
+    margin: 3px;
+  }
 }
 
 #backgroundImage{
