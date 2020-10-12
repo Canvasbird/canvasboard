@@ -61,23 +61,23 @@ export class BoardComponent implements OnInit {
   normalPen_width:number;
   normalPen_color:any;
   normalPen_composite:string;
-
- calligraphy_tool = {
-   calligraphy_startX:-1,
-   calligraphy_startY:-1,
-   calligraphy_currentX:-1,
-   calligraphy_currentY:-1,
-   calligraphy_endX:-1,
-   calligraphy_endY:-1,
- }
- highlighter_tool = {
-  highlighter_startX:-1,
-  highlighter_startY:-1,
-  highlighter_currentX:-1,
-  highlighter_currentY:-1,
-  highlighter_endX:-1,
-  highlighter_endY:-1,
-}
+ 
+  calligraphy_tool = {
+    startX:-1,
+    startY:-1,
+    currentX:-1,
+    currentY:-1,
+    endX:-1,
+    endY:-1,
+  }
+  highlighter_tool = {
+    startX:-1,
+    startY:-1,
+    currentX:-1,
+    currentY:-1,
+    endX:-1,
+    endY:-1,
+  }
   eraser_tool = {
     width: 20,
     color: 'rgba(1,0,0)',
@@ -87,7 +87,7 @@ export class BoardComponent implements OnInit {
   //getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
-        this.scrHeight = window.innerHeight;
+        this.scrHeight = window.innerHeight-5;
         this.scrWidth = window.innerWidth-220;
   }
 
@@ -96,20 +96,20 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.page = 0;
-  console.log("Screen width :", this.scrWidth, "Screen height", this.scrHeight );
+    this.page = 0;
+    console.log("Screen width :", this.scrWidth, "Screen height", this.scrHeight );
 
-  // getting the 2D context of Canvas element
-  this.canvasElement=this.canvas.nativeElement;
-  this.ctx = this.canvasElement.getContext('2d');
-  //setting the Width and Height to the canvas element
-  this.renderer.setElementAttribute(this.canvasElement, 'width', this.scrWidth);
-  this.renderer.setElementAttribute(this.canvasElement, 'height', this.scrHeight);
+    // getting the 2D context of Canvas element
+    this.canvasElement=this.canvas.nativeElement;
+    this.ctx = this.canvasElement.getContext('2d');
+    //setting the Width and Height to the canvas element
+    this.renderer.setElementAttribute(this.canvasElement, 'width', this.scrWidth);
+    this.renderer.setElementAttribute(this.canvasElement, 'height', this.scrHeight);
 
-  //for background
-  this.backgroundCanvas = this.background.nativeElement;
-  this.renderer.setElementAttribute(this.backgroundCanvas, 'width', this.scrWidth);
-  this.renderer.setElementAttribute(this.backgroundCanvas, 'height', this.scrHeight);
+    //for background
+    this.backgroundCanvas = this.background.nativeElement;
+    this.renderer.setElementAttribute(this.backgroundCanvas, 'width', this.scrWidth);
+    this.renderer.setElementAttribute(this.backgroundCanvas, 'height', this.scrHeight);
   }
 
   addPdf(page_number){
@@ -150,7 +150,20 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  //pen 
+  setCanvasContextPath(startX:number, startY:number, currentX:number, currentY:number){
+    this.ctx.beginPath();
+    this.ctx.moveTo(startX, startY);
+    this.ctx.lineTo(currentX, currentY);
+    this.ctx.closePath();
+    this.ctx.stroke();
+  }
+
+  setCanvasContextPathStyle(color:any, width:number, composite:string){
+    this.ctx.strokeStyle = color;
+    this.ctx.lineWidth = width;
+    this.ctx.globalCompositeOperation = composite;
+  }
+
   pen(penWidth: number = null, penColor: any = null, penComposite: string = null){
 
     // post checking
@@ -158,9 +171,7 @@ export class BoardComponent implements OnInit {
       //When mouse is pressed down
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true
-
         if(this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)){
-          console.log("Mouse down");
           // taking mouse down X and Y coordinates
           this.normalPen_startX = e.offsetX
           this.normalPen_startY = e.offsetY
@@ -173,21 +184,10 @@ export class BoardComponent implements OnInit {
       //When Mouse is moving
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
         if(this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)){
-          console.log("Mouse is moving! for pen");
-
           this.normalPen_currentX = e.offsetX
           this.normalPen_currentY = e.offsetY
-
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.normalPen_startX,this.normalPen_startY);
-          this.ctx.lineTo(this.normalPen_currentX,this.normalPen_currentY);
-          this.ctx.closePath();
-          this.ctx.strokeStyle = this.normalPen_color;
-          this.ctx.lineWidth = this.normalPen_width;
-          this.ctx.globalCompositeOperation = this.normalPen_composite;
-          this.ctx.stroke();
-
-          // console.log(e,"Mouse move");
+          this.setCanvasContextPath(this.normalPen_startX, this.normalPen_startY,this.normalPen_currentX,this.normalPen_currentY)
+          this.setCanvasContextPathStyle(this.normalPen_color, this.normalPen_width, this.normalPen_composite);
           this.normalPen_startX = this.normalPen_currentX;
           this.normalPen_startY = this.normalPen_currentY;
         }
@@ -197,7 +197,6 @@ export class BoardComponent implements OnInit {
       //When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
-        console.log("Mouse up");
         this.normalPen_endX = e.offsetX;
         this.normalPen_endY = e.offsetY;
       });
@@ -206,7 +205,6 @@ export class BoardComponent implements OnInit {
 
   calligraphyButton(){
 
-    console.log("Brush is working");
     this.enableTool('brushPen');
 
     if(this.basic_tools.brushPen){
@@ -215,44 +213,27 @@ export class BoardComponent implements OnInit {
 
         if(this.mouseControl && this.basic_tools.brushPen){
           // taking mouse down X and Y coordinates
-          console.log("Mouse down");
-          this.calligraphy_tool.calligraphy_startX = e.offsetX
-          this.calligraphy_tool.calligraphy_startY = e.offsetY
+          this.calligraphy_tool.startX = e.offsetX
+          this.calligraphy_tool.startY = e.offsetY
         }
       })
 
       this.globalListenFunc= this.renderer.listen('document','mousemove', e=> {
         if(this.mouseControl && this.basic_tools.brushPen){
-          console.log("Mouse is moving for brish");
 
-          this.calligraphy_tool.calligraphy_currentX = e.offsetX
-          this.calligraphy_tool.calligraphy_currentY = e.offsetY
+          this.calligraphy_tool.currentX = e.offsetX
+          this.calligraphy_tool.currentY = e.offsetY
 
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.calligraphy_tool.calligraphy_startX,this.calligraphy_tool.calligraphy_startY);
-          this.ctx.lineTo(this.calligraphy_tool.calligraphy_currentX,this.calligraphy_tool.calligraphy_currentY);
-          this.ctx.closePath();
-          this.ctx.stroke();
-          this.ctx.strokeStyle = this.penColour;
-          this.ctx.lineWidth = this.penWidth;
-          this.ctx.globalCompositeOperation = this.defaultComposite
+          this.setCanvasContextPath(this.calligraphy_tool.startX,this.calligraphy_tool.startY,this.calligraphy_tool.currentX,this.calligraphy_tool.currentY);
+          this.setCanvasContextPathStyle(this.penColour, this.penWidth,this.defaultComposite);
 
-          for(let i=0; i<5;i++){
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.calligraphy_tool.calligraphy_startX+i,this.calligraphy_tool.calligraphy_startY+i);
-          this.ctx.lineTo(this.calligraphy_tool.calligraphy_currentX+i,this.calligraphy_tool.calligraphy_currentY+i);
-          this.ctx.closePath();
-          this.ctx.stroke();
-
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.calligraphy_tool.calligraphy_startX-i,this.calligraphy_tool.calligraphy_startY-i);
-          this.ctx.lineTo(this.calligraphy_tool.calligraphy_currentX-i,this.calligraphy_tool.calligraphy_currentY-i);
-          this.ctx.closePath();
-          this.ctx.stroke();
+          for(let i=0; i<5; i++){
+            this.setCanvasContextPath(this.calligraphy_tool.startX+i,this.calligraphy_tool.startY+i,this.calligraphy_tool.currentX+i,this.calligraphy_tool.currentY+i);
+            this.setCanvasContextPath(this.calligraphy_tool.startX-i,this.calligraphy_tool.startY-i,this.calligraphy_tool.currentX-i,this.calligraphy_tool.currentY-i); 
           }
 
-          this.calligraphy_tool.calligraphy_startX = this.calligraphy_tool.calligraphy_currentX;
-          this.calligraphy_tool.calligraphy_startY = this.calligraphy_tool.calligraphy_currentY;
+          this.calligraphy_tool.startX = this.calligraphy_tool.currentX;
+          this.calligraphy_tool.startY = this.calligraphy_tool.currentY;
 
         }
       })
@@ -260,9 +241,8 @@ export class BoardComponent implements OnInit {
       //When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
-        console.log("Mouse up");
-        this.calligraphy_tool.calligraphy_endX = e.offsetX;
-        this.calligraphy_tool.calligraphy_endY = e.offsetY;
+        this.calligraphy_tool.endX = e.offsetX;
+        this.calligraphy_tool.endY = e.offsetY;
       });
 
     }
@@ -306,7 +286,6 @@ export class BoardComponent implements OnInit {
 
   highlighterButton(){
 
-    console.log("Brush is working");
     this.enableTool('highlighter');
 
     if(this.basic_tools.highlighter){
@@ -315,56 +294,36 @@ export class BoardComponent implements OnInit {
 
         if(this.mouseControl && this.basic_tools.highlighter){
           // taking mouse down X and Y coordinates
-          console.log("Mouse down");
-          this.highlighter_tool.highlighter_startX = e.offsetX
-          this.highlighter_tool.highlighter_startY = e.offsetY
+          this.highlighter_tool.startX = e.offsetX
+          this.highlighter_tool.startY = e.offsetY
         }
       })
 
       this.globalListenFunc= this.renderer.listen('document','mousemove', e=> {
         if(this.mouseControl && this.basic_tools.highlighter){
-          console.log("Mouse is moving for brish");
-
-          this.highlighter_tool.highlighter_currentX = e.offsetX
-          this.highlighter_tool.highlighter_currentY = e.offsetY
+          this.highlighter_tool.currentX = e.offsetX
+          this.highlighter_tool.currentY = e.offsetY
 
           this.ctx.globalCompositeOperation = this.defaultComposite
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.highlighter_tool.highlighter_startX,this.highlighter_tool.highlighter_startY);
-          this.ctx.lineTo(this.highlighter_tool.highlighter_currentX,this.highlighter_tool.highlighter_currentY);
-          this.ctx.closePath();
-          this.ctx.stroke();
+          this.setCanvasContextPath(this.highlighter_tool.startX,this.highlighter_tool.startY,this.highlighter_tool.currentX,this.highlighter_tool.currentY);
 
           for(let i=0; i<5;i++){
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.highlighter_tool.highlighter_startX+i,this.highlighter_tool.highlighter_startY+i);
-          this.ctx.lineTo(this.highlighter_tool.highlighter_currentX+i,this.highlighter_tool.highlighter_currentY+i);
-          this.ctx.closePath();
-          this.ctx.stroke();
-          this.ctx.strokeStyle = "rgb(58,150,270)";
-          this.ctx.lineWidth = 10;
-
-          this.ctx.beginPath();
-          this.ctx.moveTo(this.highlighter_tool.highlighter_startX-i,this.highlighter_tool.highlighter_startY-i);
-          this.ctx.lineTo(this.highlighter_tool.highlighter_currentX-i,this.highlighter_tool.highlighter_currentY-i);
-          this.ctx.closePath();
-          this.ctx.stroke();
-          this.ctx.strokeStyle = "rgb(58,150,270)";
-          this.ctx.lineWidth = 10;
+            this.setCanvasContextPath(this.highlighter_tool.startX+i,this.highlighter_tool.startY+i,this.highlighter_tool.currentX+i,this.highlighter_tool.currentY+i);
+            this.setCanvasContextPathStyle("rgb(58,150,270)", 10, this.defaultComposite);
+            this.setCanvasContextPath(this.highlighter_tool.startX-i,this.highlighter_tool.startY-i,this.highlighter_tool.currentX-i,this.highlighter_tool.currentY-i);
+            this.setCanvasContextPathStyle("rgb(58,150,270)", 10, this.defaultComposite);
           }
 
-          this.highlighter_tool.highlighter_startX = this.highlighter_tool.highlighter_currentX;
-          this.highlighter_tool.highlighter_startY = this.highlighter_tool.highlighter_currentY;
-
+          this.highlighter_tool.startX = this.highlighter_tool.currentX;
+          this.highlighter_tool.startY = this.highlighter_tool.currentY;
         }
       })
 
       //When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
-        console.log("Mouse up");
-        this.highlighter_tool.highlighter_endX = e.offsetX;
-        this.highlighter_tool.highlighter_endY = e.offsetY;
+        this.highlighter_tool.endX = e.offsetX;
+        this.highlighter_tool.endY = e.offsetY;
       });
 
     }
@@ -394,31 +353,31 @@ export class BoardComponent implements OnInit {
         reader.readAsDataURL(event.target.files[0]);
         console.log("Local URL", this.localUrl);
     }
-}
+  }
 
-function_PDF_tracking(num){
-  //setting up pdf tracking
-  for(let i=0;i<num;i++) {
-    console.log(i);
+  function_PDF_tracking(num){
+    //setting up pdf tracking
+    for(let i=0;i<num;i++) {
+      console.log(i);
 
-    //by default 1st page is visited
-    if(i==0){
-      let obj = {}
-      obj["page"] = i+1
-      obj["status"] = "visited"
+      //by default 1st page is visited
+      if(i==0){
+        let obj = {}
+        obj["page"] = i+1
+        obj["status"] = "visited"
+        console.log(obj);
+        // this.pageTracking.push(obj)
+      }else{
+      let obj = {
+        page: i+1,
+        status: "novisit"
+      }
       console.log(obj);
       // this.pageTracking.push(obj)
-    }else{
-    let obj = {
-      page: i+1,
-      status: "novisit"
+      }
     }
-    console.log(obj);
-    // this.pageTracking.push(obj)
-    }
+    console.log("All my pages", this.pageTracking);
   }
-  console.log("All my pages", this.pageTracking);
-}
 
   async nextPage(){
     //save the state
@@ -437,7 +396,6 @@ function_PDF_tracking(num){
     //Going to new page
     console.log("Stored page number", this.page);
 
-
     //new page configurations
     this.page = this.page + 1;
     console.log("New page number", this.page);
@@ -447,17 +405,17 @@ function_PDF_tracking(num){
     this.ctx.globalCompositeOperation = this.defaultComposite;
 
     if(this.pdf_added_boolean){
-          // if pdf page is already rendered then dont add.. else add the pdf
-    let temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page)
-    if(temp >-1){
-      //page number is already there in pagetracking
-      console.log("Page number found in tracking list so not adding");
+      // if pdf page is already rendered then dont add.. else add the pdf
+      let temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page)
+      if(temp >-1){
+        //page number is already there in pagetracking
+        console.log("Page number found in tracking list so not adding");
 
-    }else{
-      console.log("As page number is not found in tracking list we are adding it");
+      }else{
+        console.log("As page number is not found in tracking list we are adding it");
 
-      await this.addPdf(this.page+1)
-    }
+        await this.addPdf(this.page+1)
+      }
     }
 
     // for(let i=0;i<this.pageTracking.length;i++){
@@ -488,8 +446,8 @@ function_PDF_tracking(num){
     }
 
     console.log("Man at end", this.notebook);
-
   }
+
   prevPage(){
     if(this.page > 0){
           //save the state
@@ -539,6 +497,7 @@ function_PDF_tracking(num){
 
     console.log("Man at end", this.notebook);
   }
+  
   pdfTick(array,pageNumber){
     if(pageNumber <= this.no_of_pages){
       const i = array.findIndex(_item => _item.pageNumber === pageNumber);
@@ -556,7 +515,6 @@ function_PDF_tracking(num){
 
       console.log("My final Array",this.pageTracking);
     }
-
   }
 
   upsert(array, pageNumber, obj) {
@@ -593,7 +551,6 @@ function_PDF_tracking(num){
     document.body.removeChild(a);
   }
 
-
   //Add normal paper
   addRuledPaper(){
     let ctx:any = document.getElementById("backgroundImage")
@@ -627,32 +584,32 @@ function_PDF_tracking(num){
         // img1.height = 1000
 
         ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
-
-
     };
     img1.src = "https://raw.githubusercontent.com/Canvasbird/canvasboard/master/src/assets/paperType/mathYellow.svg"
     }
   }
 
-// Add graph paper
-addGraphPaper(){
-  let ctx:any = document.getElementById("backgroundImage")
-  if (ctx.getContext) {
-    ctx = ctx.getContext('2d');
-    var img1 = new Image();
-    img1.onload = (event) => {
-      //draw background image
-      console.log(img1.width);
-      // img1.width = 1000
-      // img1.height = 1000
+  // Add graph paper
+  addGraphPaper(){
+    let ctx:any = document.getElementById("backgroundImage")
+    if (ctx.getContext) {
+      ctx = ctx.getContext('2d');
+      var img1 = new Image();
+      img1.onload = (event) => {
+        //draw background image
+        console.log(img1.width);
+        // img1.width = 1000
+        // img1.height = 1000
 
-      ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
-
-
-  };
-  img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true"
+        ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
+    };
+    img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true"
+    }
   }
-}
+
+  setColor(r:number, g:number, b:number, opacity:number=1){
+    this.penColour = `rgb(${r},${g},${b},${opacity})`;
+  }
 
   colourPick(opacity = 1){
     console.log("Colour changed");
@@ -668,6 +625,7 @@ addGraphPaper(){
     console.log(rgbConverted,"Colour Changed");
     this.penColour = rgbConverted;
   }
+
   rgbConverter(hexValue,opacity=1){
     //changing the value to RGB format
     let value = hexValue.match(/[A-Za-z0-9]{2}/g);

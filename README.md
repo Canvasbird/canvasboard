@@ -42,16 +42,16 @@ Open source has gained huge popularity in the field of IT in recent years and it
 ## Related Repositories❤️
 - [canvasbird/canvasboard-backend](https://github.com/Canvasbird/canvasboard-backend): Canvasboard Backend built on NodeJS
 
-## Contributors ✨
+## Contributors 🌟
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people ✨✨:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px;" alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
     <td align="center"><a href="http://goliakshay.vercel.app"><img src="https://avatars2.githubusercontent.com/u/32712438?v=4" width="100px;" alt=""/><br /><sub><b>Goli Akshay Sujith</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=goliakshay357" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rohitkatlaa"><img src="https://avatars2.githubusercontent.com/u/42460632?v=4" width="100px;" alt=""/><br /><sub><b>Rohit Katlaa</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rohitkatlaa" title="Code">💻</a></td>
     <td align="center"><a href="https://kartikchandra14.github.io"><img src="https://avatars1.githubusercontent.com/u/29736729?v=4" width="100px;" alt=""/><br /><sub><b>kc</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kartikchandra14" title="Code">💻</a></td>
