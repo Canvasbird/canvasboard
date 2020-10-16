@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { DashboardData } from 'src/interfaces/dashboard';
+import { Data } from 'src/interfaces/dashboard';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private route: Router) { }
 
-  data: DashboardData[];
+  data: Data[];
 
   ngOnInit() {
     this.data = [

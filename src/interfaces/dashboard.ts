@@ -1,4 +1,4 @@
-export interface DashboardData {
+export interface Data {
     imageUrl: string;
     title: string;
     subtitle: string;

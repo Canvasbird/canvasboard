@@ -30,12 +30,12 @@ export class RestService {
       // this.getBoardData(this.boardId)
     });
 
-    console.log(this.boardId,"THIS ");
+    console.log(this.boardId, 'THIS ');
 
   }
 
   getBoardData(boardId) {
-    console.log("Inside get",this.boardId);
+    console.log('Inside get', this.boardId);
 
     this.xAuthToken = localStorage.getItem('token');
     this.http.get(environment.apiHost + `/api/v1/user/get/board?board_id=${boardId}`, {
