@@ -10,11 +10,11 @@ declare const pdfjsLib: any;
 })
 export class BoardComponent implements OnInit {
 
-  //referring the canvas element
+  // referring the canvas element
   @ViewChild('myCanvas', null) canvas: any;
   @ViewChild('backgroundImage', null) background: any;
 
-  //# Essentials
+  // # Essentials
   canvasElement: any;
   backgroundCanvas: any;
   scrHeight: any;
@@ -26,7 +26,7 @@ export class BoardComponent implements OnInit {
   // for PDF.js
   pdf_js: any;
   no_of_pages: any;
-  //PDF tracking
+  // PDF tracking
   pageTracking: Tracking[] = [];
   pdf_added_boolean = false;
 
@@ -37,11 +37,11 @@ export class BoardComponent implements OnInit {
   filePath: string;
 
 
-  //tools
-  penColour:any='rgba(0,0,0)';
-  penWidth:number = 1;
-  defaultWidth:number = 1;
-  defaultComposite:string = 'source-over';
+  // tools
+  penColour = 'rgba(0,0,0)';
+  penWidth = 1;
+  defaultWidth = 1;
+  defaultComposite = 'source-over';
 
   // basic_tools booleans
   basic_tools = {
@@ -51,33 +51,33 @@ export class BoardComponent implements OnInit {
     eraser: false
   };
 
-  //# toolbox declarations
-  //## Normal pen
-  normalPen_startX:number;
-  normalPen_startY:number;
-  normalPen_currentX:number;
-  normalPen_currentY:number;
-  normalPen_endX:number;
-  normalPen_endY:number;
-  normalPen_width:number;
-  normalPen_color:any;
-  normalPen_composite:string;
+  // # toolbox declarations
+  // ## Normal pen
+  normalPen_startX: number;
+  normalPen_startY: number;
+  normalPen_currentX: number;
+  normalPen_currentY: number;
+  normalPen_endX: number;
+  normalPen_endY: number;
+  normalPen_width: number;
+  normalPen_color: any;
+  normalPen_composite: string;
  
   calligraphy_tool = {
-    startX:-1,
-    startY:-1,
-    currentX:-1,
-    currentY:-1,
-    endX:-1,
-    endY:-1,
+    startX: -1,
+    startY: -1,
+    currentX: -1,
+    currentY: -1,
+    endX: -1,
+    endY: -1,
   }
   highlighter_tool = {
-    startX:-1,
-    startY:-1,
-    currentX:-1,
-    currentY:-1,
-    endX:-1,
-    endY:-1,
+    startX: -1,
+    startY: -1,
+    currentX: -1,
+    currentY: -1,
+    endX: -1,
+    endY: -1,
   }
   eraser_tool = {
     width: 20,
@@ -85,11 +85,11 @@ export class BoardComponent implements OnInit {
     composite: 'destination-out'
   }
 
-  //getting screen Width and height automatically triggers when dimension changes
+  // getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
-        this.scrHeight = window.innerHeight-5;
-        this.scrWidth = window.innerWidth-220;
+        this.scrHeight = window.innerHeight - 5;
+        this.scrWidth = window.innerWidth - 220;
   }
 
   constructor(public renderer: Renderer) {
@@ -101,19 +101,19 @@ export class BoardComponent implements OnInit {
     console.log("Screen width :", this.scrWidth, "Screen height", this.scrHeight );
 
     // getting the 2D context of Canvas element
-    this.canvasElement=this.canvas.nativeElement;
+    this.canvasElement = this.canvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
-    //setting the Width and Height to the canvas element
+    // setting the Width and Height to the canvas element
     this.renderer.setElementAttribute(this.canvasElement, 'width', this.scrWidth);
     this.renderer.setElementAttribute(this.canvasElement, 'height', this.scrHeight);
 
-    //for background
+    // for background
     this.backgroundCanvas = this.background.nativeElement;
     this.renderer.setElementAttribute(this.backgroundCanvas, 'width', this.scrWidth);
     this.renderer.setElementAttribute(this.backgroundCanvas, 'height', this.scrHeight);
   }
 
-  addPdf(page_number){
+  addPdf(page_number) {
     this.pdf_js.promise.then(doc => {
       console.log('PDF LOADED');
       console.log('THis pdf has ', doc._pdfInfo.numPages);
@@ -135,23 +135,22 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  //Enabling <selectedTool> and disabling other tools
-  enableTool(selectedTool: string){
+  // Enabling <selectedTool> and disabling other tools
+  enableTool(selectedTool: string) {
     Object.keys(this.basic_tools).forEach((key) => {
       this.basic_tools[key] = false;
     });
     this.basic_tools[selectedTool] = true;
 
-    //Enable size button to Eraser tool.
-    if(this.basic_tools.eraser){
+    // Enable size button to Eraser tool.
+    if (this.basic_tools.eraser) {
       this.enableSizeButtons();
-    }
-    else{
+    } else {
       this.disableSizeButtons();
     }
   }
 
-  setCanvasContextPath(startX:number, startY:number, currentX:number, currentY:number){
+  setCanvasContextPath(startX: number, startY: number, currentX: number, currentY: number) {
     this.ctx.beginPath();
     this.ctx.moveTo(startX, startY);
     this.ctx.lineTo(currentX, currentY);
@@ -159,20 +158,20 @@ export class BoardComponent implements OnInit {
     this.ctx.stroke();
   }
 
-  setCanvasContextPathStyle(color:any, width:number, composite:string){
+  setCanvasContextPathStyle(color: any, width: number, composite: string) {
     this.ctx.strokeStyle = color;
     this.ctx.lineWidth = width;
     this.ctx.globalCompositeOperation = composite;
   }
 
-  pen(penWidth: number = null, penColor: any = null, penComposite: string = null){
+  pen(penWidth: number = null, penColor: any = null, penComposite: string = null) {
 
     // post checking
-    if(this.basic_tools.normalPen || this.basic_tools.eraser){
-      //When mouse is pressed down
+    if (this.basic_tools.normalPen || this.basic_tools.eraser) {
+      // When mouse is pressed down
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
-        this.mouseControl = true
-        if(this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)){
+        this.mouseControl = true;
+        if (this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)) {
           // taking mouse down X and Y coordinates
           this.normalPen_startX = e.offsetX;
           this.normalPen_startY = e.offsetY;
@@ -182,12 +181,12 @@ export class BoardComponent implements OnInit {
         }
       });
 
-      //When Mouse is moving
+      // When Mouse is moving
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
-        if(this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)){
+        if (this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)) {
           this.normalPen_currentX = e.offsetX
           this.normalPen_currentY = e.offsetY
-          this.setCanvasContextPath(this.normalPen_startX, this.normalPen_startY,this.normalPen_currentX,this.normalPen_currentY)
+          this.setCanvasContextPath(this.normalPen_startX, this.normalPen_startY, this.normalPen_currentX, this.normalPen_currentY)
           this.setCanvasContextPathStyle(this.normalPen_color, this.normalPen_width, this.normalPen_composite);
           this.normalPen_startX = this.normalPen_currentX;
           this.normalPen_startY = this.normalPen_currentY;
@@ -195,7 +194,7 @@ export class BoardComponent implements OnInit {
 
       });
 
-      //When mouse is moved up
+      // When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
         this.normalPen_endX = e.offsetX;
@@ -208,29 +207,29 @@ export class BoardComponent implements OnInit {
 
     this.enableTool('brushPen');
 
-    if (this.basic_tools.brushPen){
+    if (this.basic_tools.brushPen) {
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true;
 
-        if (this.mouseControl && this.basic_tools.brushPen){
+        if (this.mouseControl && this.basic_tools.brushPen) {
           // taking mouse down X and Y coordinates
           this.calligraphy_tool.startX = e.offsetX
           this.calligraphy_tool.startY = e.offsetY
         }
       });
 
-      this.globalListenFunc= this.renderer.listen('document','mousemove', e=> {
-        if(this.mouseControl && this.basic_tools.brushPen){
+      this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
+        if (this.mouseControl && this.basic_tools.brushPen) {
 
           this.calligraphy_tool.currentX = e.offsetX
           this.calligraphy_tool.currentY = e.offsetY
 
-          this.setCanvasContextPath(this.calligraphy_tool.startX,this.calligraphy_tool.startY,this.calligraphy_tool.currentX,this.calligraphy_tool.currentY);
-          this.setCanvasContextPathStyle(this.penColour, this.penWidth,this.defaultComposite);
+          this.setCanvasContextPath(this.calligraphy_tool.startX, this.calligraphy_tool.startY, this.calligraphy_tool.currentX, this.calligraphy_tool.currentY);
+          this.setCanvasContextPathStyle(this.penColour, this.penWidth, this.defaultComposite);
 
-          for(let i=0; i<5; i++){
-            this.setCanvasContextPath(this.calligraphy_tool.startX+i,this.calligraphy_tool.startY+i,this.calligraphy_tool.currentX+i,this.calligraphy_tool.currentY+i);
-            this.setCanvasContextPath(this.calligraphy_tool.startX-i,this.calligraphy_tool.startY-i,this.calligraphy_tool.currentX-i,this.calligraphy_tool.currentY-i); 
+          for (let i = 0; i < 5; i++) {
+            this.setCanvasContextPath(this.calligraphy_tool.startX + i, this.calligraphy_tool.startY + i, this.calligraphy_tool.currentX + i, this.calligraphy_tool.currentY + i);
+            this.setCanvasContextPath(this.calligraphy_tool.startX - i, this.calligraphy_tool.startY - i, this.calligraphy_tool.currentX - i, this.calligraphy_tool.currentY - i); 
           }
 
           this.calligraphy_tool.startX = this.calligraphy_tool.currentX;
@@ -239,7 +238,7 @@ export class BoardComponent implements OnInit {
         }
       });
 
-      //When mouse is moved up
+      // When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
         this.calligraphy_tool.endX = e.offsetX;
@@ -249,69 +248,69 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  penButton(){
+  penButton() {
     this.enableTool('normalPen');
     this.pen();
   }
 
-  eraserButton(){
+  eraserButton() {
     this.enableTool('eraser');
     this.pen(this.eraser_tool.width, this.eraser_tool.color, this.eraser_tool.composite);
   }
 
-  setSize(size:number){
+  setSize(size: number) {
     this.pen(size, this.eraser_tool.color, this.eraser_tool.composite);
   }
 
-  disableButton(id:string){
+  disableButton(id: string) {
     (<HTMLInputElement> document.getElementById(id)).disabled = true;
   }
 
-  enableButton(id:string){
+  enableButton(id: string) {
     (<HTMLInputElement> document.getElementById(id)).disabled = false;
   }
 
-  disableSizeButtons(){
+  disableSizeButtons() {
     this.disableButton("btn-size-1");
     this.disableButton("btn-size-10");
     this.disableButton("btn-size-20");
     this.disableButton("btn-size-50");
   }
 
-  enableSizeButtons(){
+  enableSizeButtons() {
     this.enableButton("btn-size-1");
     this.enableButton("btn-size-10");
     this.enableButton("btn-size-20");
     this.enableButton("btn-size-50");
   }
 
-  highlighterButton(){
+  highlighterButton() {
 
     this.enableTool('highlighter');
 
-    if (this.basic_tools.highlighter){
+    if (this.basic_tools.highlighter) {
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true;
 
-        if (this.mouseControl && this.basic_tools.highlighter){
+        if (this.mouseControl && this.basic_tools.highlighter) {
           // taking mouse down X and Y coordinates
           this.highlighter_tool.startX = e.offsetX
           this.highlighter_tool.startY = e.offsetY
         }
       });
 
-      this.globalListenFunc= this.renderer.listen('document','mousemove', e=> {
-        if(this.mouseControl && this.basic_tools.highlighter){
+      this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
+        if (this.mouseControl && this.basic_tools.highlighter) {
           this.highlighter_tool.currentX = e.offsetX
           this.highlighter_tool.currentY = e.offsetY
 
           this.ctx.globalCompositeOperation = this.defaultComposite
-          this.setCanvasContextPath(this.highlighter_tool.startX,this.highlighter_tool.startY,this.highlighter_tool.currentX,this.highlighter_tool.currentY);
+          this.setCanvasContextPath(this.highlighter_tool.startX, this.highlighter_tool.startY, this.highlighter_tool.currentX, this.highlighter_tool.currentY);
 
-          for(let i=0; i<5;i++){
-            this.setCanvasContextPath(this.highlighter_tool.startX+i,this.highlighter_tool.startY+i,this.highlighter_tool.currentX+i,this.highlighter_tool.currentY+i);
+          for (let i = 0; i < 5; i++) {
+            this.setCanvasContextPath(this.highlighter_tool.startX + i, this.highlighter_tool.startY + i, this.highlighter_tool.currentX + i, this.highlighter_tool.currentY + i);
             this.setCanvasContextPathStyle("rgb(58,150,270)", 10, this.defaultComposite);
-            this.setCanvasContextPath(this.highlighter_tool.startX-i,this.highlighter_tool.startY-i,this.highlighter_tool.currentX-i,this.highlighter_tool.currentY-i);
+            this.setCanvasContextPath(this.highlighter_tool.startX - i, this.highlighter_tool.startY - i, this.highlighter_tool.currentX - i, this.highlighter_tool.currentY - i);
             this.setCanvasContextPathStyle("rgb(58,150,270)", 10, this.defaultComposite);
           }
 
@@ -320,7 +319,7 @@ export class BoardComponent implements OnInit {
         }
       });
 
-      //When mouse is moved up
+      // When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
         this.highlighter_tool.endX = e.offsetX;
@@ -333,9 +332,9 @@ export class BoardComponent implements OnInit {
   localUrl: any[];
 
   showPreviewImage(event: any) {
-    //checking if file is uploading
+    // checking if file is uploading
     if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = (event: any) => {
             this.localUrl = event.target.result;
             this.pdf_js = pdfjsLib.getDocument(this.localUrl);
@@ -345,7 +344,7 @@ export class BoardComponent implements OnInit {
               console.log('THis pdf has ', doc._pdfInfo.numPages);
               this.no_of_pages = doc._pdfInfo.numPages;
 
-            //once the whole file is uploaded
+            // once the whole file is uploaded
             // this.function_PDF_tracking(this.no_of_pages)
             this.addPdf(1);
             });
@@ -356,21 +355,21 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  function_PDF_tracking(num){
-    //setting up pdf tracking
-    for(let i=0;i<num;i++) {
+  function_PDF_tracking(num) {
+    // setting up pdf tracking
+    for (let i = 0; i < num; i++) {
       console.log(i);
 
-      //by default 1st page is visited
-      if(i==0){
+      // by default 1st page is visited
+      if (i == 0) {
         let obj = {}
-        obj["page"] = i+1
+        obj["page"] = i + 1
         obj["status"] = "visited"
         console.log(obj);
         // this.pageTracking.push(obj)
-      }else{
+      } else {
       let obj = {
-        page: i+1,
+        page: i + 1,
         status: "novisit"
       }
       console.log(obj);
@@ -380,24 +379,24 @@ export class BoardComponent implements OnInit {
     console.log("All my pages", this.pageTracking);
   }
 
-  async nextPage(){
-    //save the state
+  async nextPage() {
+    // save the state
     const present = {
       pageNumber: this.page,
       image: this.canvasElement.toDataURL(),
-      //check if that page number is there or notement.toDataURL(),
+      // check if that page number is there or notement.toDataURL(),
       date: Date.now()
     };
 
     console.log(present, 'Added to my notebook');
-    //checking if that page number is there or not
+    // checking if that page number is there or not
     // if found then update else append
     this.upsert(this.notebook, this.page , present);
     this.pdfTick(this.pageTracking, this.page);
-    //Going to new page
+    // Going to new page
     console.log('Stored page number', this.page);
 
-    //new page configurations
+    // new page configurations
     this.page = this.page + 1;
     console.log('New page number', this.page);
 
@@ -405,17 +404,17 @@ export class BoardComponent implements OnInit {
     this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
     this.ctx.globalCompositeOperation = this.defaultComposite;
 
-    if(this.pdf_added_boolean){
+    if (this.pdf_added_boolean) {
       // if pdf page is already rendered then dont add.. else add the pdf
       let temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page)
-      if(temp >-1){
-        //page number is already there in pagetracking
+      if (temp > -1) {
+        // page number is already there in pagetracking
         console.log("Page number found in tracking list so not adding");
 
-      }else{
+      } else {
         console.log("As page number is not found in tracking list we are adding it");
 
-        await this.addPdf(this.page+1)
+        await this.addPdf(this.page + 1)
       }
     }
 
@@ -429,8 +428,8 @@ export class BoardComponent implements OnInit {
     //   }
     // }
 
-    //if it already exists append
-    if (this.notebook[this.page]){
+    // if it already exists append
+    if (this.notebook[this.page]) {
       console.log('Loading page', this.page);
 
       // this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
@@ -449,20 +448,20 @@ export class BoardComponent implements OnInit {
     console.log("Man at end", this.notebook);
   }
 
-  prevPage(){
-    if (this.page > 0){
-          //save the state
+  prevPage() {
+    if (this.page > 0) {
+          // save the state
     const present = {
       pageNumber: this.page,
       image: this.canvasElement.toDataURL(),
-      //check if that page number is there or notement.toDataURL(),
+      // check if that page number is there or notement.toDataURL(),
       date: Date.now()
     };
 
-    //adding it to the tracking list as this page is visited
+    // adding it to the tracking list as this page is visited
     this.pdfTick(this.pageTracking, this.page);
 
-    //checking if that page number is there or not
+    // checking if that page number is there or not
     // if found then update else append
     this.upsert(this.notebook, this.page , present);
     console.log('Stroing the page number which prev is pressed', present);
@@ -470,7 +469,7 @@ export class BoardComponent implements OnInit {
     console.log(this.notebook);
 
     this.page = this.page - 1;
-    var image = new Image();
+    const image = new Image();
 
     image.onload = (event) => {
       this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
@@ -499,12 +498,11 @@ export class BoardComponent implements OnInit {
     console.log('Man at end', this.notebook);
   }
   
-  pdfTick(array,pageNumber){
-    if(pageNumber <= this.no_of_pages){
+  pdfTick(array, pageNumber) {
+    if (pageNumber <= this.no_of_pages) {
       const i = array.findIndex(_item => _item.pageNumber === pageNumber);
       if (i > -1) {
-      } // Page number found
-      else{
+      } else {
           const obj = {
             pageNumber,
             status: 'visited',
@@ -512,7 +510,7 @@ export class BoardComponent implements OnInit {
           array.push(obj);
           console.log('PDF TRACKING', obj);
 
-      } //page not found
+      } // page not found
 
       console.log('My final Array', this.pageTracking);
     }
@@ -524,22 +522,21 @@ export class BoardComponent implements OnInit {
       array[i] = obj;
       console.log('Found page numberr');
 
-    } // Page number found
-    else{
+    } else {
       array.push(obj);
       console.log('New page!!');
 
-    } //adding new page number
+    } // adding new page number
   }
 
-  downloadAsJSON(){
+  downloadAsJSON() {
     const present = {
       pageNumber: this.page,
       image: this.canvasElement.toDataURL(),
       date: Date.now()
     };
 
-    this.upsert(this.notebook, this.page ,present)
+    this.upsert(this.notebook, this.page , present)
 
     const data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.notebook));
     let a = document.createElement('a');
@@ -552,14 +549,14 @@ export class BoardComponent implements OnInit {
     document.body.removeChild(a);
   }
 
-  //Add normal paper
-  addRuledPaper(){
+  // Add normal paper
+  addRuledPaper() {
     let ctx: any = document.getElementById('backgroundImage');
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
-      var img1 = new Image();
+      let img1 = new Image();
       img1.onload = (event) => {
-        //draw background image
+        // draw background image
         console.log(img1.width);
         img1.width = 1000;
         img1.height = 1000;
@@ -572,51 +569,51 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  //Add math paper
-  addMathPaper(){
+  // Add math paper
+  addMathPaper() {
     let ctx: any = document.getElementById('backgroundImage');
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
-      var img1 = new Image();
+      let img1 = new Image();
       img1.onload = (event) => {
-        //draw background image
+        // draw background image
         console.log(img1.width);
         // img1.width = 1000
         // img1.height = 1000
 
-        ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
+        ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
     };
     img1.src = 'https://raw.githubusercontent.com/Canvasbird/canvasboard/master/src/assets/paperType/mathYellow.svg';
     }
   }
 
   // Add graph paper
-  addGraphPaper(){
-    let ctx:any = document.getElementById("backgroundImage")
+  addGraphPaper() {
+    let ctx: any = document.getElementById("backgroundImage")
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
-      var img1 = new Image();
+      const img1 = new Image();
       img1.onload = (event) => {
-        //draw background image
+        // draw background image
         console.log(img1.width);
         // img1.width = 1000
         // img1.height = 1000
 
-        ctx.drawImage(img1, 0, 0,this.scrWidth,this.scrHeight);
+        ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
     };
     img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true"
     }
   }
 
-  setColor(r:number, g:number, b:number, opacity:number=1){
+  setColor(r: number, g: number, b: number, opacity: number= 1) {
     this.penColour = `rgb(${r},${g},${b},${opacity})`;
   }
 
-  colourPick(opacity = 1){
+  colourPick(opacity = 1) {
     console.log('Colour changed');
     const data: any = document.getElementById('myColor');
 
-    //changing the value to RGB format
+    // changing the value to RGB format
     // #XXXXXX -> ["XX", "XX", "XX"]
     let value = data.value.match(/[A-Za-z0-9]{2}/g);
     // ["XX", "XX", "XX"] -> [n, n, n]
@@ -627,8 +624,8 @@ export class BoardComponent implements OnInit {
     this.penColour = rgbConverted;
   }
 
-  rgbConverter(hexValue,opacity=1){
-    //changing the value to RGB format
+  rgbConverter(hexValue, opacity= 1) {
+    // changing the value to RGB format
     let value = hexValue.match(/[A-Za-z0-9]{2}/g);
     value = value.map(function(v) { return parseInt(v, 16); });
     const rgbConverted = 'rgb(' + value.join(',') + ',' + opacity + ')';
