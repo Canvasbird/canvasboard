@@ -1,13 +1,25 @@
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar d-flex justify-content-between navbar-expand-lg navbar-light bg-light sticky-top">
   <!-- navbar header -->
-  <a class="navbar-brand d-flex align-items-center" href="#">
+  <a class="logo navbar-brand d-flex align-items-center" href="#">
     <img src="../../../assets/home/logo_bw.png" width="38" height="38" class="d-inline-block align-top mr-1" alt="" loading="lazy">
-    Canvasboard
+    <span class="logo-text">
+      Canvasboard
+    </span>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+  <div class="d-flex align-center">
+    <button id="logout-button" class="btn btn-outline-dark" (click)="logoutButtonClick()">
+      Logout
+    </button>
+    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
+  </button> -->
+
 
   <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
