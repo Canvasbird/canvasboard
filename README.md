@@ -5,7 +5,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
 [![Gitter](https://badges.gitter.im/canvasbird/canvasboard-frontend.svg)](https://gitter.im/canvasbird/canvasboard-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 [![Issues](https://img.shields.io/github/issues/Canvasbird/canvasboard)](#issues)
 [![forks](https://img.shields.io/github/forks/Canvasbird/canvasboard)](#forks)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
