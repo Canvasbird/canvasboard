@@ -1,4 +1,4 @@
 export interface Tracking {
-  pageNumber: number,
-  status: string
+  pageNumber: number;
+  status: string;
 }
