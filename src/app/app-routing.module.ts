@@ -5,7 +5,7 @@ import { HomeComponent} from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {FileExplorerComponent} from './components/file-explorer/file-explorer.component'
+import {FileExplorerComponent} from './components/file-explorer/file-explorer.component';
 import { BoardComponent } from './components/board/board.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 import { SubmissionComponent } from './components/submission/submission.component';
@@ -15,7 +15,7 @@ import { AuthGuard } from './shared/auth.guard'
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
-import { ContributionComponent } from './components/contribution/contribution.component'
+import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
 const routes: Routes = [
   {
@@ -45,12 +45,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:'file-explorer',
+    path: 'file-explorer',
     component: FileExplorerComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:'board',
+    path: 'board',
     component: BoardComponent,
     canActivate: [AuthGuard]
   },
@@ -59,17 +59,17 @@ const routes: Routes = [
     component: FilesComponent,
   },
   {
-    path:'assignment',
+    path: 'assignment',
     component: AssignmentComponent,
     // canActivate: [AuthGuard]
   },
   {
-    path:'submission',
+    path: 'submission',
     component: SubmissionComponent,
     // canActivate: [AuthGuard]
   },
   {
-    path:'creative-board',
+    path: 'creative-board',
     component: NewBoardComponent,
     canActivate: [AuthGuard]
   },
