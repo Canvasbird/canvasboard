@@ -1,5 +1,6 @@
 .container {
   // height: 82vh;
+  min-height: calc(100vh - 205px);
   .cb-image {
     width: 100%;
   }
