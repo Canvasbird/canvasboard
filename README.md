@@ -51,7 +51,7 @@ Thanks goes to these wonderful people ✨✨:
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px;" alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
     <td align="center"><a href="http://goliakshay.vercel.app"><img src="https://avatars2.githubusercontent.com/u/32712438?v=4" width="100px;" alt=""/><br /><sub><b>Goli Akshay Sujith</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=goliakshay357" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rohitkatlaa"><img src="https://avatars2.githubusercontent.com/u/42460632?v=4" width="100px;" alt=""/><br /><sub><b>Rohit Katlaa</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rohitkatlaa" title="Code">💻</a></td>
     <td align="center"><a href="https://kartikchandra14.github.io"><img src="https://avatars1.githubusercontent.com/u/29736729?v=4" width="100px;" alt=""/><br /><sub><b>kc</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kartikchandra14" title="Code">💻</a></td>
@@ -67,6 +67,9 @@ Thanks goes to these wonderful people ✨✨:
     <td align="center"><a href="https://github.com/matheusmosca"><img src="https://avatars0.githubusercontent.com/u/42419282?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Mosca</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=matheusmosca" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/saidhanush1212"><img src="https://avatars2.githubusercontent.com/u/32712645?v=4" width="100px;" alt=""/><br /><sub><b>saidhanush1212</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=saidhanush1212" title="Code">💻</a></td>
     <td align="center"><a href="https://filip.havrlent.com"><img src="https://avatars0.githubusercontent.com/u/16169571?v=4" width="100px;" alt=""/><br /><sub><b>Filip Havrlent</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=fhavrlent" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/jawsvk"><img src="https://avatars1.githubusercontent.com/u/36097628?v=4" width="100px;" alt=""/><br /><sub><b>Jawen Voon</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=jawsvk" title="Code">💻</a></td>
   </tr>
 </table>
 
