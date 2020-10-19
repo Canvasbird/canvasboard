@@ -20,6 +20,10 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
+    // This is for jquery support
+    files: [
+      './node_modules/jquery/dist/jquery.min.js'
+    ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

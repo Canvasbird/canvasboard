@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewBoardComponent } from './new-board.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
 
 describe('NewBoardComponent', () => {
   let component: NewBoardComponent;
@@ -8,7 +12,8 @@ describe('NewBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewBoardComponent ]
+      declarations: [ NewBoardComponent, NavbarComponent ],
+      imports: [ HttpClientTestingModule, RouterTestingModule ]
     })
     .compileComponents();
   }));
