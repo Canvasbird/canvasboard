@@ -39,6 +39,8 @@ Online teaching has become the new norm for most of the Institutes/Schools/Colle
 
 Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
 
+Please feel free to checkout [Canvasbird Contribution Guidelines](https://github.com/Canvasbird/canvasbird-wiki/wiki/Contribution-Guidelines)
+
 ## Related Repositories❤️
 - [canvasbird/canvasboard-backend](https://github.com/Canvasbird/canvasboard-backend): Canvasboard Backend built on NodeJS
 
