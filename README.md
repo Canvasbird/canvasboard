@@ -15,21 +15,28 @@
 
  > <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong>
 
-Online teaching has become the new norm for most of the Institutes/Schools/Colleges amidst the pandemic. There are still many institutes for which they are facing issues during online teachings in terms of Flexibility, Costs, etc. Canvasboard is an interactive learning management tool built using web technologies to enhance teaching as well as learning experience considering the current COVID19 crisis.
+Canvasboard is an interactive board with plugins focusing on replacing the need of multiple platforms for teaching, presenting or explaining your ideas. The interactive plugins are built using web technologies to ease your work right within a single platform.
+
+## Why is it important?
+
+Technology has helped come up with a board that is a dedicated workspace for all your needs. 
+Canvasboard can be scaled up to onboard multiple plugins in one place that can be used for the various business needs. The education sector, data scientists, and project managers will surely find their work become easier with the help of this platform. Rather than installing multiple different softwares, a person can have one single board to satiate all the requirements for their jobs. From writing on presentations, data exploration, and producing gantt charts, this board will definitely fulfill all needs.
+
+More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
 <img src="https://github.com/goliakshay357/hack-images/blob/master/hack2.png?raw=true" alt="dashboard" width="880">
 <img src="https://github.com/goliakshay357/hack-images/blob/master/graph.png?raw=true" alt="dashboard" width="880">
 <img src="https://github.com/goliakshay357/hack-images/blob/master/Screenshot%20from%202020-09-13%2020-38-40.png?raw=true" alt="dashboard" width="880">
 
 ## Dependencies🗃:
-<p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&amp;logo=bootstrap" alt="Bootstrap" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-Jquery-black?style=flat-square&amp;logo=Jquery" alt="Jquery" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-FabricJS-yellow?style=flat-square&amp;logo=fabricjs" alt="FabricJS" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-Nodejs-black?style=flat-square&amp;logo=Node.js" alt="Nodejs" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&amp;logo=mongodb" alt="MongoDB" class="screenshot"><br>
-<img src="https://img.shields.io/badge/-FastAPI-darkblue?style=flat-square&amp;logo=fastapi" alt="FastAPI" class="screenshot"><br>
-<img src="https://img.shields.io/badge/Amazon%20AWS-232F3E?style=flat-square&amp;logo=amazon-aws" alt="Amazon AWS" class="screenshot"><br></p>
+<p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot">
+<img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&amp;logo=bootstrap" alt="Bootstrap" class="screenshot">
+<img src="https://img.shields.io/badge/-Jquery-black?style=flat-square&amp;logo=Jquery" alt="Jquery" class="screenshot">
+<img src="https://img.shields.io/badge/-FabricJS-yellow?style=flat-square&amp;logo=fabricjs" alt="FabricJS" class="screenshot">
+<img src="https://img.shields.io/badge/-Nodejs-black?style=flat-square&amp;logo=Node.js" alt="Nodejs" class="screenshot">
+<img src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&amp;logo=mongodb" alt="MongoDB" class="screenshot">
+<img src="https://img.shields.io/badge/-FastAPI-darkblue?style=flat-square&amp;logo=fastapi" alt="FastAPI" class="screenshot">
+<img src="https://img.shields.io/badge/Amazon%20AWS-232F3E?style=flat-square&amp;logo=amazon-aws" alt="Amazon AWS" class="screenshot"></p>
 
 
 
