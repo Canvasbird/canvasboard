@@ -34,10 +34,8 @@ export class AddDeleteComponent {
     }
 
     // Adding Delete
-    addDeleteTagToolBox = (uid, checker) => {
-     if (checker !== 0) {
+    addDeleteTagToolBox = (uid) => {
           $(`#cb-box-1-${uid}`).remove();
-        }
     }
 
 }
