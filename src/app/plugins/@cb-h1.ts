@@ -6,9 +6,9 @@ export class AddH1Component {
 
   }
 
-    // H1 Tag
+    // H1 HTML Tag
     addH1TagHTMLCode(uid) {
-      console.log('Calling h1 html');
+      // console.log('Calling h1 html');
 
       $(`#cb-buttons-${uid}`).append(`
       <!-- H1 tag -->

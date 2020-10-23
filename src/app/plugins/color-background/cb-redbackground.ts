@@ -3,6 +3,7 @@ declare var $: any;
 export class AddRedBackgroundComponent {
   constructor() { }
 
+  // Red background color HTML Tag
   addRedBackgroundHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- Red Background color button -->
@@ -16,6 +17,7 @@ export class AddRedBackgroundComponent {
     `);
   }
 
+  // Red Background HTML Tag Click Action
   addRedBackgroundClickFunction = (uid) => {
     // Adding red background color
     $(`#add-background-cb-red-${uid}`).click(() => {
@@ -27,6 +29,7 @@ export class AddRedBackgroundComponent {
     });
   }
 
+  // Adding Red background color
   addRedBackgroundToolBox = (uid) => {
     $(`#cb-box-2-${uid}`)
       .removeClass(

@@ -13,6 +13,9 @@ import { AddH2Component } from '../../plugins/cb-h2';
 import { AddH3Component } from '../../plugins/cb-h3';
 import { AddParaComponent } from '../../plugins/cb-p';
 import { AddRedBackgroundComponent } from '../../plugins/color-background/cb-redbackground';
+import { AddBlueBackgroundComponent } from '../../plugins/color-background/cb-bluebackground';
+import { AddYellowBackgroundComponent } from '../../plugins/color-background/cb-yellowbackground';
+import { AddGreenBackgroundComponent } from '../../plugins/color-background/cb-greenbackground';
 import { AddFontMonospaceComponent } from '../../plugins/monospace';
 import { AddFontPlayfairComponent } from '../../plugins/playfair';
 import { AddLeftAlignComponent } from '../../plugins/left-align';
@@ -37,6 +40,9 @@ export class NewBoardComponent implements OnInit {
   AddParaComponent: any;
 
   AddRedBackgroundComponent: any;
+  AddBlueBackgroundComponent: any;
+  AddYellowBackgroundComponent: any;
+  AddGreenBackgroundComponent: any;
   AddCanvasBoard: any;
   AddFontMonospaceComponent: any;
   AddFontPlayfairComponent: any;
@@ -57,6 +63,9 @@ export class NewBoardComponent implements OnInit {
     this.AddH3Component = new AddH3Component();
     this.AddParaComponent = new AddParaComponent();
     this.AddRedBackgroundComponent = new AddRedBackgroundComponent();
+    this.AddBlueBackgroundComponent = new AddBlueBackgroundComponent();
+    this.AddYellowBackgroundComponent = new AddYellowBackgroundComponent();
+    this.AddGreenBackgroundComponent = new AddGreenBackgroundComponent();
     this.AddCanvasBoard = new AddCanvasBoard();
     this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
     this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
@@ -70,8 +79,13 @@ export class NewBoardComponent implements OnInit {
     const mainEl = document.getElementById('main-box');
     const sortable = Sortable.create(mainEl);
 
-    // disbale enter on title
+    // disable enter on title
     this.disableTitleEnter();
+
+    // Enabling ToolTips for everything
+    $(document).ready(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
 
     // ......................... DISABLING ENTER KEYWORD .........................
     $('#original[contenteditable]').keypress((evt) => {
@@ -253,12 +267,18 @@ export class NewBoardComponent implements OnInit {
           break;
         }
         case 8: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddBlueBackgroundComponent.addBlueBackgroundToolBox(uid);
           break;
         }
         case 9: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddYellowBackgroundComponent.addYellowBackgroundToolBox(uid);
           break;
         }
         case 10: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddGreenBackgroundComponent.addGreenBackgroundToolBox(uid);
           break;
         }
         case 11: {
@@ -970,6 +990,21 @@ export class NewBoardComponent implements OnInit {
   // Adding Red background color
   cbToolboxRedBackground = () => {
     this.addAfterBlockEditor('main-box', 7);
+  }
+
+  // Adding Blue background color
+  cbToolboxBlueBackground = () => {
+    this.addAfterBlockEditor('main-box', 8);
+  }
+
+  // Adding Yellow background color
+  cbToolboxYellowBackground = () => {
+    this.addAfterBlockEditor('main-box', 9);
+  }
+
+  // Adding Green background color
+  cbToolboxGreenBackground = () => {
+    this.addAfterBlockEditor('main-box', 10);
   }
 
   // Adding Monospace font
