@@ -3,18 +3,22 @@ import { v4 as uuidv4 } from 'uuid';
 import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
-import {Chart} from 'chart.js';
+import { Chart } from 'chart.js';
 import Swal from 'sweetalert2';
 
 // Importing Plugins
-import {AddH1Component} from '../../plugins/@cb-h1'
-import {AddCanvasBoard} from '../../plugins/cb-whiteboard'
-import {AddH2Component} from '../../plugins/cb-h2'
-import {AddH3Component} from '../../plugins/cb-h3'
-import {AddParaComponent} from '../../plugins/cb-p'
-import {AddRedBackgroundComponent} from '../../plugins/color-background/cb-redbackground'
-import {AddFontMonospaceComponent} from '../../plugins/monospace'
-import {AddFontPlayfairComponent} from "../../plugins/playfair"
+import { AddH1Component } from '../../plugins/@cb-h1';
+import { AddCanvasBoard } from '../../plugins/cb-whiteboard';
+import { AddH2Component } from '../../plugins/cb-h2';
+import { AddH3Component } from '../../plugins/cb-h3';
+import { AddParaComponent } from '../../plugins/cb-p';
+import { AddRedBackgroundComponent } from '../../plugins/color-background/cb-redbackground';
+import { AddFontMonospaceComponent } from '../../plugins/monospace';
+import { AddFontPlayfairComponent } from '../../plugins/playfair';
+import { AddLeftAlignComponent } from '../../plugins/left-align';
+import { AddCenterAlignComponent } from '../../plugins/center-align';
+import { AddRightAlignComponent } from '../../plugins/right-align';
+import { BrowserStack } from 'protractor/built/driverProviders';
 
 declare var $: any;
 
@@ -23,36 +27,42 @@ declare var $: any;
   templateUrl: './new-board.component.html',
   styleUrls: ['./new-board.component.scss'],
 })
-
 export class NewBoardComponent implements OnInit {
-
   fileToUpload: File = null;
 
   // Initializing plugins
   AddH1Component: any;
   AddH2Component: any;
   AddH3Component: any;
-  AddParaComponent:any;
+  AddParaComponent: any;
 
-  AddRedBackgroundComponent:any;
-  AddCanvasBoard:any;
-  AddFontMonospaceComponent:any;
-  AddFontPlayfairComponent:any;
+  AddRedBackgroundComponent: any;
+  AddCanvasBoard: any;
+  AddFontMonospaceComponent: any;
+  AddFontPlayfairComponent: any;
+  AddLeftAlignComponent: any;
+  AddCenterAlignComponent: any;
+  AddRightAlignComponent: any;
 
   uniqueChartID = (function() {
-    var id = 0;
-    return function() { return id++; };
+    let id = 0;
+    return function() {
+      return id++;
+    };
   })();
 
-  constructor( private apiService: RestService) {
-    this.AddH1Component = new AddH1Component()
-    this.AddH2Component = new AddH2Component()
-    this.AddH3Component = new AddH3Component()
-    this.AddParaComponent = new AddParaComponent()
-    this.AddRedBackgroundComponent = new AddRedBackgroundComponent()
-    this.AddCanvasBoard = new AddCanvasBoard()
-    this.AddFontMonospaceComponent = new AddFontMonospaceComponent()
-    this.AddFontPlayfairComponent = new AddFontPlayfairComponent()
+  constructor(private apiService: RestService) {
+    this.AddH1Component = new AddH1Component();
+    this.AddH2Component = new AddH2Component();
+    this.AddH3Component = new AddH3Component();
+    this.AddParaComponent = new AddParaComponent();
+    this.AddRedBackgroundComponent = new AddRedBackgroundComponent();
+    this.AddCanvasBoard = new AddCanvasBoard();
+    this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
+    this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
+    this.AddLeftAlignComponent = new AddLeftAlignComponent();
+    this.AddCenterAlignComponent = new AddCenterAlignComponent();
+    this.AddRightAlignComponent = new AddRightAlignComponent();
   }
 
   ngOnInit() {
@@ -76,7 +86,7 @@ export class NewBoardComponent implements OnInit {
 
   // ......................... BLOCK BUILDING FUNCITON............................
   blockFunction = (uid) => {
-    let data = `
+    const data = `
     <div id="cb-box-1-${uid}" class="cb-box-1">
     <div class="row mx-0">
       <!-- plug for dragging -->
@@ -193,79 +203,91 @@ export class NewBoardComponent implements OnInit {
     </div>
   </div>
 
-    `
-    return data
+    `;
+    return data;
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
-  addAfterBlockEditor = (id, checker, category=null) => {
+  addAfterBlockEditor = (id, checker, category = null) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
 
-      if (checker === 0) {
-        $(`#${id}`).after(
-          this.blockFunction(uid)
-        );
-      } // close of if statement of 0
-
-      if (checker === 1) {
-        $(`#cb-box-1-${id}`).after(
-          this.blockFunction(uid)
-        );
-      } // end of if case 1
-
-      if(checker === 2) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddH1Component.addH1TagToolBox(uid)
-      }
-
-      if(checker === 3) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddCanvasBoard.addCanvasBoardToolbox(uid)
-      }
-
-      if(checker === 4) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddH2Component.addH2TagToolBox(uid)
-      }
-
-      if(checker === 5) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddH3Component.addH3TagToolBox(uid)
-      }
-
-      if(checker === 6) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddParaComponent.addParaTagToolBox(uid)
-      }
-      if(checker === 7) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddRedBackgroundComponent.addRedBackgroundToolBox(uid)
-      }
-      if(checker === 11) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddFontMonospaceComponent.addMonospaceFontToolBox(uid)
-      }
-      if(checker === 12) {
-        $(`#${id}`).append(
-          this.blockFunction(uid)
-        );
-        this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid)
+      switch (checker) {
+        case 0: {
+          $(`#${id}`).after(this.blockFunction(uid));
+          break;
+        }
+        case 1: {
+          $(`#cb-box-1-${id}`).after(this.blockFunction(uid));
+          break;
+        }
+        case 2: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddH1Component.addH1TagToolBox(uid);
+          break;
+        }
+        case 3: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddCanvasBoard.addCanvasBoardToolbox(uid);
+          break;
+        }
+        case 4: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddH2Component.addH2TagToolBox(uid);
+          break;
+        }
+        case 5: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddH3Component.addH3TagToolBox(uid);
+          break;
+        }
+        case 6: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddParaComponent.addParaTagToolBox(uid);
+          break;
+        }
+        case 7: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddRedBackgroundComponent.addRedBackgroundToolBox(uid);
+          break;
+        }
+        case 8: {
+          break;
+        }
+        case 9: {
+          break;
+        }
+        case 10: {
+          break;
+        }
+        case 11: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddFontMonospaceComponent.addMonospaceFontToolBox(uid);
+          break;
+        }
+        case 12: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid);
+          break;
+        }
+        case 14: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddLeftAlignComponent.addLeftAlignTextToolBox(uid);
+          break;
+        }
+        case 15: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddCenterAlignComponent.addCenterAlignTextToolBox(uid);
+          break;
+        }
+        case 16: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddRightAlignComponent.addRightAlignTextToolBox(uid);
+          break;
+        }
+        default:
+          break;
       }
 
       // hiding and showing the TOOLBOX
@@ -298,7 +320,7 @@ export class NewBoardComponent implements OnInit {
         }
       });
 
-      //Add H1 HTML and click Function
+      // Add H1 HTML and click Function
       this.AddH1Component.addH1TagHTMLCode(uid);
       this.AddH1Component.addH1TagClickFunction(uid);
 
@@ -310,13 +332,25 @@ export class NewBoardComponent implements OnInit {
       this.AddH3Component.addH3TagHTMLCode(uid);
       this.AddH3Component.addH3TagClickFunction(uid);
 
-      //Adding para tags
+      // Adding para tags
       this.AddParaComponent.addParaTagHTMLCode(uid);
       this.AddParaComponent.addParaTagClickFunction(uid);
 
-      //Adding red background toolbox
+      // Adding red background toolbox
       this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
       this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
+
+      // Adding Left Align HTML and click Function
+      this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
+      this.AddLeftAlignComponent.addLeftAlignTagClickFunction(uid);
+
+      // Adding Center Align HTML and click Function
+      this.AddCenterAlignComponent.addCenterAlignTagHTMLCode(uid);
+      this.AddCenterAlignComponent.addCenterAlignTagClickFunction(uid);
+
+      // Adding Right Align HTML and click Function
+      this.AddRightAlignComponent.addRightAlignTagHTMLCode(uid);
+      this.AddRightAlignComponent.addRightAlignTagClickFunction(uid);
 
       // // Add Canvasboard Tag
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
@@ -386,35 +420,38 @@ export class NewBoardComponent implements OnInit {
           );
           $(`#cb-image-${uid}`).css('width', '100%');
         } else {
-          Swal.fire({ icon: 'warning', text: "Please enter a valid URL!!" });
+          Swal.fire({ icon: 'warning', text: 'Please enter a valid URL!!' });
         }
       });
+
 
       // Upload JSON file
       $(`#file-${uid}`).change((ev) => {
         this.fileToUpload = ev.target.files[0];
-        console.log("File Read working")
+        console.log('File Read working');
         const fileReader = new FileReader();
-        fileReader.readAsText(this.fileToUpload, "UTF-8");
+        fileReader.readAsText(this.fileToUpload, 'UTF-8');
         fileReader.onload = () => {
-          //Parse the JSON into an array of data points
-          let dataObject = JSON.parse(fileReader.result as string);
+          // Parse the JSON into an array of data points
+          const dataObject = JSON.parse(fileReader.result as string);
 
           // ---- Create canvas for chart ----
           $(`#original-${uid}`).append(`
         <canvas id="chart-${uid}" class="shadow"></canvas>
-      `)
-          //Setting Width and height to screen
-          $(`#chart-${uid}`).height(400).width('100%')
-          //Setting background color to white
-          $(`#chart-${uid}`).css("background-color", "white")
+      `);
+          // Setting Width and height to screen
+          $(`#chart-${uid}`).height(400).width('100%');
+          // Setting background color to white
+          $(`#chart-${uid}`).css('background-color', 'white');
 
           // End Creating canvas
 
-
           // Helper function to toggle data on click
           function toggleDataSeries(e) {
-            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            if (
+              typeof e.dataSeries.visible === 'undefined' ||
+              e.dataSeries.visible
+            ) {
               e.dataSeries.visible = false;
             } else {
               e.dataSeries.visible = true;
@@ -423,108 +460,107 @@ export class NewBoardComponent implements OnInit {
           }
 
           // Labels for the data
-          let dKeys = Object.keys(dataObject[0]);
+          const dKeys = Object.keys(dataObject[0]);
           let XAxisName;
 
           // Get the data array suitable for chartjs
           function getData() {
-            let datasetsArr = []
-            let xAxisLabels = []
+            const datasetsArr = [];
+            const xAxisLabels = [];
             dKeys.forEach((dLabel, index) => {
               // If label is of x-axis(which should be at the end)
               if (index == dKeys.length - 1) {
                 XAxisName = dLabel;
 
                 dataObject.forEach((dataPoint, i) => {
-
-                  //X-axis data pushed into x-axis labels
+                  // X-axis data pushed into x-axis labels
                   xAxisLabels.push(dataPoint[dLabel]);
-
                 });
-              }
-
-              //If label is not of X-axis
-              else {
-
+              } else {
                 // Dataset corresponding to label
-                let dSet = { label: dLabel, data: [], fill: false, backgroundColor: [], borderColor: [] }
+                const dSet = {
+                  label: dLabel,
+                  data: [],
+                  fill: false,
+                  backgroundColor: [],
+                  borderColor: [],
+                };
 
-                let r = Math.floor(Math.random() * 255);
-                let g = Math.floor(Math.random() * 255);
-                let b = Math.floor(Math.random() * 255);
-                dSet.backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ",0.2)");
-                dSet.borderColor.push("rgb(" + r + ", " + g + ", " + b + ")");
+                const r = Math.floor(Math.random() * 255);
+                const g = Math.floor(Math.random() * 255);
+                const b = Math.floor(Math.random() * 255);
+                dSet.backgroundColor.push(
+                  'rgba(' + r + ', ' + g + ', ' + b + ',0.2)'
+                );
+                dSet.borderColor.push('rgb(' + r + ', ' + g + ', ' + b + ')');
 
                 dataObject.forEach((dataPoint, i) => {
-                  //Push each data point corresponding to label into label's dataset
+                  // Push each data point corresponding to label into label's dataset
                   dSet.data.push(dataPoint[dLabel]);
 
-                  //Randomise the colours
+                  // Randomise the colours
                 });
 
-                //Push the dataset into data array
+                // Push the dataset into data array
                 datasetsArr.push(dSet);
               }
+            });
 
-            })
-
-            console.log("Data compatible with chart js", { labels: xAxisLabels, datasets: datasetsArr });
+            console.log('Data compatible with chart js', {
+              labels: xAxisLabels,
+              datasets: datasetsArr,
+            });
 
             return { labels: xAxisLabels, datasets: datasetsArr };
-
           }
 
-
-          let ctx = $(`#chart-${uid}`);
+          const ctx = $(`#chart-${uid}`);
           console.log($(`#chart-${uid}`));
 
-          let chart = new Chart(ctx, {
+          const chart = new Chart(ctx, {
             type: 'line',
             title: {
-              text: "Chart " + this.uniqueChartID()
+              text: 'Chart ' + this.uniqueChartID(),
             },
             toolTip: {
-              shared: true
+              shared: true,
             },
             legend: {
-              cursor: "pointer",
-              verticalAlign: "top",
-              horizontalAlign: "center",
+              cursor: 'pointer',
+              verticalAlign: 'top',
+              horizontalAlign: 'center',
               dockInsidePlotArea: true,
-              itemclick: toggleDataSeries
+              itemclick: toggleDataSeries,
             },
             data: getData(),
             options: {
               responsive: true,
-              title: "Chart ",
+              title: 'Chart ',
               scales: {
-                xAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    //X axis name to be displayed
-                    labelString: XAxisName,
-                  }
-                }]
-              }
-            }
+                xAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      // X axis name to be displayed
+                      labelString: XAxisName,
+                    },
+                  },
+                ],
+              },
+            },
           });
           chart.render();
 
-
-          console.log("Data Object", dataObject);
-        }
+          console.log('Data Object', dataObject);
+        };
         fileReader.onerror = (error) => {
           console.log(error);
-        }
-
-
-
+        };
       });
-
     } catch (err) {
       console.log('Error', err);
     }
-  };
+  }
 
   // .........................ADDING BLOCK BEFORE DIV FUNCTION...................
   addBeforeBlockEditor = (id, checker) => {
@@ -533,15 +569,11 @@ export class NewBoardComponent implements OnInit {
       const uid: any = uuidv4();
 
       if (checker === 0) {
-        $(`#${id}`).before(
-          this.blockFunction(uid)
-        );
+        $(`#${id}`).before(this.blockFunction(uid));
       } // close of if statement of 0
 
       if (checker === 1) {
-        $(`#cb-box-1-${id}`).before(
-          this.blockFunction(uid)
-        );
+        $(`#cb-box-1-${id}`).before(this.blockFunction(uid));
       }
 
       // hiding and showing the TOOLBOX
@@ -574,7 +606,7 @@ export class NewBoardComponent implements OnInit {
         }
       });
 
-      //Add H1 HTML and click Function
+      // Add H1 HTML and click Function
       this.AddH1Component.addH1TagHTMLCode(uid);
       this.AddH1Component.addH1TagClickFunction(uid);
 
@@ -586,13 +618,25 @@ export class NewBoardComponent implements OnInit {
       this.AddH3Component.addH3TagHTMLCode(uid);
       this.AddH3Component.addH3TagClickFunction(uid);
 
-      //Adding para tags
+      // Adding para tags
       this.AddParaComponent.addParaTagHTMLCode(uid);
       this.AddParaComponent.addParaTagClickFunction(uid);
 
-      //Adding red background toolbox
+      // Adding red background toolbox
       this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
       this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
+
+      // Adding Left Align HTML and click Function
+      this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
+      this.AddLeftAlignComponent.addLeftAlignTagClickFunction(uid);
+
+      // Adding Center Align HTML and click Function
+      this.AddCenterAlignComponent.addCenterAlignTagHTMLCode(uid);
+      this.AddCenterAlignComponent.addCenterAlignTagClickFunction(uid);
+
+      // Adding Right Align HTML and click Function
+      this.AddRightAlignComponent.addRightAlignTagHTMLCode(uid);
+      this.AddRightAlignComponent.addRightAlignTagClickFunction(uid);
 
       // Adding red background color
       $(`#add-background-cb-red-${uid}`).click(() => {
@@ -696,34 +740,38 @@ export class NewBoardComponent implements OnInit {
           );
           $(`#cb-image-${uid}`).css('width', '100%');
         } else {
-          Swal.fire({ icon: 'warning', text: "Please enter a valid URL!!" });
+          Swal.fire({ icon: 'warning', text: 'Please enter a valid URL!!' });
         }
       });
+
+
       // Upload JSON file
       $(`#file-${uid}`).change((ev) => {
         this.fileToUpload = ev.target.files[0];
-        console.log("File Read working")
+        console.log('File Read working');
         const fileReader = new FileReader();
-        fileReader.readAsText(this.fileToUpload, "UTF-8");
+        fileReader.readAsText(this.fileToUpload, 'UTF-8');
         fileReader.onload = () => {
-          //Parse the JSON into an array of data points
-          let dataObject = JSON.parse(fileReader.result as string);
+          // Parse the JSON into an array of data points
+          const dataObject = JSON.parse(fileReader.result as string);
 
           // ---- Create canvas for chart ----
           $(`#original-${uid}`).append(`
         <canvas id="chart-${uid}" class="shadow"></canvas>
-      `)
-          //Setting Width and height to screen
-          $(`#chart-${uid}`).height(400).width('100%')
-          //Setting background color to white
-          $(`#chart-${uid}`).css("background-color", "white")
+      `);
+          // Setting Width and height to screen
+          $(`#chart-${uid}`).height(400).width('100%');
+          // Setting background color to white
+          $(`#chart-${uid}`).css('background-color', 'white');
 
           // End Creating canvas
 
-
           // Helper function to toggle data on click
           function toggleDataSeries(e) {
-            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            if (
+              typeof e.dataSeries.visible === 'undefined' ||
+              e.dataSeries.visible
+            ) {
               e.dataSeries.visible = false;
             } else {
               e.dataSeries.visible = true;
@@ -732,102 +780,102 @@ export class NewBoardComponent implements OnInit {
           }
 
           // Labels for the data
-          let dKeys = Object.keys(dataObject[0]);
+          const dKeys = Object.keys(dataObject[0]);
           let XAxisName;
 
           // Get the data array suitable for chartjs
           function getData() {
-            let datasetsArr = []
-            let xAxisLabels = []
+            const datasetsArr = [];
+            const xAxisLabels = [];
             dKeys.forEach((dLabel, index) => {
               // If label is of x-axis(which should be at the end)
               if (index == dKeys.length - 1) {
                 XAxisName = dLabel;
 
                 dataObject.forEach((dataPoint, i) => {
-
-                  //X-axis data pushed into x-axis labels
+                  // X-axis data pushed into x-axis labels
                   xAxisLabels.push(dataPoint[dLabel]);
-
                 });
-              }
-
-              //If label is not of X-axis
-              else {
-
+              } else {
                 // Dataset corresponding to label
-                let dSet = { label: dLabel, data: [], fill: false, backgroundColor: [], borderColor: [] }
+                const dSet = {
+                  label: dLabel,
+                  data: [],
+                  fill: false,
+                  backgroundColor: [],
+                  borderColor: [],
+                };
 
-                let r = Math.floor(Math.random() * 255);
-                let g = Math.floor(Math.random() * 255);
-                let b = Math.floor(Math.random() * 255);
-                dSet.backgroundColor.push("rgba(" + r + ", " + g + ", " + b + ",0.2)");
-                dSet.borderColor.push("rgb(" + r + ", " + g + ", " + b + ")");
+                const r = Math.floor(Math.random() * 255);
+                const g = Math.floor(Math.random() * 255);
+                const b = Math.floor(Math.random() * 255);
+                dSet.backgroundColor.push(
+                  'rgba(' + r + ', ' + g + ', ' + b + ',0.2)'
+                );
+                dSet.borderColor.push('rgb(' + r + ', ' + g + ', ' + b + ')');
 
                 dataObject.forEach((dataPoint, i) => {
-                  //Push each data point corresponding to label into label's dataset
+                  // Push each data point corresponding to label into label's dataset
                   dSet.data.push(dataPoint[dLabel]);
 
-                  //Randomise the colours
+                  // Randomise the colours
                 });
 
-                //Push the dataset into data array
+                // Push the dataset into data array
                 datasetsArr.push(dSet);
               }
+            });
 
-            })
-
-            console.log("Data compatible with chart js", { labels: xAxisLabels, datasets: datasetsArr });
+            console.log('Data compatible with chart js', {
+              labels: xAxisLabels,
+              datasets: datasetsArr,
+            });
 
             return { labels: xAxisLabels, datasets: datasetsArr };
-
           }
 
-
-          let ctx = $(`#chart-${uid}`);
+          const ctx = $(`#chart-${uid}`);
           console.log($(`#chart-${uid}`));
 
-          let chart = new Chart(ctx, {
+          const chart = new Chart(ctx, {
             type: 'line',
             title: {
-              text: "Chart " + this.uniqueChartID()
+              text: 'Chart ' + this.uniqueChartID(),
             },
             toolTip: {
-              shared: true
+              shared: true,
             },
             legend: {
-              cursor: "pointer",
-              verticalAlign: "top",
-              horizontalAlign: "center",
+              cursor: 'pointer',
+              verticalAlign: 'top',
+              horizontalAlign: 'center',
               dockInsidePlotArea: true,
-              itemclick: toggleDataSeries
+              itemclick: toggleDataSeries,
             },
             data: getData(),
             options: {
               responsive: true,
-              title: "Chart ",
+              title: 'Chart ',
               scales: {
-                xAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    //X axis name to be displayed
-                    labelString: XAxisName,
-                  }
-                }]
-              }
-            }
+                xAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      // X axis name to be displayed
+                      labelString: XAxisName,
+                    },
+                  },
+                ],
+              },
+            },
           });
           chart.render();
 
-
-          console.log("Data Object", dataObject);
-        }
+          console.log('Data Object', dataObject);
+        };
         fileReader.onerror = (error) => {
           console.log(error);
-        }
-
-
-
+        };
       });
     } catch (err) {
       console.log('Error', err);
@@ -867,7 +915,7 @@ export class NewBoardComponent implements OnInit {
     // this.apiService.getBoardData();
   }
 
-  //H1 Tag
+  // H1 Tag
   addH1TagHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- H1 tag -->
@@ -880,13 +928,13 @@ export class NewBoardComponent implements OnInit {
         </svg>
       </button>
     </div>
-    `)
+    `);
   }
 
   addH1TagClickFunction = (uid) => {
-      $(`#add-h1-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
-      });
+    $(`#add-h1-box2-${uid}`).click(() => {
+      $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
+    });
   }
 
   openSlideMenu = () => {
@@ -900,38 +948,50 @@ export class NewBoardComponent implements OnInit {
 
   // H1 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolBoxH1Tag = () => {
-    this.addAfterBlockEditor('main-box',2);
+    this.addAfterBlockEditor('main-box', 2);
   }
   // H2 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolboxH2Tag = () => {
-    this.addAfterBlockEditor('main-box',4)
+    this.addAfterBlockEditor('main-box', 4);
   }
   // H3 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolboxH3Tag = () => {
-    this.addAfterBlockEditor('main-box',5)
+    this.addAfterBlockEditor('main-box', 5);
   }
   // Canvasboard TOOLBOX CLICK FUNCTION
   addCanvasBoard = () => {
-    this.addAfterBlockEditor('main-box',3);
+    this.addAfterBlockEditor('main-box', 3);
   }
   // Adding paragraph
   cbToolboxParaTag = () => {
-    this.addAfterBlockEditor('main-box',6);
+    this.addAfterBlockEditor('main-box', 6);
   }
 
-  //Adding Red background color
+  // Adding Red background color
   cbToolboxRedBackground = () => {
-    this.addAfterBlockEditor('main-box',7);
+    this.addAfterBlockEditor('main-box', 7);
   }
 
-  // Adding Monoscpace font
+  // Adding Monospace font
   cbToolboxMonospace = () => {
-    this.addAfterBlockEditor('main-box',11);
+    this.addAfterBlockEditor('main-box', 11);
   }
 
   // Adding Playfair font
   cbToolboxPlayfair = () => {
-    this.addAfterBlockEditor('main-box',12);
+    this.addAfterBlockEditor('main-box', 12);
   }
 
+  // Adding Left Align Text
+  cbToolboxLeftAlign = () => {
+    this.addAfterBlockEditor('main-box', 14);
+  }
+  // Adding Center Align Text
+  cbToolboxCenterAlign = () => {
+    this.addAfterBlockEditor('main-box', 15);
+  }
+  // Adding Right Align Text
+  cbToolboxRightAlign = () => {
+    this.addAfterBlockEditor('main-box', 16);
+  }
 }

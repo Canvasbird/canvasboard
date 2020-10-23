@@ -1,7 +1,7 @@
 declare var $: any;
 
 export class AddH2Component {
-  constructor(){}
+  constructor() {}
 
     // H2 Tag HTML
     addH2TagHTMLCode = (uid) => {
@@ -17,7 +17,7 @@ export class AddH2Component {
           </svg>
         </button>
       </div>
-      `)
+      `);
     }
     // Add H2 tag click action
     addH2TagClickFunction = (uid) => {

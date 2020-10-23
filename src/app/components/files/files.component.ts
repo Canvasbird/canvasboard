@@ -48,25 +48,25 @@ export class FilesComponent implements OnInit {
 
       },
       {
-        'imageURL': 'https://miro.medium.com/max/1080/1*hU0QQDiOnsKpX4qlIyn_4w.jpeg',
-        'title': 'Chapter 5',
-        'subtitle': 'Lorem ipsum dolor sit amet conseLorem ipsum dolor sit amet.ctetur adipisicing eliteius.',
-        'id':5,
-        'filters': ['one','two','three']
+        imageURL: 'https://miro.medium.com/max/1080/1*hU0QQDiOnsKpX4qlIyn_4w.jpeg',
+        title: 'Chapter 5',
+        subtitle: 'Lorem ipsum dolor sit amet conseLorem ipsum dolor sit amet.ctetur adipisicing eliteius.',
+        id: 5,
+        filters: ['one', 'two', 'three']
 
       },
-    ]
+    ];
   }
 
   viewCreativeBoard = (e, item) => {
     console.log('Working', item);
   }
 
-  editCreativeBoard = (e,item) => {
+  editCreativeBoard = (e, item) => {
     this.route.navigate(['/creative-board']);
   }
 
-  backtoDashboard =() => {
+  backtoDashboard = () => {
     this.route.navigate(['/dashboard']);
   }
 
