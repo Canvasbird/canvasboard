@@ -1,8 +1,7 @@
 declare var $: any;
 
-
 export class AddRedBackgroundComponent {
-  constructor(){}
+  constructor() { }
 
   addRedBackgroundHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
@@ -14,7 +13,7 @@ export class AddRedBackgroundComponent {
         </svg>
       </button>
     </div>
-    `)
+    `);
   }
 
   addRedBackgroundClickFunction = (uid) => {
@@ -30,10 +29,9 @@ export class AddRedBackgroundComponent {
 
   addRedBackgroundToolBox = (uid) => {
     $(`#cb-box-2-${uid}`)
-    .removeClass(
-      'cb-background-yellow cb-background-green cb-background-blue'
-    )
-    .addClass('cb-background-red');
+      .removeClass(
+        'cb-background-yellow cb-background-green cb-background-blue'
+      )
+      .addClass('cb-background-red');
   }
-
 }

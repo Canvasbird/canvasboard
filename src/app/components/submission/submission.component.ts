@@ -7,44 +7,44 @@ import { Component, OnInit} from '@angular/core';
 })
 export class SubmissionComponent implements OnInit {
 
-  subjectName: string = "Math";
-  className: string = "4a";
-  assignmentName: string = "Assignment 1";
+  subjectName = 'Math';
+  className = '4a';
+  assignmentName = 'Assignment 1';
   studentList: Array<Object> = [
     {
-      name: "Student 1",
-      submitionStatus: "submitted",
-      gradedStatus: "graded",
+      name: 'Student 1',
+      submitionStatus: 'submitted',
+      gradedStatus: 'graded',
     },
     {
-      name: "Student 2",
-      submitionStatus: "not submitted",
-      gradedStatus: "not graded",
+      name: 'Student 2',
+      submitionStatus: 'not submitted',
+      gradedStatus: 'not graded',
     },
     {
-      name: "Student 3",
-      submitionStatus: "submitted",
-      gradedStatus: " not graded",
+      name: 'Student 3',
+      submitionStatus: 'submitted',
+      gradedStatus: ' not graded',
     },
     {
-      name: "Student 4",
-      submitionStatus: "submitted",
-      gradedStatus: "graded",
+      name: 'Student 4',
+      submitionStatus: 'submitted',
+      gradedStatus: 'graded',
     },
     {
-      name: "Student 5",
-      submitionStatus: "submitted",
-      gradedStatus: "not graded",
+      name: 'Student 5',
+      submitionStatus: 'submitted',
+      gradedStatus: 'not graded',
     },
     {
-      name: "Student 6",
-      submitionStatus: "submitted",
-      gradedStatus: "graded",
+      name: 'Student 6',
+      submitionStatus: 'submitted',
+      gradedStatus: 'graded',
     },
     {
-      name: "Student 7",
-      submitionStatus: "not submitted",
-      gradedStatus: "not graded",
+      name: 'Student 7',
+      submitionStatus: 'not submitted',
+      gradedStatus: 'not graded',
     }
   ];
   filters = {
@@ -52,11 +52,11 @@ export class SubmissionComponent implements OnInit {
     notGraded: false,
     submitted: false,
     notSubmitted: false,
-    name: ""
-  }
+    name: ''
+  };
   filteredStudents: Array<object>;
 
-  constructor() { 
+  constructor() {
     this.filteredStudents = this.studentList;
   }
 
@@ -64,28 +64,28 @@ export class SubmissionComponent implements OnInit {
   }
 
   exportCsv() {
-    console.log(this.studentList)
-    var csvContent = "data:text/csv;charset=utf-8," + this.studentList.map(e => [e["name"], e["submitionStatus"], e["gradedStatus"]].join(",") ).join("\n");
-    var encodedUri = encodeURI(csvContent);
-    var link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_data.csv");
+    console.log(this.studentList);
+    let csvContent = 'data:text/csv;charset=utf-8,' + this.studentList.map(e => [e['name'], e['submitionStatus'], e['gradedStatus']].join(',') ).join('\n');
+    let encodedUri = encodeURI(csvContent);
+    let link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'my_data.csv');
     document.body.appendChild(link);
     link.click();
   }
 
   checkFilter(student) {
-    var status = true;
-    if (this.filters.graded && student.gradedStatus !== "graded") { 
+    let status = true;
+    if (this.filters.graded && student.gradedStatus !== 'graded') {
       status = false;
     }
-    if (this.filters.notGraded && student.gradedStatus !== "not graded") { 
+    if (this.filters.notGraded && student.gradedStatus !== 'not graded') {
       status = false;
     }
-    if (this.filters.submitted && student.submitionStatus !== "submitted") { 
+    if (this.filters.submitted && student.submitionStatus !== 'submitted') {
       status = false;
     }
-    if (this.filters.notSubmitted && student.submitionStatus !== "not submitted") { 
+    if (this.filters.notSubmitted && student.submitionStatus !== 'not submitted') {
       status = false;
     }
     if (!(student.name.toLowerCase().includes(this.filters.name))) {
@@ -95,7 +95,7 @@ export class SubmissionComponent implements OnInit {
   }
 
   onFilter() {
-    this.filteredStudents = []
+    this.filteredStudents = [];
     this.studentList.forEach((student) => {
       if (this.checkFilter(student)) {
         this.filteredStudents.push(student);

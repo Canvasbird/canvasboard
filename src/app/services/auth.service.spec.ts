@@ -8,8 +8,8 @@ describe('AuthService', () => {
   let authService: AuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ 
-      imports: [ HttpClientTestingModule, RouterTestingModule ] 
+    TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule, RouterTestingModule ]
     });
     authService = TestBed.get(AuthService);
   });
