@@ -35,12 +35,8 @@ export class AddTopComponent {
     }
 
     // Adding Top
-    addTopTagToolBox = (uid) => {
-     $(`#original-${uid}`).append(
-          `<ul>
-          <li></li>
-          </ul>`
-        );
+    addTopTagToolBox = (uid, addBeforeBlockEditor) => {
+    addBeforeBlockEditor(uid, 1);
     }
 
 }
