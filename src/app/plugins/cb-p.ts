@@ -1,7 +1,7 @@
 declare var $: any;
 
 export class AddParaComponent {
-  constructor(){}
+  constructor() {}
 
   addParaTagHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
@@ -15,7 +15,7 @@ export class AddParaComponent {
         </svg>
       </button>
     </div>
-    `)
+    `);
   }
 
   addParaTagClickFunction = (uid) => {

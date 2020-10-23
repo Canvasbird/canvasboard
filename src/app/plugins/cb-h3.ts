@@ -3,7 +3,7 @@ declare var $: any;
 export class AddH3Component {
   constructor() {}
 
-  //h3 tag
+  // h3 tag
   addH3TagHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- h3 tag -->
@@ -16,7 +16,7 @@ export class AddH3Component {
         </svg>
       </button>
     </div>
-    `)
+    `);
   }
 
   addH3TagClickFunction = (uid) => {

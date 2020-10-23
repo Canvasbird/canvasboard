@@ -11,7 +11,7 @@ import { AssignmentComponent } from './components/assignment/assignment.componen
 import { SubmissionComponent } from './components/submission/submission.component';
 
 // guard
-import { AuthGuard } from './shared/auth.guard'
+import { AuthGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';

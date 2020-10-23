@@ -2,7 +2,7 @@ declare var $: any;
 import { fabric } from 'fabric';
 
 export class AddCanvasBoard {
-  constructor(){}
+  constructor() {}
 
     // Adding canvasboard
     addCanvasBoardHTMLCode = (uid) => {
@@ -15,7 +15,7 @@ export class AddCanvasBoard {
           </svg>
           </button>
         </div>
-      `)
+      `);
     }
 
     addCanvasBoardToolbox = (uid) => {
@@ -62,7 +62,7 @@ export class AddCanvasBoard {
       const canvas = new fabric.Canvas(`canvas-${uid}`);
       const DRAWING_MODE = 'drawing';
       const MOVE_MODE = 'move';
-      var canvasMode = DRAWING_MODE;
+      let canvasMode = DRAWING_MODE;
       canvas.isDrawingMode = true;
       canvas.setHeight('400');
       canvas.setWidth(parentWidth);
@@ -82,7 +82,7 @@ export class AddCanvasBoard {
       });
 
       $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
-        var shape = canvas.getActiveObject();
+        const shape = canvas.getActiveObject();
         canvas.remove(shape);
       });
 
@@ -93,7 +93,7 @@ export class AddCanvasBoard {
       });
 
       $(`#canvas-menu-box-size-${uid}`).on('change', () => {
-        var width = $(`#canvas-menu-box-size-${uid} option:selected`).val()
+        const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
         canvas.freeDrawingBrush.width = parseInt(width);
       });
 

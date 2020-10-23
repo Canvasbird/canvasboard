@@ -8,8 +8,8 @@ describe('RestService', () => {
   let restService: RestService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ 
-      imports: [ HttpClientTestingModule, RouterTestingModule ] 
+    TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule, RouterTestingModule ]
     });
     restService = TestBed.get(RestService);
   });

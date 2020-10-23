@@ -2,13 +2,13 @@ declare var $: any;
 
 export class AddH1Component {
 
-  constructor(){
+  constructor() {
 
   }
 
-    //H1 Tag
-    addH1TagHTMLCode(uid){
-      console.log("Calling h1 html");
+    // H1 Tag
+    addH1TagHTMLCode(uid) {
+      console.log('Calling h1 html');
 
       $(`#cb-buttons-${uid}`).append(`
       <!-- H1 tag -->
@@ -21,7 +21,7 @@ export class AddH1Component {
           </svg>
         </button>
       </div>
-      `)
+      `);
     }
 
     addH1TagClickFunction = (uid) => {

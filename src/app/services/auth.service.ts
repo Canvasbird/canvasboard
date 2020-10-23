@@ -76,14 +76,14 @@ export class AuthService {
   }
 
   loginErrorAlert({ error }: ErrorEvent) {
-    if (error.message === "Please verify your email-id") {
-      Swal.fire({ icon: 'warning', text: "Please verify your email account for sign in" });
-    } else if (error.message === "Incorrect password") {
-      Swal.fire({ icon: 'error', text: "Incorrect username or password."});
-    } else if (error.message === "User not found.") {
-      Swal.fire({ 
+    if (error.message === 'Please verify your email-id') {
+      Swal.fire({ icon: 'warning', text: 'Please verify your email account for sign in' });
+    } else if (error.message === 'Incorrect password') {
+      Swal.fire({ icon: 'error', text: 'Incorrect username or password.'});
+    } else if (error.message === 'User not found.') {
+      Swal.fire({
         icon: 'warning',
-        text: "This email address does not correspond to a registered account."
+        text: 'This email address does not correspond to a registered account.'
       });
     }
   }

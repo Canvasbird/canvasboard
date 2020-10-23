@@ -10,6 +10,10 @@ declare const pdfjsLib: any;
 })
 export class BoardComponent implements OnInit {
 
+  constructor(public renderer: Renderer) {
+    this.getScreenSize();
+  }
+
   // referring the canvas element
   @ViewChild('myCanvas', null) canvas: any;
   @ViewChild('backgroundImage', null) background: any;
@@ -62,7 +66,7 @@ export class BoardComponent implements OnInit {
   normalPen_width: number;
   normalPen_color: any;
   normalPen_composite: string;
- 
+
   calligraphy_tool = {
     startX: -1,
     startY: -1,
@@ -70,7 +74,7 @@ export class BoardComponent implements OnInit {
     currentY: -1,
     endX: -1,
     endY: -1,
-  }
+  };
   highlighter_tool = {
     startX: -1,
     startY: -1,
@@ -78,12 +82,14 @@ export class BoardComponent implements OnInit {
     currentY: -1,
     endX: -1,
     endY: -1,
-  }
+  };
   eraser_tool = {
     width: 20,
     color: 'rgba(1,0,0)',
     composite: 'destination-out'
-  }
+  };
+
+  localUrl: any[];
 
   // getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
@@ -92,13 +98,9 @@ export class BoardComponent implements OnInit {
         this.scrWidth = window.innerWidth - 220;
   }
 
-  constructor(public renderer: Renderer) {
-    this.getScreenSize();
-  }
-
   ngOnInit() {
     this.page = 0;
-    console.log("Screen width :", this.scrWidth, "Screen height", this.scrHeight );
+    console.log('Screen width :', this.scrWidth, 'Screen height', this.scrHeight );
 
     // getting the 2D context of Canvas element
     this.canvasElement = this.canvas.nativeElement;
@@ -184,9 +186,9 @@ export class BoardComponent implements OnInit {
       // When Mouse is moving
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
         if (this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)) {
-          this.normalPen_currentX = e.offsetX
-          this.normalPen_currentY = e.offsetY
-          this.setCanvasContextPath(this.normalPen_startX, this.normalPen_startY, this.normalPen_currentX, this.normalPen_currentY)
+          this.normalPen_currentX = e.offsetX;
+          this.normalPen_currentY = e.offsetY;
+          this.setCanvasContextPath(this.normalPen_startX, this.normalPen_startY, this.normalPen_currentX, this.normalPen_currentY);
           this.setCanvasContextPathStyle(this.normalPen_color, this.normalPen_width, this.normalPen_composite);
           this.normalPen_startX = this.normalPen_currentX;
           this.normalPen_startY = this.normalPen_currentY;
@@ -213,23 +215,23 @@ export class BoardComponent implements OnInit {
 
         if (this.mouseControl && this.basic_tools.brushPen) {
           // taking mouse down X and Y coordinates
-          this.calligraphy_tool.startX = e.offsetX
-          this.calligraphy_tool.startY = e.offsetY
+          this.calligraphy_tool.startX = e.offsetX;
+          this.calligraphy_tool.startY = e.offsetY;
         }
       });
 
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
         if (this.mouseControl && this.basic_tools.brushPen) {
 
-          this.calligraphy_tool.currentX = e.offsetX
-          this.calligraphy_tool.currentY = e.offsetY
+          this.calligraphy_tool.currentX = e.offsetX;
+          this.calligraphy_tool.currentY = e.offsetY;
 
           this.setCanvasContextPath(this.calligraphy_tool.startX, this.calligraphy_tool.startY, this.calligraphy_tool.currentX, this.calligraphy_tool.currentY);
           this.setCanvasContextPathStyle(this.penColour, this.penWidth, this.defaultComposite);
 
           for (let i = 0; i < 5; i++) {
             this.setCanvasContextPath(this.calligraphy_tool.startX + i, this.calligraphy_tool.startY + i, this.calligraphy_tool.currentX + i, this.calligraphy_tool.currentY + i);
-            this.setCanvasContextPath(this.calligraphy_tool.startX - i, this.calligraphy_tool.startY - i, this.calligraphy_tool.currentX - i, this.calligraphy_tool.currentY - i); 
+            this.setCanvasContextPath(this.calligraphy_tool.startX - i, this.calligraphy_tool.startY - i, this.calligraphy_tool.currentX - i, this.calligraphy_tool.currentY - i);
           }
 
           this.calligraphy_tool.startX = this.calligraphy_tool.currentX;
@@ -263,25 +265,25 @@ export class BoardComponent implements OnInit {
   }
 
   disableButton(id: string) {
-    (<HTMLInputElement> document.getElementById(id)).disabled = true;
+    (document.getElementById(id) as HTMLInputElement).disabled = true;
   }
 
   enableButton(id: string) {
-    (<HTMLInputElement> document.getElementById(id)).disabled = false;
+    (document.getElementById(id) as HTMLInputElement).disabled = false;
   }
 
   disableSizeButtons() {
-    this.disableButton("btn-size-1");
-    this.disableButton("btn-size-10");
-    this.disableButton("btn-size-20");
-    this.disableButton("btn-size-50");
+    this.disableButton('btn-size-1');
+    this.disableButton('btn-size-10');
+    this.disableButton('btn-size-20');
+    this.disableButton('btn-size-50');
   }
 
   enableSizeButtons() {
-    this.enableButton("btn-size-1");
-    this.enableButton("btn-size-10");
-    this.enableButton("btn-size-20");
-    this.enableButton("btn-size-50");
+    this.enableButton('btn-size-1');
+    this.enableButton('btn-size-10');
+    this.enableButton('btn-size-20');
+    this.enableButton('btn-size-50');
   }
 
   highlighterButton() {
@@ -294,24 +296,24 @@ export class BoardComponent implements OnInit {
 
         if (this.mouseControl && this.basic_tools.highlighter) {
           // taking mouse down X and Y coordinates
-          this.highlighter_tool.startX = e.offsetX
-          this.highlighter_tool.startY = e.offsetY
+          this.highlighter_tool.startX = e.offsetX;
+          this.highlighter_tool.startY = e.offsetY;
         }
       });
 
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
         if (this.mouseControl && this.basic_tools.highlighter) {
-          this.highlighter_tool.currentX = e.offsetX
-          this.highlighter_tool.currentY = e.offsetY
+          this.highlighter_tool.currentX = e.offsetX;
+          this.highlighter_tool.currentY = e.offsetY;
 
-          this.ctx.globalCompositeOperation = this.defaultComposite
+          this.ctx.globalCompositeOperation = this.defaultComposite;
           this.setCanvasContextPath(this.highlighter_tool.startX, this.highlighter_tool.startY, this.highlighter_tool.currentX, this.highlighter_tool.currentY);
 
           for (let i = 0; i < 5; i++) {
             this.setCanvasContextPath(this.highlighter_tool.startX + i, this.highlighter_tool.startY + i, this.highlighter_tool.currentX + i, this.highlighter_tool.currentY + i);
-            this.setCanvasContextPathStyle("rgb(58,150,270)", 10, this.defaultComposite);
+            this.setCanvasContextPathStyle('rgb(58,150,270)', 10, this.defaultComposite);
             this.setCanvasContextPath(this.highlighter_tool.startX - i, this.highlighter_tool.startY - i, this.highlighter_tool.currentX - i, this.highlighter_tool.currentY - i);
-            this.setCanvasContextPathStyle("rgb(58,150,270)", 10, this.defaultComposite);
+            this.setCanvasContextPathStyle('rgb(58,150,270)', 10, this.defaultComposite);
           }
 
           this.highlighter_tool.startX = this.highlighter_tool.currentX;
@@ -329,12 +331,10 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  localUrl: any[];
-
   showPreviewImage(event: any) {
     // checking if file is uploading
     if (event.target.files && event.target.files[0]) {
-        let reader = new FileReader();
+        const reader = new FileReader();
         reader.onload = (event: any) => {
             this.localUrl = event.target.result;
             this.pdf_js = pdfjsLib.getDocument(this.localUrl);
@@ -346,7 +346,7 @@ export class BoardComponent implements OnInit {
 
             // once the whole file is uploaded
             // this.function_PDF_tracking(this.no_of_pages)
-            this.addPdf(1);
+              this.addPdf(1);
             });
 
         };
@@ -362,21 +362,21 @@ export class BoardComponent implements OnInit {
 
       // by default 1st page is visited
       if (i == 0) {
-        let obj = {}
-        obj["page"] = i + 1
-        obj["status"] = "visited"
+        const obj = {};
+        obj['page'] = i + 1;
+        obj['status'] = 'visited'
         console.log(obj);
         // this.pageTracking.push(obj)
       } else {
-      let obj = {
+      const obj = {
         page: i + 1,
-        status: "novisit"
-      }
+        status: 'novisit'
+      };
       console.log(obj);
       // this.pageTracking.push(obj)
       }
     }
-    console.log("All my pages", this.pageTracking);
+    console.log('All my pages', this.pageTracking);
   }
 
   async nextPage() {
@@ -406,15 +406,15 @@ export class BoardComponent implements OnInit {
 
     if (this.pdf_added_boolean) {
       // if pdf page is already rendered then dont add.. else add the pdf
-      let temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page)
+      const temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page);
       if (temp > -1) {
         // page number is already there in pagetracking
-        console.log("Page number found in tracking list so not adding");
+        console.log('Page number found in tracking list so not adding');
 
       } else {
-        console.log("As page number is not found in tracking list we are adding it");
+        console.log('As page number is not found in tracking list we are adding it');
 
-        await this.addPdf(this.page + 1)
+        await this.addPdf(this.page + 1);
       }
     }
 
@@ -445,7 +445,7 @@ export class BoardComponent implements OnInit {
       image.src = this.notebook[this.page].image;
     }
 
-    console.log("Man at end", this.notebook);
+    console.log('Man at end', this.notebook);
   }
 
   prevPage() {
@@ -497,7 +497,7 @@ export class BoardComponent implements OnInit {
 
     console.log('Man at end', this.notebook);
   }
-  
+
   pdfTick(array, pageNumber) {
     if (pageNumber <= this.no_of_pages) {
       const i = array.findIndex(_item => _item.pageNumber === pageNumber);
@@ -536,10 +536,10 @@ export class BoardComponent implements OnInit {
       date: Date.now()
     };
 
-    this.upsert(this.notebook, this.page , present)
+    this.upsert(this.notebook, this.page , present);
 
-    const data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.notebook));
-    let a = document.createElement('a');
+    const data = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.notebook));
+    const a = document.createElement('a');
     a.href = 'data:' + data;
     a.download = 'data.json';
     a.innerHTML = 'download JSON';
@@ -554,7 +554,7 @@ export class BoardComponent implements OnInit {
     let ctx: any = document.getElementById('backgroundImage');
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
-      let img1 = new Image();
+      const img1 = new Image();
       img1.onload = (event) => {
         // draw background image
         console.log(img1.width);
@@ -565,31 +565,13 @@ export class BoardComponent implements OnInit {
 
 
     };
-    img1.src = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true';
+      img1.src = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true';
     }
   }
 
   // Add math paper
   addMathPaper() {
     let ctx: any = document.getElementById('backgroundImage');
-    if (ctx.getContext) {
-      ctx = ctx.getContext('2d');
-      let img1 = new Image();
-      img1.onload = (event) => {
-        // draw background image
-        console.log(img1.width);
-        // img1.width = 1000
-        // img1.height = 1000
-
-        ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
-    };
-    img1.src = 'https://raw.githubusercontent.com/Canvasbird/canvasboard/master/src/assets/paperType/mathYellow.svg';
-    }
-  }
-
-  // Add graph paper
-  addGraphPaper() {
-    let ctx: any = document.getElementById("backgroundImage")
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
       const img1 = new Image();
@@ -601,7 +583,25 @@ export class BoardComponent implements OnInit {
 
         ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
     };
-    img1.src = "https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true"
+      img1.src = 'https://raw.githubusercontent.com/Canvasbird/canvasboard/master/src/assets/paperType/mathYellow.svg';
+    }
+  }
+
+  // Add graph paper
+  addGraphPaper() {
+    let ctx: any = document.getElementById('backgroundImage');
+    if (ctx.getContext) {
+      ctx = ctx.getContext('2d');
+      const img1 = new Image();
+      img1.onload = (event) => {
+        // draw background image
+        console.log(img1.width);
+        // img1.width = 1000
+        // img1.height = 1000
+
+        ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
+    };
+      img1.src = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true'
     }
   }
 
