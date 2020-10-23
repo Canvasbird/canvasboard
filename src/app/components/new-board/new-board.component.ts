@@ -16,11 +16,18 @@ import { AddRedBackgroundComponent } from '../../plugins/color-background/cb-red
 import { AddBlueBackgroundComponent } from '../../plugins/color-background/cb-bluebackground';
 import { AddYellowBackgroundComponent } from '../../plugins/color-background/cb-yellowbackground';
 import { AddGreenBackgroundComponent } from '../../plugins/color-background/cb-greenbackground';
+import { AddClearBackgroundComponent } from '../../plugins/color-background/cb-clearbackground';
+
 import { AddFontMonospaceComponent } from '../../plugins/monospace';
 import { AddFontPlayfairComponent } from '../../plugins/playfair';
 import { AddLeftAlignComponent } from '../../plugins/left-align';
 import { AddCenterAlignComponent } from '../../plugins/center-align';
 import { AddRightAlignComponent } from '../../plugins/right-align';
+import { AddOrderedListComponent } from '../../plugins/ordered-list';
+import { AddUnOrderedListComponent } from '../../plugins/unordered-list';
+import { AddTopComponent } from '../../plugins/top';
+import { AddBottomComponent } from '../../plugins/bottom';
+import { AddDeleteComponent } from '../../plugins/delete';
 import { BrowserStack } from 'protractor/built/driverProviders';
 
 declare var $: any;
@@ -43,16 +50,22 @@ export class NewBoardComponent implements OnInit {
   AddBlueBackgroundComponent: any;
   AddYellowBackgroundComponent: any;
   AddGreenBackgroundComponent: any;
+  AddClearBackgroundComponent: any;
   AddCanvasBoard: any;
   AddFontMonospaceComponent: any;
   AddFontPlayfairComponent: any;
   AddLeftAlignComponent: any;
   AddCenterAlignComponent: any;
   AddRightAlignComponent: any;
+  AddOrderedListComponent: any;
+  AddUnOrderedListComponent: any;
+  AddTopComponent: any;
+  AddBottomComponent: any;
+  AddDeleteComponent: any;
 
-  uniqueChartID = (function() {
+  uniqueChartID = (() => {
     let id = 0;
-    return function() {
+    return () => {
       return id++;
     };
   })();
@@ -66,12 +79,18 @@ export class NewBoardComponent implements OnInit {
     this.AddBlueBackgroundComponent = new AddBlueBackgroundComponent();
     this.AddYellowBackgroundComponent = new AddYellowBackgroundComponent();
     this.AddGreenBackgroundComponent = new AddGreenBackgroundComponent();
+    this.AddClearBackgroundComponent = new AddClearBackgroundComponent();
     this.AddCanvasBoard = new AddCanvasBoard();
     this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
     this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
     this.AddLeftAlignComponent = new AddLeftAlignComponent();
     this.AddCenterAlignComponent = new AddCenterAlignComponent();
     this.AddRightAlignComponent = new AddRightAlignComponent();
+    this.AddOrderedListComponent = new AddOrderedListComponent();
+    this.AddUnOrderedListComponent = new AddUnOrderedListComponent();
+    this.AddTopComponent = new AddTopComponent();
+    this.AddBottomComponent = new AddBottomComponent();
+    this.AddDeleteComponent = new AddDeleteComponent();
   }
 
   ngOnInit() {
@@ -133,84 +152,6 @@ export class NewBoardComponent implements OnInit {
         <!-- expand toolbox -->
         <div id="cb-expand-more-toolbox-${uid}" class="cb-more-toolbox">
           <div id="cb-buttons-${uid}" class="toolbox-main shadow">
-            <!-- delete button -->
-            <div class="tool box1 m-1">
-              <button class="btn btn-light" id="remove-cb-box1-${uid}">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-            </svg>
-              </button>
-            </div>
-            <!-- Green Background color button -->
-            <div class="tool box1 m-1">
-            <button class="btn btn-success" id="add-background-cb-green-${uid}">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"/>
-              </svg>
-            </button>
-          </div>
-          <!-- Yellow Background color button -->
-          <div class="tool box1 m-1">
-            <button class="btn btn-warning" id="add-background-cb-yellow-${uid}">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"/>
-              </svg>
-            </button>
-          </div>
-          <!-- Blue Background color button -->
-          <div class="tool box1 m-1">
-            <button class="btn btn-primary" id="add-background-cb-blue-${uid}">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"/>
-              </svg>
-            </button>
-          </div>
-          <!-- light Background color button -->
-          <div class="tool box1 m-1">
-            <button class="btn btn-light" id="add-background-cb-light-${uid}">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"/>
-              </svg>
-            </button>
-          </div>
-          <!-- Ordered list button -->
-          <div class="tool box1 m-1" id="add-ordered-list-${uid}">
-            <button class="btn btn-light">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-ol" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
-              <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"/>
-            </svg>
-            </button>
-          </div>
-          <!-- Unordered list button -->
-          <div class="tool box1 m-1" id="add-unordered-list-${uid}">
-            <button class="btn btn-light">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-ul" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-              </svg>
-            </button>
-          </div>
-            <!-- top -->
-            <div class="tool box5 m-1">
-              <button class="btn btn-light" id="add-new-box-prev-${uid}">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-up" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z" />
-                </svg>
-              </button>
-            </div>
-            <!-- bottom -->
-            <div class="tool box5 m-1">
-              <button class="btn btn-light" id="add-new-box-${uid}">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z" />
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -321,24 +262,45 @@ export class NewBoardComponent implements OnInit {
           $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
         }
       );
-      // Adding click action of above button
-      $(`#add-new-box-prev-${uid}`).click(() => {
-        if (checker !== 0) {
-          this.addBeforeBlockEditor(uid, 1);
-        }
-      });
 
-      //  Adding the click action of the below button
-      $(`#add-new-box-${uid}`).click(() => {
-        this.addAfterBlockEditor(uid, 1);
-      });
+      // Add Delete HTML and click Function
+      this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
+      this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
 
-      // Delete/Remove button
-      $(`#remove-cb-box1-${uid}`).click(() => {
-        if (checker !== 0) {
-          $(`#cb-box-1-${uid}`).remove();
-        }
-      });
+      // Adding red background toolbox
+      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
+      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
+      // Adding green background toolbox
+      this.AddGreenBackgroundComponent.addGreenBackgroundHTMLCode(uid);
+      this.AddGreenBackgroundComponent.addGreenBackgroundClickFunction(uid);
+
+      // Adding yellow background toolbox
+      this.AddYellowBackgroundComponent.addYellowBackgroundHTMLCode(uid);
+      this.AddYellowBackgroundComponent.addYellowBackgroundClickFunction(uid);
+
+      // Adding blue background toolbox
+      this.AddBlueBackgroundComponent.addBlueBackgroundHTMLCode(uid);
+      this.AddBlueBackgroundComponent.addBlueBackgroundClickFunction(uid);
+
+      // Adding clear background toolbox
+      this.AddClearBackgroundComponent.addClearBackgroundHTMLCode(uid);
+      this.AddClearBackgroundComponent.addClearBackgroundClickFunction(uid);
+
+      // Add OrderedList HTML and click Function
+      this.AddOrderedListComponent.addOrderedListTagHTMLCode(uid);
+      this.AddOrderedListComponent.addOrderedListTagClickFunction(uid);
+
+      // Add UnOrderedList HTML and click Function
+      this.AddUnOrderedListComponent.addUnOrderedListTagHTMLCode(uid);
+      this.AddUnOrderedListComponent.addUnOrderedListTagClickFunction(uid);
+
+      // Add Top HTML and click Function
+      this.AddTopComponent.addTopTagHTMLCode(uid);
+      this.AddTopComponent.addTopTagClickFunction(uid, this.addBeforeBlockEditor, checker);
+
+      // Add Bottom HTML and click Function
+      this.AddBottomComponent.addBottomTagHTMLCode(uid);
+      this.AddBottomComponent.addBottomTagClickFunction(uid, this.addAfterBlockEditor);
 
       // Add H1 HTML and click Function
       this.AddH1Component.addH1TagHTMLCode(uid);
@@ -356,9 +318,6 @@ export class NewBoardComponent implements OnInit {
       this.AddParaComponent.addParaTagHTMLCode(uid);
       this.AddParaComponent.addParaTagClickFunction(uid);
 
-      // Adding red background toolbox
-      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
-      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
 
       // Adding Left Align HTML and click Function
       this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
@@ -375,55 +334,6 @@ export class NewBoardComponent implements OnInit {
       // // Add Canvasboard Tag
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
       // this.AddCanvasBoard.addCanvasBoardClickFunction(uid);
-
-      // Adding blue background color
-      $(`#add-background-cb-blue-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-green cb-background-red'
-          )
-          .addClass('cb-background-blue');
-      });
-      // Adding green background color
-      $(`#add-background-cb-green-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-blue cb-background-red'
-          )
-          .addClass('cb-background-green');
-      });
-      // Adding yellow background color
-      $(`#add-background-cb-yellow-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-green cb-background-blue cb-background-red'
-          )
-          .addClass('cb-background-yellow');
-      });
-      // Adding Original background color
-      $(`#add-background-cb-light-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass(
-          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
-        );
-      });
-
-      // Add ordered list
-      $(`#add-ordered-list-${uid}`).click(() => {
-        $(`#original-${uid}`).append(
-          `<ol>
-          <li></li>
-          </ol>`
-        );
-      });
-
-      // Add unordered list
-      $(`#add-unordered-list-${uid}`).click(() => {
-        $(`#original-${uid}`).append(
-          `<ul>
-          <li></li>
-          </ul>`
-        );
-      });
 
       // Add code snippet
       $(`#add-code-snippet-${uid}`).click(() => {
@@ -626,6 +536,45 @@ export class NewBoardComponent implements OnInit {
         }
       });
 
+      // Add Delete HTML and click Function
+      this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
+      this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
+
+      // Adding red background toolbox
+      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
+      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
+      // Adding green background toolbox
+      this.AddGreenBackgroundComponent.addGreenBackgroundHTMLCode(uid);
+      this.AddGreenBackgroundComponent.addGreenBackgroundClickFunction(uid);
+
+      // Adding yellow background toolbox
+      this.AddYellowBackgroundComponent.addYellowBackgroundHTMLCode(uid);
+      this.AddYellowBackgroundComponent.addYellowBackgroundClickFunction(uid);
+
+      // Adding blue background toolbox
+      this.AddBlueBackgroundComponent.addBlueBackgroundHTMLCode(uid);
+      this.AddBlueBackgroundComponent.addBlueBackgroundClickFunction(uid);
+
+      // Adding clear background toolbox
+      this.AddClearBackgroundComponent.addClearBackgroundHTMLCode(uid);
+      this.AddClearBackgroundComponent.addClearBackgroundClickFunction(uid);
+
+      // Add OrderedList HTML and click Function
+      this.AddOrderedListComponent.addOrderedListTagHTMLCode(uid);
+      this.AddOrderedListComponent.addOrderedListTagClickFunction(uid);
+
+      // Add UnOrderedList HTML and click Function
+      this.AddUnOrderedListComponent.addUnOrderedListTagHTMLCode(uid);
+      this.AddUnOrderedListComponent.addUnOrderedListTagClickFunction(uid);
+
+      // Add Top HTML and click Function
+      this.AddTopComponent.addTopTagHTMLCode(uid);
+      this.AddTopComponent.addTopTagClickFunction(uid, this.addBeforeBlockEditor, checker);
+
+      // Add Bottom HTML and click Function
+      this.AddBottomComponent.addBottomTagHTMLCode(uid);
+      this.AddBottomComponent.addBottomTagClickFunction(uid, this.addAfterBlockEditor);
+
       // Add H1 HTML and click Function
       this.AddH1Component.addH1TagHTMLCode(uid);
       this.AddH1Component.addH1TagClickFunction(uid);
@@ -642,9 +591,6 @@ export class NewBoardComponent implements OnInit {
       this.AddParaComponent.addParaTagHTMLCode(uid);
       this.AddParaComponent.addParaTagClickFunction(uid);
 
-      // Adding red background toolbox
-      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
-      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
 
       // Adding Left Align HTML and click Function
       this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
@@ -657,49 +603,6 @@ export class NewBoardComponent implements OnInit {
       // Adding Right Align HTML and click Function
       this.AddRightAlignComponent.addRightAlignTagHTMLCode(uid);
       this.AddRightAlignComponent.addRightAlignTagClickFunction(uid);
-
-      // Adding red background color
-      $(`#add-background-cb-red-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-green cb-background-blue'
-          )
-          .addClass('cb-background-red');
-      });
-
-      // Adding blue background color
-      $(`#add-background-cb-blue-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-green cb-background-red'
-          )
-          .addClass('cb-background-blue');
-      });
-
-      // Adding green background color
-      $(`#add-background-cb-green-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-blue cb-background-red'
-          )
-          .addClass('cb-background-green');
-      });
-
-      // Adding yellow background color
-      $(`#add-background-cb-yellow-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-green cb-background-blue cb-background-red'
-          )
-          .addClass('cb-background-yellow');
-      });
-
-      // Adding Original background color
-      $(`#add-background-cb-light-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass(
-          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
-        );
-      });
 
       // Adding Canvas board
       $(`#add-canvas-cb-${uid}`).click(() => {
@@ -725,24 +628,6 @@ export class NewBoardComponent implements OnInit {
           const data = color.value;
           canvas.freeDrawingBrush.color = data;
         });
-      });
-
-      // Add ordered list
-      $(`#add-ordered-list-${uid}`).click(() => {
-        $(`#original-${uid}`).append(
-          `<ol>
-          <li></li>
-          </ol>`
-        );
-      });
-
-      // Add unordered list
-      $(`#add-unordered-list-${uid}`).click(() => {
-        $(`#original-${uid}`).append(
-          `<ul>
-          <li></li>
-          </ul>`
-        );
       });
 
       // Add code snippet
