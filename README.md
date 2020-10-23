@@ -83,6 +83,7 @@ Thanks goes to these wonderful people ✨✨:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/jawsvk"><img src="https://avatars1.githubusercontent.com/u/36097628?v=4" width="100px;" alt=""/><br /><sub><b>Jawen Voon</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=jawsvk" title="Code">💻</a></td>
+    <td align="center"><a href="http://kingavatar.github.io"><img src="https://avatars2.githubusercontent.com/u/31726036?v=4" width="100px;" alt=""/><br /><sub><b>Saikiran Reddy</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kingavatar" title="Code">💻</a></td>
   </tr>
 </table>
 
