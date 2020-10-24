@@ -886,7 +886,15 @@ export class NewBoardComponent implements OnInit {
     this.AddDeleteComponent.addDeleteTagToolBox(this.currentChartID);
   }
 
+  // Adding Top
+  cbToolboxTopTag = () => {
+      this.AddTopComponent.addTopTagToolBox(this.currentChartID, this.addBeforeBlockEditor);
+  }
 
+   // Adding Bottom
+  cbToolboxBottomTag = () => {
+    this.AddBottomComponent.addBottomTagToolBox(this.currentChartID, this.addAfterBlockEditor);
+  }
   // Adding Red background color
   cbToolboxRedBackground = () => {
     this.addAfterBlockEditor('main-box', 7);
