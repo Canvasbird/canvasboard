@@ -40,12 +40,12 @@ declare var $: any;
 export class NewBoardComponent implements OnInit {
   fileToUpload: File = null;
 
+  currentChartID: number;
   // Initializing plugins
   AddH1Component: any;
   AddH2Component: any;
   AddH3Component: any;
   AddParaComponent: any;
-
   AddRedBackgroundComponent: any;
   AddBlueBackgroundComponent: any;
   AddYellowBackgroundComponent: any;
@@ -250,6 +250,15 @@ export class NewBoardComponent implements OnInit {
         default:
           break;
       }
+
+      // Adding listener to current card
+      $(`#original-${uid}`).click(() => {this.currentChartID = uid; });
+
+      // Changing focus to Current Card
+      $(`#original-${uid}`).focus();
+
+      // Setting current card id
+      this.currentChartID = uid;
 
       // hiding and showing the TOOLBOX
       $(`#show-more-toolbox-${uid}`).hover(
@@ -871,6 +880,12 @@ export class NewBoardComponent implements OnInit {
   cbToolboxParaTag = () => {
     this.addAfterBlockEditor('main-box', 6);
   }
+
+  // Adding Delete
+  cbToolboxDeleteTag = () => {
+    this.AddDeleteComponent.addDeleteTagToolBox(this.currentChartID);
+  }
+
 
   // Adding Red background color
   cbToolboxRedBackground = () => {
