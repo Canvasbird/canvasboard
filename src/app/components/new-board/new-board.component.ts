@@ -544,7 +544,14 @@ export class NewBoardComponent implements OnInit {
           $(`#cb-box-1-${uid}`).remove();
         }
       });
+      // Adding listener to current card
+      $(`#original-${uid}`).click(() => {this.currentChartID = uid; });
 
+      // Changing focus to Current Card
+      $(`#original-${uid}`).focus();
+
+      // Setting current card id
+      this.currentChartID = uid;
       // Add Delete HTML and click Function
       this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
       this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
