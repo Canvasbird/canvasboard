@@ -544,7 +544,14 @@ export class NewBoardComponent implements OnInit {
           $(`#cb-box-1-${uid}`).remove();
         }
       });
+      // Adding listener to current card
+      $(`#original-${uid}`).click(() => {this.currentChartID = uid; });
 
+      // Changing focus to Current Card
+      $(`#original-${uid}`).focus();
+
+      // Setting current card id
+      this.currentChartID = uid;
       // Add Delete HTML and click Function
       this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
       this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
@@ -886,7 +893,15 @@ export class NewBoardComponent implements OnInit {
     this.AddDeleteComponent.addDeleteTagToolBox(this.currentChartID);
   }
 
+  // Adding Top
+  cbToolboxTopTag = () => {
+      this.AddTopComponent.addTopTagToolBox(this.currentChartID, this.addBeforeBlockEditor);
+  }
 
+   // Adding Bottom
+  cbToolboxBottomTag = () => {
+    this.AddBottomComponent.addBottomTagToolBox(this.currentChartID, this.addAfterBlockEditor);
+  }
   // Adding Red background color
   cbToolboxRedBackground = () => {
     this.addAfterBlockEditor('main-box', 7);
