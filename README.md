@@ -26,7 +26,7 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
 ## Screenshots
 
-| ![xdm_1][01] | ![xdm_5][02] | ![xdm_3][03] |
+| ![cb_1][01] | ![cb_2][02] | ![cb3_3][03] |
 | --- | --- | --- |
 
 ## Dependencies🗃:
