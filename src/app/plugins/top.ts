@@ -12,7 +12,7 @@ export class AddTopComponent {
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- top -->
-            <div class="tool box5 m-1">
+            <div class="tool box5 m-1"  title="Add Card Top">
               <button class="btn btn-light" id="add-new-box-prev-${uid}">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-up" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">

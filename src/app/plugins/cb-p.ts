@@ -6,7 +6,7 @@ export class AddParaComponent {
   addParaTagHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- paragraph -->
-    <div class="tool box4 m-1">
+    <div class="tool box4 m-1" title="Paragraph">
       <button class="btn btn-light" id="add-p-box2-${uid}">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-text-paragraph" fill="currentColor"
           xmlns="http://www.w3.org/2000/svg">
