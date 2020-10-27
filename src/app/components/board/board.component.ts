@@ -57,7 +57,7 @@ export class BoardComponent implements OnInit {
 
   // # toolbox declarations
   // ## Normal pen
-  normalPen_startX: number;
+  normalPenStartX: number;
   normalPen_startY: number;
   normalPen_currentX: number;
   normalPen_currentY: number;
@@ -175,7 +175,7 @@ export class BoardComponent implements OnInit {
         this.mouseControl = true;
         if (this.mouseControl && (this.basicTools.normalPen || this.basicTools.eraser)) {
           // taking mouse down X and Y coordinates
-          this.normalPen_startX = e.offsetX;
+          this.normalPenStartX = e.offsetX;
           this.normalPen_startY = e.offsetY;
           this.normalPen_width = penWidth ? penWidth : this.defaultWidth;
           this.normalPen_color = penColor ? penColor : this.penColour;
@@ -188,9 +188,9 @@ export class BoardComponent implements OnInit {
         if (this.mouseControl && (this.basicTools.normalPen || this.basicTools.eraser)) {
           this.normalPen_currentX = e.offsetX;
           this.normalPen_currentY = e.offsetY;
-          this.setCanvasContextPath(this.normalPen_startX, this.normalPen_startY, this.normalPen_currentX, this.normalPen_currentY);
+          this.setCanvasContextPath(this.normalPenStartX, this.normalPen_startY, this.normalPen_currentX, this.normalPen_currentY);
           this.setCanvasContextPathStyle(this.normalPen_color, this.normalPen_width, this.normalPen_composite);
-          this.normalPen_startX = this.normalPen_currentX;
+          this.normalPenStartX = this.normalPen_currentX;
           this.normalPen_startY = this.normalPen_currentY;
         }
 
