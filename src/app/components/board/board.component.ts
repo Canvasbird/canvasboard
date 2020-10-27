@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, Renderer } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Renderer2 } from '@angular/core';
 import {Pages} from '../../../interfaces/pages';
 import {Tracking} from '../../../interfaces/tracking';
 import { log } from 'util';
@@ -10,7 +10,7 @@ declare const pdfjsLib: any;
 })
 export class BoardComponent implements OnInit {
 
-  constructor(public renderer: Renderer) {
+  constructor(public renderer: Renderer2) {
     this.getScreenSize();
   }
 
@@ -106,13 +106,13 @@ export class BoardComponent implements OnInit {
     this.canvasElement = this.canvas.nativeElement;
     this.ctx = this.canvasElement.getContext('2d');
     // setting the Width and Height to the canvas element
-    this.renderer.setElementAttribute(this.canvasElement, 'width', this.scrWidth);
-    this.renderer.setElementAttribute(this.canvasElement, 'height', this.scrHeight);
+    this.renderer.setAttribute(this.canvasElement, 'width', this.scrWidth);
+    this.renderer.setAttribute(this.canvasElement, 'height', this.scrHeight);
 
     // for background
     this.backgroundCanvas = this.background.nativeElement;
-    this.renderer.setElementAttribute(this.backgroundCanvas, 'width', this.scrWidth);
-    this.renderer.setElementAttribute(this.backgroundCanvas, 'height', this.scrHeight);
+    this.renderer.setAttribute(this.backgroundCanvas, 'width', this.scrWidth);
+    this.renderer.setAttribute(this.backgroundCanvas, 'height', this.scrHeight);
   }
 
   addPdf(page_number) {
