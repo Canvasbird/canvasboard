@@ -365,8 +365,8 @@ export class BoardComponent implements OnInit {
     // checking if file is uploading
     if (event.target.files && event.target.files[0]) {
         const reader = new FileReader();
-        reader.onload = (event: any) => {
-            this.localUrl = event.target.result;
+        reader.onload = (readerEvent: any) => {
+            this.localUrl = readerEvent.target.result;
             this.pdfJs = pdfjsLib.getDocument(this.localUrl);
 
             this.pdfJs.promise.then(doc => {
