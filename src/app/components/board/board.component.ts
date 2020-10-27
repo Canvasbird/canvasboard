@@ -62,7 +62,7 @@ export class BoardComponent implements OnInit {
   normalPenCurrentX: number;
   normalPenCurrentY: number;
   normalPenEndX: number;
-  normalPen_endY: number;
+  normalPenEndY: number;
   normalPen_width: number;
   normalPen_color: any;
   normalPen_composite: string;
@@ -200,7 +200,7 @@ export class BoardComponent implements OnInit {
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
         this.normalPenEndX = e.offsetX;
-        this.normalPen_endY = e.offsetY;
+        this.normalPenEndY = e.offsetY;
       });
     }
   }
