@@ -393,8 +393,10 @@ export class BoardComponent implements OnInit {
       // by default 1st page is visited
       if (i === 0) {
         const obj = {};
-        obj['page'] = i + 1;
-        obj['status'] = 'visited'
+        const key1 = 'page';
+        const key2 = 'status';
+        obj[key1] = i + 1;
+        obj[key2] = 'visited';
         console.log(obj);
         // this.pageTracking.push(obj)
       } else {
