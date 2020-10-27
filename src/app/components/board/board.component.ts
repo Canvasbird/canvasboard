@@ -660,7 +660,7 @@ export class BoardComponent implements OnInit {
   rgbConverter(hexValue, opacity= 1) {
     // changing the value to RGB format
     let value = hexValue.match(/[A-Za-z0-9]{2}/g);
-    value = value.map(function(v) { return parseInt(v, 16); });
+    value = value.map((v) => parseInt(v, 16));
     const rgbConverted = 'rgb(' + value.join(',') + ',' + opacity + ')';
     return rgbConverted;
   }
