@@ -549,7 +549,7 @@ export class BoardComponent implements OnInit {
   }
 
   upsert(array, pageNumber, obj) {
-    const i = array.findIndex(_item => _item.pageNumber === pageNumber);
+    const i = array.findIndex(item => item.pageNumber === pageNumber);
     if (i > -1) {
       array[i] = obj;
       console.log('Found page numberr');
