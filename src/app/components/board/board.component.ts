@@ -48,7 +48,7 @@ export class BoardComponent implements OnInit {
   defaultComposite = 'source-over';
 
   // basic_tools booleans
-  basic_tools = {
+  basicTools = {
     normalPen: false,
     brushPen: false,
     highlighter: false,
@@ -139,13 +139,13 @@ export class BoardComponent implements OnInit {
 
   // Enabling <selectedTool> and disabling other tools
   enableTool(selectedTool: string) {
-    Object.keys(this.basic_tools).forEach((key) => {
-      this.basic_tools[key] = false;
+    Object.keys(this.basicTools).forEach((key) => {
+      this.basicTools[key] = false;
     });
-    this.basic_tools[selectedTool] = true;
+    this.basicTools[selectedTool] = true;
 
     // Enable size button to Eraser tool.
-    if (this.basic_tools.eraser) {
+    if (this.basicTools.eraser) {
       this.enableSizeButtons();
     } else {
       this.disableSizeButtons();
@@ -169,11 +169,11 @@ export class BoardComponent implements OnInit {
   pen(penWidth: number = null, penColor: any = null, penComposite: string = null) {
 
     // post checking
-    if (this.basic_tools.normalPen || this.basic_tools.eraser) {
+    if (this.basicTools.normalPen || this.basicTools.eraser) {
       // When mouse is pressed down
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true;
-        if (this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)) {
+        if (this.mouseControl && (this.basicTools.normalPen || this.basicTools.eraser)) {
           // taking mouse down X and Y coordinates
           this.normalPen_startX = e.offsetX;
           this.normalPen_startY = e.offsetY;
@@ -185,7 +185,7 @@ export class BoardComponent implements OnInit {
 
       // When Mouse is moving
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
-        if (this.mouseControl && (this.basic_tools.normalPen || this.basic_tools.eraser)) {
+        if (this.mouseControl && (this.basicTools.normalPen || this.basicTools.eraser)) {
           this.normalPen_currentX = e.offsetX;
           this.normalPen_currentY = e.offsetY;
           this.setCanvasContextPath(this.normalPen_startX, this.normalPen_startY, this.normalPen_currentX, this.normalPen_currentY);
@@ -209,11 +209,11 @@ export class BoardComponent implements OnInit {
 
     this.enableTool('brushPen');
 
-    if (this.basic_tools.brushPen) {
+    if (this.basicTools.brushPen) {
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true;
 
-        if (this.mouseControl && this.basic_tools.brushPen) {
+        if (this.mouseControl && this.basicTools.brushPen) {
           // taking mouse down X and Y coordinates
           this.calligraphy_tool.startX = e.offsetX;
           this.calligraphy_tool.startY = e.offsetY;
@@ -221,7 +221,7 @@ export class BoardComponent implements OnInit {
       });
 
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
-        if (this.mouseControl && this.basic_tools.brushPen) {
+        if (this.mouseControl && this.basicTools.brushPen) {
 
           this.calligraphy_tool.currentX = e.offsetX;
           this.calligraphy_tool.currentY = e.offsetY;
@@ -290,11 +290,11 @@ export class BoardComponent implements OnInit {
 
     this.enableTool('highlighter');
 
-    if (this.basic_tools.highlighter) {
+    if (this.basicTools.highlighter) {
       this.globalListenFunc = this.renderer.listen('document', 'mousedown', e => {
         this.mouseControl = true;
 
-        if (this.mouseControl && this.basic_tools.highlighter) {
+        if (this.mouseControl && this.basicTools.highlighter) {
           // taking mouse down X and Y coordinates
           this.highlighter_tool.startX = e.offsetX;
           this.highlighter_tool.startY = e.offsetY;
@@ -302,7 +302,7 @@ export class BoardComponent implements OnInit {
       });
 
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
-        if (this.mouseControl && this.basic_tools.highlighter) {
+        if (this.mouseControl && this.basicTools.highlighter) {
           this.highlighter_tool.currentX = e.offsetX;
           this.highlighter_tool.currentY = e.offsetY;
 
