@@ -296,36 +296,36 @@ export class BoardComponent implements OnInit {
 
         if (this.mouseControl && this.basicTools.highlighter) {
           // taking mouse down X and Y coordinates
-          this.highlighter_tool.startX = e.offsetX;
-          this.highlighter_tool.startY = e.offsetY;
+          this.highlighterTool.startX = e.offsetX;
+          this.highlighterTool.startY = e.offsetY;
         }
       });
 
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
         if (this.mouseControl && this.basicTools.highlighter) {
-          this.highlighter_tool.currentX = e.offsetX;
-          this.highlighter_tool.currentY = e.offsetY;
+          this.highlighterTool.currentX = e.offsetX;
+          this.highlighterTool.currentY = e.offsetY;
 
           this.ctx.globalCompositeOperation = this.defaultComposite;
-          this.setCanvasContextPath(this.highlighter_tool.startX, this.highlighter_tool.startY, this.highlighter_tool.currentX, this.highlighter_tool.currentY);
+          this.setCanvasContextPath(this.highlighterTool.startX, this.highlighterTool.startY, this.highlighterTool.currentX, this.highlighterTool.currentY);
 
           for (let i = 0; i < 5; i++) {
-            this.setCanvasContextPath(this.highlighter_tool.startX + i, this.highlighter_tool.startY + i, this.highlighter_tool.currentX + i, this.highlighter_tool.currentY + i);
+            this.setCanvasContextPath(this.highlighterTool.startX + i, this.highlighterTool.startY + i, this.highlighterTool.currentX + i, this.highlighterTool.currentY + i);
             this.setCanvasContextPathStyle('rgb(58,150,270)', 10, this.defaultComposite);
-            this.setCanvasContextPath(this.highlighter_tool.startX - i, this.highlighter_tool.startY - i, this.highlighter_tool.currentX - i, this.highlighter_tool.currentY - i);
+            this.setCanvasContextPath(this.highlighterTool.startX - i, this.highlighterTool.startY - i, this.highlighterTool.currentX - i, this.highlighterTool.currentY - i);
             this.setCanvasContextPathStyle('rgb(58,150,270)', 10, this.defaultComposite);
           }
 
-          this.highlighter_tool.startX = this.highlighter_tool.currentX;
-          this.highlighter_tool.startY = this.highlighter_tool.currentY;
+          this.highlighterTool.startX = this.highlighterTool.currentX;
+          this.highlighterTool.startY = this.highlighterTool.currentY;
         }
       });
 
       // When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
-        this.highlighter_tool.endX = e.offsetX;
-        this.highlighter_tool.endY = e.offsetY;
+        this.highlighterTool.endX = e.offsetX;
+        this.highlighterTool.endY = e.offsetY;
       });
 
     }
