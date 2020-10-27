@@ -597,7 +597,8 @@ export class BoardComponent implements OnInit {
 
 
     };
-      img1.src = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true';
+      img1.src
+      = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true';
     }
   }
 
