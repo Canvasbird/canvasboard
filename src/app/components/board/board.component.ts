@@ -75,7 +75,7 @@ export class BoardComponent implements OnInit {
     endX: -1,
     endY: -1,
   };
-  highlighter_tool = {
+  highlighterTool = {
     startX: -1,
     startY: -1,
     currentX: -1,
