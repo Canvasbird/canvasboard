@@ -371,7 +371,7 @@ export class BoardComponent implements OnInit {
 
             this.pdfJs.promise.then(doc => {
               console.log('PDF LOADED');
-              console.log('THis pdf has ', doc._pdfInfo.numPages);
+              console.log('This pdf has ', doc._pdfInfo.numPages);
               this.noOfPages = doc._pdfInfo.numPages;
 
             // once the whole file is uploaded
