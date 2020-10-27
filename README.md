@@ -24,9 +24,10 @@ Canvasboard can be scaled up to onboard multiple plugins in one place that can b
 
 More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
-<img src="https://github.com/goliakshay357/hack-images/blob/master/hack2.png?raw=true" alt="dashboard" width="880">
-<img src="https://github.com/goliakshay357/hack-images/blob/master/graph.png?raw=true" alt="dashboard" width="880">
-<img src="https://github.com/goliakshay357/hack-images/blob/master/Screenshot%20from%202020-09-13%2020-38-40.png?raw=true" alt="dashboard" width="880">
+## Screenshots
+
+| ![cb_1][01] | ![cb_2][02] | ![cb3_3][03] |
+| --- | --- | --- |
 
 ## Dependencies🗃:
 <p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot">
@@ -92,3 +93,9 @@ Thanks goes to these wonderful people ✨✨:
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+[//]: #ImageLinks
+[01]: https://github.com/goliakshay357/hack-images/blob/master/hack2.png?raw=true
+[02]: https://github.com/goliakshay357/hack-images/blob/master/graph.png?raw=true
+[03]: https://github.com/goliakshay357/hack-images/blob/master/Screenshot%20from%202020-09-13%2020-38-40.png?raw=true

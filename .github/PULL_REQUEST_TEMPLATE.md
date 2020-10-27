@@ -4,7 +4,7 @@
 
 ## Proposed changes
 
-Brief description of what is fixed or changed
+### Brief description of what is fixed or changed
 
 ## Types of changes
 

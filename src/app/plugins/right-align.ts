@@ -7,7 +7,7 @@ export class AddRightAlignComponent {
 
       $(`#cb-buttons-${uid}`).append(`
       <!-- Right tag -->
-      <div class="tool box1 m-1">
+      <div class="tool box1 m-1" title="Right Align">
         <button class="btn btn-light" id="add-right-align-box2-${uid}">
            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-text-right" fill="currentColor"
            xmlns="http://www.w3.org/2000/svg">

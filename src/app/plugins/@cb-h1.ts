@@ -12,7 +12,7 @@ export class AddH1Component {
 
       $(`#cb-buttons-${uid}`).append(`
       <!-- H1 tag -->
-      <div class="tool box1 m-1">
+      <div class="tool box1 m-1" title="H1">
         <button class="btn btn-light" id="add-h1-box2-${uid}">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-h1" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">

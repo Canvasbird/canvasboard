@@ -12,7 +12,7 @@ export class AddBottomComponent {
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- bottom -->
-            <div class="tool box5 m-1">
+            <div class="tool box5 m-1" title="Add Card Bottom">
               <button class="btn btn-light" id="add-new-box-${uid}">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
