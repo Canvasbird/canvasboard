@@ -29,7 +29,7 @@ export class BoardComponent implements OnInit {
   notebook: Pages[] = [];
   // for PDF.js
   pdfJs: any;
-  no_of_pages: any;
+  noOfPages: any;
   // PDF tracking
   pageTracking: Tracking[] = [];
   pdf_added_boolean = false;
@@ -342,7 +342,7 @@ export class BoardComponent implements OnInit {
             this.pdfJs.promise.then(doc => {
               console.log('PDF LOADED');
               console.log('THis pdf has ', doc._pdfInfo.numPages);
-              this.no_of_pages = doc._pdfInfo.numPages;
+              this.noOfPages = doc._pdfInfo.numPages;
 
             // once the whole file is uploaded
             // this.function_PDF_tracking(this.no_of_pages)
@@ -499,7 +499,7 @@ export class BoardComponent implements OnInit {
   }
 
   pdfTick(array, pageNumber) {
-    if (pageNumber <= this.no_of_pages) {
+    if (pageNumber <= this.noOfPages) {
       const i = array.findIndex(_item => _item.pageNumber === pageNumber);
       if (i > -1) {
       } else {
