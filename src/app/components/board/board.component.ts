@@ -650,7 +650,7 @@ export class BoardComponent implements OnInit {
     // #XXXXXX -> ["XX", "XX", "XX"]
     let value = data.value.match(/[A-Za-z0-9]{2}/g);
     // ["XX", "XX", "XX"] -> [n, n, n]
-    value = value.map(function(v) { return parseInt(v, 16); });
+    value = value.map((v) => parseInt(v, 16));
     // [n, n, n] -> rgb(n,n,n)
     const rgbConverted = 'rgb(' + value.join(',') + ',' + opacity + ')';
     console.log(rgbConverted, 'Colour Changed');
