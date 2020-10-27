@@ -83,7 +83,7 @@ export class BoardComponent implements OnInit {
     endX: -1,
     endY: -1,
   };
-  eraser_tool = {
+  eraserTool = {
     width: 20,
     color: 'rgba(1,0,0)',
     composite: 'destination-out'
@@ -257,11 +257,11 @@ export class BoardComponent implements OnInit {
 
   eraserButton() {
     this.enableTool('eraser');
-    this.pen(this.eraser_tool.width, this.eraser_tool.color, this.eraser_tool.composite);
+    this.pen(this.eraserTool.width, this.eraserTool.color, this.eraserTool.composite);
   }
 
   setSize(size: number) {
-    this.pen(size, this.eraser_tool.color, this.eraser_tool.composite);
+    this.pen(size, this.eraserTool.color, this.eraserTool.composite);
   }
 
   disableButton(id: string) {
