@@ -391,7 +391,7 @@ export class BoardComponent implements OnInit {
       console.log(i);
 
       // by default 1st page is visited
-      if (i == 0) {
+      if (i === 0) {
         const obj = {};
         obj['page'] = i + 1;
         obj['status'] = 'visited'
