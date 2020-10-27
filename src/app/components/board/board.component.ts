@@ -32,7 +32,7 @@ export class BoardComponent implements OnInit {
   noOfPages: any;
   // PDF tracking
   pageTracking: Tracking[] = [];
-  pdf_added_boolean = false;
+  pdfAddedBoolean = false;
 
   // ## content declarations
   ctx: any;
@@ -126,7 +126,7 @@ export class BoardComponent implements OnInit {
         const context: any = canvas.getContext('2d');
         const viewport: any = page.getViewport({ scale: 1.3});
         viewport.height = this.scrHeight;
-        this.pdf_added_boolean = true;
+        this.pdfAddedBoolean = true;
         // viewport.width = '200px';
         page.render({
           canvasContext: context,
@@ -404,7 +404,7 @@ export class BoardComponent implements OnInit {
     this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
     this.ctx.globalCompositeOperation = this.defaultComposite;
 
-    if (this.pdf_added_boolean) {
+    if (this.pdfAddedBoolean) {
       // if pdf page is already rendered then dont add.. else add the pdf
       const temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page);
       if (temp > -1) {
