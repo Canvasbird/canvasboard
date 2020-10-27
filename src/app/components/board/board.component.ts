@@ -322,7 +322,12 @@ export class BoardComponent implements OnInit {
           this.highlighterTool.currentY = e.offsetY;
 
           this.ctx.globalCompositeOperation = this.defaultComposite;
-          this.setCanvasContextPath(this.highlighterTool.startX, this.highlighterTool.startY, this.highlighterTool.currentX, this.highlighterTool.currentY);
+          this.setCanvasContextPath(
+            this.highlighterTool.startX,
+            this.highlighterTool.startY,
+            this.highlighterTool.currentX,
+            this.highlighterTool.currentY
+          );
 
           for (let i = 0; i < 5; i++) {
             this.setCanvasContextPath(this.highlighterTool.startX + i, this.highlighterTool.startY + i, this.highlighterTool.currentX + i, this.highlighterTool.currentY + i);
