@@ -23,7 +23,7 @@ export class BoardComponent implements OnInit {
   backgroundCanvas: any;
   scrHeight: any;
   scrWidth: any;
-  globalListenFunc: Function;
+  globalListenFunc: () => void;
   mouseControl = false;
   page: number;
   notebook: Pages[] = [];
