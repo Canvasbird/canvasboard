@@ -241,7 +241,12 @@ export class BoardComponent implements OnInit {
               this.calligraphyTool.currentX + i,
               this.calligraphyTool.currentY + i
             );
-            this.setCanvasContextPath(this.calligraphyTool.startX - i, this.calligraphyTool.startY - i, this.calligraphyTool.currentX - i, this.calligraphyTool.currentY - i);
+            this.setCanvasContextPath(
+              this.calligraphyTool.startX - i,
+              this.calligraphyTool.startY - i,
+              this.calligraphyTool.currentX - i,
+              this.calligraphyTool.currentY - i
+            );
           }
 
           this.calligraphyTool.startX = this.calligraphyTool.currentX;
