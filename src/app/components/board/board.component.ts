@@ -67,7 +67,7 @@ export class BoardComponent implements OnInit {
   normalPenColor: any;
   normalPenComposite: string;
 
-  calligraphy_tool = {
+  calligraphyTool = {
     startX: -1,
     startY: -1,
     currentX: -1,
@@ -215,27 +215,27 @@ export class BoardComponent implements OnInit {
 
         if (this.mouseControl && this.basicTools.brushPen) {
           // taking mouse down X and Y coordinates
-          this.calligraphy_tool.startX = e.offsetX;
-          this.calligraphy_tool.startY = e.offsetY;
+          this.calligraphyTool.startX = e.offsetX;
+          this.calligraphyTool.startY = e.offsetY;
         }
       });
 
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
         if (this.mouseControl && this.basicTools.brushPen) {
 
-          this.calligraphy_tool.currentX = e.offsetX;
-          this.calligraphy_tool.currentY = e.offsetY;
+          this.calligraphyTool.currentX = e.offsetX;
+          this.calligraphyTool.currentY = e.offsetY;
 
-          this.setCanvasContextPath(this.calligraphy_tool.startX, this.calligraphy_tool.startY, this.calligraphy_tool.currentX, this.calligraphy_tool.currentY);
+          this.setCanvasContextPath(this.calligraphyTool.startX, this.calligraphyTool.startY, this.calligraphyTool.currentX, this.calligraphyTool.currentY);
           this.setCanvasContextPathStyle(this.penColour, this.penWidth, this.defaultComposite);
 
           for (let i = 0; i < 5; i++) {
-            this.setCanvasContextPath(this.calligraphy_tool.startX + i, this.calligraphy_tool.startY + i, this.calligraphy_tool.currentX + i, this.calligraphy_tool.currentY + i);
-            this.setCanvasContextPath(this.calligraphy_tool.startX - i, this.calligraphy_tool.startY - i, this.calligraphy_tool.currentX - i, this.calligraphy_tool.currentY - i);
+            this.setCanvasContextPath(this.calligraphyTool.startX + i, this.calligraphyTool.startY + i, this.calligraphyTool.currentX + i, this.calligraphyTool.currentY + i);
+            this.setCanvasContextPath(this.calligraphyTool.startX - i, this.calligraphyTool.startY - i, this.calligraphyTool.currentX - i, this.calligraphyTool.currentY - i);
           }
 
-          this.calligraphy_tool.startX = this.calligraphy_tool.currentX;
-          this.calligraphy_tool.startY = this.calligraphy_tool.currentY;
+          this.calligraphyTool.startX = this.calligraphyTool.currentX;
+          this.calligraphyTool.startY = this.calligraphyTool.currentY;
 
         }
       });
@@ -243,8 +243,8 @@ export class BoardComponent implements OnInit {
       // When mouse is moved up
       this.globalListenFunc = this.renderer.listen('document', 'mouseup', e => {
         this.mouseControl = false;
-        this.calligraphy_tool.endX = e.offsetX;
-        this.calligraphy_tool.endY = e.offsetY;
+        this.calligraphyTool.endX = e.offsetX;
+        this.calligraphyTool.endY = e.offsetY;
       });
 
     }
