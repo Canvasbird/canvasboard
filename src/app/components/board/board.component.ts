@@ -64,7 +64,7 @@ export class BoardComponent implements OnInit {
   normalPenEndX: number;
   normalPenEndY: number;
   normalPenWidth: number;
-  normalPen_color: any;
+  normalPenColor: any;
   normalPen_composite: string;
 
   calligraphy_tool = {
@@ -178,7 +178,7 @@ export class BoardComponent implements OnInit {
           this.normalPenStartX = e.offsetX;
           this.normalPenStartY = e.offsetY;
           this.normalPenWidth = penWidth ? penWidth : this.defaultWidth;
-          this.normalPen_color = penColor ? penColor : this.penColour;
+          this.normalPenColor = penColor ? penColor : this.penColour;
           this.normalPen_composite = penComposite ? penComposite : this.defaultComposite;
         }
       });
@@ -189,7 +189,7 @@ export class BoardComponent implements OnInit {
           this.normalPenCurrentX = e.offsetX;
           this.normalPenCurrentY = e.offsetY;
           this.setCanvasContextPath(this.normalPenStartX, this.normalPenStartY, this.normalPenCurrentX, this.normalPenCurrentY);
-          this.setCanvasContextPathStyle(this.normalPen_color, this.normalPenWidth, this.normalPen_composite);
+          this.setCanvasContextPathStyle(this.normalPenColor, this.normalPenWidth, this.normalPen_composite);
           this.normalPenStartX = this.normalPenCurrentX;
           this.normalPenStartY = this.normalPenCurrentY;
         }
