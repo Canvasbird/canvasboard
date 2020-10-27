@@ -438,7 +438,7 @@ export class BoardComponent implements OnInit {
 
     if (this.pdfAddedBoolean) {
       // if pdf page is already rendered then dont add.. else add the pdf
-      const temp = this.pageTracking.findIndex(_item => _item.pageNumber === this.page);
+      const temp = this.pageTracking.findIndex(item => item.pageNumber === this.page);
       if (temp > -1) {
         // page number is already there in pagetracking
         console.log('Page number found in tracking list so not adding');
