@@ -28,7 +28,7 @@ export class BoardComponent implements OnInit {
   page: number;
   notebook: Pages[] = [];
   // for PDF.js
-  pdf_js: any;
+  pdfJs: any;
   no_of_pages: any;
   // PDF tracking
   pageTracking: Tracking[] = [];
@@ -116,7 +116,7 @@ export class BoardComponent implements OnInit {
   }
 
   addPdf(page_number) {
-    this.pdf_js.promise.then(doc => {
+    this.pdfJs.promise.then(doc => {
       console.log('PDF LOADED');
       console.log('THis pdf has ', doc._pdfInfo.numPages);
       // this.no_of_pages = doc._pdfInfo.numPages
@@ -337,9 +337,9 @@ export class BoardComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = (event: any) => {
             this.localUrl = event.target.result;
-            this.pdf_js = pdfjsLib.getDocument(this.localUrl);
+            this.pdfJs = pdfjsLib.getDocument(this.localUrl);
 
-            this.pdf_js.promise.then(doc => {
+            this.pdfJs.promise.then(doc => {
               console.log('PDF LOADED');
               console.log('THis pdf has ', doc._pdfInfo.numPages);
               this.no_of_pages = doc._pdfInfo.numPages;
