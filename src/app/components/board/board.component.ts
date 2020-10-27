@@ -330,7 +330,12 @@ export class BoardComponent implements OnInit {
           );
 
           for (let i = 0; i < 5; i++) {
-            this.setCanvasContextPath(this.highlighterTool.startX + i, this.highlighterTool.startY + i, this.highlighterTool.currentX + i, this.highlighterTool.currentY + i);
+            this.setCanvasContextPath(
+              this.highlighterTool.startX + i,
+              this.highlighterTool.startY + i,
+              this.highlighterTool.currentX + i,
+              this.highlighterTool.currentY + i
+            );
             this.setCanvasContextPathStyle('rgb(58,150,270)', 10, this.defaultComposite);
             this.setCanvasContextPath(this.highlighterTool.startX - i, this.highlighterTool.startY - i, this.highlighterTool.currentX - i, this.highlighterTool.currentY - i);
             this.setCanvasContextPathStyle('rgb(58,150,270)', 10, this.defaultComposite);
