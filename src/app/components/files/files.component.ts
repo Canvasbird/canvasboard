@@ -8,6 +8,9 @@ declare var $: any;
   styleUrls: ['./files.component.scss']
 })
 export class FilesComponent implements OnInit {
+  longImageUrl = `
+  https://thumbs.dreamstime.com/b/vector-irregular-polygon-background-triangular-pattern-full-color-spectrum-rainbow-abstract-80468723.jpg
+  `;
 
   data: Data;
 
@@ -32,7 +35,7 @@ export class FilesComponent implements OnInit {
 
       },
       {
-        imageURL: 'https://thumbs.dreamstime.com/b/vector-irregular-polygon-background-triangular-pattern-full-color-spectrum-rainbow-abstract-80468723.jpg',
+        imageURL: '',
         title: 'Chapter 3',
         subtitle: 'Lorem ipsum dolor sit amet consecLorem ipsum dolor sit amet.tetur adipisicing eliteius.',
         id: 3,
