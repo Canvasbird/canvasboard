@@ -115,13 +115,13 @@ export class BoardComponent implements OnInit {
     this.renderer.setAttribute(this.backgroundCanvas, 'height', this.scrHeight);
   }
 
-  addPdf(page_number) {
+  addPdf(pageNumber) {
     this.pdfJs.promise.then(doc => {
       console.log('PDF LOADED');
       console.log('THis pdf has ', doc._pdfInfo.numPages);
       // this.no_of_pages = doc._pdfInfo.numPages
 
-      doc.getPage(page_number).then(page => {
+      doc.getPage(pageNumber).then(page => {
         const canvas: any = document.getElementById('my_canvas');
         const context: any = canvas.getContext('2d');
         const viewport: any = page.getViewport({ scale: 1.3});
