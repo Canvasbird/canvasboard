@@ -634,7 +634,7 @@ export class BoardComponent implements OnInit {
 
         ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
     };
-      img1.src = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true'
+      img1.src = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true';
     }
   }
 
