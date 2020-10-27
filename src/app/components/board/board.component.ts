@@ -532,7 +532,7 @@ export class BoardComponent implements OnInit {
 
   pdfTick(array, pageNumber) {
     if (pageNumber <= this.noOfPages) {
-      const i = array.findIndex(_item => _item.pageNumber === pageNumber);
+      const i = array.findIndex(item => item.pageNumber === pageNumber);
       if (i > -1) {
       } else {
           const obj = {
