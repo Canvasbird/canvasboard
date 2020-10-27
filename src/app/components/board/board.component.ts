@@ -60,7 +60,7 @@ export class BoardComponent implements OnInit {
   normalPenStartX: number;
   normalPenStartY: number;
   normalPenCurrentX: number;
-  normalPen_currentY: number;
+  normalPenCurrentY: number;
   normalPen_endX: number;
   normalPen_endY: number;
   normalPen_width: number;
@@ -187,11 +187,11 @@ export class BoardComponent implements OnInit {
       this.globalListenFunc = this.renderer.listen('document', 'mousemove', e => {
         if (this.mouseControl && (this.basicTools.normalPen || this.basicTools.eraser)) {
           this.normalPenCurrentX = e.offsetX;
-          this.normalPen_currentY = e.offsetY;
-          this.setCanvasContextPath(this.normalPenStartX, this.normalPenStartY, this.normalPenCurrentX, this.normalPen_currentY);
+          this.normalPenCurrentY = e.offsetY;
+          this.setCanvasContextPath(this.normalPenStartX, this.normalPenStartY, this.normalPenCurrentX, this.normalPenCurrentY);
           this.setCanvasContextPathStyle(this.normalPen_color, this.normalPen_width, this.normalPen_composite);
           this.normalPenStartX = this.normalPenCurrentX;
-          this.normalPenStartY = this.normalPen_currentY;
+          this.normalPenStartY = this.normalPenCurrentY;
         }
 
       });
