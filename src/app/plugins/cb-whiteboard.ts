@@ -122,7 +122,7 @@ export class AddCanvasBoard {
         $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
       });
 
-      canvas.on('selection:cleared', function() {
+      canvas.on('selection:cleared', () => {
         $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
       });
     }
