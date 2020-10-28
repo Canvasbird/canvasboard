@@ -67,10 +67,11 @@ export class SubmissionComponent implements OnInit {
     console.log(this.studentList);
     const name = 'name';
     const submitionStatus = 'submitionStatus';
+    const gradedStatus = 'gradedStatus';
     const csvContent
     =
     'data:text/csv;charset=utf-8,'
-    + this.studentList.map(e => [e[name], e[submitionStatus], e['gradedStatus']].join(',') ).join('\n');
+    + this.studentList.map(e => [e[name], e[submitionStatus], e[gradedStatus]].join(',') ).join('\n');
     let encodedUri = encodeURI(csvContent);
     let link = document.createElement('a');
     link.setAttribute('href', encodedUri);
