@@ -715,7 +715,7 @@ export class NewBoardComponent implements OnInit {
             const xAxisLabels = [];
             dKeys.forEach((dLabel, index) => {
               // If label is of x-axis(which should be at the end)
-              if (index == dKeys.length - 1) {
+              if (index === dKeys.length - 1) {
                 XAxisName = dLabel;
 
                 dataObject.forEach((dataPoint, i) => {
