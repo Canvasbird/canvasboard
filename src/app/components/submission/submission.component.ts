@@ -10,7 +10,7 @@ export class SubmissionComponent implements OnInit {
   subjectName = 'Math';
   className = '4a';
   assignmentName = 'Assignment 1';
-  studentList: Array<Object> = [
+  studentList: Array<object> = [
     {
       name: 'Student 1',
       submitionStatus: 'submitted',
