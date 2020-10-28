@@ -115,7 +115,7 @@ export class AddCanvasBoard {
 
       $(`#canvas-menu-box-size-${uid}`).on('change', () => {
         const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
-        canvas.freeDrawingBrush.width = parseInt(width);
+        canvas.freeDrawingBrush.width = parseInt(width, 10);
       });
 
       canvas.on('selection:created', function() {
