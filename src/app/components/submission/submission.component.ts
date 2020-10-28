@@ -73,7 +73,7 @@ export class SubmissionComponent implements OnInit {
     'data:text/csv;charset=utf-8,'
     + this.studentList.map(e => [e[name], e[submitionStatus], e[gradedStatus]].join(',') ).join('\n');
     const encodedUri = encodeURI(csvContent);
-    let link = document.createElement('a');
+    const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
     link.setAttribute('download', 'my_data.csv');
     document.body.appendChild(link);
