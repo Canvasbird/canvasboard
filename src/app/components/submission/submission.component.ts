@@ -65,7 +65,7 @@ export class SubmissionComponent implements OnInit {
 
   exportCsv() {
     console.log(this.studentList);
-    let csvContent
+    const csvContent
     =
     'data:text/csv;charset=utf-8,'
     + this.studentList.map(e => [e['name'], e['submitionStatus'], e['gradedStatus']].join(',') ).join('\n');
