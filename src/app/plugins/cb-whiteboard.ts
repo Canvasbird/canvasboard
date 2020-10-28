@@ -118,7 +118,7 @@ export class AddCanvasBoard {
         canvas.freeDrawingBrush.width = parseInt(width, 10);
       });
 
-      canvas.on('selection:created', function() {
+      canvas.on('selection:created', () => {
         $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
       });
 
