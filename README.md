@@ -67,11 +67,11 @@ Thanks goes to these wonderful people ✨✨:
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px;" alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
     <td align="center"><a href="http://goliakshay.vercel.app"><img src="https://avatars2.githubusercontent.com/u/32712438?v=4" width="100px;" alt=""/><br /><sub><b>Goli Akshay Sujith</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=goliakshay357" title="Code">💻</a></td>
+        <td align="center"><a href="http://kingavatar.github.io"><img src="https://avatars2.githubusercontent.com/u/31726036?v=4" width="100px;" alt=""/><br /><sub><b>Saikiran Reddy</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kingavatar" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rohitkatlaa"><img src="https://avatars2.githubusercontent.com/u/42460632?v=4" width="100px;" alt=""/><br /><sub><b>Rohit Katlaa</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rohitkatlaa" title="Code">💻</a></td>
     <td align="center"><a href="https://kartikchandra14.github.io"><img src="https://avatars1.githubusercontent.com/u/29736729?v=4" width="100px;" alt=""/><br /><sub><b>kc</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kartikchandra14" title="Code">💻</a></td>
     <td align="center"><a href="http://johnafolabi.com"><img src="https://avatars0.githubusercontent.com/u/19263499?v=4" width="100px;" alt=""/><br /><sub><b>John Afolabi</b></sub></a><br /><a href="#design-john-afolabi" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/aravindveluri"><img src="https://avatars3.githubusercontent.com/u/43075004?v=4" width="100px;" alt=""/><br /><sub><b>arvi178</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=aravindveluri" title="Code">💻</a></td>
-    <td align="center"><a href="https://daily-dev-tips.com"><img src="https://avatars1.githubusercontent.com/u/554874?v=4" width="100px;" alt=""/><br /><sub><b>Chris Bongers</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rebelchris" title="Code">💻</a></td>
   </tr>
   <tr>
     <td align="center"><a href="http://alinebrito.com"><img src="https://avatars1.githubusercontent.com/u/14023536?v=4" width="100px;" alt=""/><br /><sub><b>Aline Brito</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=alinebrito" title="Code">💻</a></td>
@@ -84,7 +84,7 @@ Thanks goes to these wonderful people ✨✨:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/jawsvk"><img src="https://avatars1.githubusercontent.com/u/36097628?v=4" width="100px;" alt=""/><br /><sub><b>Jawen Voon</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=jawsvk" title="Code">💻</a></td>
-    <td align="center"><a href="http://kingavatar.github.io"><img src="https://avatars2.githubusercontent.com/u/31726036?v=4" width="100px;" alt=""/><br /><sub><b>Saikiran Reddy</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kingavatar" title="Code">💻</a></td>
+ <td align="center"><a href="https://daily-dev-tips.com"><img src="https://avatars1.githubusercontent.com/u/554874?v=4" width="100px;" alt=""/><br /><sub><b>Chris Bongers</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rebelchris" title="Code">💻</a></td>
   </tr>
 </table>
 
