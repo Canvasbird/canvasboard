@@ -15,11 +15,11 @@
       width:100%;
       margin: 0 0 20px;
       padding:10px;
-      background: rgb(238, 238, 238);
+      // background: rgb(238, 238, 238);
       overflow: hidden;
       break-inside: avoid;
       border-radius: 10px;
-      // border: 1px solid #ccc;
+      border: 2px solid;
       transition: box-shadow .3s;
 
       img {

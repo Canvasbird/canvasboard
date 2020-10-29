@@ -9,6 +9,12 @@
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   </div>
 
+  <div class="buttons mt-1">
+    <button class="btn btn-outline-primary mx-1" routerLink="/creative-board"><strong>Launch Creative Board</strong></button>
+    <button class="btn btn-outline-primary mx-1" routerLink="/board"><strong>Launch Board</strong></button>
+    <button class="btn btn-outline-danger mx-1" routerLink="/files"><strong>File Explorer</strong></button>
+  </div>
+
   <div class="cb-files-container">
     <div class="cb-box"*ngFor="let data of data">
       <img src="{{data.imageURL}}" alt="demo">
