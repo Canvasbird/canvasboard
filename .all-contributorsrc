@@ -24,6 +24,15 @@
       ]
     },
     {
+      "login": "kingavatar",
+      "name": "Saikiran Reddy",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/31726036?v=4",
+      "profile": "http://kingavatar.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "rohitkatlaa",
       "name": "Rohit Katlaa",
       "avatar_url": "https://avatars2.githubusercontent.com/u/42460632?v=4",
@@ -136,15 +145,6 @@
       "name": "Jawen Voon",
       "avatar_url": "https://avatars1.githubusercontent.com/u/36097628?v=4",
       "profile": "https://github.com/jawsvk",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "kingavatar",
-      "name": "Saikiran Reddy",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/31726036?v=4",
-      "profile": "http://kingavatar.github.io",
       "contributions": [
         "code"
       ]
