@@ -15,7 +15,7 @@
 
  > <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong>
 
-Canvasboard is an interactive board with plugins focusing on replacing the need of multiple platforms for teaching, presenting or explaining your ideas. The interactive plugins are built using web technologies to ease your work right within a single platform.
+Canvasboard is an interactive board with plugins focusing on replacing the need of multiple platforms for teaching, presenting, managing or explaining your ideas. The interactive plugins are built using web technologies to ease your work right within a single platform.
 
 ## Why is it important?
 
@@ -23,6 +23,14 @@ Technology has helped come up with a board that is a dedicated workspace for all
 Canvasboard can be scaled up to onboard multiple plugins in one place that can be used for the various business needs. The education sector, data scientists, and project managers will surely find their work become easier with the help of this platform. Rather than installing multiple different softwares, a person can have one single board to satiate all the requirements for their jobs. From writing on presentations, data exploration, and producing gantt charts, this board will definitely fulfill all needs.
 
 More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
+
+## Goal
+
+Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks.
+
+**Want to create your own plugin or need help?**
+</br>
+Feel free to message us on our [IRC Channel](https://gitter.im/canvasbird/canvasboard-frontend)
 
 ## Screenshots
 
