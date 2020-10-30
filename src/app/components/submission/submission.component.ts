@@ -10,7 +10,7 @@ export class SubmissionComponent implements OnInit {
   subjectName = 'Math';
   className = '4a';
   assignmentName = 'Assignment 1';
-  studentList: Array<Object> = [
+  studentList: Array<object> = [
     {
       name: 'Student 1',
       submitionStatus: 'submitted',
@@ -65,9 +65,15 @@ export class SubmissionComponent implements OnInit {
 
   exportCsv() {
     console.log(this.studentList);
-    let csvContent = 'data:text/csv;charset=utf-8,' + this.studentList.map(e => [e['name'], e['submitionStatus'], e['gradedStatus']].join(',') ).join('\n');
-    let encodedUri = encodeURI(csvContent);
-    let link = document.createElement('a');
+    const name = 'name';
+    const submitionStatus = 'submitionStatus';
+    const gradedStatus = 'gradedStatus';
+    const csvContent
+    =
+    'data:text/csv;charset=utf-8,'
+    + this.studentList.map(e => [e[name], e[submitionStatus], e[gradedStatus]].join(',') ).join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
     link.setAttribute('download', 'my_data.csv');
     document.body.appendChild(link);
