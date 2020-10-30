@@ -148,6 +148,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "validity-check",
+      "name": "Me",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/63739210?v=4",
+      "profile": "https://github.com/validity-check",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
