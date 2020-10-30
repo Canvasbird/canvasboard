@@ -1,6 +1,6 @@
 ## Hola Developers!!🤩
 
-If you want to start contributing to our awesome Canvasboard project, along with following the [Code of conduct](https://github.com/Canvasbird/canvasboard/blob/master/code_of_conduct.md), please follow the steps mentioned below:
+If you want to start contributing to our awesome Canvasboard project, along with following the [Code of conduct](https://github.com/Canvasbird/canvasbird-wiki/wiki/Code-of-Conduct), please follow the steps mentioned below:
 
 ### Set up the development environment 🖥️
 
