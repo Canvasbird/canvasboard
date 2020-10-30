@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ci:clean": "rimraf ./dist",
+    "ci:test": "ng test --watch=false --browsers=ChromeHeadlessCustom --code-coverage",
+    "ci:build": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -19,15 +22,17 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "bootstrap": "^4.5.2",
-    "chart.js": "^2.9.3",
-    "fabric": "^4.1.0",
+    "bootstrap": "^4.5.3",
+    "chart.js": "^2.9.4",
+    "ci": "^1.0.0",
+    "fabric": "^4.2.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
+    "rimraf": "^3.0.2",
     "rxjs": "~6.4.0",
-    "sortablejs": "^1.10.2",
-    "sweetalert2": "^10.3.7",
-    "tslib": "^1.10.0",
+    "sortablejs": "^1.12.0",
+    "sweetalert2": "^10.9.0",
+    "tslib": "^1.14.1",
     "uniqid": "^5.2.0",
     "zone.js": "~0.9.1"
   },
@@ -48,6 +53,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "^7.0.0",
+    "puppeteer": "^5.4.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
