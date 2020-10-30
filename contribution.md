@@ -1,6 +1,6 @@
 ## Hola Developers!!🤩
 
-If you want to start contributing to our owesome Canvasboard project, along with following the [Code of conduct](https://github.com/Canvasbird/canvasboard/blob/master/code_of_conduct.md), please follow the steps mentioned below:
+If you want to start contributing to our awesome Canvasboard project, along with following the [Code of conduct](https://github.com/Canvasbird/canvasboard/blob/master/code_of_conduct.md), please follow the steps mentioned below:
 
 ### Set up the development environment 🖥️
 
@@ -13,7 +13,7 @@ For setting up the canvasboard project on your local:
 
 3. Open the cloned folder via any editor.
 
-4. verify that you are in `canvaboard` directory.
+4. Verify that you are in `canvasboard` directory.
 
 5. Add the main repo as "upstream" using
   `git remote add upstream https://github.com/Canvasbird/canvasboard.git`
@@ -40,11 +40,11 @@ For working on an issue:
   git checkout master
   git checkout -b "your_branch_name>
   ```
-Try to give a meaningful branch name. For example if you are working on fixing the graph pugin,
+Try to give a meaningful branch name. For example if you are working on fixing the graph plugin,
 use "fix_graph_plugin" as the branch name
 
 2. After creating the branch, make the changes required to fix the issue you took and test it on 
-  your local by runing the server.
+  your local by running the server.
 
 
 ### Create a PR 🚀
@@ -66,6 +66,6 @@ After you are done with all the changes and have tested it, follow these steps f
 4. push the branch to your forked repository using:
     `git push origin <your_branch_name>`
 
-4. Go to your github forked repository and make the PR using the pushed branch.
+4. Go to your github forked repository and make the PR using the pushed branch. Also make sure you don't have any merge conflicts while opening a PR.
 
 Hurray!!🎉 You have created your first PR to the Canvasboard 🚀
