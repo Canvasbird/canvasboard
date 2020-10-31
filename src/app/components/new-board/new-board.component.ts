@@ -20,6 +20,7 @@ import { AddClearBackgroundComponent } from '../../plugins/color-background/cb-c
 
 import { AddFontMonospaceComponent } from '../../plugins/monospace';
 import { AddFontPlayfairComponent } from '../../plugins/playfair';
+import { AddClearFontComponent } from '../../plugins/clear-font';
 import { AddLeftAlignComponent } from '../../plugins/left-align';
 import { AddCenterAlignComponent } from '../../plugins/center-align';
 import { AddRightAlignComponent } from '../../plugins/right-align';
@@ -54,6 +55,7 @@ export class NewBoardComponent implements OnInit {
   AddCanvasBoard: any;
   AddFontMonospaceComponent: any;
   AddFontPlayfairComponent: any;
+  AddClearFontComponent: any;
   AddLeftAlignComponent: any;
   AddCenterAlignComponent: any;
   AddRightAlignComponent: any;
@@ -83,6 +85,7 @@ export class NewBoardComponent implements OnInit {
     this.AddCanvasBoard = new AddCanvasBoard();
     this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
     this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
+    this.AddClearFontComponent = new AddClearFontComponent();
     this.AddLeftAlignComponent = new AddLeftAlignComponent();
     this.AddCenterAlignComponent = new AddCenterAlignComponent();
     this.AddRightAlignComponent = new AddRightAlignComponent();
@@ -168,7 +171,7 @@ export class NewBoardComponent implements OnInit {
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
-  addBlockEditor = (id, checker, addBefore= false, category = null) => {
+  addBlockEditor = (id, checker, addBefore = false, category = null) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
@@ -237,6 +240,11 @@ export class NewBoardComponent implements OnInit {
           this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid);
           break;
         }
+        case 13: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddClearFontComponent.addClearFontToolBox(uid);
+          break;
+        }
         case 14: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddLeftAlignComponent.addLeftAlignTextToolBox(uid);
@@ -257,7 +265,7 @@ export class NewBoardComponent implements OnInit {
       }
 
       // Adding listener to current card
-      $(`#original-${uid}`).click(() => {this.currentChartID = uid; });
+      $(`#original-${uid}`).click(() => { this.currentChartID = uid; });
 
       // Changing focus to Current Card
       $(`#original-${uid}`).focus();
@@ -552,11 +560,11 @@ export class NewBoardComponent implements OnInit {
   validURL(str) {
     const pattern = new RegExp(
       '^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$',
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
       'i'
     ); // fragment locator
     return !!pattern.test(str);
@@ -630,10 +638,10 @@ export class NewBoardComponent implements OnInit {
 
   // Adding Top
   cbToolboxTopTag = () => {
-      this.AddTopComponent.addTopTagToolBox(this.currentChartID, this.addBlockEditor);
+    this.AddTopComponent.addTopTagToolBox(this.currentChartID, this.addBlockEditor);
   }
 
-   // Adding Bottom
+  // Adding Bottom
   cbToolboxBottomTag = () => {
     this.AddBottomComponent.addBottomTagToolBox(this.currentChartID, this.addBlockEditor);
   }
@@ -667,16 +675,29 @@ export class NewBoardComponent implements OnInit {
     this.addBlockEditor('main-box', 12);
   }
 
+  // Clearing all fonts for Roboto font
+  cbToolboxRoboto = () => {
+    this.addBlockEditor('main-box', 13);
+  }
+
+  // Clearing all fonts
+  cbToolboxClearFont = () => {
+    this.AddClearFontComponent.addClearFontToolBox(this.currentChartID);
+  }
+
   // Adding Left Align Text
   cbToolboxLeftAlign = () => {
     this.addBlockEditor('main-box', 14);
   }
+
   // Adding Center Align Text
   cbToolboxCenterAlign = () => {
     this.addBlockEditor('main-box', 15);
   }
+
   // Adding Right Align Text
   cbToolboxRightAlign = () => {
     this.addBlockEditor('main-box', 16);
   }
+
 }
