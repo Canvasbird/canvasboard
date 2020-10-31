@@ -1,12 +1,25 @@
 footer {
-  background-image: linear-gradient(to bottom right, #E1BEE7, #B2EBF2);
+  // background-image: linear-gradient(to bottom right, #E1BEE7, #B2EBF2);
+  background-color: #EE6D9E;
   color: black;
-  font-size: 12px;
+  font-size: 16px;
   padding: 20px;
+  padding-bottom: 0px;
 
   ul{
     list-style-type: none;
     padding-left: 0px;
+  }
+
+  li{
+    color: white;
+  }
+
+  footer-list{
+
+    a{
+      font-size: 18px;
+    }
   }
 }
 
