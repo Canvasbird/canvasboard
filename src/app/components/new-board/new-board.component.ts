@@ -20,6 +20,7 @@ import { AddClearBackgroundComponent } from '../../plugins/color-background/cb-c
 
 import { AddFontMonospaceComponent } from '../../plugins/monospace';
 import { AddFontPlayfairComponent } from '../../plugins/playfair';
+import { AddFontKalamComponent } from '../../plugins/kalam';
 import { AddClearFontComponent } from '../../plugins/clear-font';
 import { AddLeftAlignComponent } from '../../plugins/left-align';
 import { AddCenterAlignComponent } from '../../plugins/center-align';
@@ -55,6 +56,7 @@ export class NewBoardComponent implements OnInit {
   AddCanvasBoard: any;
   AddFontMonospaceComponent: any;
   AddFontPlayfairComponent: any;
+  AddFontKalamComponent: any;
   AddClearFontComponent: any;
   AddLeftAlignComponent: any;
   AddCenterAlignComponent: any;
@@ -85,6 +87,7 @@ export class NewBoardComponent implements OnInit {
     this.AddCanvasBoard = new AddCanvasBoard();
     this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
     this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
+    this.AddFontKalamComponent = new AddFontKalamComponent();
     this.AddClearFontComponent = new AddClearFontComponent();
     this.AddLeftAlignComponent = new AddLeftAlignComponent();
     this.AddCenterAlignComponent = new AddCenterAlignComponent();
@@ -238,6 +241,11 @@ export class NewBoardComponent implements OnInit {
         case 12: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid);
+          break;
+        }
+        case 17: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddFontKalamComponent.addKalamFontToolBox(uid);
           break;
         }
         case 13: {
@@ -673,6 +681,11 @@ export class NewBoardComponent implements OnInit {
   // Adding Playfair font
   cbToolboxPlayfair = () => {
     this.addBlockEditor('main-box', 12);
+  }
+
+  // Adding Kalam font
+  cbToolboxKalam = () => {
+    this.addBlockEditor('main-box', 17);
   }
 
   // Clearing all fonts for Roboto font
