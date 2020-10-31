@@ -30,6 +30,7 @@ import { AddUnOrderedListComponent } from '../../plugins/unordered-list';
 import { AddTopComponent } from '../../plugins/top';
 import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
+import { AddEmbedComponent } from '../../plugins/embed';
 import { BrowserStack } from 'protractor/built/driverProviders';
 
 declare var $: any;
@@ -66,6 +67,7 @@ export class NewBoardComponent implements OnInit {
   AddTopComponent: any;
   AddBottomComponent: any;
   AddDeleteComponent: any;
+  AddEmbedComponent: any;
 
   uniqueChartID = (() => {
     let id = 0;
@@ -97,6 +99,7 @@ export class NewBoardComponent implements OnInit {
     this.AddTopComponent = new AddTopComponent();
     this.AddBottomComponent = new AddBottomComponent();
     this.AddDeleteComponent = new AddDeleteComponent();
+    this.AddEmbedComponent = new AddEmbedComponent();
   }
 
   ngOnInit() {
@@ -266,6 +269,11 @@ export class NewBoardComponent implements OnInit {
         case 16: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddRightAlignComponent.addRightAlignTextToolBox(uid);
+          break;
+        }
+        case 18: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val(), $('#youtubeEmbedURL').val());
           break;
         }
         default:
@@ -711,6 +719,11 @@ export class NewBoardComponent implements OnInit {
   // Adding Right Align Text
   cbToolboxRightAlign = () => {
     this.addBlockEditor('main-box', 16);
+  }
+
+  // Adding Embed Link
+  cbToolboxEmbed = () => {
+    this.addBlockEditor('main-box', 18);
   }
 
 }

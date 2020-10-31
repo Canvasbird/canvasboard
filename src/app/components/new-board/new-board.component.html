@@ -298,6 +298,18 @@
               </svg>
             </button>
           </div>
+          <!-- Embed -->
+          <div class="tool box4 m-1" title="Embed link">
+            <button class="btn btn-light" data-toggle="modal" data-target="#embedModal">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-square" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                <path fill-rule="evenodd"
+                  d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       <!-- Graphs -->
@@ -330,8 +342,35 @@
       <div id="main-box" class="main-box">
         <!-- temp -->
         <div id="sub-title" class="demo"></div>
-        <!-- temp -->
-
+        <!-- Modal -->
+        <div class="modal fade" id="embedModal" tabindex="-1" role="dialog" aria-labelledby="embedModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="embedModalLongTitle">Embed Link URL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group"
+                    style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
+                    <input type="text" placeholder="Enter Embed link here" class="form-control" id="embedURL">
+                    <label style="margin-top: 5px;">OR</label>
+                    <input type="text" placeholder="Enter youtube link here" class="form-control" id="youtubeEmbedURL">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                  (click)="cbToolboxEmbed()">Enter</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- .........................TESTING CODE GOES HERE!................................. -->
 
         <!-- .........................END OF TESTING CODE!.......................... -->
