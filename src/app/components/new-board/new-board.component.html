@@ -124,7 +124,7 @@
         <p><strong>Font Styles</strong></p>
         <div class="d-flex flex-wrap mt-2">
           <!-- Roboto -->
-          <div class="m-1" title="Roboto Font">
+          <div class="m-1" title="Roboto Font" (click)="cbToolboxRoboto()">
             <button class="btn btn-light">
               Roboto
             </button>
@@ -139,6 +139,12 @@
           <div class="m-1" title="Playfair Font">
             <button class="btn btn-light playfair" (click)="cbToolboxPlayfair()">
               Playfair
+            </button>
+          </div>
+          <!-- Clear Font -->
+          <div class="m-1" title="Clear Font" (click)="cbToolboxClearFont()">
+            <button class="btn btn-light">
+              Clear Font
             </button>
           </div>
         </div>
