@@ -26,10 +26,10 @@ export class AddBottomComponent {
     }
 
     // Bottom HTML Tag Click Action
-    addBottomTagClickFunction = (uid, addAfterBlockEditor) => {
+    addBottomTagClickFunction = (uid, addBlockEditor) => {
       //  Adding the click action of the below button
       $(`#add-new-box-${uid}`).click(() => {
-        addAfterBlockEditor(uid, 1);
+        addBlockEditor(uid, 1);
       });
     }
 
