@@ -32,7 +32,7 @@ Build a standalone web application that has all your favorite tools(Plugins) so 
 
 Feel free to message us on our [IRC Channel](https://gitter.im/canvasbird/canvasboard-frontend)
 
-## Screenshots
+## Screenshots [![Website Badge](https://img.shields.io/badge/Visit-Now-green?style=for-the-badge&logo=vercel)](https://canvasboard.live/)
 
 | ![cb_1][01] | ![cb_2][02] | ![cb3_3][03] |
 | --- | --- | --- |
