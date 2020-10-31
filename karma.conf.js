@@ -29,9 +29,10 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    // This is for jquery support
+    // This is for jquery and bootstrap support
     files: [
-      './node_modules/jquery/dist/jquery.min.js'
+      './node_modules/jquery/dist/jquery.min.js',
+      './node_modules/bootstrap/dist/js/bootstrap.min.js'
     ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
