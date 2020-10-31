@@ -580,7 +580,14 @@ export class BoardComponent implements OnInit {
     a.click();
     document.body.removeChild(a);
   }
-
+  //
+  addClearBackground(){
+    let ctx: any = document.getElementById('backgroundImage');
+    if (ctx.getContext) {
+      ctx = ctx.getContext('2d');
+      ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+    }
+  }
   // Add normal paper
   addRuledPaper() {
     let ctx: any = document.getElementById('backgroundImage');
