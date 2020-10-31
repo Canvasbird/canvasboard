@@ -1,52 +1,52 @@
-
-.container{
+.container {
   // ..............MAIN.....................
-  .main{
-    .cb-title{
-    .heading{
-      margin-bottom: 0px;
-      padding-top:1rem;
-      padding-bottom:10px;
-      border-bottom:2px solid #999999;
+  .main {
+    .cb-title {
+      .heading {
+        margin-bottom: 0px;
+        padding-top: 1rem;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #999999;
+      }
+
+      .heading:focus {
+        outline: none;
+      }
     }
 
-    .heading:focus{
-      outline: none;
-    }
-    }
 
-
-    .main-box{
-      display:block;
+    .main-box {
+      display: block;
       margin-top: 5px;
 
-      .cb-box-1{
+      .cb-box-1 {
         width: 100%;
         // max-width: 630px;
-        margin-top:1px;
-        margin-bottom:1px;
+        margin-top: 1px;
+        margin-bottom: 1px;
         position: relative;
 
-        .cb-top-toolbox{
+        .cb-top-toolbox {
           position: absolute;
-          bottom:15px;
+          bottom: 15px;
           width: 100%;
         }
-        .cb-bottom-toolbox{
+.cb-bottom-toolbox {
           position: absolute;
           top: 10px;
           width: 100%;
         }
 
-        .cb-box-2{
-          color:red;
+        .cb-box-2 {
+          color: red;
           background-color: pink;
           padding-top: 3px;
           padding-bottom: 3px;
           border-radius: 5px;
-          .cb-box-3{
-            display:flex;
-            .edit{
+.cb-box-3 {
+  display: flex;
+
+  .edit {
               max-width: 100%;
               width: 100%;
               white-space: pre-wrap;
@@ -54,18 +54,18 @@
 
             }
 
-            .edit:focus{
+            .edit:focus {
               outline: none;
             }
           }
         }
 
-        .cb-toolbox{
-          margin-top:10%;
-          padding-left:20px;
+        .cb-toolbox {
+          margin-top: 10%;
+          padding-left: 20px;
         }
 
-        .cb-more-toolbox{
+        .cb-more-toolbox {
           position: relative;
           display: none;
         }
@@ -75,51 +75,51 @@
     }
   }
   //................. TOOLBOX.....................
-.toolbox{
-  margin-top: 10px;
-  .toolbox-main{
-    display:flex;
+  .toolbox {
+    margin-top: 10px;
+.toolbox-main {
+  display: flex;
 
 
-}
+    }
 
 
-.quill {
-  padding: 20px;
-}
+    .quill {
+      padding: 20px;
+    }
 
-::ng-deep .ql-toolbar.ql-snow {
-  border-radius: 10px;
+    ::ng-deep .ql-toolbar.ql-snow {
+      border-radius: 10px;
+    }
+  }
 }
-}
-}
-.creative-board-main:focus{
+.creative-board-main:focus {
   outline: none;
 }
 
-.red{
+.red {
   background: red;
 }
 
-[contentEditable=true]:empty:not(:focus):before{
-  content:attr(data-text)
+[contentEditable=true]:empty:not(:focus):before {
+  content: attr(data-text)
 }
 
-.inline-flex{
+.inline-flex {
   display: inline-flex;
 }
 
-.col-cb-1-custom{
+.col-cb-1-custom {
   padding-top: 8px;
   max-width: 3%;
 
   svg {
-    margin-top:50%;
+    margin-top: 50%;
   }
 }
 
 
-.cb-container-main{
+.cb-container-main {
   min-height: 80vh;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -127,14 +127,14 @@
 
 // navbar
 .nav {
-  height:90%;
+  height: 90%;
   width: 0;
   position: fixed;
   z-index: 1;
-  top:0;
+  top: 0;
   left: 0;
   margin-top: 60px;
-  transition:0.3s;
+  transition: 0.3s;
   overflow-x: hidden;
   // border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -157,7 +157,7 @@
   .header {
     margin-left: 5%;
   }
-  .text-tools{
+.text-tools {
     margin-left: 5%;
   }
   .color-cards-tools {
@@ -182,3 +182,6 @@
   font-family: 'Playfair Display', serif;
 }
 
+.kalam {
+  font-family: 'Kalam', cursive;
+}
