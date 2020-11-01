@@ -32,14 +32,14 @@ export class AddEmbedComponent {
       $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
       $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
     <!-- Embed iframe -->
-    <iframe src="${url}" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+    <embed src="${url}" width="100%" height="600" frameborder="0" allowfullscreen/>
     `);
     } else if (youtubeURL !== '') {
 
       $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
       $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
     <!-- Embed iframe -->
-    <iframe src="${youtubeURL.replace(/watch\?v=/gi, 'embed/')}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    <embed src="${youtubeURL.replace(/watch\?v=/gi, 'embed/')}" width="100%" height="600" frameborder="0" allowfullscreen/>
     `);
     }
   }
