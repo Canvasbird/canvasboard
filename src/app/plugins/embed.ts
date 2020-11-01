@@ -32,7 +32,7 @@ export class AddEmbedComponent {
       $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
       $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
     <!-- Embed iframe -->
-    <iframe src="${url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    <iframe src="${url}" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
     `);
     } else if (youtubeURL !== '') {
 
