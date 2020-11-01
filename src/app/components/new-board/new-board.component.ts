@@ -5,6 +5,8 @@ import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
 import { Chart } from 'chart.js';
 import Swal from 'sweetalert2';
+import { BrowserStack } from 'protractor/built/driverProviders';
+
 
 // Importing Plugins
 import { AddH1Component } from '../../plugins/@cb-h1';
@@ -31,7 +33,7 @@ import { AddTopComponent } from '../../plugins/top';
 import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
-import { BrowserStack } from 'protractor/built/driverProviders';
+import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 
 declare var $: any;
 
@@ -43,6 +45,7 @@ declare var $: any;
 export class NewBoardComponent implements OnInit {
   fileToUpload: File = null;
 
+  reader: FileReader;
   currentChartID: number;
   // Initializing plugins
   AddH1Component: any;
@@ -68,6 +71,7 @@ export class NewBoardComponent implements OnInit {
   AddBottomComponent: any;
   AddDeleteComponent: any;
   AddEmbedComponent: any;
+  AddPdfRenderComponent: any;
 
   uniqueChartID = (() => {
     let id = 0;
@@ -100,6 +104,8 @@ export class NewBoardComponent implements OnInit {
     this.AddBottomComponent = new AddBottomComponent();
     this.AddDeleteComponent = new AddDeleteComponent();
     this.AddEmbedComponent = new AddEmbedComponent();
+    this.AddPdfRenderComponent = new AddPdfRenderComponent();
+    this.reader = new FileReader();
   }
 
   ngOnInit() {
@@ -402,6 +408,12 @@ export class NewBoardComponent implements OnInit {
           });
         });
       }
+
+      // PDF Render
+      $('#pdfFile').change((event) => {
+        $(`#${id}`).append(this.blockFunction(uid));
+        this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
+      });
 
       // Add code snippet
       $(`#add-code-snippet-${uid}`).click(() => {
@@ -726,4 +738,8 @@ export class NewBoardComponent implements OnInit {
     this.addBlockEditor('main-box', 18);
   }
 
+  // Adding PdfRender
+  cbToolboxPdfRender = () => {
+    $('#pdfFile').click();
+  }
 }
