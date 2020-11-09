@@ -96,7 +96,12 @@ export class NewBoardComponent implements OnInit {
   ngOnInit() {
     // sortable-js
     const mainEl = document.getElementById('main-box');
-    const sortable = Sortable.create(mainEl);
+    const sortable = new Sortable(mainEl, {
+      onChange: (evt) => {
+        console.log('Old position', evt.clone.id);
+        console.log('New position', evt.newIndex);
+      }
+    });
 
     // disable enter on title
     this.disableTitleEnter();
