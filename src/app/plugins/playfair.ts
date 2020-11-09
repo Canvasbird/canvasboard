@@ -4,6 +4,6 @@ export class AddFontPlayfairComponent {
   constructor() {}
 
   addPlayfairFontToolBox = (uid) => {
-    $(`#cb-box-2-${uid}`).addClass('playfair-font');
+    $(`#cb-box-2-${uid}`).removeClass('monospace-font kalam-font').addClass('playfair-font');
   }
 }

@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 import { BoardComponent } from './components/board/board.component';
-import { SubmissionComponent } from './components/submission/submission.component';
 import { FileExplorerComponent } from './components/file-explorer/file-explorer.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -27,7 +26,6 @@ import { FilesComponent } from './components/files/files.component';
     HomeComponent,
     AssignmentComponent,
     BoardComponent,
-    SubmissionComponent,
     FileExplorerComponent,
     FooterComponent,
     LoginComponent,

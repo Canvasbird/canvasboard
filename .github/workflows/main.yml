@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -20,7 +20,7 @@ jobs:
     #
     strategy:
       matrix:
-        node-version: [13.x]
+        node-version: [12.x]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,7 +38,7 @@ jobs:
             ${{ runner.os }}-node-
       # Sets up Node and npm
       - name: Setup Node
-        uses: actions/setup-node@v1.4.4
+        uses: actions/setup-node@v2.1.2
         with:
           node-version: ${{ matrix.node-version }}
           check-latest: true

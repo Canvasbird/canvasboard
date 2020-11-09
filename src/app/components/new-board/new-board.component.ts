@@ -5,6 +5,8 @@ import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
 import { Chart } from 'chart.js';
 import Swal from 'sweetalert2';
+import { BrowserStack } from 'protractor/built/driverProviders';
+
 
 // Importing Plugins
 import { AddH1Component } from '../../plugins/@cb-h1';
@@ -20,6 +22,8 @@ import { AddClearBackgroundComponent } from '../../plugins/color-background/cb-c
 
 import { AddFontMonospaceComponent } from '../../plugins/monospace';
 import { AddFontPlayfairComponent } from '../../plugins/playfair';
+import { AddFontKalamComponent } from '../../plugins/kalam';
+import { AddClearFontComponent } from '../../plugins/clear-font';
 import { AddLeftAlignComponent } from '../../plugins/left-align';
 import { AddCenterAlignComponent } from '../../plugins/center-align';
 import { AddRightAlignComponent } from '../../plugins/right-align';
@@ -28,7 +32,8 @@ import { AddUnOrderedListComponent } from '../../plugins/unordered-list';
 import { AddTopComponent } from '../../plugins/top';
 import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
-import { BrowserStack } from 'protractor/built/driverProviders';
+import { AddEmbedComponent } from '../../plugins/embed';
+import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 
 declare var $: any;
 
@@ -40,6 +45,7 @@ declare var $: any;
 export class NewBoardComponent implements OnInit {
   fileToUpload: File = null;
 
+  reader: FileReader;
   currentChartID: number;
   // Initializing plugins
   AddH1Component: any;
@@ -54,6 +60,8 @@ export class NewBoardComponent implements OnInit {
   AddCanvasBoard: any;
   AddFontMonospaceComponent: any;
   AddFontPlayfairComponent: any;
+  AddFontKalamComponent: any;
+  AddClearFontComponent: any;
   AddLeftAlignComponent: any;
   AddCenterAlignComponent: any;
   AddRightAlignComponent: any;
@@ -62,6 +70,8 @@ export class NewBoardComponent implements OnInit {
   AddTopComponent: any;
   AddBottomComponent: any;
   AddDeleteComponent: any;
+  AddEmbedComponent: any;
+  AddPdfRenderComponent: any;
 
   uniqueChartID = (() => {
     let id = 0;
@@ -83,6 +93,8 @@ export class NewBoardComponent implements OnInit {
     this.AddCanvasBoard = new AddCanvasBoard();
     this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
     this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
+    this.AddFontKalamComponent = new AddFontKalamComponent();
+    this.AddClearFontComponent = new AddClearFontComponent();
     this.AddLeftAlignComponent = new AddLeftAlignComponent();
     this.AddCenterAlignComponent = new AddCenterAlignComponent();
     this.AddRightAlignComponent = new AddRightAlignComponent();
@@ -91,6 +103,9 @@ export class NewBoardComponent implements OnInit {
     this.AddTopComponent = new AddTopComponent();
     this.AddBottomComponent = new AddBottomComponent();
     this.AddDeleteComponent = new AddDeleteComponent();
+    this.AddEmbedComponent = new AddEmbedComponent();
+    this.AddPdfRenderComponent = new AddPdfRenderComponent();
+    this.reader = new FileReader();
   }
 
   ngOnInit() {
@@ -119,7 +134,7 @@ export class NewBoardComponent implements OnInit {
         return false;
       }
     });
-    this.addAfterBlockEditor('sub-title', 0);
+    this.addBlockEditor('sub-title', 0);
   }
 
   // ......................... BLOCK BUILDING FUNCITON............................
@@ -173,18 +188,18 @@ export class NewBoardComponent implements OnInit {
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
-  addAfterBlockEditor = (id, checker, category = null) => {
+  addBlockEditor = (id, checker, addBefore = false, category = null) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
 
       switch (checker) {
         case 0: {
-          $(`#${id}`).after(this.blockFunction(uid));
+          addBefore ? $(`#${id}`).before(this.blockFunction(uid)) : $(`#${id}`).after(this.blockFunction(uid));
           break;
         }
         case 1: {
-          $(`#cb-box-1-${id}`).after(this.blockFunction(uid));
+          addBefore ? $(`#cb-box-1-${id}`).before(this.blockFunction(uid)) : $(`#cb-box-1-${id}`).after(this.blockFunction(uid));
           break;
         }
         case 2: {
@@ -242,6 +257,16 @@ export class NewBoardComponent implements OnInit {
           this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid);
           break;
         }
+        case 17: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddFontKalamComponent.addKalamFontToolBox(uid);
+          break;
+        }
+        case 13: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddClearFontComponent.addClearFontToolBox(uid);
+          break;
+        }
         case 14: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddLeftAlignComponent.addLeftAlignTextToolBox(uid);
@@ -257,12 +282,17 @@ export class NewBoardComponent implements OnInit {
           this.AddRightAlignComponent.addRightAlignTextToolBox(uid);
           break;
         }
+        case 18: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val(), $('#youtubeEmbedURL').val());
+          break;
+        }
         default:
           break;
       }
 
       // Adding listener to current card
-      $(`#original-${uid}`).click(() => {this.currentChartID = uid; });
+      $(`#original-${uid}`).click(() => { this.currentChartID = uid; });
 
       // Changing focus to Current Card
       $(`#original-${uid}`).focus();
@@ -315,11 +345,11 @@ export class NewBoardComponent implements OnInit {
 
       // Add Top HTML and click Function
       this.AddTopComponent.addTopTagHTMLCode(uid);
-      this.AddTopComponent.addTopTagClickFunction(uid, this.addBeforeBlockEditor, checker);
+      this.AddTopComponent.addTopTagClickFunction(uid, this.addBlockEditor, checker);
 
       // Add Bottom HTML and click Function
       this.AddBottomComponent.addBottomTagHTMLCode(uid);
-      this.AddBottomComponent.addBottomTagClickFunction(uid, this.addAfterBlockEditor);
+      this.AddBottomComponent.addBottomTagClickFunction(uid, this.addBlockEditor);
 
       // Add H1 HTML and click Function
       this.AddH1Component.addH1TagHTMLCode(uid);
@@ -354,306 +384,40 @@ export class NewBoardComponent implements OnInit {
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
       // this.AddCanvasBoard.addCanvasBoardClickFunction(uid);
 
-      // Add code snippet
-      $(`#add-code-snippet-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
-      });
+      // Calling Add Canvas board function when addBefore is True
+      if (addBefore) {
 
-      // Add upload image
-      $(`#add-image-upload-${uid}`).click(() => {
-        const imageURL = prompt('Enter Your image URL here');
-        const isConfirmed = confirm('The image you selected is correct?');
-        if (this.validURL(imageURL)) {
-          $(`#original-${uid}`).append(
-            `<img src=${imageURL} id="cb-image-${uid}"></img>`
-          );
-          $(`#cb-image-${uid}`).css('width', '100%');
-        } else {
-          Swal.fire({ icon: 'warning', text: 'Please enter a valid URL!!' });
-        }
-      });
-
-
-      // Upload JSON file
-      $(`#file-${uid}`).change((ev) => {
-        this.fileToUpload = ev.target.files[0];
-        console.log('File Read working');
-        const fileReader = new FileReader();
-        fileReader.readAsText(this.fileToUpload, 'UTF-8');
-        fileReader.onload = () => {
-          // Parse the JSON into an array of data points
-          const dataObject = JSON.parse(fileReader.result as string);
-
-          // ---- Create canvas for chart ----
+        // Adding Canvas board
+        $(`#add-canvas-cb-${uid}`).click(() => {
+          const parentWidth = $(`#original-${uid}`).width();
+          console.log('Working canvas board');
           $(`#original-${uid}`).append(`
-        <canvas id="chart-${uid}" class="shadow"></canvas>
-      `);
-          // Setting Width and height to screen
-          $(`#chart-${uid}`).height(400).width('100%');
-          // Setting background color to white
-          $(`#chart-${uid}`).css('background-color', 'white');
-
-          // End Creating canvas
-
-          // Helper function to toggle data on click
-          function toggleDataSeries(e) {
-            if (
-              typeof e.dataSeries.visible === 'undefined' ||
-              e.dataSeries.visible
-            ) {
-              e.dataSeries.visible = false;
-            } else {
-              e.dataSeries.visible = true;
-            }
-            chart.render();
-          }
-
-          // Labels for the data
-          const dKeys = Object.keys(dataObject[0]);
-          let XAxisName;
-
-          // Get the data array suitable for chartjs
-          function getData() {
-            const datasetsArr = [];
-            const xAxisLabels = [];
-            dKeys.forEach((dLabel, index) => {
-              // If label is of x-axis(which should be at the end)
-              if (index === dKeys.length - 1) {
-                XAxisName = dLabel;
-
-                dataObject.forEach((dataPoint, i) => {
-                  // X-axis data pushed into x-axis labels
-                  xAxisLabels.push(dataPoint[dLabel]);
-                });
-              } else {
-                // Dataset corresponding to label
-                const dSet = {
-                  label: dLabel,
-                  data: [],
-                  fill: false,
-                  backgroundColor: [],
-                  borderColor: [],
-                };
-
-                const r = Math.floor(Math.random() * 255);
-                const g = Math.floor(Math.random() * 255);
-                const b = Math.floor(Math.random() * 255);
-                dSet.backgroundColor.push(
-                  'rgba(' + r + ', ' + g + ', ' + b + ',0.2)'
-                );
-                dSet.borderColor.push('rgb(' + r + ', ' + g + ', ' + b + ')');
-
-                dataObject.forEach((dataPoint, i) => {
-                  // Push each data point corresponding to label into label's dataset
-                  dSet.data.push(dataPoint[dLabel]);
-
-                  // Randomise the colours
-                });
-
-                // Push the dataset into data array
-                datasetsArr.push(dSet);
-              }
-            });
-
-            console.log('Data compatible with chart js', {
-              labels: xAxisLabels,
-              datasets: datasetsArr,
-            });
-
-            return { labels: xAxisLabels, datasets: datasetsArr };
-          }
-
-          const ctx = $(`#chart-${uid}`);
-          console.log($(`#chart-${uid}`));
-
-          const chart = new Chart(ctx, {
-            type: 'line',
-            title: {
-              text: 'Chart ' + this.uniqueChartID(),
-            },
-            toolTip: {
-              shared: true,
-            },
-            legend: {
-              cursor: 'pointer',
-              verticalAlign: 'top',
-              horizontalAlign: 'center',
-              dockInsidePlotArea: true,
-              itemclick: toggleDataSeries,
-            },
-            data: getData(),
-            options: {
-              responsive: true,
-              title: 'Chart ',
-              scales: {
-                xAxes: [
-                  {
-                    scaleLabel: {
-                      display: true,
-                      // X axis name to be displayed
-                      labelString: XAxisName,
-                    },
-                  },
-                ],
-              },
-            },
-          });
-          chart.render();
-
-          console.log('Data Object', dataObject);
-        };
-        fileReader.onerror = (error) => {
-          console.log(error);
-        };
-      });
-    } catch (err) {
-      console.log('Error', err);
-    }
-  }
-
-  // .........................ADDING BLOCK BEFORE DIV FUNCTION...................
-  addBeforeBlockEditor = (id, checker) => {
-    try {
-      // getting uid and appending after specified ID
-      const uid: any = uuidv4();
-
-      if (checker === 0) {
-        $(`#${id}`).before(this.blockFunction(uid));
-      } // close of if statement of 0
-
-      if (checker === 1) {
-        $(`#cb-box-1-${id}`).before(this.blockFunction(uid));
-      }
-
-      // hiding and showing the TOOLBOX
-      $(`#show-more-toolbox-${uid}`).hover(
-        // display block
-        () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'block');
-        },
-        //  display none
-        () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
-        }
-      );
-      // Adding click action of above button
-      $(`#add-new-box-prev-${uid}`).click(() => {
-        if (checker !== 0) {
-          this.addBeforeBlockEditor(uid, 1);
-        }
-      });
-
-      //  Adding the click action of the below button
-      $(`#add-new-box-${uid}`).click(() => {
-        this.addAfterBlockEditor(uid, 1);
-      });
-
-      // Delete/Remove button
-      $(`#remove-cb-box1-${uid}`).click(() => {
-        if (checker !== 0) {
-          $(`#cb-box-1-${uid}`).remove();
-        }
-      });
-      // Adding listener to current card
-      $(`#original-${uid}`).click(() => {this.currentChartID = uid; });
-
-      // Changing focus to Current Card
-      $(`#original-${uid}`).focus();
-
-      // Setting current card id
-      this.currentChartID = uid;
-      // Add Delete HTML and click Function
-      this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
-      this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
-
-      // Adding red background toolbox
-      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
-      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
-      // Adding green background toolbox
-      this.AddGreenBackgroundComponent.addGreenBackgroundHTMLCode(uid);
-      this.AddGreenBackgroundComponent.addGreenBackgroundClickFunction(uid);
-
-      // Adding yellow background toolbox
-      this.AddYellowBackgroundComponent.addYellowBackgroundHTMLCode(uid);
-      this.AddYellowBackgroundComponent.addYellowBackgroundClickFunction(uid);
-
-      // Adding blue background toolbox
-      this.AddBlueBackgroundComponent.addBlueBackgroundHTMLCode(uid);
-      this.AddBlueBackgroundComponent.addBlueBackgroundClickFunction(uid);
-
-      // Adding clear background toolbox
-      this.AddClearBackgroundComponent.addClearBackgroundHTMLCode(uid);
-      this.AddClearBackgroundComponent.addClearBackgroundClickFunction(uid);
-
-      // Add OrderedList HTML and click Function
-      this.AddOrderedListComponent.addOrderedListTagHTMLCode(uid);
-      this.AddOrderedListComponent.addOrderedListTagClickFunction(uid);
-
-      // Add UnOrderedList HTML and click Function
-      this.AddUnOrderedListComponent.addUnOrderedListTagHTMLCode(uid);
-      this.AddUnOrderedListComponent.addUnOrderedListTagClickFunction(uid);
-
-      // Add Top HTML and click Function
-      this.AddTopComponent.addTopTagHTMLCode(uid);
-      this.AddTopComponent.addTopTagClickFunction(uid, this.addBeforeBlockEditor, checker);
-
-      // Add Bottom HTML and click Function
-      this.AddBottomComponent.addBottomTagHTMLCode(uid);
-      this.AddBottomComponent.addBottomTagClickFunction(uid, this.addAfterBlockEditor);
-
-      // Add H1 HTML and click Function
-      this.AddH1Component.addH1TagHTMLCode(uid);
-      this.AddH1Component.addH1TagClickFunction(uid);
-
-      // Adding H2 HTML and click function
-      this.AddH2Component.addH2TagHTMLCode(uid);
-      this.AddH2Component.addH2TagClickFunction(uid);
-
-      // Adding H3 Tags
-      this.AddH3Component.addH3TagHTMLCode(uid);
-      this.AddH3Component.addH3TagClickFunction(uid);
-
-      // Adding para tags
-      this.AddParaComponent.addParaTagHTMLCode(uid);
-      this.AddParaComponent.addParaTagClickFunction(uid);
-
-
-      // Adding Left Align HTML and click Function
-      this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
-      this.AddLeftAlignComponent.addLeftAlignTagClickFunction(uid);
-
-      // Adding Center Align HTML and click Function
-      this.AddCenterAlignComponent.addCenterAlignTagHTMLCode(uid);
-      this.AddCenterAlignComponent.addCenterAlignTagClickFunction(uid);
-
-      // Adding Right Align HTML and click Function
-      this.AddRightAlignComponent.addRightAlignTagHTMLCode(uid);
-      this.AddRightAlignComponent.addRightAlignTagClickFunction(uid);
-
-      // Adding Canvas board
-      $(`#add-canvas-cb-${uid}`).click(() => {
-        const parentWidth = $(`#original-${uid}`).width();
-        console.log('Working canvas board');
-        $(`#original-${uid}`).append(`
           <div id="canvas-menu-box" class="canvas-menu-box">
              <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
           </div>
           <canvas id="canvas-${uid}" class="shadow"></canvas>
         `);
-        // This code(styles) should not be added it will cause problems in fabric
+          // This code(styles) should not be added it will cause problems in fabric
 
-        const canvas = new fabric.Canvas(`canvas-${uid}`);
-        canvas.isDrawingMode = true;
-        canvas.setHeight('400');
-        canvas.setWidth(parentWidth);
+          const canvas = new fabric.Canvas(`canvas-${uid}`);
+          canvas.isDrawingMode = true;
+          canvas.setHeight('400');
+          canvas.setWidth(parentWidth);
 
-        // changing pen color
-        // canvas.freeDrawingBrush.color
-        $(`#canvas-menu-box-${uid}`).on('change', () => {
-          const color: any = document.getElementById(`canvas-menu-box-${uid}`);
-          const data = color.value;
-          canvas.freeDrawingBrush.color = data;
+          // changing pen color
+          // canvas.freeDrawingBrush.color
+          $(`#canvas-menu-box-${uid}`).on('change', () => {
+            const color: any = document.getElementById(`canvas-menu-box-${uid}`);
+            const data = color.value;
+            canvas.freeDrawingBrush.color = data;
+          });
         });
+      }
+
+      // PDF Render
+      $('#pdfFile').change((event) => {
+        $(`#${id}`).append(this.blockFunction(uid));
+        this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
       });
 
       // Add code snippet
@@ -812,6 +576,7 @@ export class NewBoardComponent implements OnInit {
       console.log('Error', err);
     }
   }
+
   // ......................... ESSENTIALS.............................
 
   disableTitleEnter() {
@@ -828,11 +593,11 @@ export class NewBoardComponent implements OnInit {
   validURL(str) {
     const pattern = new RegExp(
       '^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$',
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
       'i'
     ); // fragment locator
     return !!pattern.test(str);
@@ -880,23 +645,23 @@ export class NewBoardComponent implements OnInit {
 
   // H1 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolBoxH1Tag = () => {
-    this.addAfterBlockEditor('main-box', 2);
+    this.addBlockEditor('main-box', 2);
   }
   // H2 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolboxH2Tag = () => {
-    this.addAfterBlockEditor('main-box', 4);
+    this.addBlockEditor('main-box', 4);
   }
   // H3 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolboxH3Tag = () => {
-    this.addAfterBlockEditor('main-box', 5);
+    this.addBlockEditor('main-box', 5);
   }
   // Canvasboard TOOLBOX CLICK FUNCTION
   addCanvasBoard = () => {
-    this.addAfterBlockEditor('main-box', 3);
+    this.addBlockEditor('main-box', 3);
   }
   // Adding paragraph
   cbToolboxParaTag = () => {
-    this.addAfterBlockEditor('main-box', 6);
+    this.addBlockEditor('main-box', 6);
   }
 
   // Adding Delete
@@ -906,53 +671,80 @@ export class NewBoardComponent implements OnInit {
 
   // Adding Top
   cbToolboxTopTag = () => {
-      this.AddTopComponent.addTopTagToolBox(this.currentChartID, this.addBeforeBlockEditor);
+    this.AddTopComponent.addTopTagToolBox(this.currentChartID, this.addBlockEditor);
   }
 
-   // Adding Bottom
+  // Adding Bottom
   cbToolboxBottomTag = () => {
-    this.AddBottomComponent.addBottomTagToolBox(this.currentChartID, this.addAfterBlockEditor);
+    this.AddBottomComponent.addBottomTagToolBox(this.currentChartID, this.addBlockEditor);
   }
   // Adding Red background color
   cbToolboxRedBackground = () => {
-    this.addAfterBlockEditor('main-box', 7);
+    this.addBlockEditor('main-box', 7);
   }
 
   // Adding Blue background color
   cbToolboxBlueBackground = () => {
-    this.addAfterBlockEditor('main-box', 8);
+    this.addBlockEditor('main-box', 8);
   }
 
   // Adding Yellow background color
   cbToolboxYellowBackground = () => {
-    this.addAfterBlockEditor('main-box', 9);
+    this.addBlockEditor('main-box', 9);
   }
 
   // Adding Green background color
   cbToolboxGreenBackground = () => {
-    this.addAfterBlockEditor('main-box', 10);
+    this.addBlockEditor('main-box', 10);
   }
 
   // Adding Monospace font
   cbToolboxMonospace = () => {
-    this.addAfterBlockEditor('main-box', 11);
+    this.addBlockEditor('main-box', 11);
   }
 
   // Adding Playfair font
   cbToolboxPlayfair = () => {
-    this.addAfterBlockEditor('main-box', 12);
+    this.addBlockEditor('main-box', 12);
+  }
+
+  // Adding Kalam font
+  cbToolboxKalam = () => {
+    this.addBlockEditor('main-box', 17);
+  }
+
+  // Clearing all fonts for Roboto font
+  cbToolboxRoboto = () => {
+    this.addBlockEditor('main-box', 13);
+  }
+
+  // Clearing all fonts
+  cbToolboxClearFont = () => {
+    this.AddClearFontComponent.addClearFontToolBox(this.currentChartID);
   }
 
   // Adding Left Align Text
   cbToolboxLeftAlign = () => {
-    this.addAfterBlockEditor('main-box', 14);
+    this.addBlockEditor('main-box', 14);
   }
+
   // Adding Center Align Text
   cbToolboxCenterAlign = () => {
-    this.addAfterBlockEditor('main-box', 15);
+    this.addBlockEditor('main-box', 15);
   }
+
   // Adding Right Align Text
   cbToolboxRightAlign = () => {
-    this.addAfterBlockEditor('main-box', 16);
+    this.addBlockEditor('main-box', 16);
+  }
+
+  // Adding Embed Link
+  cbToolboxEmbed = () => {
+    this.addBlockEditor('main-box', 18);
+  }
+
+  // Adding PdfRender
+  cbToolboxPdfRender = () => {
+    $('#pdfFile').click();
   }
 }

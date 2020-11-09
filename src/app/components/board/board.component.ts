@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, Renderer2 } from '@angular/core';
-import {Pages} from '../../../interfaces/pages';
-import {Tracking} from '../../../interfaces/tracking';
+import { Pages } from '../../../interfaces/pages';
+import { Tracking } from '../../../interfaces/tracking';
 import { log } from 'util';
 declare const pdfjsLib: any;
 @Component({
@@ -94,13 +94,13 @@ export class BoardComponent implements OnInit {
   // getting screen Width and height automatically triggers when dimension changes
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
-        this.scrHeight = window.innerHeight - 5;
-        this.scrWidth = window.innerWidth - 220;
+    this.scrHeight = window.innerHeight - 5;
+    this.scrWidth = window.innerWidth - 220;
   }
 
   ngOnInit() {
     this.page = 0;
-    console.log('Screen width :', this.scrWidth, 'Screen height', this.scrHeight );
+    console.log('Screen width :', this.scrWidth, 'Screen height', this.scrHeight);
 
     // getting the 2D context of Canvas element
     this.canvasElement = this.canvas.nativeElement;
@@ -124,7 +124,7 @@ export class BoardComponent implements OnInit {
       doc.getPage(pageNumber).then(page => {
         const canvas: any = document.getElementById('my_canvas');
         const context: any = canvas.getContext('2d');
-        const viewport: any = page.getViewport({ scale: 1.3});
+        const viewport: any = page.getViewport({ scale: 1.3 });
         viewport.height = this.scrHeight;
         this.pdfAddedBoolean = true;
         // viewport.width = '200px';
@@ -364,24 +364,24 @@ export class BoardComponent implements OnInit {
   showPreviewImage(event: any) {
     // checking if file is uploading
     if (event.target.files && event.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (readerEvent: any) => {
-            this.localUrl = readerEvent.target.result;
-            this.pdfJs = pdfjsLib.getDocument(this.localUrl);
+      const reader = new FileReader();
+      reader.onload = (readerEvent: any) => {
+        this.localUrl = readerEvent.target.result;
+        this.pdfJs = pdfjsLib.getDocument(this.localUrl);
 
-            this.pdfJs.promise.then(doc => {
-              console.log('PDF LOADED');
-              console.log('This pdf has ', doc._pdfInfo.numPages);
-              this.noOfPages = doc._pdfInfo.numPages;
+        this.pdfJs.promise.then(doc => {
+          console.log('PDF LOADED');
+          console.log('This pdf has ', doc._pdfInfo.numPages);
+          this.noOfPages = doc._pdfInfo.numPages;
 
-            // once the whole file is uploaded
-            // this.function_PDF_tracking(this.no_of_pages)
-              this.addPdf(1);
-            });
+          // once the whole file is uploaded
+          // this.function_PDF_tracking(this.no_of_pages)
+          this.addPdf(1);
+        });
 
-        };
-        reader.readAsDataURL(event.target.files[0]);
-        console.log('Local URL', this.localUrl);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+      console.log('Local URL', this.localUrl);
     }
   }
 
@@ -400,12 +400,12 @@ export class BoardComponent implements OnInit {
         console.log(obj);
         // this.pageTracking.push(obj)
       } else {
-      const obj = {
-        page: i + 1,
-        status: 'novisit'
-      };
-      console.log(obj);
-      // this.pageTracking.push(obj)
+        const obj = {
+          page: i + 1,
+          status: 'novisit'
+        };
+        console.log(obj);
+        // this.pageTracking.push(obj)
       }
     }
     console.log('All my pages', this.pageTracking);
@@ -423,7 +423,7 @@ export class BoardComponent implements OnInit {
     console.log(present, 'Added to my notebook');
     // checking if that page number is there or not
     // if found then update else append
-    this.upsert(this.notebook, this.page , present);
+    this.upsert(this.notebook, this.page, present);
     this.pdfTick(this.pageTracking, this.page);
     // Going to new page
     console.log('Stored page number', this.page);
@@ -482,49 +482,49 @@ export class BoardComponent implements OnInit {
 
   prevPage() {
     if (this.page > 0) {
-          // save the state
-    const present = {
-      pageNumber: this.page,
-      image: this.canvasElement.toDataURL(),
-      // check if that page number is there or notement.toDataURL(),
-      date: Date.now()
-    };
+      // save the state
+      const present = {
+        pageNumber: this.page,
+        image: this.canvasElement.toDataURL(),
+        // check if that page number is there or notement.toDataURL(),
+        date: Date.now()
+      };
 
-    // adding it to the tracking list as this page is visited
-    this.pdfTick(this.pageTracking, this.page);
+      // adding it to the tracking list as this page is visited
+      this.pdfTick(this.pageTracking, this.page);
 
-    // checking if that page number is there or not
-    // if found then update else append
-    this.upsert(this.notebook, this.page , present);
-    console.log('Stroing the page number which prev is pressed', present);
+      // checking if that page number is there or not
+      // if found then update else append
+      this.upsert(this.notebook, this.page, present);
+      console.log('Stroing the page number which prev is pressed', present);
 
-    console.log(this.notebook);
+      console.log(this.notebook);
 
-    this.page = this.page - 1;
-    const image = new Image();
+      this.page = this.page - 1;
+      const image = new Image();
 
-    image.onload = (event) => {
-      this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
-      this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
-      this.ctx.globalCompositeOperation = this.defaultComposite;
-    };
-    image.src = this.notebook[this.page].image;
+      image.onload = (event) => {
+        this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+        this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
+        this.ctx.globalCompositeOperation = this.defaultComposite;
+      };
+      image.src = this.notebook[this.page].image;
 
-    // for (let index = 0; index < this.notebook.length; index++) {
-    //   if(this.page){
-    //     var image = new Image();
-    //     image.onload = (event) => {
-    //       this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
-    //       this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
-    //     }
-    //     image.src = this.notebook[index].image; // data.image contains the data URL
+      // for (let index = 0; index < this.notebook.length; index++) {
+      //   if(this.page){
+      //     var image = new Image();
+      //     image.onload = (event) => {
+      //       this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+      //       this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
+      //     }
+      //     image.src = this.notebook[index].image; // data.image contains the data URL
 
-    //     console.log(image);
+      //     console.log(image);
 
-    //   }
-    // }
+      //   }
+      // }
 
-    console.log(this.page);
+      console.log(this.page);
     }
 
     console.log('Man at end', this.notebook);
@@ -535,12 +535,12 @@ export class BoardComponent implements OnInit {
       const i = array.findIndex(item => item.pageNumber === pageNumber);
       if (i > -1) {
       } else {
-          const obj = {
-            pageNumber,
-            status: 'visited',
-          };
-          array.push(obj);
-          console.log('PDF TRACKING', obj);
+        const obj = {
+          pageNumber,
+          status: 'visited',
+        };
+        array.push(obj);
+        console.log('PDF TRACKING', obj);
 
       } // page not found
 
@@ -568,7 +568,7 @@ export class BoardComponent implements OnInit {
       date: Date.now()
     };
 
-    this.upsert(this.notebook, this.page , present);
+    this.upsert(this.notebook, this.page, present);
 
     const data = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.notebook));
     const a = document.createElement('a');
@@ -580,7 +580,14 @@ export class BoardComponent implements OnInit {
     a.click();
     document.body.removeChild(a);
   }
-
+  //
+  addClearBackground() {
+    let ctx: any = document.getElementById('backgroundImage');
+    if (ctx.getContext) {
+      ctx = ctx.getContext('2d');
+      ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
+    }
+  }
   // Add normal paper
   addRuledPaper() {
     let ctx: any = document.getElementById('backgroundImage');
@@ -596,9 +603,9 @@ export class BoardComponent implements OnInit {
         ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
 
 
-    };
+      };
       img1.src
-      = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true';
+        = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/College-Ruled-Papers-Template-A4-Size-650x823.png?raw=true';
     }
   }
 
@@ -615,7 +622,7 @@ export class BoardComponent implements OnInit {
         // img1.height = 1000
 
         ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
-    };
+      };
       img1.src = 'https://raw.githubusercontent.com/Canvasbird/canvasboard/master/src/assets/paperType/mathYellow.svg';
     }
   }
@@ -633,12 +640,12 @@ export class BoardComponent implements OnInit {
         // img1.height = 1000
 
         ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
-    };
+      };
       img1.src = 'https://github.com/Canvasbird/canvasboard/blob/master/src/assets/paperType/graph.png?raw=true';
     }
   }
 
-  setColor(r: number, g: number, b: number, opacity: number= 1) {
+  setColor(r: number, g: number, b: number, opacity: number = 1) {
     this.penColour = `rgb(${r},${g},${b},${opacity})`;
   }
 
@@ -657,7 +664,7 @@ export class BoardComponent implements OnInit {
     this.penColour = rgbConverted;
   }
 
-  rgbConverter(hexValue, opacity= 1) {
+  rgbConverter(hexValue, opacity = 1) {
     // changing the value to RGB format
     let value = hexValue.match(/[A-Za-z0-9]{2}/g);
     value = value.map((v) => parseInt(v, 16));

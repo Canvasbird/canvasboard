@@ -4,8 +4,9 @@
 </p>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
+[![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
 [![Gitter](https://badges.gitter.im/canvasbird/canvasboard-frontend.svg)](https://gitter.im/canvasbird/canvasboard-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 [![Issues](https://img.shields.io/github/issues/Canvasbird/canvasboard)](#issues)
 [![forks](https://img.shields.io/github/forks/Canvasbird/canvasboard)](#forks)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
@@ -94,6 +95,7 @@ Thanks goes to these wonderful people ✨✨:
     <td align="center"><a href="https://filip.havrlent.com"><img src="https://avatars0.githubusercontent.com/u/16169571?v=4" width="100px;" alt=""/><br /><sub><b>Filip Havrlent</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=fhavrlent" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jawsvk"><img src="https://avatars1.githubusercontent.com/u/36097628?v=4" width="100px;" alt=""/><br /><sub><b>Jawen Voon</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=jawsvk" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/validity-check"><img src="https://avatars2.githubusercontent.com/u/63739210?v=4" width="100px;" alt=""/><br /><sub><b>Me</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=validity-check" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/himeshkrishnaosuri"><img src="https://avatars0.githubusercontent.com/u/33364249?v=4" width="100px;" alt=""/><br /><sub><b>himeshkrishnaosuri</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=himeshkrishnaosuri" title="Code">💻</a></td>
   </tr>
 </table>
 

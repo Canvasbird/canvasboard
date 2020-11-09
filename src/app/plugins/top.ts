@@ -26,18 +26,18 @@ export class AddTopComponent {
     }
 
     // Top HTML Tag Click Action
-    addTopTagClickFunction = (uid, addBeforeBlockEditor, checker) => {
+    addTopTagClickFunction = (uid, addBlockEditor, checker) => {
       // Adding click action of above button
       $(`#add-new-box-prev-${uid}`).click(() => {
         if (checker !== 0) {
-          addBeforeBlockEditor(uid, 1);
+          addBlockEditor(uid, 1, true);
         }
       });
     }
 
     // Adding Top
     addTopTagToolBox = (uid, addBeforeBlockEditor) => {
-    addBeforeBlockEditor(uid, 1);
+    addBeforeBlockEditor(uid, 1, true);
     }
 
 }
