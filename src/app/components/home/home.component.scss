@@ -62,8 +62,8 @@
 
   .header{
     font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 30px;
+    font-weight: bold;
+    font-size: 40px;
 
     @media (min-width: 768px) {
         font-size: 45px;
@@ -151,5 +151,40 @@
         background-color: transparent;
      }
 
-  // }
+  .text-center-wrapper {
+    float:right;
+    position:relative;
+    left:-50%;
+    text-align:left;
+
+    ul{
+      list-style:none; 
+      position:relative;
+      left:50%;
+      padding: 5px;
+
+      li {
+        line-height:30px;
+      }
+      text-align: center; 
+      @media (min-width: 768px) {
+         
+      }
+  }
+  }
+
+  .custom-img {
+    @media (min-width: 768px) {
+      padding-left: 20px;
+  }
+  }
+  .color1 {
+    color: #1551EC;
+  }
+  .color2 {
+    color: #5217F9;
+  }
+  .color3 {
+    color: #9513E4;
+  }
 }
