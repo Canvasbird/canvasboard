@@ -3,8 +3,8 @@
     <div class="col-md-3 col-sm-10 main-scr">
       <form class="p-4 form-lst">
         <div class="header" routerLink="/">
-          <img src="../../../assets/home/logo_bw.png" alt="" class="logo">
-          <div class="title"><p>Canvasboard</p></div>
+          <!-- <img src="../../../assets/home/logo_bw.png" alt="" class="logo"> -->
+          <div class="title ani"><p>Canvasboard</p></div>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1"><strong>Email address</strong></label>
@@ -19,17 +19,24 @@
           <a>Forgot Password?</a>
         </div>
         <div class="form-group">
-          <button type="button" class="btn btn-outline-dark" (click)="login()"><strong style="padding:10px">Login</strong></button>
-          <p style="font-size: 15px;"><strong>Don't have an account?</strong> <a routerLink="/sign-up">Sign Up!</a></p>
+          <button type="button" class="btn-grad btn-outline-dark" (click)="login()"><strong style="padding:10px">Log In</strong></button>
+          <p style="font-size: 15px; margin-bottom: 0px"><strong>Don't have an account?</strong></p>
+          <button type="button" class="btn-grad btn-outline-dark" routerLink="/sign-up"><strong style="padding:10px">Sign Up</strong></button>
         </div>
         <hr>
         <div class="form-group text-center">
-          <p style="margin-bottom: 5px;"><strong>Or</strong></p>
-          <button type="submit" class="btn btn-outline-danger">Login with Google</button>
+          <p style="margin-bottom: 5px;"><strong>Log In with</strong></p>
+          <!-- <button type="submit" class="btn btn-outline-danger">Login with Google</button> -->
+          <img src="../../../assets/login/icons8-google-48.png">
+          <img src="../../../assets/login/icons8-facebook-48.png">
+          <img src="../../../assets/login/icons8-office-365-48.png">
+          <img src="../../../assets/login/icons8-github-48.png">
         </div>
       </form>
     </div>
-    <div class="col-md-9 mob-hidden back-img" style="background-color:pink">
+    <div class="col-md-9 mob-hidden" style="background-color:white">
+      <img class="img-responsive mw-100" src="../../../assets/login/download2.png">
     </div>
+
   </div>
 </div>
