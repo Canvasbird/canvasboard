@@ -166,6 +166,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sal2701",
+      "name": "Saiakash Konidena",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/42511766?v=4",
+      "profile": "https://sal2701.github.io",
+      "contributions": [
+        "code",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
