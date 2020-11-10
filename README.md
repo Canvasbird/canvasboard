@@ -96,6 +96,7 @@ Thanks goes to these wonderful people ✨✨:
     <td align="center"><a href="https://github.com/jawsvk"><img src="https://avatars1.githubusercontent.com/u/36097628?v=4" width="100px;" alt=""/><br /><sub><b>Jawen Voon</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=jawsvk" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/validity-check"><img src="https://avatars2.githubusercontent.com/u/63739210?v=4" width="100px;" alt=""/><br /><sub><b>Me</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=validity-check" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/himeshkrishnaosuri"><img src="https://avatars0.githubusercontent.com/u/33364249?v=4" width="100px;" alt=""/><br /><sub><b>himeshkrishnaosuri</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=himeshkrishnaosuri" title="Code">💻</a></td>
+    <td align="center"><a href="https://sal2701.github.io"><img src="https://avatars0.githubusercontent.com/u/42511766?v=4" width="100px;" alt=""/><br /><sub><b>Saiakash Konidena</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=sal2701" title="Code">💻</a> <a href="#design-sal2701" title="Design">🎨</a></td>
   </tr>
 </table>
 
