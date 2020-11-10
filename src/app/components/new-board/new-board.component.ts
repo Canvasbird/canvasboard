@@ -47,6 +47,7 @@ export class NewBoardComponent implements OnInit {
 
   reader: FileReader;
   currentChartID: number;
+  userBlocks: Array<object>;
   // Initializing plugins
   AddH1Component: any;
   AddH2Component: any;
@@ -109,6 +110,8 @@ export class NewBoardComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Initialse the array
+    this.userBlocks = [];
     // sortable-js
     const mainEl = document.getElementById('main-box');
     const sortable = new Sortable(mainEl, {

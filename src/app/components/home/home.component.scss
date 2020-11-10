@@ -5,10 +5,8 @@
   }
 
   .links{
-    font-family: 'Questrial', sans-serif;
     width: 100%;
     text-align: center;
-    font-size: 22px;
     // border: 1px solid red;
     ul{
       margin: 2px auto;
@@ -21,44 +19,26 @@
       margin-left: 1rem;
       margin-right: 1rem;
       padding-top: 0.5rem;
+    }
 
-      a{
-        color: black;
-      }
+    a {
+      color: black;
     }
   }
 
   .title{
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 2.5rem;
 
     @media (min-width: 768px) {
-        font-size: 8rem;
+        font-size: 6rem;
     }
   }
 
   .ani{
-
-    // background: rgb(179,227,221);
-    // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%); 
-
-    // background: rgb(179,227,221);
-    // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 0%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 100%, rgba(179,227,221,1) 100%); 
-
-    // background: rgb(128,208,199);
-    // background: linear-gradient(90deg, rgba(128,208,199,1) 0%, rgba(179,227,221,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%); 
-
     background: rgb(179,227,221);
     background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%); 
-
-    
-    // background: rgb(179,227,221);
-    // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(179,227,221,1) 100%); 
-
-    // background: rgb(54,188,229);
-    // background: linear-gradient(90deg, rgba(54,188,229,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(54,188,229,1) 100%); 
-
     /* Set the background size and repeat properties. */
     background-size: 200% auto;
     background-repeat: repeat;
@@ -68,14 +48,10 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; 
     
-
     background-clip: text;
   
     animation: shine 5s linear infinite;
-  
-    /* Animate the text when loading the element. */
-    /* This animates it on page load and when hovering out. */
-    // animation: rainbow-text-simple-animation-rev 0.25s ease forwards;
+    margin-bottom: 0px;
   }
 
   @keyframes shine {
@@ -90,7 +66,7 @@
     font-size: 30px;
 
     @media (min-width: 768px) {
-        font-size: 42px;
+        font-size: 45px;
     }
   }
 
@@ -99,9 +75,6 @@
     font-size: 24px;
     line-height: 31px;
 
-    @media (min-width: 768px) {
-      font-size: 30px;
-    }
     .webboard{
       // color: #EE6D9E;
       color: #0093E9;
@@ -131,19 +104,16 @@
       width: 50%;
     }
     .feature1-heading{
-      // color: #0093E9;
-      color:grey;
       font-family: Poppins;
       font-weight: bold;
-      font-size: 30px;
-      line-height: 45px;
+      font-size: 25px;
     }
 
     .features-image{
       display: block;
       margin-left: auto;
       margin-right: auto;
-      width: 40%;
+      width: 30%;
     }
   }
 
