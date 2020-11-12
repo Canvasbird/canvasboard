@@ -10,6 +10,8 @@ export class RestService {
 
   xAuthToken = null;
   boardId = null;
+  gerBoardDetails = null;
+  createFolderResponse = null;
 
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -45,5 +47,31 @@ export class RestService {
     }).subscribe( res => {
         console.log(res);
     });
+  }
+
+  async getFoldersData() {
+    this.xAuthToken = localStorage.getItem('token');
+    await this.http.get(`https://api.canvasboard.live/api/v1/user/view-folders/`, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+    .then((response) => {
+      this.gerBoardDetails = response;
+    });
+    return this.gerBoardDetails;
+  }
+
+  async createFolder(body) {
+    this.xAuthToken = localStorage.getItem('token');    
+    await this.http.post(`https://api.canvasboard.live/api/v1/user/create-folder`, body, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+    .then((response) => {
+      this.createFolderResponse = response;
+    });
+    return this.createFolderResponse;
   }
 }

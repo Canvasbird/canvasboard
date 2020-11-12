@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { Data } from 'src/interfaces/dashboard';
+import { RestService } from 'src/app/services/rest.service';
+declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
@@ -9,33 +11,51 @@ import { Data } from 'src/interfaces/dashboard';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private apiService: RestService) { }
 
-  data: Data[];
+  data: any;
 
   ngOnInit() {
-    this.data = [
-      {
-        imageUrl: 'https://i.gifer.com/XXM2.gif',
-        title: 'Chapter 1',
-        subtitle: 'Lorem ipsum dolor sit amet consectetur adipisicing eliteius.',
-        id: 1,
-        filters: ['one', 'two', 'three']
+    this.gettingData();
+  }
 
-      },
-      {
-        imageUrl: 'https://img.wallpapersafari.com/tablet/1536/2048/2/20/JGTEAp.jpg',
-        title: 'Chapter 2',
-        subtitle: 'Lorem Lorem ipsum dolor sit amet. ipsum dolor sit amet consectetur adipisicing eliteius.',
-        id: 2,
-        filters: ['one', 'two', 'three']
-
-      },
-    ];
+  async gettingData() {
+    const response = await this.apiService.getFoldersData();
+    this.data = response.content;
+    console.log(this.data);
+    
   }
 
   navigateToFiles(e, item) {
     console.log('Working', item);
     this.route.navigate(['/files']);
+  }
+
+  close() {
+    document.getElementById('error-label').style.display = 'none';
+  }
+
+  deleteCard(id) {
+    console.log(id);
+    
+    
+  }
+
+  async createFolder() {
+    const folderName: any = document.getElementById('folder-name-input');
+    const folderDiscription: any = document.getElementById('folder-discription-input');
+    const body = {
+      folder_name: folderName.value,
+      folder_title: folderDiscription.value,
+      folder_tag: 'folder_tag',
+      is_nested_folder: false
+    };
+    const response = await this.apiService.createFolder(body);
+    if (response.success) {
+      document.getElementById('error-label').style.display = 'none';
+      $('#newCard').modal('hide');
+    } else {
+      document.getElementById('error-label').style.display = 'block';
+    }
   }
 }
