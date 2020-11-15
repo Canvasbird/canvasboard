@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Data, Router} from '@angular/router';
+import {Data, Router, ActivatedRoute} from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -13,10 +13,14 @@ export class FilesComponent implements OnInit {
   `;
 
   data: Data;
+  activateID: Data;
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe( params => this.activateID = params );
+  }
 
   ngOnInit() {
+
     this.data = [
       {
         imageURL: 'https://i.gifer.com/XXM2.gif',

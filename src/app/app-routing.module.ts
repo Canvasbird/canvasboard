@@ -54,7 +54,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'files',
+    path: 'folder/:id',
     component: FilesComponent,
   },
   {

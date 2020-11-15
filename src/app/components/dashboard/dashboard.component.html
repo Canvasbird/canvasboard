@@ -10,19 +10,67 @@
     </button>
   </div>
 
+  <!-- new workspace -->
+  <div class="folder-container mt-4">
+    <div class="new-folder">
+      <br>
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>
+      <br>
+      <!-- <p class="folder-discription">Lorem ipsum dolor sit amet.</p> -->
+      <button class="btn btn-dark mt-4" type="button" data-toggle="modal" data-target="#newCard">Add New Workspace</button>
+    </div>
+  </div>
+
   <!-- Folders -->
-  <div class="cb-files-container">
-    <div class="cb-box"*ngFor="let data of data">
-      <!-- <img src="{{data.imageURL}}" alt="demo"> -->
-      <h2>{{data.title}}</h2>
-      <p>{{data.subtitle}}</p>
-      <button class="btn btn-outline-dark mt-1" (click)="navigateToFiles($event, data)"> Enter</button>
-      <div class="labels d-flex flex-wrap">
-        <span class="badge badge-danger">Label1</span>
-        <span class="badge badge-danger">label2</span>
+  <div id="user-folders" class="folder-container bd-grid mt-4">
+  
+  </div>  
+
+  <!-- Modal -->
+<div class="modal fade" id="newCard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Workspace</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- const body = {
+          folder_name: 'Akshay folder 1',
+          folder_title: 'Folder 1',
+          folder_tag: 'folder_tag',
+          is_nested_folder: false
+        } -->
+        <!-- Folder name -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="folder-name">Name</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-name" id="folder-name-input">
+        </div>
+        <!-- Folder discription -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="folder-discription">Discription</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-discription" id="folder-discription-input">
+        </div>
+
+        <!-- Error Label -->
+        <h5 class="error-label"><span class="badge badge-danger" id="error-label">Error Occurred!</span></h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createFolder()" >Save changes</button>
       </div>
     </div>
   </div>
+</div>
 
 
 
