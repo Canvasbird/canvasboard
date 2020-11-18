@@ -12,13 +12,12 @@ declare var $: any;
 export class DashboardComponent implements OnInit {
 
   constructor(private route: Router, private apiService: RestService) { }
-
   data: any;
 
   ngOnInit() {
     this.gettingData();
   }
-
+  // GETTING USER DATA
   async gettingData() {
     const response = await this.apiService.getFoldersData();
     const data = await response.content;
@@ -81,7 +80,6 @@ export class DashboardComponent implements OnInit {
     });
 
   }
-
 
   navigateToFiles(e, item) {
     console.log('Working', item);

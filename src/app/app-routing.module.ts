@@ -13,7 +13,6 @@ import { AssignmentComponent } from './components/assignment/assignment.componen
 import { AuthGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
-import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
 const routes: Routes = [
@@ -66,16 +65,6 @@ const routes: Routes = [
     path: 'creative-board',
     component: NewBoardComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'user-dashboard',
-    component: UserDashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'subject',
-    component: SubjectDashboardComponent,
-    // canActivate: [AuthGuard]
   },
   {
     path: '**',

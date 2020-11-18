@@ -15,9 +15,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './shared/auth.guard';
-import { SubjectDashboardComponent } from './components/subject-dashboard/subject-dashboard.component';
 import { NewBoardComponent } from './components/new-board/new-board.component';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
 @NgModule({
@@ -32,9 +30,7 @@ import { FilesComponent } from './components/files/files.component';
     SignUpComponent,
     DashboardComponent,
     NavbarComponent,
-    SubjectDashboardComponent,
     NewBoardComponent,
-    UserDashboardComponent,
     ContributionComponent,
     FilesComponent,
   ],
