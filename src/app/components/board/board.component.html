@@ -49,7 +49,7 @@
             <img src="../../../assets/paperType/ruled.png" alt="ruled">
           </div>
           <div class="box" (click)="addClearBackground()">
-            
+
           </div>
           <div class="box" (click)="addMathPaper()">
             <img class="img-scale" src="../../../assets/paperType/mathYellow.svg" alt="math">
@@ -215,13 +215,14 @@
       <!-- Buttons -->
       <li class="finalBtn">
         <div class="btx">
-          <button class="btn btn-success" (click)="downloadAsJSON()">Save</button>
-          <button class="btn btn-danger">Exit</button>
+          <button class="btn btn-success btn-save" (click)="downloadAsJSON()">Save</button>
+          <button class="btn btn-danger btn-exit">Exit</button>
         </div>
       </li>
     </ul>
   </div>
 
+  <!-- main container for background -->
   <div class="main">
     <canvas #backgroundImage id="backgroundImage"></canvas>
     <canvas #myCanvas id="my_canvas" class="canvasElement"></canvas>
