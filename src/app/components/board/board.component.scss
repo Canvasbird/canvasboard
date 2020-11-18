@@ -4,7 +4,7 @@
 
 
   .sidebar{
-    position: fixed;
+    position: relative;
     width: 200px;
     height:100%;
     // background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
@@ -31,8 +31,9 @@
   }
 
   .finalBtn{
-    position: absolute;
+    position: relative;
     bottom: 0px;
+    margin-top: 1rem;
 
     .btx{
       display: grid;
@@ -42,6 +43,23 @@
         margin: 5px;
       }
     }
+  }
+
+  .btn-save {
+    box-shadow: 0 6px darken(	#008000, 10%);
+  }
+  .btn-save:hover {
+    position: relative;
+    box-shadow: 0 4px darken(#008000, 10%);
+    top: 2px;
+  }
+  .btn-exit{
+    box-shadow: 0 6px darken(	#DC143C, 10%);
+  }
+  .btn-exit:hover {
+    position: relative;
+    box-shadow: 0 4px darken(#DC143C, 10%);
+    top: 2px;
   }
 
   .page-buttons{
@@ -171,7 +189,8 @@
 }
 
 .main{
-  margin-left: 200px;
+  margin-left: 0px;
+  height: 100%;
 }
 
 .heading{
@@ -188,10 +207,10 @@
 }
 
 #backgroundImage{
-  position: absolute;
+  position: fixed;
 }
 #my_canvas{
-  position:absolute;
+  position: fixed;
 }
 
 
