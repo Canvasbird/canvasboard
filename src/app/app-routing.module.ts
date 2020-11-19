@@ -12,7 +12,6 @@ import { AssignmentComponent } from './components/assignment/assignment.componen
 // guard
 import { AuthGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
 const routes: Routes = [
