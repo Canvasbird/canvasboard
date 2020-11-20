@@ -2,15 +2,18 @@ import { Component, OnInit, ViewChild, HostListener, Renderer2 } from '@angular/
 import { Pages } from '../../../interfaces/pages';
 import { Tracking } from '../../../interfaces/tracking';
 import { log } from 'util';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+
 declare const pdfjsLib: any;
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss']
+  styleUrls: ['./board.component.scss'],
+  providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}]
 })
 export class BoardComponent implements OnInit {
 
-  constructor(public renderer: Renderer2) {
+  constructor(public renderer: Renderer2, private location: Location) {
     this.getScreenSize();
   }
 
@@ -580,7 +583,11 @@ export class BoardComponent implements OnInit {
     a.click();
     document.body.removeChild(a);
   }
-  //
+
+  exitPage() {
+    this.location.back();
+  }
+
   addClearBackground() {
     let ctx: any = document.getElementById('backgroundImage');
     if (ctx.getContext) {
