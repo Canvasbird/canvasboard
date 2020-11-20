@@ -97,7 +97,7 @@
   display: none;
 }
 
-// Dashboard
+// ........................DASHBOARD...........................
 .folder-box {
   padding: 1rem 1rem;
   background: #53A453;
@@ -136,17 +136,17 @@
 .bd-grid {
   display: grid;
 }
-.folder-container {
+.cbff-container {
   grid-template-columns: repeat(3,1fr);
 }
 
 @media (max-width: 768px) {
-  .folder-container {
+  .cbff-container {
     grid-template-columns: repeat(2,1fr);
   }
 }
 @media (max-width: 576px) {
-  .folder-container {
+  .cbff-container {
     grid-template-columns: repeat(1,1fr);
   }
 }

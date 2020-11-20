@@ -14,6 +14,8 @@ export class RestService {
   createFolderResponse = null;
   deleteFolderResponse = null;
 
+  getFilesDetails = null;
+
   constructor(private http: HttpClient, public router: Router) {}
 
   saveBoardData(boardTitle, boardData) {
@@ -50,6 +52,9 @@ export class RestService {
     });
   }
 
+  // ........................... DASHBOARD APIS........................................
+  
+  // ........................... GET FOLDERS...........................................
   async getFoldersData() {
     this.xAuthToken = localStorage.getItem('token');
     await this.http.get(`https://api.canvasboard.live/api/v1/user/view-folders/`, {
@@ -62,7 +67,7 @@ export class RestService {
     });
     return this.gerBoardDetails;
   }
-
+  // ........................... CREATE FOLDER ........................................
   async createFolder(body) {
     this.xAuthToken = localStorage.getItem('token');
     await this.http.post(`https://api.canvasboard.live/api/v1/user/create-folder`, body, {
@@ -75,7 +80,7 @@ export class RestService {
     });
     return this.createFolderResponse;
   }
-
+  // ........................... DELETE FOLDER ........................................
   async deleteFolder(value) {
     this.xAuthToken = localStorage.getItem('token');
     await this.http.delete(`https://api.canvasboard.live/api/v1/user/remove-folder?folder_id=${value}`, {
@@ -87,5 +92,21 @@ export class RestService {
       this.deleteFolderResponse = response;
     });
     return this.deleteFolderResponse;
+  }
+
+  // ........................... FILES APIS........................................
+  
+  // ........................... GET FILES........................................
+  async getFilesData(id) {
+    this.xAuthToken = localStorage.getItem('token');
+    await this.http.get(`https://api.canvasboard.live/api/v1/user/folder/files/${id}`, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+    .then((response) => {
+      this.getFilesDetails = response;
+    });
+    return this.getFilesDetails;
   }
 }
