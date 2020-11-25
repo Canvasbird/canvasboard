@@ -160,7 +160,7 @@ export class DashboardComponent implements OnInit {
     this.data.push(obj);
     console.log(this.data);
   }
-  
+
   async createFolder() {
     const folderName: any = document.getElementById('folder-name-input');
     const folderDiscription: any = document.getElementById('folder-discription-input');
