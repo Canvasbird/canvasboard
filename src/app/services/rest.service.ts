@@ -53,7 +53,7 @@ export class RestService {
   }
 
   // ........................... DASHBOARD APIS........................................
-  
+
   // ........................... GET FOLDERS...........................................
   async getFoldersData() {
     this.xAuthToken = localStorage.getItem('token');
@@ -95,7 +95,7 @@ export class RestService {
   }
 
   // ........................... FILES APIS........................................
-  
+
   // ........................... GET FILES........................................
   async getFilesData(id) {
     this.xAuthToken = localStorage.getItem('token');

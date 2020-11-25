@@ -22,8 +22,8 @@ export class DashboardComponent implements OnInit {
   async gettingData() {
     const response = await this.apiService.getFoldersData();
     const data = await response.content;
-    this.data = data;
-    this.Username = this.data.user_name;
+    this.data = data.folders;
+    this.Username = data.user_name;
     this.addFolders(data);
   }
 
@@ -178,6 +178,9 @@ export class DashboardComponent implements OnInit {
       document.getElementById('error-label').style.display = 'none';
       // Adding the folder in HTML
       this.addNewFolder(response.content);
+      // Empty the strings
+      folderName.value = '';
+      folderDiscription.value = '';
       // Closing popup
       $('#newCard').modal('hide');
     } else {
