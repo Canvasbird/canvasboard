@@ -1,32 +1,17 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <div class="buttons mt-4">
-    <button class="btn btn-danger" (click)="backtoDashboard()">Back</button>
-  </div>
   <div class="jumbotron mt-2">
-    <h1 class="display-5"><strong>Science 4b</strong></h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <h1 class="display-5 Questrial"><strong>Heading (Title)</strong></h1>
+    <p class="lead Questrial">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <button class="btn btn-dark Questrial" routerLink="/creative-board">Launch New Board</button>
   </div>
 
-  <div class="buttons mt-1">
-    <button class="btn btn-outline-primary mx-1" routerLink="/creative-board"><strong>Launch Creative Board</strong></button>
-    <button class="btn btn-outline-primary mx-1" routerLink="/board"><strong>Launch Board</strong></button>
-    <button class="btn btn-outline-danger mx-1" routerLink="/files"><strong>File Explorer</strong></button>
-  </div>
-
-  <div class="cb-files-container">
-    <div class="cb-box"*ngFor="let data of data">
-      <img src="{{data.imageURL}}" alt="demo">
-      <h2>{{data.title}}</h2>
-      <p>{{data.subtitle}}</p>
-      <button class="btn btn-primary mt-2 myButton" (click)="viewCreativeBoard($event,data)">View</button>
-      <button class="btn btn-success mt-2" *ngIf="true" (click)="editCreativeBoard($event,data)">Edit</button>
-      <div class="labels d-flex flex-wrap">
-        <span class="badge badge-danger">Label1</span>
-        <span class="badge badge-danger">label2</span>
-      </div>
-    </div>
-  </div>
+  <!-- Files collection -->
+    <div id="user-files" class="cbff-container bd-grid mt-4">
+      
+    </div>  
 </div>
+
+
 
