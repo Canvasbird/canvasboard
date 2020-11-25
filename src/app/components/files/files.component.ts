@@ -12,6 +12,8 @@ export class FilesComponent implements OnInit {
 
   activateID: Data;
   data: any;
+  FolderName: string = null;
+  FolderDiscription: string = null;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private apiService: RestService) {
     this.activatedRoute.params.subscribe( params => this.activateID = params );
@@ -26,5 +28,7 @@ export class FilesComponent implements OnInit {
     const response = await this.apiService.getFilesData(id);
     const data = await response.content;
     this.data = data;
+    this.FolderName = this.data.folder_name;
+    this.FolderDiscription = this.data.folder_title;
   }
 }

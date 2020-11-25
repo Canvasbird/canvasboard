@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private route: Router, private apiService: RestService) { }
   data: any;
+  Username: string = null;
 
   ngOnInit() {
     this.gettingData();
@@ -22,12 +23,13 @@ export class DashboardComponent implements OnInit {
     const response = await this.apiService.getFoldersData();
     const data = await response.content;
     this.data = data;
+    this.Username = this.data.user_name;
     this.addFolders(data);
   }
 
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
-    data.forEach((obj) => {
+    data.folders.forEach((obj) => {
       console.log(obj);
       // Add Folders
       $('#user-folders').append(`
