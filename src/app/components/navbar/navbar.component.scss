@@ -3,3 +3,27 @@
         display: none;
     }
   }
+
+  @media only screen and (max-width: 900px) {
+    .navbar-nav{
+      float: right;
+      margin-left: 0;
+   }
+  }
+
+
+ .navbar-nav{
+    margin: auto;
+    float: right;
+    margin-right: 0%;
+
+ }
+
+ #logout-button{
+   padding: .375rem .75rem;
+   color: #343a40;
+ }
+
+ .btn:hover{
+   color: white !important;
+ }
