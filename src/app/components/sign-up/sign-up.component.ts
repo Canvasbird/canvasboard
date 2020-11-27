@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignUpComponent implements OnInit {
 
   userName = '';
-  instituteName = '';
   email = '';
   password = '';
 
@@ -23,7 +22,6 @@ export class SignUpComponent implements OnInit {
     this.authService.signUpReqObj.email_id = this.email;
     this.authService.signUpReqObj.password = this.password;
     this.authService.signUpReqObj.user_name = this.userName;
-    this.authService.signUpReqObj.institute_name = this.instituteName;
     this.authService.signUp();
   }
 
