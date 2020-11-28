@@ -5,7 +5,6 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
 [![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
-[![Gitter](https://badges.gitter.im/canvasbird/canvasboard-frontend.svg)](https://gitter.im/canvasbird/canvasboard-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
 [![Issues](https://img.shields.io/github/issues/Canvasbird/canvasboard)](#issues)
 [![forks](https://img.shields.io/github/forks/Canvasbird/canvasboard)](#forks)
@@ -64,6 +63,10 @@ Please feel free to checkout [Canvasbird Contribution Guidelines](https://github
 
 ## Related Repositories❤️
 - [canvasbird/canvasboard-backend](https://github.com/Canvasbird/canvasboard-backend): Canvasboard Backend built on NodeJS
+
+## Community
+
+[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-jjdml591-~SsL4vdSX9Mc_GUVIvYV7g)
 
 ## Contributors 🌟
 
