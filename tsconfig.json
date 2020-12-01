@@ -22,5 +22,8 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "typingOptions": {
+      "enableAutoDiscovery": true
+    }
 }
