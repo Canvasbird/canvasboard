@@ -26,7 +26,7 @@
         <hr>
         <div class="form-group text-center">
           <p style="margin-bottom: 5px;"><strong>Log In with</strong></p>
-          <img src="../../../assets/login/icons8-google-48.png">
+          <img (click)="authService.signInWithGoogle()" src="../../../assets/login/icons8-google-48.png" style="cursor: pointer;">
         </div>
       </form>
     </div>

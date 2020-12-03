@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +17,14 @@ export class AuthService {
   loginReqObj;
   loginResObj;
 
+  googleLoginLoad = false;
+  googleLoginResObj: SocialUser;
+
+  googleToken = null;
+
   token = null;
 
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(private http: HttpClient, public router: Router, private socialAuthService: SocialAuthService) {}
 
   login(): any {
     this.loginLoad = true;
@@ -86,5 +92,29 @@ export class AuthService {
         text: 'This email address does not correspond to a registered account.'
       });
     }
+  }
+
+  signInWithGoogle(): any {
+    this.loginLoad = true;
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((user) => {
+      this.googleLoginResObj = user;
+      console.log(user)
+      this.http.post(environment.apiHost + '/api/v1/google-auth', {token: this.googleLoginResObj.idToken})
+               .subscribe(res => {
+                 console.log(res);
+                 this.loginResObj = res;
+                 localStorage.setItem('token', this.loginResObj.content);
+                 this.router.navigate(['/dashboard']);
+                 this.loginLoad = false;
+               },
+               err => {
+                 console.log(err);
+                 this.loginLoad = false;
+               });
+    })
+    .catch(err => {
+      console.log(err);
+      this.loginLoad = false;
+    })
   }
 }
