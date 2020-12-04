@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { Data } from 'src/interfaces/dashboard';
 import { RestService } from 'src/app/services/rest.service';
+import { DailyQuote } from 'src/interfaces/daily-quote';
+import { HttpHeaders } from '@angular/common/http'
 declare var $: any;
 
 @Component({
@@ -11,7 +13,10 @@ declare var $: any;
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private route: Router, private apiService: RestService) { }
+  public quote : DailyQuote;
+  constructor(private route: Router, private apiService: RestService) {
+    this.getQuote();
+   }
   data: any;
   Username: string = null;
 
@@ -187,5 +192,11 @@ export class DashboardComponent implements OnInit {
       // Error Label in popup
       document.getElementById('error-label').style.display = 'block';
     }
+  }
+
+  getQuote() {
+    this.apiService.getDailyQuote().then((quote: DailyQuote) => {
+      this.quote = quote;
+    });
   }
 }

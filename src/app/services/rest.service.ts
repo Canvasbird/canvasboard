@@ -109,4 +109,21 @@ export class RestService {
     });
     return this.getFilesDetails;
   }
+
+    // .........................DAILY QUOTES API...................................
+    getDailyQuote() {
+    return this.http.get("https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote",{
+      headers : new HttpHeaders({
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Access-Control-Allow-Origin',
+        'Access-Control-Allow-Credentials' : 'true',
+        "x-rapidapi-key": "318ed0c148msh279b4a7589d2c18p1db725jsnaa114ac4aa88",
+        "x-rapidapi-host": "quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com",
+        "useQueryString": "true"
+      })
+    }).toPromise();
+
+
+    }
 }

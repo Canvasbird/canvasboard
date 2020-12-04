@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+
+
+
 .container{
   .buttons {
     button {
       margin-right:10px;
     }
+  }
+
+  .container{
+    height: 100vh;
+    overflow: hidden;
   }
   .cb-files-container {
     width:100%;
@@ -57,12 +66,38 @@
 
   }
 
+  .quote{
+    // background-color: transparent;
+    border-radius: 10px;
+    transition: box-shadow .3s;
+    margin-bottom: 2px;
+  }
+  .quoteText{
+    color: black;
+    display: flex;
+    justify-content: center;
+    font-family: 'PT Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: 50%;
+  }
 
+  .quoteAuthor{
+    color: black;
+    display: flex;
+    justify-content: center;
+    font-family: 'PT Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    opacity: 50%;
+    font-weight: bold;
+  }
   @media (max-width:1200px) {
     .cb-files-container {
       columns: 3;
       width: calc(100%-40px);
-      cb-box-sizing: border-cb-box;
+      // cb-box-sizing: border-cb-box;
       padding: 20px 20px 20px 0;
     }
   }
@@ -70,10 +105,12 @@
     .cb-files-container {
       columns: 2;
     }
+
   }
   @media (max-width:480px) {
     .cb-files-container {
       columns: 1;
     }
-  } 
+  }
+
 }
