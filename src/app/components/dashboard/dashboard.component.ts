@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import { Data } from 'src/interfaces/dashboard';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
-import { HttpHeaders } from '@angular/common/http'
 declare var $: any;
 
 @Component({
@@ -13,7 +12,7 @@ declare var $: any;
 })
 export class DashboardComponent implements OnInit {
 
-  public quote : DailyQuote;
+  public quote: DailyQuote;
   constructor(private route: Router, private apiService: RestService) {
     this.getQuote();
    }
