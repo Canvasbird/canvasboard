@@ -3,7 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
-import { NewBoardCard } from './new-board-card';
+import { Chart } from 'chart.js';
+import Swal from 'sweetalert2';
+import { BrowserStack } from 'protractor/built/driverProviders';
+import { NewBoardCard, PluginType } from './new-board-card';
 
 // Importing Plugins
 import { AddH1Component } from '../../plugins/cb-h1';
@@ -206,7 +209,7 @@ export class NewBoardComponent implements OnInit {
       const uid: any = uuidv4();
 
       const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.size);
-
+      let pluginType: PluginType;
 
       switch (checker) {
         case 0: {
@@ -221,86 +224,112 @@ export class NewBoardComponent implements OnInit {
         case 2: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddH1Component.addH1TagToolBox(uid);
+          pluginType  = 'editor';
           break;
         }
         case 3: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddCanvasBoard.addCanvasBoardToolbox(uid);
+          pluginType = 'editor';
           break;
         }
         case 4: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddH2Component.addH2TagToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 5: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddH3Component.addH3TagToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 6: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddParaComponent.addParaTagToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 7: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddRedBackgroundComponent.addRedBackgroundToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 8: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddBlueBackgroundComponent.addBlueBackgroundToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 9: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddYellowBackgroundComponent.addYellowBackgroundToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 10: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddGreenBackgroundComponent.addGreenBackgroundToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 11: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddFontMonospaceComponent.addMonospaceFontToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 12: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 17: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddFontKalamComponent.addKalamFontToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 13: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddClearFontComponent.addClearFontToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 14: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddLeftAlignComponent.addLeftAlignTextToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 15: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddCenterAlignComponent.addCenterAlignTextToolBox(uid);
+          pluginType = 'editor';
           break;
         }
         case 16: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddRightAlignComponent.addRightAlignTextToolBox(uid);
+          pluginType = 'editor';
+          break;
+        }
+        case 17: {
+          // PDF Render
+          $('#pdfFile').change((event) => {
+            $(`#${id}`).append(this.blockFunction(uid));
+            this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
+          });
+          pluginType = 'fileUpload';
           break;
         }
         case 18: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val(), $('#youtubeEmbedURL').val());
+          pluginType = 'youtube';
           break;
         }
         default:
@@ -315,6 +344,9 @@ export class NewBoardComponent implements OnInit {
 
         // Setting current card id
       this.currentChartID = uid;
+
+        // Setting Plugin Type to card
+      newBoardCard.setpluginType(pluginType);
 
         // Adding to UserBlocks Map
       this.userBlocks.set(uid, newBoardCard);
@@ -432,11 +464,7 @@ export class NewBoardComponent implements OnInit {
         });
       }
 
-      // PDF Render
-      $('#pdfFile').change((event) => {
-        $(`#${id}`).append(this.blockFunction(uid));
-        this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
-      });
+
 
     } catch (err) {
       console.log('Error', err);
@@ -474,7 +502,13 @@ export class NewBoardComponent implements OnInit {
     // const boardTitle = document.getElementById('cb-title').innerHTML.trim();
     // const boardlData = document.getElementById('main-box').innerHTML.trim();
     // this.apiService.saveBoardData(boardTitle, boardlData);
-
+    const saveDataJson = {};
+    this.userBlocks.forEach((value, key) => {
+        console.log('saving card: id ', key);
+        value.setData($(`#cb-box-2-${key}`).html());
+        saveDataJson[key] = JSON.stringify(value);
+    });
+    console.log(JSON.stringify(saveDataJson));
     // this.apiService.getBoardData();
   }
 
@@ -613,5 +647,6 @@ export class NewBoardComponent implements OnInit {
   // Adding PdfRender
   cbToolboxPdfRender = () => {
     $('#pdfFile').click();
+    this.addBlockEditor('main-box', 17);
   }
 }
