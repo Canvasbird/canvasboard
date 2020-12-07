@@ -10,7 +10,7 @@ import { BoardComponent } from './components/board/board.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 
 // guard
-import { AuthGuard } from './shared/auth.guard';
+import { AuthGuard, LoginGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
@@ -22,15 +22,18 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'sign-up',
-    component: SignUpComponent
+    component: SignUpComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'contribution',
