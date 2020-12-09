@@ -13,14 +13,13 @@ declare var $: any;
 export class DashboardComponent implements OnInit {
 
   public quote: DailyQuote;
-  constructor(private route: Router, private apiService: RestService) {
-    this.getQuote();
-   }
+  constructor(private route: Router, private apiService: RestService) {}
   data: any;
   Username: string = null;
 
   ngOnInit() {
     this.gettingData();
+    this.getQuote();
   }
   // GETTING USER DATA
   async gettingData() {

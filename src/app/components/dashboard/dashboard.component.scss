@@ -3,16 +3,13 @@
 
 
 .container{
+  height: 100vh;
   .buttons {
     button {
       margin-right:10px;
     }
   }
 
-  .container{
-    height: 100vh;
-    overflow: hidden;
-  }
   .cb-files-container {
     width:100%;
     // min-height: 100vh;
@@ -67,10 +64,9 @@
   }
 
   .quote{
-    // background-color: transparent;
-    border-radius: 10px;
-    transition: box-shadow .3s;
-    margin-bottom: 2px;
+    background-color: transparent;
+    position: relative;
+    bottom: 0;
   }
   .quoteText{
     color: black;
@@ -110,6 +106,13 @@
   @media (max-width:480px) {
     .cb-files-container {
       columns: 1;
+    }
+    img {
+      height: 20px;
+    }
+    .quote{
+      position: relative;
+      bottom: 0;
     }
   }
 
