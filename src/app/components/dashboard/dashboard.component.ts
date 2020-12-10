@@ -103,7 +103,7 @@ export class DashboardComponent implements OnInit {
       $(`#button-${obj._id}`).click( () => {
         this.route.navigate([`/folder/${obj._id}`]);
       });
-
+    // Click action to edit the folder_name
       $(`#button-edit-name-${obj._id}`).click( () => {
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
           folderName.style.display = 'none';
         }
       });
-
+    // Click action to close the edit input
       $(`#button-edit-name-no-${obj._id}`).click( () => {
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -125,7 +125,7 @@ export class DashboardComponent implements OnInit {
           folderName.style.display = 'block';
         }
       });
-
+    // Click action to save the new edited name
       $(`#button-edit-name-ok-${obj._id}`).click( () => {
         const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
         const folderName = document.getElementById(`folder-name-${obj._id}`);
@@ -254,6 +254,7 @@ export class DashboardComponent implements OnInit {
     $(`#button-${obj._id}`).click( () => {
         this.route.navigate([`/folder/${obj._id}`]);
     });
+    // Click action to edit the folder name.
     $(`#button-edit-name-${obj._id}`).click( () => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -267,6 +268,7 @@ export class DashboardComponent implements OnInit {
       }
     });
 
+    // Click action to close the edited input
     $(`#button-edit-name-no-${obj._id}`).click( () => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -275,7 +277,7 @@ export class DashboardComponent implements OnInit {
         folderName.style.display = 'block';
       }
     });
-
+    // Click action to save the new edited name
     $(`#button-edit-name-ok-${obj._id}`).click( () => {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
       const folderName = document.getElementById(`folder-name-${obj._id}`);
