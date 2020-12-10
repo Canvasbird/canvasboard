@@ -193,8 +193,13 @@ export class DashboardComponent implements OnInit {
   }
 
   getQuote() {
-    this.apiService.getDailyQuote().then((quote: DailyQuote) => {
+    this.apiService.getDailyQuote()
+    .then((quote: DailyQuote) => {
       this.quote = quote;
+    })
+    .catch((err) => {
+      // Here we store a random dummyQuote to the quote property.
+      this.quote= this.apiService.getDummyQuote();
     });
   }
 }
