@@ -53,9 +53,10 @@ export class DashboardComponent implements OnInit {
           <button class="btn btn-outline-danger">Sure?</button>
         </div>
       </div>
-      <span id=edit-name-input-${obj._id} style="display:none">
-        <input class="folder-title" style="border:none; outline: none; border-radius:10em"id=new-name-text-${obj._id}
+      <div id=edit-name-input-${obj._id} style="display:none">
+        <input class="folder-title" style="border-color:transparent; outline: none; border-radius:10em"id=new-name-text-${obj._id}
         value="${obj.folder_name}" type="text">
+        <div style="display:inline-block;">
         <button style="border-style:none; outline: none; background-color:transparent" id=button-edit-name-ok-${obj._id}>
           <svg  width="2em" height="2em"  xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 550 550">
@@ -80,8 +81,9 @@ export class DashboardComponent implements OnInit {
               c8.533-8.533,22.756-8.533,31.289,0c8.533,8.533,8.533,22.756,0,31.289l-72.533,72.533l72.533,72.533
               C339.911,308.622,339.911,322.844,331.378,331.378z"/>
           </svg>
-        </button>
-      </span>
+          </button>
+        </div>
+        </div>
       <h5 class="folder-title" id=folder-name-${obj._id}>
         <strong id=name-display-${obj._id}>${obj.folder_name}</strong>
         <button style="border-style:none; color:rgb(99, 64, 88); outline: none; margin-left:10px;background-color:transparent"
@@ -124,16 +126,24 @@ export class DashboardComponent implements OnInit {
           editText.style.display = 'none';
           folderName.style.display = 'block';
         }
+        if (document.getElementById(`new-name-text-${obj._id}`).style.borderColor === 'red') {
+          document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
+        }
       });
     // Click action to save the new edited name
       $(`#button-edit-name-ok-${obj._id}`).click( () => {
         const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
-        this.renameFolder(obj, newName);
-        if (editText.style.display === 'block') {
-          editText.style.display = 'none';
-          folderName.style.display = 'block';
+        if (newName === '') {      // If the new name is null then do not change the name.
+          document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
+        } else {
+          document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
+          this.renameFolder(obj, newName);
+          if (editText.style.display === 'block') {
+            editText.style.display = 'none';
+            folderName.style.display = 'block';
+          }
         }
       });
     // Open delete popup
@@ -204,9 +214,10 @@ export class DashboardComponent implements OnInit {
         <button class="btn btn-outline-danger">Sure?</button>
       </div>
     </div>
-    <span id=edit-name-input-${obj._id} style="display:none">
-        <input class="folder-title" style="border:none; outline: none; border-radius:10em"id=new-name-text-${obj._id}
+      <div id=edit-name-input-${obj._id} style="display:none">
+        <input class="folder-title" style="border-color:transparent; outline: none; border-radius:10em"id=new-name-text-${obj._id}
         value="${obj.folder_name}" type="text">
+        <div style="display:inline-block;">
         <button style="border-style:none; outline: none; background-color:transparent" id=button-edit-name-ok-${obj._id}>
           <svg  width="2em" height="2em"  xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 550 550">
@@ -231,8 +242,9 @@ export class DashboardComponent implements OnInit {
               c8.533-8.533,22.756-8.533,31.289,0c8.533,8.533,8.533,22.756,0,31.289l-72.533,72.533l72.533,72.533
               C339.911,308.622,339.911,322.844,331.378,331.378z"/>
           </svg>
-        </button>
-      </span>
+          </button>
+        </div>
+      </div>
       <h5 class="folder-title" id=folder-name-${obj._id}>
         <strong id=name-display-${obj._id}>${obj.folder_name}</strong>
         <button style="border-style:none; color:rgb(99, 64, 88); outline: none; margin-left:10px;background-color:transparent"
@@ -268,7 +280,7 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    // Click action to close the edited input
+    // Click action to close the edit input
     $(`#button-edit-name-no-${obj._id}`).click( () => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -276,24 +288,24 @@ export class DashboardComponent implements OnInit {
         editText.style.display = 'none';
         folderName.style.display = 'block';
       }
+      if (document.getElementById(`new-name-text-${obj._id}`).style.borderColor === 'red') {
+        document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
+      }
     });
     // Click action to save the new edited name
     $(`#button-edit-name-ok-${obj._id}`).click( () => {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
-      this.renameFolder(obj, newName);
-      if (editText.style.display === 'block') {
-        editText.style.display = 'none';
-        folderName.style.display = 'block';
-      }
-    });    // Open delete popup
-    $(`#delete-${obj._id}`).click( () => {
-      const popup = document.getElementById(`delete-sure-${obj._id}`);
-      if (popup.style.display === 'block') {
-        popup.style.display = 'none';
+      if (newName === '') {      // If the new name is null then do not change the name.
+        document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
       } else {
-        popup.style.display = 'block';
+        document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
+        this.renameFolder(obj, newName);
+        if (editText.style.display === 'block') {
+          editText.style.display = 'none';
+          folderName.style.display = 'block';
+        }
       }
     });
 
