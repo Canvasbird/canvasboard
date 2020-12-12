@@ -184,7 +184,7 @@ export class DashboardComponent implements OnInit {
 
   addNewFolder(obj) {
     $('#user-folders').append(`
-    <div class="folder-box shadow" style="--foldercolor: blue;" id=${obj._id}>
+    <div class="folder-box shadow" id=${obj._id}>
     <div class="icons-box">
       <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-folder2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958
