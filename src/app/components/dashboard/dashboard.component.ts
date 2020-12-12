@@ -54,9 +54,12 @@ export class DashboardComponent implements OnInit {
         </div>
       </div>
       <div id=edit-name-input-${obj._id} style="display:none">
-        <input class="folder-title" style="border-color:transparent;width:55%;outline:none; border-radius:10em" id=new-name-text-${obj._id}
-        value="${obj.folder_name}" type="text">
-        <div style="display:inline-block;">
+      <input
+      class="folder-title" style= "margin-top:2.7em; margin-bottom:0.6em; border-color:transparent;
+      width:55%; outline:none; border-radius:10em"
+      id = new-name-text-${obj._id} value = "${obj.folder_name}" type="text"
+      >
+      <div style="display:inline-block;">
         <button style="border-style:none; outline: none; background-color:transparent" id=button-edit-name-ok-${obj._id}>
           <svg  width="1.5em" height="1.5em"  xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 500 500">
@@ -215,9 +218,12 @@ export class DashboardComponent implements OnInit {
       </div>
     </div>
       <div id=edit-name-input-${obj._id} style="display:none">
-      <input class="folder-title" style="border-color:transparent;width:55%;outline:none; border-radius:10em" id=new-name-text-${obj._id}
-        value="${obj.folder_name}" type="text">
-        <div style="display:inline-block;">
+      <input
+      class="folder-title" style= "margin-top:2.7em; margin-bottom:0.6em; border-color:transparent;
+      width:55%; outline:none; border-radius:10em"
+      id = new-name-text-${obj._id} value = "${obj.folder_name}" type="text"
+      >
+      <div style="display:inline-block;">
         <button style="border-style:none; outline: none; background-color:transparent" id=button-edit-name-ok-${obj._id}>
           <svg  width="1.5em" height="1.5em"  xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 500 500">
