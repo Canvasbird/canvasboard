@@ -104,6 +104,9 @@ Thanks goes to these wonderful people ✨✨:
     <td align="center"><a href="https://github.com/DevoAbhi"><img src="https://avatars3.githubusercontent.com/u/54373853?v=4" width="100px;" alt=""/><br /><sub><b>AbhiDroid</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=DevoAbhi" title="Code">💻</a></td>
     <td align="center"><a href="http://ishanmanchanda.github.io"><img src="https://avatars3.githubusercontent.com/u/22176290?v=4" width="100px;" alt=""/><br /><sub><b>Ishan Manchanda</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=IshanManchanda" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Dhamodhar-DDR"><img src="https://avatars3.githubusercontent.com/u/56181018?v=4" width="100px;" alt=""/><br /><sub><b>Dhamodhar </b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Dhamodhar-DDR" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
