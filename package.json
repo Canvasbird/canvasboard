@@ -64,5 +64,5 @@
     "pre-commit": "ng lint",
     "pre-push": "ng test --no-watch"
   }
-  }
+}
 }
