@@ -60,9 +60,9 @@
     "typescript": "~3.5.3"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "ng lint",
-      "pre-push": "ng test --no-watch"
-    }
+  "hooks": {
+    "pre-commit": "ng lint",
+    "pre-push": "ng test --no-watch"
+  }
   }
 }
