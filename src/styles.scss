@@ -103,7 +103,7 @@
   background: #53A453;
   background: #ee9ca7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+  background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border-radius: .5rem;
   transition: 0.4s;
   margin:10px;
@@ -156,9 +156,9 @@
 }
 
 .delete-popup {
-  float: right; 
-  // padding-left:30px; 
-  margin-right: 5px; 
-  // background-color:white; 
+  float: right;
+  // padding-left:30px;
+  margin-right: 5px;
+  // background-color:white;
   display:none;
 }
