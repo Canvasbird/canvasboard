@@ -125,5 +125,16 @@ export class AddCanvasBoard {
       canvas.on('selection:cleared', () => {
         $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
       });
+
+      // checks if there is an active object selected, if not null checks for a delete event and deletes it.
+      document.addEventListener('keydown', (event) => {
+        const key = event.key;
+        if (key === 'Delete') {
+          const shape = canvas.getActiveObject();
+          if (shape != null) {
+            canvas.remove(shape);
+          }
+        }
+      });
     }
 }
