@@ -106,6 +106,7 @@ Thanks goes to these wonderful people ✨✨:
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/Dhamodhar-DDR"><img src="https://avatars3.githubusercontent.com/u/56181018?v=4" width="100px;" alt=""/><br /><sub><b>Dhamodhar </b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Dhamodhar-DDR" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Rizwan-S"><img src="https://avatars2.githubusercontent.com/u/63736000?v=4" width="100px;" alt=""/><br /><sub><b>Rizwan Shaikh</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Rizwan-S" title="Code">💻</a></td>
   </tr>
 </table>
 
