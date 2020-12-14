@@ -373,6 +373,7 @@ export class DashboardComponent implements OnInit {
       // Here we store a random dummyQuote to the quote property.
       this.quote= this.apiService.getDummyQuote();
     });
+  }
 
   async renameFolder(obj, newName) {
     const body = {
