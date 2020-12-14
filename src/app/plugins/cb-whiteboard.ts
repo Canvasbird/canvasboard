@@ -104,10 +104,17 @@ export class AddCanvasBoard {
 
       $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
         const shape = canvas.getActiveObject();
-        //treating all shape objects individually
-        (shape._objects).forEach(element => {
-          canvas.remove(element);
-        });
+
+        // treating all shape objects individually
+        if (shape.hasOwnProperty('_objects')) {
+          (shape._objects).forEach(element => {
+            canvas.remove(element);
+          });
+        }
+        else {
+          canvas.remove(shape);
+        }
+
       });
 
       $(`#canvas-menu-box-move-${uid}`).on('click', () => {
@@ -135,10 +142,15 @@ export class AddCanvasBoard {
         if (key === 'Delete') {
           const shape = canvas.getActiveObject();
           if (shape != null) {
-            //treating all shape objects individually
-            (shape._objects).forEach(element => {
-              canvas.remove(element);
-            });
+            // treating all shape objects individually
+            if (shape.hasOwnProperty('_objects')) {
+              (shape._objects).forEach(element => {
+                canvas.remove(element);
+              });
+            }
+            else {
+              canvas.remove(shape);
+            }
           }
         }
       });
