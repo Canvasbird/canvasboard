@@ -14,6 +14,7 @@ export class RestService {
   gerBoardDetails = null;
   createFolderResponse = null;
   deleteFolderResponse = null;
+  renameFolderResponse = null;
 
   getFilesDetails = null;
   dummyQuote: DailyQuote[] = [];
@@ -95,7 +96,20 @@ export class RestService {
     });
     return this.deleteFolderResponse;
   }
-
+  // ........................... UPDATE FOLDER ........................................
+  async renameFolder(body) {
+    this.xAuthToken = localStorage.getItem('token');
+    await this.http.post(`https://api.canvasboard.live/api/v1/user/rename-folder`, body, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+    .then((response) => {
+      console.log(body);
+      this.renameFolderResponse = response;
+    });
+    return this.renameFolderResponse;
+  }
   // ........................... FILES APIS........................................
 
   // ........................... GET FILES........................................

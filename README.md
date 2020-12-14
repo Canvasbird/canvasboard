@@ -4,17 +4,17 @@
 </p>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
+[![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
 [![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
-[![Gitter](https://badges.gitter.im/canvasbird/canvasboard-frontend.svg)](https://gitter.im/canvasbird/canvasboard-frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
 [![Issues](https://img.shields.io/github/issues/Canvasbird/canvasboard)](#issues)
 [![forks](https://img.shields.io/github/forks/Canvasbird/canvasboard)](#forks)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
+[![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-jjdml591-~SsL4vdSX9Mc_GUVIvYV7g)
 </br>
 
 ## Project Overview:
 
- > <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong>
+<!--  > <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong> -->
 
 Canvasboard is an interactive board with plugins focusing on replacing the need of multiple platforms for teaching, presenting, managing or explaining your ideas. The interactive plugins are built using web technologies to ease your work right within a single platform.
 
@@ -65,6 +65,10 @@ Please feel free to checkout [Canvasbird Contribution Guidelines](https://github
 ## Related Repositories❤️
 - [canvasbird/canvasboard-backend](https://github.com/Canvasbird/canvasboard-backend): Canvasboard Backend built on NodeJS
 
+## Community
+
+[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-jjdml591-~SsL4vdSX9Mc_GUVIvYV7g)
+
 ## Contributors 🌟
 
 Thanks goes to these wonderful people ✨✨:
@@ -98,6 +102,12 @@ Thanks goes to these wonderful people ✨✨:
     <td align="center"><a href="https://github.com/himeshkrishnaosuri"><img src="https://avatars0.githubusercontent.com/u/33364249?v=4" width="100px;" alt=""/><br /><sub><b>himeshkrishnaosuri</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=himeshkrishnaosuri" title="Code">💻</a></td>
     <td align="center"><a href="https://sal2701.github.io"><img src="https://avatars0.githubusercontent.com/u/42511766?v=4" width="100px;" alt=""/><br /><sub><b>Saiakash Konidena</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=sal2701" title="Code">💻</a> <a href="#design-sal2701" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/DevoAbhi"><img src="https://avatars3.githubusercontent.com/u/54373853?v=4" width="100px;" alt=""/><br /><sub><b>AbhiDroid</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=DevoAbhi" title="Code">💻</a></td>
+    <td align="center"><a href="http://ishanmanchanda.github.io"><img src="https://avatars3.githubusercontent.com/u/22176290?v=4" width="100px;" alt=""/><br /><sub><b>Ishan Manchanda</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=IshanManchanda" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Dhamodhar-DDR"><img src="https://avatars3.githubusercontent.com/u/56181018?v=4" width="100px;" alt=""/><br /><sub><b>Dhamodhar </b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Dhamodhar-DDR" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Rizwan-S"><img src="https://avatars2.githubusercontent.com/u/63736000?v=4" width="100px;" alt=""/><br /><sub><b>Rizwan Shaikh</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Rizwan-S" title="Code">💻</a></td>
+    <td align="center"><a href="https://megamind77-coder.github.io/new_portfolio/"><img src="https://avatars3.githubusercontent.com/u/42925218?v=4" width="100px;" alt=""/><br /><sub><b>Ishan Shanware</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=MegaMind77-coder" title="Code">💻</a></td>
   </tr>
 </table>
 
