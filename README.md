@@ -77,53 +77,6 @@ Thanks goes to these wonderful people ✨✨:
   <img src="https://contrib.rocks/image?repo=Canvasbird/canvasboard" />
 </a>
 
-Made with [contributors-img](https://contrib.rocks).
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<!--
-<table>
-  <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/kajol-kumari-73245b166/"><img src="https://avatars0.githubusercontent.com/u/44888949?v=4" width="100px;" alt=""/><br /><sub><b>kajol</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Kajol-Kumari" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://goliakshay.vercel.app"><img src="https://avatars2.githubusercontent.com/u/32712438?v=4" width="100px;" alt=""/><br /><sub><b>Goli Akshay Sujith</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=goliakshay357" title="Code">💻</a></td>
-    <td align="center"><a href="http://kingavatar.github.io"><img src="https://avatars2.githubusercontent.com/u/31726036?v=4" width="100px;" alt=""/><br /><sub><b>Saikiran Reddy</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kingavatar" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/rohitkatlaa"><img src="https://avatars2.githubusercontent.com/u/42460632?v=4" width="100px;" alt=""/><br /><sub><b>Rohit Katlaa</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rohitkatlaa" title="Code">💻</a></td>
-    <td align="center"><a href="https://kartikchandra14.github.io"><img src="https://avatars1.githubusercontent.com/u/29736729?v=4" width="100px;" alt=""/><br /><sub><b>kc</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=kartikchandra14" title="Code">💻</a></td>
-    <td align="center"><a href="http://johnafolabi.com"><img src="https://avatars0.githubusercontent.com/u/19263499?v=4" width="100px;" alt=""/><br /><sub><b>John Afolabi</b></sub></a><br /><a href="#design-john-afolabi" title="Design">🎨</a></td>
-    <td align="center"><a href="https://github.com/aravindveluri"><img src="https://avatars3.githubusercontent.com/u/43075004?v=4" width="100px;" alt=""/><br /><sub><b>arvi178</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=aravindveluri" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://daily-dev-tips.com"><img src="https://avatars1.githubusercontent.com/u/554874?v=4" width="100px;" alt=""/><br /><sub><b>Chris Bongers</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=rebelchris" title="Code">💻</a></td>
-    <td align="center"><a href="http://alinebrito.com"><img src="https://avatars1.githubusercontent.com/u/14023536?v=4" width="100px;" alt=""/><br /><sub><b>Aline Brito</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=alinebrito" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/joshyide"><img src="https://avatars3.githubusercontent.com/u/25023919?v=4" width="100px;" alt=""/><br /><sub><b>Joshua Ide</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=joshyide" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/umar07"><img src="https://avatars1.githubusercontent.com/u/11666006?v=4" width="100px;" alt=""/><br /><sub><b>Umar Masud</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=umar07" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/karma200020"><img src="https://avatars1.githubusercontent.com/u/39916499?v=4" width="100px;" alt=""/><br /><sub><b>abhishek kumar mishra</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=karma200020" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/matheusmosca"><img src="https://avatars0.githubusercontent.com/u/42419282?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Mosca</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=matheusmosca" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/saidhanush1212"><img src="https://avatars2.githubusercontent.com/u/32712645?v=4" width="100px;" alt=""/><br /><sub><b>saidhanush1212</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=saidhanush1212" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://filip.havrlent.com"><img src="https://avatars0.githubusercontent.com/u/16169571?v=4" width="100px;" alt=""/><br /><sub><b>Filip Havrlent</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=fhavrlent" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/jawsvk"><img src="https://avatars1.githubusercontent.com/u/36097628?v=4" width="100px;" alt=""/><br /><sub><b>Jawen Voon</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=jawsvk" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/validity-check"><img src="https://avatars2.githubusercontent.com/u/63739210?v=4" width="100px;" alt=""/><br /><sub><b>Me</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=validity-check" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/himeshkrishnaosuri"><img src="https://avatars0.githubusercontent.com/u/33364249?v=4" width="100px;" alt=""/><br /><sub><b>himeshkrishnaosuri</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=himeshkrishnaosuri" title="Code">💻</a></td>
-    <td align="center"><a href="https://sal2701.github.io"><img src="https://avatars0.githubusercontent.com/u/42511766?v=4" width="100px;" alt=""/><br /><sub><b>Saiakash Konidena</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=sal2701" title="Code">💻</a> <a href="#design-sal2701" title="Design">🎨</a></td>
-    <td align="center"><a href="https://github.com/DevoAbhi"><img src="https://avatars3.githubusercontent.com/u/54373853?v=4" width="100px;" alt=""/><br /><sub><b>AbhiDroid</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=DevoAbhi" title="Code">💻</a></td>
-    <td align="center"><a href="http://ishanmanchanda.github.io"><img src="https://avatars3.githubusercontent.com/u/22176290?v=4" width="100px;" alt=""/><br /><sub><b>Ishan Manchanda</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=IshanManchanda" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/Dhamodhar-DDR"><img src="https://avatars3.githubusercontent.com/u/56181018?v=4" width="100px;" alt=""/><br /><sub><b>Dhamodhar </b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Dhamodhar-DDR" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Rizwan-S"><img src="https://avatars2.githubusercontent.com/u/63736000?v=4" width="100px;" alt=""/><br /><sub><b>Rizwan Shaikh</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=Rizwan-S" title="Code">💻</a></td>
-    <td align="center"><a href="https://megamind77-coder.github.io/new_portfolio/"><img src="https://avatars3.githubusercontent.com/u/42925218?v=4" width="100px;" alt=""/><br /><sub><b>Ishan Shanware</b></sub></a><br /><a href="https://github.com/Canvasbird/canvasboard/commits?author=MegaMind77-coder" title="Code">💻</a></td>
-  </tr>
-</table>
--->
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<!-- This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome! -->
-
 [//]: #ImageLinks
 [01]: https://github.com/goliakshay357/hack-images/blob/master/hack2.png?raw=true
 [02]: https://github.com/goliakshay357/hack-images/blob/master/graph.png?raw=true
