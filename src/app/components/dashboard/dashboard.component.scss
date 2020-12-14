@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
 
 
-
 .container{
-  height: 100vh;
+  min-height: calc(100vh - 65px);
+  margin-bottom: -50px;
   .buttons {
     button {
       margin-right:10px;
@@ -63,32 +63,6 @@
 
   }
 
-  .quote{
-    background-color: transparent;
-    position: relative;
-    bottom: 0;
-  }
-  .quoteText{
-    color: black;
-    display: flex;
-    justify-content: center;
-    font-family: 'PT Serif', serif;
-    font-style: italic;
-    font-size: 16px;
-    font-weight: bold;
-    opacity: 50%;
-  }
-
-  .quoteAuthor{
-    color: black;
-    display: flex;
-    justify-content: center;
-    font-family: 'PT Serif', serif;
-    font-style: italic;
-    font-size: 16px;
-    opacity: 50%;
-    font-weight: bold;
-  }
   @media (max-width:1200px) {
     .cb-files-container {
       columns: 3;
@@ -97,23 +71,51 @@
       padding: 20px 20px 20px 0;
     }
   }
+
   @media (max-width:768px) {
     .cb-files-container {
       columns: 2;
     }
-
   }
   @media (max-width:480px) {
     .cb-files-container {
       columns: 1;
     }
-    img {
-      height: 20px;
-    }
-    .quote{
-      position: relative;
-      bottom: 0;
-    }
-  }
 
+  }
 }
+
+.container:after{
+  content: "";
+  display: block;
+}
+
+.quote, .container:after{
+  background-color: transparent;
+  height: 50px;
+  clear: both;
+}
+
+.quoteText{
+  color: black;
+  display: flex;
+  justify-content: center;
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 50%;
+}
+
+.quoteAuthor{
+  color: black;
+  display: flex;
+  justify-content: center;
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 16px;
+  opacity: 50%;
+  font-weight: bold;
+}
+
+
