@@ -128,7 +128,7 @@ export class RestService {
 
     // .........................DAILY QUOTES API...................................
     getDailyQuote() {
-      return this.http.get('https//quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote', {
+      return this.http.get('https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote', {
         headers : new HttpHeaders({
           'Access-Control-Allow-Origin' : '*',
           'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
