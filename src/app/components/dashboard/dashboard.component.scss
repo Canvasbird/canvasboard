@@ -1,12 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+
+
 .container{
+  min-height: calc(100vh - 65px);
+  margin-bottom: -50px;
   .buttons {
     button {
       margin-right:10px;
     }
   }
+
   .cb-files-container {
     width:100%;
-    // min-height: 100vh;
     margin: 20px auto;
     columns:3;
     column-gap: 40px;
@@ -15,7 +20,6 @@
       width:100%;
       margin: 0 0 20px;
       padding:10px;
-      // background: rgb(238, 238, 238);
       overflow: hidden;
       break-inside: avoid;
       border-radius: 10px;
@@ -57,15 +61,14 @@
 
   }
 
-
   @media (max-width:1200px) {
     .cb-files-container {
       columns: 3;
       width: calc(100%-40px);
-      cb-box-sizing: border-cb-box;
       padding: 20px 20px 20px 0;
     }
   }
+
   @media (max-width:768px) {
     .cb-files-container {
       columns: 2;
@@ -75,5 +78,41 @@
     .cb-files-container {
       columns: 1;
     }
-  } 
+
+  }
 }
+
+.container:after{
+  content: "";
+  display: block;
+}
+
+.quote, .container:after{
+  background-color: transparent;
+  height: 50px;
+  clear: both;
+}
+
+.quoteText{
+  color: black;
+  display: flex;
+  justify-content: center;
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 50%;
+}
+
+.quoteAuthor{
+  color: black;
+  display: flex;
+  justify-content: center;
+  font-family: 'PT Serif', serif;
+  font-style: italic;
+  font-size: 16px;
+  opacity: 50%;
+  font-weight: bold;
+}
+
+

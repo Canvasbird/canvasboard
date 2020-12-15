@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { DailyQuote } from 'src/interfaces/daily-quote';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class RestService {
   renameFolderResponse = null;
 
   getFilesDetails = null;
+  dummyQuote: DailyQuote[] = [];
 
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -122,5 +124,50 @@ export class RestService {
       this.getFilesDetails = response;
     });
     return this.getFilesDetails;
+  }
+
+    // .........................DAILY QUOTES API...................................
+    getDailyQuote() {
+      return this.http.get('https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote', {
+        headers : new HttpHeaders({
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+          'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Access-Control-Allow-Origin',
+          'Access-Control-Allow-Credentials' : 'true',
+          'x-rapidapi-key': '318ed0c148msh279b4a7589d2c18p1db725jsnaa114ac4aa88',
+          'x-rapidapi-host': 'quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com',
+          useQueryString: 'true'
+      })
+    }).toPromise();
+  }
+  getDummyQuote(){
+    // We need this Dummy Quotes when the API would not get a response
+    this.dummyQuote= [{
+    author: "Nelson Mandela",
+    text: "It always seems impossible until its done."
+  },
+  {
+    author : "Dalai Lama",
+    text : "Be kind whenever possible.It is always possible."
+  },
+  {
+    author : "Walt Disney",
+    text : "If you can dream it, you can do it."
+  },
+  {
+    author : "Elon Musk",
+    text : "When something is important enough, you do it even if the odds are not in you favour."
+  },
+  {
+    author : "Walt Disney",
+    text : "If you can dream it, you can do it."
+  }];
+
+  // This function get a random number within the range of the length of the dailyQuote array.
+  function randomQuote(min:number, max:number) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+  // This returns one key-value pair from the array of objects
+  return this.dummyQuote[randomQuote(0, 5)]
   }
 }
