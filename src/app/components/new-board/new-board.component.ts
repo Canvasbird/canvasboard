@@ -6,10 +6,10 @@ import { RestService } from '../../services/rest.service';
 import { Chart } from 'chart.js';
 import Swal from 'sweetalert2';
 import { BrowserStack } from 'protractor/built/driverProviders';
-
+import { NewBoardCard } from './new-board-card';
 
 // Importing Plugins
-import { AddH1Component } from '../../plugins/@cb-h1';
+import { AddH1Component } from '../../plugins/cb-h1';
 import { AddCanvasBoard } from '../../plugins/cb-whiteboard';
 import { AddH2Component } from '../../plugins/cb-h2';
 import { AddH3Component } from '../../plugins/cb-h3';
@@ -34,6 +34,7 @@ import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
+import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 
 declare var $: any;
 
@@ -47,7 +48,7 @@ export class NewBoardComponent implements OnInit {
 
   reader: FileReader;
   currentChartID: number;
-  userBlocks: Array<object>;
+  userBlocks: Map<number, NewBoardCard>;
   // Initializing plugins
   AddH1Component: any;
   AddH2Component: any;
@@ -110,14 +111,26 @@ export class NewBoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Initialse the array
-    this.userBlocks = [];
+
+    // Initialize the Map
+    this.userBlocks = new Map();
+
     // sortable-js
     const mainEl = document.getElementById('main-box');
+
     const sortable = new Sortable(mainEl, {
+      handle: '.dragHandle',
+      animation: 150,
+      easing: 'cubic-bezier(1, 0, 0, 1)',
       onChange: (evt) => {
-        console.log('Old position', evt.clone.id);
-        console.log('New position', evt.newIndex);
+        if (this.userBlocks.has(evt.clone.id)) {
+          const card: NewBoardCard = this.userBlocks.get(evt.clone.id);
+          card.updatePosition(evt.oldIndex, evt.newIndex);
+        } else {
+          const card: NewBoardCard = new NewBoardCard(evt.clone.id, evt.oldIndex, evt.newIndex);
+          this.userBlocks.set(evt.id, card);
+
+        }
       }
     });
 
@@ -146,7 +159,7 @@ export class NewBoardComponent implements OnInit {
     <div id="cb-box-1-${uid}" class="cb-box-1">
     <div class="row mx-0">
       <!-- plug for dragging -->
-      <div class="col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;" title="Drag">
+      <div class="dragHandle col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;" title="Drag">
         <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-grip-horizontal"
         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7
@@ -196,9 +209,13 @@ export class NewBoardComponent implements OnInit {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
 
+      const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.size);
+
+
       switch (checker) {
         case 0: {
           addBefore ? $(`#${id}`).before(this.blockFunction(uid)) : $(`#${id}`).after(this.blockFunction(uid));
+
           break;
         }
         case 1: {
@@ -292,18 +309,21 @@ export class NewBoardComponent implements OnInit {
         }
         default:
           break;
-      }
+        }
 
-      // Adding listener to current card
+        // Adding listener to current card
       $(`#original-${uid}`).click(() => { this.currentChartID = uid; });
 
-      // Changing focus to Current Card
+        // Changing focus to Current Card
       $(`#original-${uid}`).focus();
 
-      // Setting current card id
+        // Setting current card id
       this.currentChartID = uid;
 
-      // hiding and showing the TOOLBOX
+        // Adding to UserBlocks Map
+      this.userBlocks.set(uid, newBoardCard);
+
+        // hiding and showing the TOOLBOX
       $(`#show-more-toolbox-${uid}`).hover(
         // display block
         () => {
@@ -423,158 +443,6 @@ export class NewBoardComponent implements OnInit {
         this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
       });
 
-      // Add code snippet
-      $(`#add-code-snippet-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).addClass('cb-code-snippet');
-      });
-
-      // Add upload image
-      $(`#add-image-upload-${uid}`).click(() => {
-        const imageURL = prompt('Enter Your image URL here');
-        const isConfirmed = confirm('The image you selected is correct?');
-        if (this.validURL(imageURL)) {
-          $(`#original-${uid}`).append(
-            `<img src=${imageURL} id="cb-image-${uid}"></img>`
-          );
-          $(`#cb-image-${uid}`).css('width', '100%');
-        } else {
-          Swal.fire({ icon: 'warning', text: 'Please enter a valid URL!!' });
-        }
-      });
-
-
-      // Upload JSON file
-      $(`#file-${uid}`).change((ev) => {
-        this.fileToUpload = ev.target.files[0];
-        console.log('File Read working');
-        const fileReader = new FileReader();
-        fileReader.readAsText(this.fileToUpload, 'UTF-8');
-        fileReader.onload = () => {
-          // Parse the JSON into an array of data points
-          const dataObject = JSON.parse(fileReader.result as string);
-
-          // ---- Create canvas for chart ----
-          $(`#original-${uid}`).append(`
-        <canvas id="chart-${uid}" class="shadow"></canvas>
-      `);
-          // Setting Width and height to screen
-          $(`#chart-${uid}`).height(400).width('100%');
-          // Setting background color to white
-          $(`#chart-${uid}`).css('background-color', 'white');
-
-          // End Creating canvas
-
-          // Helper function to toggle data on click
-          function toggleDataSeries(e) {
-            if (
-              typeof e.dataSeries.visible === 'undefined' ||
-              e.dataSeries.visible
-            ) {
-              e.dataSeries.visible = false;
-            } else {
-              e.dataSeries.visible = true;
-            }
-            chart.render();
-          }
-
-          // Labels for the data
-          const dKeys = Object.keys(dataObject[0]);
-          let XAxisName;
-
-          // Get the data array suitable for chartjs
-          function getData() {
-            const datasetsArr = [];
-            const xAxisLabels = [];
-            dKeys.forEach((dLabel, index) => {
-              // If label is of x-axis(which should be at the end)
-              if (index === dKeys.length - 1) {
-                XAxisName = dLabel;
-
-                dataObject.forEach((dataPoint, i) => {
-                  // X-axis data pushed into x-axis labels
-                  xAxisLabels.push(dataPoint[dLabel]);
-                });
-              } else {
-                // Dataset corresponding to label
-                const dSet = {
-                  label: dLabel,
-                  data: [],
-                  fill: false,
-                  backgroundColor: [],
-                  borderColor: [],
-                };
-
-                const r = Math.floor(Math.random() * 255);
-                const g = Math.floor(Math.random() * 255);
-                const b = Math.floor(Math.random() * 255);
-                dSet.backgroundColor.push(
-                  'rgba(' + r + ', ' + g + ', ' + b + ',0.2)'
-                );
-                dSet.borderColor.push('rgb(' + r + ', ' + g + ', ' + b + ')');
-
-                dataObject.forEach((dataPoint, i) => {
-                  // Push each data point corresponding to label into label's dataset
-                  dSet.data.push(dataPoint[dLabel]);
-
-                  // Randomise the colours
-                });
-
-                // Push the dataset into data array
-                datasetsArr.push(dSet);
-              }
-            });
-
-            console.log('Data compatible with chart js', {
-              labels: xAxisLabels,
-              datasets: datasetsArr,
-            });
-
-            return { labels: xAxisLabels, datasets: datasetsArr };
-          }
-
-          const ctx = $(`#chart-${uid}`);
-          console.log($(`#chart-${uid}`));
-
-          const chart = new Chart(ctx, {
-            type: 'line',
-            title: {
-              text: 'Chart ' + this.uniqueChartID(),
-            },
-            toolTip: {
-              shared: true,
-            },
-            legend: {
-              cursor: 'pointer',
-              verticalAlign: 'top',
-              horizontalAlign: 'center',
-              dockInsidePlotArea: true,
-              itemclick: toggleDataSeries,
-            },
-            data: getData(),
-            options: {
-              responsive: true,
-              title: 'Chart ',
-              scales: {
-                xAxes: [
-                  {
-                    scaleLabel: {
-                      display: true,
-                      // X axis name to be displayed
-                      labelString: XAxisName,
-                    },
-                  },
-                ],
-              },
-            },
-          });
-          chart.render();
-
-          console.log('Data Object', dataObject);
-        };
-        fileReader.onerror = (error) => {
-          console.log(error);
-        };
-      });
     } catch (err) {
       console.log('Error', err);
     }
@@ -608,9 +476,10 @@ export class NewBoardComponent implements OnInit {
 
   // Save board data
   saveData() {
-    const boardTitle = document.getElementById('cb-title').innerHTML.trim();
-    const boardlData = document.getElementById('main-box').innerHTML.trim();
-    this.apiService.saveBoardData(boardTitle, boardlData);
+    // const boardTitle = document.getElementById('cb-title').innerHTML.trim();
+    // const boardlData = document.getElementById('main-box').innerHTML.trim();
+    // this.apiService.saveBoardData(boardTitle, boardlData);
+
     // this.apiService.getBoardData();
   }
 

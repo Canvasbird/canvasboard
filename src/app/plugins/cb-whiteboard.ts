@@ -2,11 +2,11 @@ declare var $: any;
 import { fabric } from 'fabric';
 
 export class AddCanvasBoard {
-  constructor() {}
+  constructor() { }
 
-    // Adding canvasboard
-    addCanvasBoardHTMLCode = (uid) => {
-      $(`#cb-buttons-${uid}`).append(`
+  // Adding canvasboard
+  addCanvasBoardHTMLCode = (uid) => {
+    $(`#cb-buttons-${uid}`).append(`
         <!-- Canvas Board -->
         <div class="tool box1 m-1">
           <button class="btn btn-light" id="add-canvas-cb-${uid}">
@@ -17,13 +17,13 @@ export class AddCanvasBoard {
           </button>
         </div>
       `);
-    }
+  }
 
-    addCanvasBoardToolbox = (uid) => {
-      const parentWidth = $(`#original-${uid}`).width();
-      $(`#original-${uid}`).attr('contenteditable', false);
-      console.log('Working canvas board');
-      $(`#original-${uid}`).append(`
+  addCanvasBoardToolbox = (uid) => {
+    const parentWidth = $(`#original-${uid}`).width();
+    $(`#original-${uid}`).attr('contenteditable', false);
+    console.log('Working canvas board');
+    $(`#original-${uid}`).append(`
       <div id="canvas-menu-box" class="canvas-menu-box">
           <input id="canvas-menu-box-color-${uid}" type="color" style="margin-left: 10%; margin-bottom: 5px;">
           <button id="canvas-menu-box-pencil-${uid}" class="btn btn-light m-2">
@@ -78,52 +78,79 @@ export class AddCanvasBoard {
       </div>
       <canvas id="canvas-${uid}" class="shadow"></canvas>
      `);
-      // This code(styles) should not be added it will cause problems in fabric
+    // This code(styles) should not be added it will cause problems in fabric
 
-      const canvas = new fabric.Canvas(`canvas-${uid}`);
-      const DRAWING_MODE = 'drawing';
-      const MOVE_MODE = 'move';
-      let canvasMode = DRAWING_MODE;
+    const canvas = new fabric.Canvas(`canvas-${uid}`);
+    const DRAWING_MODE = 'drawing';
+    const MOVE_MODE = 'move';
+    let canvasMode = DRAWING_MODE;
+    canvas.isDrawingMode = true;
+    canvas.setHeight('400');
+    canvas.setWidth(parentWidth);
+
+    // changing pen color
+    // canvas.freeDrawingBrush.color
+    $(`#canvas-menu-box-color-${uid}`).on('change', () => {
+      const color: any = document.getElementById(`canvas-menu-box-color-${uid}`);
+      const data = color.value;
+      canvas.freeDrawingBrush.color = data;
+    });
+
+    $(`#canvas-menu-box-pencil-${uid}`).on('click', () => {
+      canvas.discardActiveObject().renderAll();
       canvas.isDrawingMode = true;
-      canvas.setHeight('400');
-      canvas.setWidth(parentWidth);
+      canvasMode = DRAWING_MODE;
+    });
 
-      // changing pen color
-      // canvas.freeDrawingBrush.color
-      $(`#canvas-menu-box-color-${uid}`).on('change', () => {
-        const color: any = document.getElementById(`canvas-menu-box-color-${uid}`);
-        const data = color.value;
-        canvas.freeDrawingBrush.color = data;
-      });
+    $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
+      const shape = canvas.getActiveObject();
 
-      $(`#canvas-menu-box-pencil-${uid}`).on('click', () => {
-        canvas.discardActiveObject().renderAll();
-        canvas.isDrawingMode = true;
-        canvasMode = DRAWING_MODE;
-      });
-
-      $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
-        const shape = canvas.getActiveObject();
+      // treating all shape objects individually
+      if (shape.hasOwnProperty('_objects')) {
+        (shape._objects).forEach(element => {
+          canvas.remove(element);
+        });
+      } else {
         canvas.remove(shape);
-      });
+      }
 
-      $(`#canvas-menu-box-move-${uid}`).on('click', () => {
-        canvas.hoverCursor = 'move';
-        canvas.isDrawingMode = false;
-        canvasMode = MOVE_MODE;
-      });
+    });
 
-      $(`#canvas-menu-box-size-${uid}`).on('change', () => {
-        const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
-        canvas.freeDrawingBrush.width = parseInt(width, 10);
-      });
+    $(`#canvas-menu-box-move-${uid}`).on('click', () => {
+      canvas.hoverCursor = 'move';
+      canvas.isDrawingMode = false;
+      canvasMode = MOVE_MODE;
+    });
 
-      canvas.on('selection:created', () => {
-        $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
-      });
+    $(`#canvas-menu-box-size-${uid}`).on('change', () => {
+      const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
+      canvas.freeDrawingBrush.width = parseInt(width, 10);
+    });
 
-      canvas.on('selection:cleared', () => {
-        $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
-      });
-    }
+    canvas.on('selection:created', () => {
+      $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
+    });
+
+    canvas.on('selection:cleared', () => {
+      $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
+    });
+
+    // checks if there is an active object selected, if not null checks for a delete event and deletes it.
+    document.addEventListener('keydown', (event) => {
+      const key = event.key;
+      if (key === 'Delete') {
+        const shape: any = canvas.getActiveObject();
+        if (shape != null) {
+          // treating all shape objects individually
+          if (shape.hasOwnProperty('_objects')) {
+            (shape._objects).forEach(element => {
+              canvas.remove(element);
+            });
+          } else {
+            canvas.remove(shape);
+          }
+        }
+      }
+    });
+  }
 }
