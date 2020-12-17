@@ -25,6 +25,15 @@ Canvasboard can be scaled up to onboard multiple plugins in one place that can b
 
 More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
+## Open Source Programs we have been a associated with:
+
+<p align="center">
+<a href="https://winterofcode.com/"><img src="./src/assets/Open%20Source%20Program/WOC.jpg" width="200px" height="200px" /></a>
+<a href="https://kwoc.kossiitkgp.org/"><img src="./src/assets/Open%20Source%20Program/kwoc.jpg" width="200px" height="200px" /></a>
+<a href="https://swoc.tech/"><img src="./src/assets/Open%20Source%20Program/script.jpg" width="200px" height="200px" /></a>
+<a href="https://njackwinterofcode.github.io/"><img src="./src/assets/Open%20Source%20Program/nwoc.jpg" width="200px" height="200px" /></a>
+</p>
+
 ## Goal
 
 Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks.
