@@ -1,5 +1,5 @@
 export interface DailyQuote {
-  author : string,
-  text : string
+  author: string;
+  text: string;
 }
 
