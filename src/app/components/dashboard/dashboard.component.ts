@@ -3,35 +3,53 @@ import {Router} from '@angular/router';
 import { Data } from 'src/interfaces/dashboard';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
+import { FilterFolderPipe } from 'src/app/filter-folder.pipe';
 declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [FilterFolderPipe]
 })
 export class DashboardComponent implements OnInit {
 
   public quote: DailyQuote;
-  constructor(private route: Router, private apiService: RestService) {}
+  constructor(private route: Router, private apiService: RestService, private filterFolder: FilterFolderPipe) {}
   data: any;
   Username: string = null;
+  filterFolderName= '';
 
   ngOnInit() {
     this.gettingData();
     this.getQuote();
+    console.log(this.filterFolderName)
   }
   // GETTING USER DATA
   async gettingData() {
     const response = await this.apiService.getFoldersData();
     const data = await response.content;
+    console.log(data)
     this.data = data.folders;
     this.Username = data.user_name;
+
     this.addFolders(data);
   }
 
+  filterFolders() {
+    let folder_names: any[] = [];
+    folder_names = this.filterFolder.transform(this.data, this.filterFolderName)
+    console.log(folder_names)
+    const new_data = {
+      user_name: this.Username,
+      folders: folder_names
+    }
+    console.log(new_data);
+    this.addFolders(new_data);
+  }
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
+    console.log(data)
     data.folders.forEach((obj) => {
       console.log(obj);
       // Add Folders
@@ -83,6 +101,7 @@ export class DashboardComponent implements OnInit {
     });
 
     });
+  data.folders.splice(0, data.folders.length)
 
   }
 

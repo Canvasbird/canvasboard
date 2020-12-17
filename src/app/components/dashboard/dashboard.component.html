@@ -23,9 +23,10 @@
     </div>
   </div>
 
+  <input type="text" [(ngModel)]="filterFolderName">
+  <button (click)="filterFolders()">Search</button>
   <!-- Folders -->
   <div id="user-folders" class="cbff-container bd-grid mt-4">
-
   </div>
 
 
@@ -72,7 +73,6 @@
     </div>
   </div>
 </div>
-
 </div>
 
 <!-- Quote -->

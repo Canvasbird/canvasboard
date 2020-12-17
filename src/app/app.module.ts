@@ -18,6 +18,8 @@ import { AuthGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
+import { FilterFolderPipe } from './filter-folder.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { FilesComponent } from './components/files/files.component';
     NewBoardComponent,
     ContributionComponent,
     FilesComponent,
+    FilterFolderPipe
   ],
   imports: [
     BrowserModule,
