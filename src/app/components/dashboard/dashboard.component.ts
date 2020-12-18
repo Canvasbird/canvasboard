@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Data } from 'src/interfaces/dashboard';
+import {Router} from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
 declare var $: any;
@@ -33,7 +32,6 @@ export class DashboardComponent implements OnInit {
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
     data.folders.forEach((obj) => {
-      console.log(obj);
       // Add Folders
       $('#user-folders').append(`
       <div class="folder-box shadow" id=${obj._id}>
@@ -172,7 +170,6 @@ export class DashboardComponent implements OnInit {
   }
 
   navigateToFiles(e, item) {
-    console.log('Working', item);
     this.route.navigate(['/files']);
   }
 
@@ -181,9 +178,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async deleteCard(id) {
-    console.log(id);
     const response = await this.apiService.deleteFolder(id);
-    console.log(response);
     if (response.success) {
       // removing from array
       const index = this.data.findIndex((o) => {
@@ -335,7 +330,6 @@ export class DashboardComponent implements OnInit {
 
     // Push it to data array
     this.data.push(obj);
-    console.log(this.data);
   }
 
   async createFolder() {

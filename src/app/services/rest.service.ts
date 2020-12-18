@@ -31,20 +31,12 @@ export class RestService {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
-    }).subscribe(res => {
-      console.log(res);
+    }).subscribe( res => {
       this.boardId = JSON.parse(JSON.stringify(res)).board_id;
-
-      // this.getBoardData(this.boardId)
     });
-
-    console.log(this.boardId, 'THIS ');
-
   }
 
   getBoardData(boardId) {
-    console.log('Inside get', this.boardId);
-
     this.xAuthToken = localStorage.getItem('token');
     this.http.get(environment.apiHost + `/api/v1/user/get/board?board_id=${boardId}`, {
       headers: new HttpHeaders({
@@ -104,10 +96,9 @@ export class RestService {
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).toPromise()
-      .then((response) => {
-        console.log(body);
-        this.renameFolderResponse = response;
-      });
+    .then((response) => {
+      this.renameFolderResponse = response;
+    });
     return this.renameFolderResponse;
   }
   // ........................... FILES APIS........................................

@@ -8,7 +8,6 @@ export class AddTopComponent {
 
     // Top HTML Tag
     addTopTagHTMLCode(uid) {
-      // console.log('Calling Top html');
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- top -->
