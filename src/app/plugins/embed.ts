@@ -23,7 +23,7 @@ export class AddEmbedComponent {
     `);
   }
 
-  addEmbedTagClickFunction = (uid) => {
+  addEmbedTagClickFunction = () => {
 
   }
 

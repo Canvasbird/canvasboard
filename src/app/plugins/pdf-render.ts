@@ -43,10 +43,9 @@ export class AddPdfRenderComponent {
     let result: any;
     console.log(file);
     $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
-    reader.onloadend = (event) => {
+    reader.onloadend = () => {
       // convert file to base64 string
       result = reader.result;
-      console.log(result);
       $(`#cb-box-2-${uid}`).append(`
       <embed src="${result}" height='600' width="100%" />
       `);

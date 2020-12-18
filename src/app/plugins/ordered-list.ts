@@ -8,7 +8,6 @@ export class AddOrderedListComponent {
 
     // OrderedList HTML Tag
     addOrderedListTagHTMLCode(uid) {
-      // console.log('Calling OrderedList html');
 
       $(`#cb-buttons-${uid}`).append(`
        <!-- Ordered list button -->

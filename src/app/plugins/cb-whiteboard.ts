@@ -22,7 +22,6 @@ export class AddCanvasBoard {
     addCanvasBoardToolbox = (uid) => {
       const parentWidth = $(`#original-${uid}`).width();
       $(`#original-${uid}`).attr('contenteditable', false);
-      console.log('Working canvas board');
       $(`#original-${uid}`).append(`
       <div id="canvas-menu-box" class="canvas-menu-box">
           <input id="canvas-menu-box-color-${uid}" type="color" style="margin-left: 10%; margin-bottom: 5px;">

@@ -8,7 +8,6 @@ export class AddBottomComponent {
 
     // Bottom HTML Tag
     addBottomTagHTMLCode(uid) {
-      // console.log('Calling Bottom html');
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- bottom -->
