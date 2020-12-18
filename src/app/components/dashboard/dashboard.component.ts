@@ -12,7 +12,7 @@ declare var $: any;
 export class DashboardComponent implements OnInit {
 
   public quote: DailyQuote;
-  constructor(private route: Router, private apiService: RestService) {}
+  constructor(private route: Router, private apiService: RestService) { }
   data: any;
   Username: string = null;
 
@@ -105,12 +105,12 @@ export class DashboardComponent implements OnInit {
     </div>
       `);
 
-    // Click action to enter files folder
-      $(`#button-${obj._id}`).click( () => {
+      // Click action to enter files folder
+      $(`#button-${obj._id}`).click(() => {
         this.route.navigate([`/folder/${obj._id}`]);
       });
-    // Click action to edit the folder_name
-      $(`#button-edit-name-${obj._id}`).click( () => {
+      // Click action to edit the folder_name
+      $(`#button-edit-name-${obj._id}`).click(() => {
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
         if (editText.style.display === 'block') {
@@ -122,8 +122,8 @@ export class DashboardComponent implements OnInit {
           folderName.style.display = 'none';
         }
       });
-    // Click action to close the edit input
-      $(`#button-edit-name-no-${obj._id}`).click( () => {
+      // Click action to close the edit input
+      $(`#button-edit-name-no-${obj._id}`).click(() => {
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
         if (editText.style.display === 'block') {
@@ -134,8 +134,8 @@ export class DashboardComponent implements OnInit {
           document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
         }
       });
-    // Click action to save the new edited name
-      $(`#button-edit-name-ok-${obj._id}`).click( () => {
+      // Click action to save the new edited name
+      $(`#button-edit-name-ok-${obj._id}`).click(() => {
         const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -150,20 +150,20 @@ export class DashboardComponent implements OnInit {
           }
         }
       });
-    // Open delete popup
-      $(`#delete-${obj._id}`).click( () => {
-      const popup = document.getElementById(`delete-sure-${obj._id}`);
-      if (popup.style.display === 'block') {
-        popup.style.display = 'none';
-      } else {
-        popup.style.display = 'block';
-      }
-    });
+      // Open delete popup
+      $(`#delete-${obj._id}`).click(() => {
+        const popup = document.getElementById(`delete-sure-${obj._id}`);
+        if (popup.style.display === 'block') {
+          popup.style.display = 'none';
+        } else {
+          popup.style.display = 'block';
+        }
+      });
 
-    // Delete sure popup
+      // Delete sure popup
       $(`#delete-sure-${obj._id}`).click(() => {
-      this.deleteCard(obj._id);
-    });
+        this.deleteCard(obj._id);
+      });
 
     });
 
@@ -267,11 +267,11 @@ export class DashboardComponent implements OnInit {
     `);
 
     // Click action to enter files folder
-    $(`#button-${obj._id}`).click( () => {
-        this.route.navigate([`/folder/${obj._id}`]);
+    $(`#button-${obj._id}`).click(() => {
+      this.route.navigate([`/folder/${obj._id}`]);
     });
     // Click action to edit the folder name.
-    $(`#button-edit-name-${obj._id}`).click( () => {
+    $(`#button-edit-name-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       if (editText.style.display === 'block') {
@@ -285,7 +285,7 @@ export class DashboardComponent implements OnInit {
     });
 
     // Click action to close the edit input
-    $(`#button-edit-name-no-${obj._id}`).click( () => {
+    $(`#button-edit-name-no-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       if (editText.style.display === 'block') {
@@ -297,7 +297,7 @@ export class DashboardComponent implements OnInit {
       }
     });
     // Click action to save the new edited name
-    $(`#button-edit-name-ok-${obj._id}`).click( () => {
+    $(`#button-edit-name-ok-${obj._id}`).click(() => {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -314,7 +314,7 @@ export class DashboardComponent implements OnInit {
     });
 
     // Open delete popup
-    $(`#delete-${obj._id}`).click( () => {
+    $(`#delete-${obj._id}`).click(() => {
       const popup = document.getElementById(`delete-sure-${obj._id}`);
       if (popup.style.display === 'block') {
         popup.style.display = 'none';
@@ -360,13 +360,13 @@ export class DashboardComponent implements OnInit {
 
   getQuote() {
     this.apiService.getDailyQuote()
-    .then((quote: DailyQuote) => {
-      this.quote = quote;
-    })
-    .catch((err) => {
-      // Here we store a random dummyQuote to the quote property.
-      this.quote= this.apiService.getDummyQuote();
-    });
+      .then((quote: DailyQuote) => {
+        this.quote = quote;
+      })
+      .catch((err) => {
+        // Here we store a random dummyQuote to the quote property.
+        this.quote = this.apiService.getDummyQuote();
+      });
   }
 
   async renameFolder(obj, newName) {
