@@ -7,8 +7,8 @@ class StateManager {
   private redoStack: string[]; // Redo stack
   private locked: boolean; // Determines if the state can currently be saved.
   private maxCount = 100; // We keep 100 items in the stacks at any time.
-  private canvasId:any;
-  constructor(readonly canvas: fabric.Canvas, readonly uid:any) {
+  private canvasId: any;
+  constructor(readonly canvas: fabric.Canvas, readonly uid: any) {
     this.currentState = canvas.toDatalessJSON();
     this.locked = false;
     this.redoStack = [];
@@ -17,66 +17,68 @@ class StateManager {
     this.toggleUndoRedoButton(this.canvasId);
   }
   saveState() {
-    if (!this.locked && this.currentState !== this.stateStack[this.stateStack.length-1]) {
-        if (this.stateStack.length === this.maxCount) {
-            // Drop the oldest element
-            this.stateStack.shift();
-        }
+    if (!this.locked && this.currentState !== this.stateStack[this.stateStack.length - 1]) {
+      if (this.stateStack.length === this.maxCount) {
+        // Drop the oldest element
+        this.stateStack.shift();
+      }
 
-        // Add the current state
-        this.stateStack.push(
-            this.currentState
-        );
+      // Add the current state
+      this.stateStack.push(
+        this.currentState
+      );
 
-        // Make the state of the canvas the current state
-        this.currentState = this.canvas.toDatalessJSON();
+      // Make the state of the canvas the current state
+      this.currentState = this.canvas.toDatalessJSON();
 
-        // Reset the redo stack.
-        // We can only redo things that were just undone.
-        this.redoStack.length = 0;
-        this.toggleUndoRedoButton(this.canvasId);
+      // Reset the redo stack.
+      // We can only redo things that were just undone.
+      this.redoStack.length = 0;
+      this.toggleUndoRedoButton(this.canvasId);
     }
   }
 
   // Pop the most recent state. Use the specified callback method.
   undo() {
     if (this.stateStack.length > 0) {
-        this.applyState(this.redoStack, this.stateStack.pop());
-  }}
+      this.applyState(this.redoStack, this.stateStack.pop());
+    }
+  }
 
   // Pop the most recent redo state. Use the specified callback method.
   redo() {
-      if (this.redoStack.length > 0) {
-          this.applyState(this.stateStack, this.redoStack.pop());
-  }}
+    if (this.redoStack.length > 0) {
+      this.applyState(this.stateStack, this.redoStack.pop());
+    }
+  }
 
   // Root function for undo and redo; operates on the passed-in stack
   private applyState(stack: string[], newState) {
-      // Push the current state
-      stack.push(this.currentState);
+    // Push the current state
+    stack.push(this.currentState);
 
-      // Make the new state the current state
-      this.currentState = newState;
+    // Make the new state the current state
+    this.currentState = newState;
 
-      // Lock the stacks for the incoming change
-      const thisStateManager = this;
-      this.locked = true;
+    // Lock the stacks for the incoming change
+    const thisStateManager = this;
+    this.locked = true;
 
-      // Update canvas with the new current state
-      this.canvas.loadFromJSON(this.currentState, () => {
-          // Unlock the stacks
-          thisStateManager.locked = false;
-      });
-      this.toggleUndoRedoButton(this.canvasId);
+    // Update canvas with the new current state
+    this.canvas.loadFromJSON(this.currentState, () => {
+      // Unlock the stacks
+      thisStateManager.locked = false;
+    });
+    this.toggleUndoRedoButton(this.canvasId);
   }
 
-  toggleUndoRedoButton(uid:any){
-    if(this.stateStack.length == 0) {
+  toggleUndoRedoButton(uid: any) {
+    if (this.stateStack.length === 0) {
       $(`#canvas-menu-box-undo-${uid}`).prop('disabled', true);
     } else {
       $(`#canvas-menu-box-undo-${uid}`).prop('disabled', false);
     }
-    if(this.redoStack.length == 0) {
+    if (this.redoStack.length === 0) {
       $(`#canvas-menu-box-redo-${uid}`).prop('disabled', true);
     } else {
       $(`#canvas-menu-box-redo-${uid}`).prop('disabled', false);
@@ -92,23 +94,23 @@ export class AddCanvasBoard {
   MOVE_MODE: string;
   canvasMode: string;
   isDrawingMode: boolean;
-  constructor() {}
-    undo(): void {
-          this.stateManager.undo();
-    }
+  constructor() { }
+  undo(): void {
+    this.stateManager.undo();
+  }
 
-    redo(): void {
-          this.stateManager.redo();
-    }
+  redo(): void {
+    this.stateManager.redo();
+  }
 
-    private saveState() {
-        this.stateManager.saveState();
-        this.canvas.renderAll();
-    }
+  private saveState() {
+    this.stateManager.saveState();
+    this.canvas.renderAll();
+  }
 
-    // Adding canvasboard
-    addCanvasBoardHTMLCode = (uid) => {
-      $(`#cb-buttons-${uid}`).append(`
+  // Adding canvasboard
+  addCanvasBoardHTMLCode = (uid) => {
+    $(`#cb-buttons-${uid}`).append(`
         <!-- Canvas Board -->
         <div class="tool box1 m-1">
           <button class="btn btn-light" id="add-canvas-cb-${uid}">
@@ -119,12 +121,12 @@ export class AddCanvasBoard {
           </button>
         </div>
       `);
-    }
+  }
 
-    addCanvasBoardToolbox = (uid) => {
-      const parentWidth = $(`#original-${uid}`).width();
-      $(`#original-${uid}`).attr('contenteditable', false);
-      $(`#original-${uid}`).append(`
+  addCanvasBoardToolbox = (uid) => {
+    const parentWidth = $(`#original-${uid}`).width();
+    $(`#original-${uid}`).attr('contenteditable', false);
+    $(`#original-${uid}`).append(`
       <div id="canvas-menu-box" class="canvas-menu-box">
           <input id="canvas-menu-box-color-${uid}" type="color" style="margin-left: 10%; margin-bottom: 5px;">
           <button id="canvas-menu-box-pencil-${uid}" class="btn btn-light m-2">
@@ -197,99 +199,101 @@ export class AddCanvasBoard {
       </div>
       <canvas id="canvas-${uid}" class="shadow"></canvas>
      `);
-      // This code(styles) should not be added it will cause problems in fabric
-      this.canvas = new fabric.Canvas(`canvas-${uid}`);
-      this.DRAWING_MODE = 'drawing';
-      this.MOVE_MODE = 'move';
+    // This code(styles) should not be added it will cause problems in fabric
+    this.canvas = new fabric.Canvas(`canvas-${uid}`);
+    this.DRAWING_MODE = 'drawing';
+    this.MOVE_MODE = 'move';
+    this.canvasMode = this.DRAWING_MODE;
+    this.isDrawingMode = true;
+    this.canvas.setHeight('400');
+    this.canvas.setWidth(parentWidth);
+    this.stateManager = new StateManager(this.canvas, uid);
+    // changing pen color
+    // canvas.freeDrawingBrush.color
+    $(`#canvas-menu-box-color-${uid}`).on('change', () => {
+      const color: any = document.getElementById(`canvas-menu-box-color-${uid}`);
+      const data = color.value;
+      this.canvas.freeDrawingBrush.color = data;
+    });
+
+    $(`#canvas-menu-box-pencil-${uid}`).on('click', () => {
+      this.canvas.discardActiveObject().renderAll();
+      this.canvas.isDrawingMode = true;
       this.canvasMode = this.DRAWING_MODE;
-      this.isDrawingMode = true;
-      this.canvas.setHeight('400');
-      this.canvas.setWidth(parentWidth);
-      this.stateManager = new StateManager(this.canvas, uid);
-      // changing pen color
-      // canvas.freeDrawingBrush.color
-      $(`#canvas-menu-box-color-${uid}`).on('change', () => {
-        const color: any = document.getElementById(`canvas-menu-box-color-${uid}`);
-        const data = color.value;
-        this.canvas.freeDrawingBrush.color = data;
-      });
+    });
+    this.canvas.on('mouse:up', (o) => {
+      if (this.canvasMode === this.DRAWING_MODE) {
+        if (this.isDrawingMode) {
+          this.saveState();
+        }
+      }
+      if (this.canvasMode === this.MOVE_MODE) {
+        if (this.canvas.hoverCursor === 'move') {
+          this.saveState();
+        }
+      }
+    });
+    $(`#canvas-menu-box-undo-${uid}`).on('click', () => { this.undo(); });
+    $(`#canvas-menu-box-redo-${uid}`).on('click', () => { this.redo(); });
+    $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
+      const shape = this.canvas.getActiveObject();
 
-      $(`#canvas-menu-box-pencil-${uid}`).on('click', () => {
-        this.canvas.discardActiveObject().renderAll();
-        this.canvas.isDrawingMode = true;
-        this.canvasMode = this.DRAWING_MODE;
-      });
-      this.canvas.on('mouse:up', (o) => {
-        if (this.canvasMode === this.DRAWING_MODE) {
-          if (this.isDrawingMode) {
-            this.saveState();
-        }}
-        if (this.canvasMode === this.MOVE_MODE) {
-          if (this.canvas.hoverCursor === 'move') {
-            this.saveState();
-        }}
+      // treating all shape objects individually
+      if (shape.hasOwnProperty('_objects')) {
+        (shape._objects).forEach(element => {
+          this.canvas.remove(element);
         });
-      $(`#canvas-menu-box-undo-${uid}`).on('click', () => { this.undo(); });
-      $(`#canvas-menu-box-redo-${uid}`).on('click', () => { this.redo(); });
-      $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
+      } else {
+        this.canvas.remove(shape);
+      }
+      this.saveState();
+    });
+
+    $(`#canvas-menu-box-move-${uid}`).on('click', () => {
+      this.canvas.hoverCursor = 'move';
+      this.canvas.isDrawingMode = false;
+      this.canvasMode = this.MOVE_MODE;
+    });
+
+    $(`#canvas-menu-box-size-${uid}`).on('change', () => {
+      const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
+      this.canvas.freeDrawingBrush.width = parseInt(width, 10);
+    });
+
+    this.canvas.on('selection:created', () => {
+      $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
+    });
+
+    this.canvas.on('selection:cleared', () => {
+      $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
+    });
+
+    // checks if there is an active object selected, if not null checks for a delete event and deletes it.
+    document.addEventListener('keydown', (event) => {
+      const key = event.key;
+      if (key === 'Delete') {
         const shape = this.canvas.getActiveObject();
-
-        // treating all shape objects individually
-        if (shape.hasOwnProperty('_objects')) {
-          (shape._objects).forEach(element => {
-            this.canvas.remove(element);
-          });
-        } else {
-          this.canvas.remove(shape);
-        }
-        this.saveState();
-      });
-
-      $(`#canvas-menu-box-move-${uid}`).on('click', () => {
-        this.canvas.hoverCursor = 'move';
-        this.canvas.isDrawingMode = false;
-        this.canvasMode = this.MOVE_MODE;
-      });
-
-      $(`#canvas-menu-box-size-${uid}`).on('change', () => {
-        const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
-        this.canvas.freeDrawingBrush.width = parseInt(width, 10);
-      });
-
-      this.canvas.on('selection:created', () => {
-        $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
-      });
-
-      this.canvas.on('selection:cleared', () => {
-        $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
-      });
-
-      // checks if there is an active object selected, if not null checks for a delete event and deletes it.
-      document.addEventListener('keydown', (event) => {
-        const key = event.key;
-        if (key === 'Delete') {
-          const shape = this.canvas.getActiveObject();
-          if (shape != null) {
-            // treating all shape objects individually
-            if (shape.hasOwnProperty('_objects')) {
-              (shape._objects).forEach(element => {
-                this.canvas.remove(element);
-              });
-            } else {
-              this.canvas.remove(shape);
-            }
-            this.saveState();
+        if (shape != null) {
+          // treating all shape objects individually
+          if (shape.hasOwnProperty('_objects')) {
+            (shape._objects).forEach(element => {
+              this.canvas.remove(element);
+            });
+          } else {
+            this.canvas.remove(shape);
           }
+          this.saveState();
         }
-      });
-      document.addEventListener('keydown', (event) => {
-        const key = event.key;
-        if (event.ctrlKey && key === 'z') {
-          this.undo();
-        }
-        if (event.ctrlKey && key === 'y') {
-          this.redo();
-        }
-      });
-    }
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      const key = event.key;
+      if (event.ctrlKey && key === 'z') {
+        this.undo();
+      }
+      if (event.ctrlKey && key === 'y') {
+        this.redo();
+      }
+    });
+  }
 }
