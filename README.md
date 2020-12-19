@@ -25,7 +25,7 @@ Canvasboard can be scaled up to onboard multiple plugins in one place that can b
 
 More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
-## Open Source Programs we have been a associated with:
+## Open Source Programs we have been associated with:
 
 <p align="center">
 <a href="https://winterofcode.com/"><img src="./src/assets/Open%20Source%20Program/WOC.jpg" width="200px" height="200px" /></a>
