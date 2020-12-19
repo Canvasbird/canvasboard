@@ -14,6 +14,7 @@ import { AuthGuard, LoginGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
+import { ClockComponent } from './plugins/clock/clock.component';
 const routes: Routes = [
   {
     path: '',
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'plugins/clock',
+    component: ClockComponent,
     canActivate: [AuthGuard]
   },
   {
