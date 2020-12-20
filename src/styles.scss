@@ -144,6 +144,10 @@
   .cbff-container {
     grid-template-columns: repeat(2,1fr);
   }
+  .toolbox-main{
+    width: calc(100vw - 80px);
+    overflow-x: scroll;
+  }
 }
 @media (max-width: 576px) {
   .cbff-container {
