@@ -6,14 +6,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterFolderPipe implements PipeTransform {
 
-  transform(data: any, search_name:string) {
-    if (search_name === '') {
+  transform(data: any, searchName: string) {
+    if (searchName === '') {
       return data;
     }
-    let folderNames: any[] = [];
+    const folderNames: any[] = [];
     for (const item of data) {
       const folderName = item.folder_name;
-      if (folderName.startsWith(search_name)) {
+      if (folderName.startsWith(searchName)) {
         folderNames.push(item);
       }
     }
