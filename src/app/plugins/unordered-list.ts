@@ -8,7 +8,6 @@ export class AddUnOrderedListComponent {
 
     // UnOrderedList HTML Tag
     addUnOrderedListTagHTMLCode(uid) {
-      // console.log('Calling UnOrderedList html');
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- Unordered list button -->

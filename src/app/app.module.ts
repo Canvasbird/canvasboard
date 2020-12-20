@@ -19,6 +19,7 @@ import { NewBoardComponent } from './components/new-board/new-board.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
 import { FilterFolderPipe } from './shared/filter-folder.pipe';
+import { ClockComponent } from './plugins/clock/clock.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { FilterFolderPipe } from './shared/filter-folder.pipe';
     NewBoardComponent,
     ContributionComponent,
     FilesComponent,
-    FilterFolderPipe
+    FilterFolderPipe,
+    ClockComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, Renderer2 } from '@angular/core';
 import { Pages } from '../../../interfaces/pages';
 import { Tracking } from '../../../interfaces/tracking';
-import { log } from 'util';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 declare const pdfjsLib: any;
@@ -103,7 +102,6 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     this.page = 0;
-    console.log('Screen width :', this.scrWidth, 'Screen height', this.scrHeight);
 
     // getting the 2D context of Canvas element
     this.canvasElement = this.canvas.nativeElement;
@@ -120,17 +118,12 @@ export class BoardComponent implements OnInit {
 
   addPdf(pageNumber) {
     this.pdfJs.promise.then(doc => {
-      console.log('PDF LOADED');
-      console.log('THis pdf has ', doc._pdfInfo.numPages);
-      // this.no_of_pages = doc._pdfInfo.numPages
-
       doc.getPage(pageNumber).then(page => {
         const canvas: any = document.getElementById('my_canvas');
         const context: any = canvas.getContext('2d');
         const viewport: any = page.getViewport({ scale: 1.3 });
         viewport.height = this.scrHeight;
         this.pdfAddedBoolean = true;
-        // viewport.width = '200px';
         page.render({
           canvasContext: context,
           viewport
@@ -373,8 +366,6 @@ export class BoardComponent implements OnInit {
         this.pdfJs = pdfjsLib.getDocument(this.localUrl);
 
         this.pdfJs.promise.then(doc => {
-          console.log('PDF LOADED');
-          console.log('This pdf has ', doc._pdfInfo.numPages);
           this.noOfPages = doc._pdfInfo.numPages;
 
           // once the whole file is uploaded
@@ -384,14 +375,12 @@ export class BoardComponent implements OnInit {
 
       };
       reader.readAsDataURL(event.target.files[0]);
-      console.log('Local URL', this.localUrl);
     }
   }
 
   function_PDF_tracking(num) {
     // setting up pdf tracking
     for (let i = 0; i < num; i++) {
-      console.log(i);
 
       // by default 1st page is visited
       if (i === 0) {
@@ -400,15 +389,11 @@ export class BoardComponent implements OnInit {
         const key2 = 'status';
         obj[key1] = i + 1;
         obj[key2] = 'visited';
-        console.log(obj);
-        // this.pageTracking.push(obj)
       } else {
         const obj = {
           page: i + 1,
           status: 'novisit'
         };
-        console.log(obj);
-        // this.pageTracking.push(obj)
       }
     }
     console.log('All my pages', this.pageTracking);
@@ -465,14 +450,12 @@ export class BoardComponent implements OnInit {
 
     // if it already exists append
     if (this.notebook[this.page]) {
-      console.log('Loading page', this.page);
 
       // this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
       const image = new Image();
 
       image.onload = (event) => {
         this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
-        console.log('Image width', image.width);
         image.width = this.scrWidth;
 
         this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
@@ -506,7 +489,7 @@ export class BoardComponent implements OnInit {
       this.page = this.page - 1;
       const image = new Image();
 
-      image.onload = (event) => {
+      image.onload = () => {
         this.ctx.clearRect(0, 0, this.scrWidth, this.scrHeight);
         this.ctx.drawImage(image, 0, 0); // draw the new image to the screen
         this.ctx.globalCompositeOperation = this.defaultComposite;
@@ -601,7 +584,7 @@ export class BoardComponent implements OnInit {
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
       const img1 = new Image();
-      img1.onload = (event) => {
+      img1.onload = () => {
         // draw background image
         console.log(img1.width);
         img1.width = 1000;
@@ -622,12 +605,7 @@ export class BoardComponent implements OnInit {
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
       const img1 = new Image();
-      img1.onload = (event) => {
-        // draw background image
-        console.log(img1.width);
-        // img1.width = 1000
-        // img1.height = 1000
-
+      img1.onload = () => {
         ctx.drawImage(img1, 0, 0, this.scrWidth, this.scrHeight);
       };
       img1.src = 'https://raw.githubusercontent.com/Canvasbird/canvasboard/master/src/assets/paperType/mathYellow.svg';
@@ -640,7 +618,7 @@ export class BoardComponent implements OnInit {
     if (ctx.getContext) {
       ctx = ctx.getContext('2d');
       const img1 = new Image();
-      img1.onload = (event) => {
+      img1.onload = () => {
         // draw background image
         console.log(img1.width);
         // img1.width = 1000
@@ -667,7 +645,6 @@ export class BoardComponent implements OnInit {
     value = value.map((v) => parseInt(v, 16));
     // [n, n, n] -> rgb(n,n,n)
     const rgbConverted = 'rgb(' + value.join(',') + ',' + opacity + ')';
-    console.log(rgbConverted, 'Colour Changed');
     this.penColour = rgbConverted;
   }
 

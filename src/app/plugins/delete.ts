@@ -8,7 +8,6 @@ export class AddDeleteComponent {
 
     // Delete HTML Tag
     addDeleteTagHTMLCode(uid) {
-      // console.log('Calling Delete html');
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- delete button -->

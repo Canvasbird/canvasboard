@@ -10,13 +10,30 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, public router: Router) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.isUserLoggedIn()) {
       return true;
     } else {
       this.router.navigate(['login']);
+    }
+  }
+
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginGuard implements CanActivate {
+
+  constructor(private authService: AuthService, public router: Router) {
+  }
+
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    if (!this.authService.isUserLoggedIn()) {
+      return true;
+    } else {
+      this.router.navigate(['dashboard']);
+      return false;
     }
   }
 
