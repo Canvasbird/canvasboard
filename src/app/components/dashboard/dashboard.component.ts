@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import { Data } from 'src/interfaces/dashboard';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
-import { FilterFolderPipe } from 'src/app/filter-folder.pipe';
+import { FilterFolderPipe } from 'src/app/shared/filter-folder.pipe';
 declare var $: any;
 
 @Component({
@@ -18,18 +18,16 @@ export class DashboardComponent implements OnInit {
   constructor(private route: Router, private apiService: RestService, private filterFolder: FilterFolderPipe) {}
   data: any;
   Username: string = null;
-  filterFolderName= '';
+  filterFolderName = '';
 
   ngOnInit() {
     this.gettingData();
     this.getQuote();
-    console.log(this.filterFolderName)
   }
   // GETTING USER DATA
   async gettingData() {
     const response = await this.apiService.getFoldersData();
     const data = await response.content;
-    console.log(data)
     this.data = data.folders;
     this.Username = data.user_name;
 
@@ -37,21 +35,19 @@ export class DashboardComponent implements OnInit {
   }
 
   filterFolders() {
-    let folder_names: any[] = [];
-    folder_names = this.filterFolder.transform(this.data, this.filterFolderName)
-    console.log(folder_names)
-    const new_data = {
+    $('#user-folders').html('');
+
+    let folderNames: any[] = [];
+    folderNames = this.filterFolder.transform(this.data, this.filterFolderName);
+    const newData = {
       user_name: this.Username,
-      folders: folder_names
-    }
-    console.log(new_data);
-    this.addFolders(new_data);
+      folders: folderNames
+    };
+    this.addFolders(newData);
   }
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
-    console.log(data)
     data.folders.forEach((obj) => {
-      console.log(obj);
       // Add Folders
       $('#user-folders').append(`
       <div class="folder-box shadow" id=${obj._id}>
@@ -101,7 +97,6 @@ export class DashboardComponent implements OnInit {
     });
 
     });
-  data.folders.splice(0, data.folders.length)
 
   }
 
@@ -121,11 +116,14 @@ export class DashboardComponent implements OnInit {
     if (response.success) {
       // removing from array
       const index = this.data.findIndex((o) => {
-        return o.id === 'myid';
+        // return o.id === 'myid';
+        return o._id === id;
       });
+      console.log(index);
       if (index !== -1) {
         this.data.splice(index, 1);
       }
+      console.log(this.data);
 
       // Removing from HTML
       document.getElementById(`${id}`).remove();
@@ -179,7 +177,6 @@ export class DashboardComponent implements OnInit {
     $(`#delete-sure-${obj._id}`).click(() => {
       this.deleteCard(obj._id);
     });
-
     // Push it to data array
     this.data.push(obj);
     console.log(this.data);
@@ -218,7 +215,7 @@ export class DashboardComponent implements OnInit {
     })
     .catch((err) => {
       // Here we store a random dummyQuote to the quote property.
-      this.quote= this.apiService.getDummyQuote();
+      this.quote = this.apiService.getDummyQuote();
     });
   }
 }
