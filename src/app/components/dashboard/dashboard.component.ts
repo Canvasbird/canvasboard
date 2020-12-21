@@ -47,7 +47,11 @@ export class DashboardComponent implements OnInit {
   }
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
-    data.folders.forEach((obj) => {
+    if (Object.keys(data.folders).length === 0) {
+      const notFound = 'No Workspace Found!';
+      $('#user-folders').append(`<h5 id='not-found'>${notFound}</h5>`);
+    } else {
+      data.folders.forEach((obj) => {
       // Add Folders
       $('#user-folders').append(`
       <div class="folder-box shadow" id=${obj._id}>
@@ -182,6 +186,7 @@ export class DashboardComponent implements OnInit {
       });
 
     });
+  }
 
   }
 
@@ -198,7 +203,6 @@ export class DashboardComponent implements OnInit {
     if (response.success) {
       // removing from array
       const index = this.data.findIndex((o) => {
-        // return o.id === 'myid';
         return o._id === id;
       });
       console.log(index);

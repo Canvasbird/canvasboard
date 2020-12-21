@@ -139,6 +139,21 @@
 .cbff-container {
   grid-template-columns: repeat(3,1fr);
 }
+#user-folders{
+  position: relative;
+}
+#not-found{
+  color: black;
+  opacity: 50%;
+  margin: 0;
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
 
 @media (max-width: 768px) {
   .cbff-container {
@@ -156,14 +171,18 @@
   }
 }
 
+@media (max-width: 320px) {
+  #not-found{
+    top: 3rem;
+  }
+}
+
 .error-label {
   display: none;
 }
 
 .delete-popup {
   float: right;
-  // padding-left:30px;
   margin-right: 5px;
-  // background-color:white;
   display:none;
 }
