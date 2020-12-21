@@ -103,7 +103,7 @@
   background: #53A453;
   background: #ee9ca7;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+  background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border-radius: .5rem;
   transition: 0.4s;
   margin:10px;
@@ -139,6 +139,21 @@
 .cbff-container {
   grid-template-columns: repeat(3,1fr);
 }
+#user-folders{
+  position: relative;
+}
+#not-found{
+  color: black;
+  opacity: 50%;
+  margin: 0;
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+
 
 @media (max-width: 768px) {
   .cbff-container {
@@ -149,9 +164,16 @@
     overflow-x: scroll;
   }
 }
+
 @media (max-width: 576px) {
   .cbff-container {
     grid-template-columns: repeat(1,1fr);
+  }
+}
+
+@media (max-width: 320px) {
+  #not-found{
+    top: 3rem;
   }
 }
 
@@ -160,9 +182,7 @@
 }
 
 .delete-popup {
-  float: right; 
-  // padding-left:30px; 
-  margin-right: 5px; 
-  // background-color:white; 
+  float: right;
+  margin-right: 5px;
   display:none;
 }

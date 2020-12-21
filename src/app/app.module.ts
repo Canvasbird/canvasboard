@@ -18,7 +18,9 @@ import { AuthGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
+import { FilterFolderPipe } from './shared/filter-folder.pipe';
 import { ClockComponent } from './plugins/clock/clock.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { ClockComponent } from './plugins/clock/clock.component';
     NewBoardComponent,
     ContributionComponent,
     FilesComponent,
+    FilterFolderPipe,
     ClockComponent,
+
   ],
   imports: [
     BrowserModule,

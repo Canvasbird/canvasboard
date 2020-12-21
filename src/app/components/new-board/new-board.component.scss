@@ -48,14 +48,13 @@
   display: flex;
 
   .edit {
-              max-width: 100%;
-              width: 100%;
-              white-space: pre-wrap;
-              word-break: break-all;
+    max-width: 100%;
+    width: 100%;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
 
-            }
-
-            .edit:focus {
+  .edit:focus {
               outline: none;
             }
           }
@@ -70,8 +69,6 @@
           position: relative;
           display: none;
         }
-
-
       }
     }
   }
@@ -80,8 +77,6 @@
     margin-top: 10px;
 .toolbox-main {
   display: flex;
-
-
     }
 
 

@@ -2,7 +2,7 @@
 
 
 .container{
-  min-height: calc(100vh - 65px);
+  min-height: calc(100vh - 68px);
   margin-bottom: -50px;
   .buttons {
     button {
@@ -58,7 +58,6 @@
         }
       }
     }
-
   }
 
   @media (max-width:1200px) {

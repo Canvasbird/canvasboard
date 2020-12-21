@@ -116,7 +116,6 @@ export class RestService {
       });
     return this.getFilesDetails;
   }
-
   // .........................DAILY QUOTES API...................................
   getDailyQuote() {
     return this.http.get('https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote', {

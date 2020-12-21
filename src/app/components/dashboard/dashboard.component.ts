@@ -2,19 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
+import { FilterFolderPipe } from 'src/app/shared/filter-folder.pipe';
 declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [FilterFolderPipe]
 })
 export class DashboardComponent implements OnInit {
 
   public quote: DailyQuote;
-  constructor(private route: Router, private apiService: RestService) { }
+  constructor(private route: Router, private apiService: RestService, private filterFolder: FilterFolderPipe) {}
+
   data: any;
   Username: string = null;
+  filterFolderName = '';
 
   ngOnInit() {
     this.gettingData();
@@ -26,12 +30,28 @@ export class DashboardComponent implements OnInit {
     const data = await response.content;
     this.data = data.folders;
     this.Username = data.user_name;
+
     this.addFolders(data);
   }
 
+  filterFolders() {
+    $('#user-folders').html('');
+
+    let folderNames: any[] = [];
+    folderNames = this.filterFolder.transform(this.data, this.filterFolderName);
+    const newData = {
+      user_name: this.Username,
+      folders: folderNames
+    };
+    this.addFolders(newData);
+  }
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
-    data.folders.forEach((obj) => {
+    if (Object.keys(data.folders).length === 0) {
+      const notFound = 'No Workspace Found!';
+      $('#user-folders').append(`<h5 id='not-found'>${notFound}</h5>`);
+    } else {
+      data.folders.forEach((obj) => {
       // Add Folders
       $('#user-folders').append(`
       <div class="folder-box shadow" id=${obj._id}>
@@ -166,6 +186,7 @@ export class DashboardComponent implements OnInit {
       });
 
     });
+  }
 
   }
 
@@ -182,11 +203,13 @@ export class DashboardComponent implements OnInit {
     if (response.success) {
       // removing from array
       const index = this.data.findIndex((o) => {
-        return o.id === 'myid';
+        return o._id === id;
       });
+      console.log(index);
       if (index !== -1) {
         this.data.splice(index, 1);
       }
+      console.log(this.data);
 
       // Removing from HTML
       document.getElementById(`${id}`).remove();
@@ -327,7 +350,6 @@ export class DashboardComponent implements OnInit {
     $(`#delete-sure-${obj._id}`).click(() => {
       this.deleteCard(obj._id);
     });
-
     // Push it to data array
     this.data.push(obj);
   }
@@ -387,5 +409,6 @@ export class DashboardComponent implements OnInit {
     } else {
       document.getElementById('error-label').style.display = 'block';
     }
+
   }
 }
