@@ -46,13 +46,11 @@
   }
 
   .images{
-    padding: 0 0;
-    margin: 0.2rem;
-    
-    .image{
-    width: 100%;
-    border-radius: 50%;
-  }
+    margin: auto;
+    max-width: 100vw;
+    text-align: center;
+    display: block;
+    margin-right: inherit;
   }
 
   

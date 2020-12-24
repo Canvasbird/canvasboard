@@ -27,12 +27,10 @@
     "ci": "^1.0.0",
     "fabric": "^4.2.0",
     "jquery": "^3.5.1",
-    "nodemon": "^2.0.6",
     "popper.js": "^1.16.1",
     "rimraf": "^3.0.2",
     "rxjs": "~6.4.0",
     "sortablejs": "^1.12.0",
-    "supervisor": "^0.12.0",
     "sweetalert2": "^10.9.0",
     "tslib": "^1.14.1",
     "uniqid": "^5.2.0",
@@ -62,9 +60,9 @@
     "typescript": "~3.5.3"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "ng lint",
-      "pre-push": "ng test --no-watch"
-    }
+  "hooks": {
+    "pre-commit": "ng lint",
+    "pre-push":"ng test --no-watch"
   }
+}
 }
