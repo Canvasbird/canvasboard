@@ -112,6 +112,10 @@
   .folder-title {
     font-family: Questrial,sans-serif;
     margin-top: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 15rem;
   }
 
   .folder-discription {
@@ -140,7 +144,7 @@
   grid-template-columns: repeat(3,1fr);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 990px) {
   .cbff-container {
     grid-template-columns: repeat(2,1fr);
   }

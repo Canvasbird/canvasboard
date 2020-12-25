@@ -101,7 +101,7 @@ export class DashboardComponent implements OnInit {
         </button>
       </h5>
       <!-- <p class="folder-discription">Lorem ipsum dolor sit amet.</p> -->
-      <button class="btn btn-dark" id=button-${obj._id}>Enter</button>
+      <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
     </div>
       `);
 
@@ -262,7 +262,7 @@ export class DashboardComponent implements OnInit {
         </button>
       </h5>
   <!-- <p class="folder-discription">Lorem ipsum dolor sit amet.</p> -->
-  <button class="btn btn-dark" id=button-${obj._id}>Enter</button>
+  <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
   </div>
     `);
 
