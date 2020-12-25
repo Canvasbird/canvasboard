@@ -1,5 +1,3 @@
-
-
 .container {
   // height: 82vh;
   min-height: calc(100vh - 205px);
@@ -46,12 +44,37 @@
   }
 
   .images{
-    margin: auto;
-    max-width: 100vw;
-    text-align: center;
-    display: block;
-    margin-right: inherit;
+    width: 80vw;
   }
 
+  @media only screen and (min-width:376px) {
+    .images{
+      margin-left: 5rem;
+    }
+  }
   
+  @media only screen and (min-width:680px) {
+    .images{
+      margin-left: 2rem;
+    }
+  }
+
+  @media only screen and (min-width:768px) {
+    .images{
+      margin-left: 5rem;
+    }
+  }
+
+  @media only screen and (min-width:864px) {
+    .images{
+      margin-left: 3rem;
+    }
+  }
+
+  @media only screen and (min-width:992px) {
+    .images{
+      margin-left: 8rem;
+    }
+  }
+
 }
