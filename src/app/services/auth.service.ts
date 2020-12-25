@@ -45,7 +45,7 @@ export class AuthService {
       .subscribe(
         (res) => {
           this.signUpResObj = res;
-          Swal.fire({ icon: 'success', text: this.signUpResObj.message });
+          Swal.fire({ icon: 'success', text: `${this.signUpResObj.message} Please verify your email address!` });
           this.router.navigate(['/login']);
           this.signUpLoad = false;
         },
