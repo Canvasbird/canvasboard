@@ -20,6 +20,10 @@ import { ContributionComponent } from './components/contribution/contribution.co
 import { FilesComponent } from './components/files/files.component';
 import { FilterFolderPipe } from './shared/filter-folder.pipe';
 import { ClockComponent } from './plugins/clock/clock.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -37,14 +41,16 @@ import { ClockComponent } from './plugins/clock/clock.component';
     ContributionComponent,
     FilesComponent,
     FilterFolderPipe,
-    ClockComponent,
-
+    ClockComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatPasswordStrengthModule,
+    MatTooltipModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
