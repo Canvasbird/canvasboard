@@ -72,7 +72,7 @@ Please feel free to checkout [Canvasbird Contribution Guidelines](https://github
 
 ## Community
 
-[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-jjdml591-~SsL4vdSX9Mc_GUVIvYV7g)
+[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-kdh1jv5x-_UH2fPZE5FIt4ZaHy2M2TQ)
 
 ## Contributors 🌟
 
