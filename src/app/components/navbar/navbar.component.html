@@ -9,20 +9,25 @@
       </span>
 
     </a>
-    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
+      <div class="navbar-toggler border-0 dropdown">
+        <div class="btn navbar-light navbar-toggler-icon navbar-brand border-0" style="padding:15px 32px;"></div>
+        <div class="dropdown-content dropdown-menu-right">
+          <a (click)="logoutButtonClick()">Logout</a>
+        </div>
+      </div>
+    <!-- </button> -->
     <!-- <div class="collapse navbar-collapse d-flex align-center" id="navbarSupportedContent" title="Logout"> -->
-      <div class="collapse navbar-collapse " id="navbarSupportedContent" title="Logout">
-      <ul class="navbar-nav ">
-        <li class="nav-item">
-          <button id="logout-button" class="btn btn-outline-dark nav-link" (click)="logoutButtonClick()">
-            Logout
-          </button>
-        </li>
-      </ul>
-
-    </div>
+    <div class="collapse navbar-collapse navbar-nav nav-item" id="navbarSupportedContent" title="Logout">
+      <div class="navbar-nav nav-item">
+        <div class="dropdown">
+          <div class="btn navbar-light navbar-toggler-icon navbar-brand border-0" style="padding:15px 32px;"></div>
+          <div class="dropdown-content dropdown-menu-right">
+            <a (click)="logoutButtonClick()">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div> 
 
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
