@@ -7,6 +7,7 @@
         padding-top: 1rem;
         padding-bottom: 10px;
         border-bottom: 2px solid #999999;
+        display: flex;
       }
 
       .heading:focus {
@@ -47,14 +48,13 @@
   display: flex;
 
   .edit {
-              max-width: 100%;
-              width: 100%;
-              white-space: pre-wrap;
-              word-break: break-all;
+    max-width: 100%;
+    width: 100%;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
 
-            }
-
-            .edit:focus {
+  .edit:focus {
               outline: none;
             }
           }
@@ -69,8 +69,6 @@
           position: relative;
           display: none;
         }
-
-
       }
     }
   }
@@ -79,8 +77,6 @@
     margin-top: 10px;
 .toolbox-main {
   display: flex;
-
-
     }
 
 
@@ -102,7 +98,8 @@
 }
 
 [contentEditable=true]:empty:not(:focus):before {
-  content: attr(data-text)
+  content: attr(data-text);
+  display: inline-flex;
 }
 
 .inline-flex {

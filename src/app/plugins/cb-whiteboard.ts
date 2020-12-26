@@ -1,12 +1,116 @@
 declare var $: any;
 import { fabric } from 'fabric';
 
-export class AddCanvasBoard {
-  constructor() {}
+class StateManager {
+  private currentState: string;
+  private stateStack: string[]; // Undo stack
+  private redoStack: string[]; // Redo stack
+  private locked: boolean; // Determines if the state can currently be saved.
+  private maxCount = 100; // We keep 100 items in the stacks at any time.
+  private canvasId: any;
+  constructor(readonly canvas: fabric.Canvas, readonly uid: any) {
+    this.currentState = canvas.toDatalessJSON();
+    this.locked = false;
+    this.redoStack = [];
+    this.stateStack = [];
+    this.canvasId = uid;
+    this.toggleUndoRedoButton(this.canvasId);
+  }
+  saveState() {
+    if (!this.locked && this.currentState !== this.stateStack[this.stateStack.length - 1]) {
+      if (this.stateStack.length === this.maxCount) {
+        // Drop the oldest element
+        this.stateStack.shift();
+      }
 
-    // Adding canvasboard
-    addCanvasBoardHTMLCode = (uid) => {
-      $(`#cb-buttons-${uid}`).append(`
+      // Add the current state
+      this.stateStack.push(
+        this.currentState
+      );
+
+      // Make the state of the canvas the current state
+      this.currentState = this.canvas.toDatalessJSON();
+
+      // Reset the redo stack.
+      // We can only redo things that were just undone.
+      this.redoStack.length = 0;
+      this.toggleUndoRedoButton(this.canvasId);
+    }
+  }
+
+  // Pop the most recent state. Use the specified callback method.
+  undo() {
+    if (this.stateStack.length > 0) {
+      this.applyState(this.redoStack, this.stateStack.pop());
+    }
+  }
+
+  // Pop the most recent redo state. Use the specified callback method.
+  redo() {
+    if (this.redoStack.length > 0) {
+      this.applyState(this.stateStack, this.redoStack.pop());
+    }
+  }
+
+  // Root function for undo and redo; operates on the passed-in stack
+  private applyState(stack: string[], newState) {
+    // Push the current state
+    stack.push(this.currentState);
+
+    // Make the new state the current state
+    this.currentState = newState;
+
+    // Lock the stacks for the incoming change
+    const thisStateManager = this;
+    this.locked = true;
+
+    // Update canvas with the new current state
+    this.canvas.loadFromJSON(this.currentState, () => {
+      // Unlock the stacks
+      thisStateManager.locked = false;
+    });
+    this.toggleUndoRedoButton(this.canvasId);
+  }
+
+  toggleUndoRedoButton(uid: any) {
+    if (this.stateStack.length === 0) {
+      $(`#canvas-menu-box-undo-${uid}`).prop('disabled', true);
+    } else {
+      $(`#canvas-menu-box-undo-${uid}`).prop('disabled', false);
+    }
+    if (this.redoStack.length === 0) {
+      $(`#canvas-menu-box-redo-${uid}`).prop('disabled', true);
+    } else {
+      $(`#canvas-menu-box-redo-${uid}`).prop('disabled', false);
+    }
+  }
+
+}
+
+export class AddCanvasBoard {
+  stateManager: StateManager;
+  canvas: fabric.Canvas;
+  DRAWING_MODE: string;
+  MOVE_MODE: string;
+  canvasMode: string;
+  isDrawingMode: boolean;
+  constructor() { }
+  undo(): void {
+    this.stateManager.undo();
+  }
+
+  redo(): void {
+    this.stateManager.redo();
+  }
+
+  private saveState() {
+    this.stateManager.saveState();
+    this.canvas.renderAll();
+  }
+
+  // Adding canvasboard
+  addCanvasBoardHTMLCode = (uid) => {
+    $(`#cb-buttons-${uid}`).append(`
         <!-- Canvas Board -->
         <div class="tool box1 m-1">
           <button class="btn btn-light" id="add-canvas-cb-${uid}">
@@ -17,13 +121,12 @@ export class AddCanvasBoard {
           </button>
         </div>
       `);
-    }
+  }
 
-    addCanvasBoardToolbox = (uid) => {
-      const parentWidth = $(`#original-${uid}`).width();
-      $(`#original-${uid}`).attr('contenteditable', false);
-      console.log('Working canvas board');
-      $(`#original-${uid}`).append(`
+  addCanvasBoardToolbox = (uid) => {
+    const parentWidth = $(`#original-${uid}`).width();
+    $(`#original-${uid}`).attr('contenteditable', false);
+    $(`#original-${uid}`).append(`
       <div id="canvas-menu-box" class="canvas-menu-box">
           <input id="canvas-menu-box-color-${uid}" type="color" style="margin-left: 10%; margin-bottom: 5px;">
           <button id="canvas-menu-box-pencil-${uid}" class="btn btn-light m-2">
@@ -68,6 +171,24 @@ export class AddCanvasBoard {
               1.856.769 3.805 1.142 5.737 1.142 3.903 0 7.74-1.524 10.609-4.394l68.703-68.704c5.859-5.857 5.859-15.355 0-21.212z"/>
             </svg>
           </button>
+          <button id="canvas-menu-box-undo-${uid}" class="btn btn-light m-2">
+          <svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 454.839 454.839"
+            style="enable-background:new 0 0 454.839 454.839;">
+            <path d="M404.908,283.853c0,94.282-76.71,170.986-170.986,170.986h-60.526c-10.03,0-18.158-8.127-18.158-18.157v-6.053
+            c0-10.031,8.127-18.158,18.158-18.158h60.526c70.917,0,128.618-57.701,128.618-128.618c0-70.917-57.701-128.618-128.618-128.618
+            H122.255l76.905,76.905c8.26,8.257,8.26,21.699,0,29.956c-8.015,8.009-21.964,7.997-29.961,0L56.137,149.031
+            c-4.001-4.001-6.206-9.321-6.206-14.981c0-5.656,2.205-10.979,6.206-14.978L169.205,6.002c7.997-8.003,21.958-8.003,29.956,0
+            c8.26,8.255,8.26,21.699,0,29.953l-76.905,76.911h111.666C328.198,112.866,404.908,189.573,404.908,283.853z"/></svg>
+          </button>
+          <button id="canvas-menu-box-redo-${uid}" class="btn btn-light m-2">
+          <svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 454.839 454.839"
+          style="enable-background:new 0 0 454.839 454.839;transform: scaleX(-1);">
+          <path d="M404.908,283.853c0,94.282-76.71,170.986-170.986,170.986h-60.526c-10.03,0-18.158-8.127-18.158-18.157v-6.053
+          c0-10.031,8.127-18.158,18.158-18.158h60.526c70.917,0,128.618-57.701,128.618-128.618c0-70.917-57.701-128.618-128.618-128.618
+          H122.255l76.905,76.905c8.26,8.257,8.26,21.699,0,29.956c-8.015,8.009-21.964,7.997-29.961,0L56.137,149.031
+          c-4.001-4.001-6.206-9.321-6.206-14.981c0-5.656,2.205-10.979,6.206-14.978L169.205,6.002c7.997-8.003,21.958-8.003,29.956,0
+          c8.26,8.255,8.26,21.699,0,29.953l-76.905,76.911h111.666C328.198,112.866,404.908,189.573,404.908,283.853z"/></svg>
+          </button>
           <select id="canvas-menu-box-size-${uid}">
             <option value="1">Size 1</option>
             <option value="2">Size 2</option>
@@ -78,63 +199,101 @@ export class AddCanvasBoard {
       </div>
       <canvas id="canvas-${uid}" class="shadow"></canvas>
      `);
-      // This code(styles) should not be added it will cause problems in fabric
+    // This code(styles) should not be added it will cause problems in fabric
+    this.canvas = new fabric.Canvas(`canvas-${uid}`);
+    this.DRAWING_MODE = 'drawing';
+    this.MOVE_MODE = 'move';
+    this.canvasMode = this.DRAWING_MODE;
+    this.isDrawingMode = true;
+    this.canvas.setHeight('400');
+    this.canvas.setWidth(parentWidth);
+    this.stateManager = new StateManager(this.canvas, uid);
+    // changing pen color
+    // canvas.freeDrawingBrush.color
+    $(`#canvas-menu-box-color-${uid}`).on('change', () => {
+      const color: any = document.getElementById(`canvas-menu-box-color-${uid}`);
+      const data = color.value;
+      this.canvas.freeDrawingBrush.color = data;
+    });
 
-      const canvas = new fabric.Canvas(`canvas-${uid}`);
-      const DRAWING_MODE = 'drawing';
-      const MOVE_MODE = 'move';
-      let canvasMode = DRAWING_MODE;
-      canvas.isDrawingMode = true;
-      canvas.setHeight('400');
-      canvas.setWidth(parentWidth);
-
-      // changing pen color
-      // canvas.freeDrawingBrush.color
-      $(`#canvas-menu-box-color-${uid}`).on('change', () => {
-        const color: any = document.getElementById(`canvas-menu-box-color-${uid}`);
-        const data = color.value;
-        canvas.freeDrawingBrush.color = data;
-      });
-
-      $(`#canvas-menu-box-pencil-${uid}`).on('click', () => {
-        canvas.discardActiveObject().renderAll();
-        canvas.isDrawingMode = true;
-        canvasMode = DRAWING_MODE;
-      });
-
-      $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
-        const shape = canvas.getActiveObject();
-        canvas.remove(shape);
-      });
-
-      $(`#canvas-menu-box-move-${uid}`).on('click', () => {
-        canvas.hoverCursor = 'move';
-        canvas.isDrawingMode = false;
-        canvasMode = MOVE_MODE;
-      });
-
-      $(`#canvas-menu-box-size-${uid}`).on('change', () => {
-        const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
-        canvas.freeDrawingBrush.width = parseInt(width, 10);
-      });
-
-      canvas.on('selection:created', () => {
-        $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
-      });
-
-      canvas.on('selection:cleared', () => {
-        $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
-      });
-
-      // checks if there is an active object selected, if not null checks for a delete event and deletes it.
-      document.addEventListener('keydown', (event) => {
-        const key = event.key;
-        if (key === 'Delete') {
-          const shape = canvas.getActiveObject();
-          if (shape != null) {
-            canvas.remove(shape);
-          }
+    $(`#canvas-menu-box-pencil-${uid}`).on('click', () => {
+      this.canvas.discardActiveObject().renderAll();
+      this.canvas.isDrawingMode = true;
+      this.canvasMode = this.DRAWING_MODE;
+    });
+    this.canvas.on('mouse:up', (o) => {
+      if (this.canvasMode === this.DRAWING_MODE) {
+        if (this.isDrawingMode) {
+          this.saveState();
         }
-      });
-    }
+      }
+      if (this.canvasMode === this.MOVE_MODE) {
+        if (this.canvas.hoverCursor === 'move') {
+          this.saveState();
+        }
+      }
+    });
+    $(`#canvas-menu-box-undo-${uid}`).on('click', () => { this.undo(); });
+    $(`#canvas-menu-box-redo-${uid}`).on('click', () => { this.redo(); });
+    $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
+      const shape = this.canvas.getActiveObject();
+
+      // treating all shape objects individually
+      if (shape.hasOwnProperty('_objects')) {
+        (shape._objects).forEach(element => {
+          this.canvas.remove(element);
+        });
+      } else {
+        this.canvas.remove(shape);
+      }
+      this.saveState();
+    });
+
+    $(`#canvas-menu-box-move-${uid}`).on('click', () => {
+      this.canvas.hoverCursor = 'move';
+      this.canvas.isDrawingMode = false;
+      this.canvasMode = this.MOVE_MODE;
+    });
+
+    $(`#canvas-menu-box-size-${uid}`).on('change', () => {
+      const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
+      this.canvas.freeDrawingBrush.width = parseInt(width, 10);
+    });
+
+    this.canvas.on('selection:created', () => {
+      $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
+    });
+
+    this.canvas.on('selection:cleared', () => {
+      $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
+    });
+
+    // checks if there is an active object selected, if not null checks for a delete event and deletes it.
+    document.addEventListener('keydown', (event) => {
+      const key = event.key;
+      if (key === 'Delete') {
+        const shape = this.canvas.getActiveObject();
+        if (shape != null) {
+          // treating all shape objects individually
+          if (shape.hasOwnProperty('_objects')) {
+            (shape._objects).forEach(element => {
+              this.canvas.remove(element);
+            });
+          } else {
+            this.canvas.remove(shape);
+          }
+          this.saveState();
+        }
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      const key = event.key;
+      if (event.ctrlKey && key === 'z') {
+        this.undo();
+      }
+      if (event.ctrlKey && key === 'y') {
+        this.redo();
+      }
+    });
+  }
 }

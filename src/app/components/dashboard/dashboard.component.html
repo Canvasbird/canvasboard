@@ -1,7 +1,6 @@
 <!-- navbar -->
 <app-navbar></app-navbar>
 <!-- main -->
-
 <div class="container">
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <h3 style="color: black;"><strong>Welcome {{Username}}!👋</strong></h3>
@@ -24,10 +23,19 @@
     </div>
   </div>
 
+  <div class="form-group mb-0" >
+    <input type="text" class="form-control"
+    [(ngModel)]="filterFolderName"
+    [ngModelOptions]="{standalone: true}"
+    (ngModelChange)="filterFolders()"
+    placeholder="Search Workspace"
+    >
+  </div>
   <!-- Folders -->
-  <div id="user-folders" class="cbff-container bd-grid mt-4">
-  
-  </div>  
+  <div id="user-folders" class="cbff-container bd-grid mt-0">
+  </div>
+
+
 
   <!-- Modal -->
 <div class="modal fade" id="newCard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -71,6 +79,14 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- Quote -->
+<footer class="quote mt-1 pb-0">
+  <span class="quoteText"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/quote-left.png"/>{{quote?.text}}</span>
+  <span class="quoteAuthor">- {{quote?.author === "" ? 'Anonymous' : quote?.author}}</span>
+</footer>
+
 
 
 

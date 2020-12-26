@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -26,14 +26,12 @@ export class AuthService {
       .post(environment.apiHost + '/api/v1/login', this.loginReqObj)
       .subscribe(
         (res) => {
-          console.log(res);
           this.loginResObj = res;
           localStorage.setItem('token', this.loginResObj.token);
           this.router.navigate(['/dashboard']);
           this.loginLoad = false;
         },
         (err) => {
-          console.log(err);
           this.loginErrorAlert(err);
           this.loginLoad = false;
         }
@@ -46,14 +44,12 @@ export class AuthService {
       .post(environment.apiHost + '/api/v1/register', this.signUpReqObj)
       .subscribe(
         (res) => {
-          console.log(res);
           this.signUpResObj = res;
-          Swal.fire({ icon: 'success', text: this.signUpResObj.message });
+          Swal.fire({ icon: 'success', text: `${this.signUpResObj.message} Please verify your email address!` });
           this.router.navigate(['/login']);
           this.signUpLoad = false;
         },
         (err) => {
-          console.log(err);
           Swal.fire({ icon: 'error', text: err.error.message });
           this.signUpLoad = false;
         }

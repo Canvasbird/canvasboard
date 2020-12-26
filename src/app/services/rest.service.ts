@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { DailyQuote } from 'src/interfaces/daily-quote';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,9 @@ export class RestService {
   renameFolderResponse = null;
 
   getFilesDetails = null;
+  dummyQuote: DailyQuote[] = [];
 
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(private http: HttpClient, public router: Router) { }
 
   saveBoardData(boardTitle, boardData) {
     this.xAuthToken = localStorage.getItem('token');
@@ -30,26 +32,18 @@ export class RestService {
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).subscribe( res => {
-      console.log(res);
       this.boardId = JSON.parse(JSON.stringify(res)).board_id;
-
-      // this.getBoardData(this.boardId)
     });
-
-    console.log(this.boardId, 'THIS ');
-
   }
 
   getBoardData(boardId) {
-    console.log('Inside get', this.boardId);
-
     this.xAuthToken = localStorage.getItem('token');
     this.http.get(environment.apiHost + `/api/v1/user/get/board?board_id=${boardId}`, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
-    }).subscribe( res => {
-        console.log(res);
+    }).subscribe(res => {
+      console.log(res);
     });
   }
 
@@ -63,9 +57,9 @@ export class RestService {
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).toPromise()
-    .then((response) => {
-      this.gerBoardDetails = response;
-    });
+      .then((response) => {
+        this.gerBoardDetails = response;
+      });
     return this.gerBoardDetails;
   }
   // ........................... CREATE FOLDER ........................................
@@ -76,9 +70,9 @@ export class RestService {
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).toPromise()
-    .then((response) => {
-      this.createFolderResponse = response;
-    });
+      .then((response) => {
+        this.createFolderResponse = response;
+      });
     return this.createFolderResponse;
   }
   // ........................... DELETE FOLDER ........................................
@@ -89,9 +83,9 @@ export class RestService {
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).toPromise()
-    .then((response) => {
-      this.deleteFolderResponse = response;
-    });
+      .then((response) => {
+        this.deleteFolderResponse = response;
+      });
     return this.deleteFolderResponse;
   }
   // ........................... UPDATE FOLDER ........................................
@@ -103,7 +97,6 @@ export class RestService {
       })
     }).toPromise()
     .then((response) => {
-      console.log(body);
       this.renameFolderResponse = response;
     });
     return this.renameFolderResponse;
@@ -118,9 +111,53 @@ export class RestService {
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).toPromise()
-    .then((response) => {
-      this.getFilesDetails = response;
-    });
+      .then((response) => {
+        this.getFilesDetails = response;
+      });
     return this.getFilesDetails;
+  }
+  // .........................DAILY QUOTES API...................................
+  getDailyQuote() {
+    return this.http.get('https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote', {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+        'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Access-Control-Allow-Origin',
+        'Access-Control-Allow-Credentials': 'true',
+        'x-rapidapi-key': '318ed0c148msh279b4a7589d2c18p1db725jsnaa114ac4aa88',
+        'x-rapidapi-host': 'quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com',
+        useQueryString: 'true'
+      })
+    }).toPromise();
+  }
+  getDummyQuote() {
+    // We need this Dummy Quotes when the API would not get a response
+    this.dummyQuote = [{
+      author: 'Nelson Mandela',
+      text: 'It always seems impossible until its done.'
+    },
+    {
+      author: 'Dalai Lama',
+      text: 'Be kind whenever possible.It is always possible.'
+    },
+    {
+      author: 'Walt Disney',
+      text: 'If you can dream it, you can do it.'
+    },
+    {
+      author: 'Elon Musk',
+      text: 'When something is important enough, you do it even if the odds are not in you favour.'
+    },
+    {
+      author: 'Walt Disney',
+      text: 'If you can dream it, you can do it.'
+    }];
+
+    // This function get a random number within the range of the length of the dailyQuote array.
+    function randomQuote(min: number, max: number) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
+    // This returns one key-value pair from the array of objects
+    return this.dummyQuote[randomQuote(0, 5)];
   }
 }

@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { Data } from 'src/interfaces/dashboard';
 import { RestService } from 'src/app/services/rest.service';
+import { DailyQuote } from 'src/interfaces/daily-quote';
+import { FilterFolderPipe } from 'src/app/shared/filter-folder.pipe';
 declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [FilterFolderPipe]
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private route: Router, private apiService: RestService) { }
+  public quote: DailyQuote;
+  constructor(private route: Router, private apiService: RestService, private filterFolder: FilterFolderPipe) {}
+
   data: any;
   Username: string = null;
+  filterFolderName = '';
 
   ngOnInit() {
     this.gettingData();
+    this.getQuote();
   }
   // GETTING USER DATA
   async gettingData() {
@@ -24,13 +30,28 @@ export class DashboardComponent implements OnInit {
     const data = await response.content;
     this.data = data.folders;
     this.Username = data.user_name;
+
     this.addFolders(data);
   }
 
+  filterFolders() {
+    $('#user-folders').html('');
+
+    let folderNames: any[] = [];
+    folderNames = this.filterFolder.transform(this.data, this.filterFolderName);
+    const newData = {
+      user_name: this.Username,
+      folders: folderNames
+    };
+    this.addFolders(newData);
+  }
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
-    data.folders.forEach((obj) => {
-      console.log(obj);
+    if (Object.keys(data.folders).length === 0) {
+      const notFound = 'No Workspace Found!';
+      $('#user-folders').append(`<h5 id='not-found'>${notFound}</h5>`);
+    } else {
+      data.folders.forEach((obj) => {
       // Add Folders
       $('#user-folders').append(`
       <div class="folder-box shadow" id=${obj._id}>
@@ -104,12 +125,12 @@ export class DashboardComponent implements OnInit {
     </div>
       `);
 
-    // Click action to enter files folder
-      $(`#button-${obj._id}`).click( () => {
+      // Click action to enter files folder
+      $(`#button-${obj._id}`).click(() => {
         this.route.navigate([`/folder/${obj._id}`]);
       });
-    // Click action to edit the folder_name
-      $(`#button-edit-name-${obj._id}`).click( () => {
+      // Click action to edit the folder_name
+      $(`#button-edit-name-${obj._id}`).click(() => {
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
         if (editText.style.display === 'block') {
@@ -121,8 +142,8 @@ export class DashboardComponent implements OnInit {
           folderName.style.display = 'none';
         }
       });
-    // Click action to close the edit input
-      $(`#button-edit-name-no-${obj._id}`).click( () => {
+      // Click action to close the edit input
+      $(`#button-edit-name-no-${obj._id}`).click(() => {
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
         if (editText.style.display === 'block') {
@@ -133,8 +154,8 @@ export class DashboardComponent implements OnInit {
           document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
         }
       });
-    // Click action to save the new edited name
-      $(`#button-edit-name-ok-${obj._id}`).click( () => {
+      // Click action to save the new edited name
+      $(`#button-edit-name-ok-${obj._id}`).click(() => {
         const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
         const folderName = document.getElementById(`folder-name-${obj._id}`);
         const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -149,27 +170,27 @@ export class DashboardComponent implements OnInit {
           }
         }
       });
-    // Open delete popup
-      $(`#delete-${obj._id}`).click( () => {
-      const popup = document.getElementById(`delete-sure-${obj._id}`);
-      if (popup.style.display === 'block') {
-        popup.style.display = 'none';
-      } else {
-        popup.style.display = 'block';
-      }
-    });
+      // Open delete popup
+      $(`#delete-${obj._id}`).click(() => {
+        const popup = document.getElementById(`delete-sure-${obj._id}`);
+        if (popup.style.display === 'block') {
+          popup.style.display = 'none';
+        } else {
+          popup.style.display = 'block';
+        }
+      });
 
-    // Delete sure popup
+      // Delete sure popup
       $(`#delete-sure-${obj._id}`).click(() => {
-      this.deleteCard(obj._id);
-    });
+        this.deleteCard(obj._id);
+      });
 
     });
+  }
 
   }
 
   navigateToFiles(e, item) {
-    console.log('Working', item);
     this.route.navigate(['/files']);
   }
 
@@ -178,17 +199,17 @@ export class DashboardComponent implements OnInit {
   }
 
   async deleteCard(id) {
-    console.log(id);
     const response = await this.apiService.deleteFolder(id);
-    console.log(response);
     if (response.success) {
       // removing from array
       const index = this.data.findIndex((o) => {
-        return o.id === 'myid';
+        return o._id === id;
       });
+      console.log(index);
       if (index !== -1) {
         this.data.splice(index, 1);
       }
+      console.log(this.data);
 
       // Removing from HTML
       document.getElementById(`${id}`).remove();
@@ -269,11 +290,11 @@ export class DashboardComponent implements OnInit {
     `);
 
     // Click action to enter files folder
-    $(`#button-${obj._id}`).click( () => {
-        this.route.navigate([`/folder/${obj._id}`]);
+    $(`#button-${obj._id}`).click(() => {
+      this.route.navigate([`/folder/${obj._id}`]);
     });
     // Click action to edit the folder name.
-    $(`#button-edit-name-${obj._id}`).click( () => {
+    $(`#button-edit-name-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       if (editText.style.display === 'block') {
@@ -287,7 +308,7 @@ export class DashboardComponent implements OnInit {
     });
 
     // Click action to close the edit input
-    $(`#button-edit-name-no-${obj._id}`).click( () => {
+    $(`#button-edit-name-no-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       if (editText.style.display === 'block') {
@@ -299,7 +320,7 @@ export class DashboardComponent implements OnInit {
       }
     });
     // Click action to save the new edited name
-    $(`#button-edit-name-ok-${obj._id}`).click( () => {
+    $(`#button-edit-name-ok-${obj._id}`).click(() => {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
@@ -316,7 +337,7 @@ export class DashboardComponent implements OnInit {
     });
 
     // Open delete popup
-    $(`#delete-${obj._id}`).click( () => {
+    $(`#delete-${obj._id}`).click(() => {
       const popup = document.getElementById(`delete-sure-${obj._id}`);
       if (popup.style.display === 'block') {
         popup.style.display = 'none';
@@ -329,10 +350,8 @@ export class DashboardComponent implements OnInit {
     $(`#delete-sure-${obj._id}`).click(() => {
       this.deleteCard(obj._id);
     });
-
     // Push it to data array
     this.data.push(obj);
-    console.log(this.data);
   }
 
   async createFolder() {
@@ -361,6 +380,17 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  getQuote() {
+    this.apiService.getDailyQuote()
+      .then((quote: DailyQuote) => {
+        this.quote = quote;
+      })
+      .catch((err) => {
+        // Here we store a random dummyQuote to the quote property.
+        this.quote = this.apiService.getDummyQuote();
+      });
+  }
+
   async renameFolder(obj, newName) {
     const body = {
       folder_name: newName,
@@ -379,5 +409,6 @@ export class DashboardComponent implements OnInit {
     } else {
       document.getElementById('error-label').style.display = 'block';
     }
+
   }
 }

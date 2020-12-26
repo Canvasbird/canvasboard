@@ -3,9 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import { RestService } from '../../services/rest.service';
-import { Chart } from 'chart.js';
-import Swal from 'sweetalert2';
-import { BrowserStack } from 'protractor/built/driverProviders';
 import { NewBoardCard } from './new-board-card';
 
 // Importing Plugins
@@ -34,7 +31,6 @@ import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
-import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 
 declare var $: any;
 
@@ -413,7 +409,6 @@ export class NewBoardComponent implements OnInit {
         // Adding Canvas board
         $(`#add-canvas-cb-${uid}`).click(() => {
           const parentWidth = $(`#original-${uid}`).width();
-          console.log('Working canvas board');
           $(`#original-${uid}`).append(`
           <div id="canvas-menu-box" class="canvas-menu-box">
              <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
