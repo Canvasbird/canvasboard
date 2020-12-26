@@ -35,7 +35,9 @@ export class DashboardComponent implements OnInit {
     this.Username = data.user_name;
     if (Object.keys(this.data).length === 0) {
       $('#user-folders').html('');
-    } else this.addFolders(data);
+    } else {
+      this.addFolders(data);
+    }
   }
 
   filterFolders() {
@@ -242,7 +244,9 @@ export class DashboardComponent implements OnInit {
   }
 
   addNewFolder(obj) {
-    if (Object.keys(obj.folders).length === 0) $('#not-found').html('');
+    if (Object.keys(obj.folders).length === 0) {
+      $('#not-found').html('');
+    }
     $('#user-folders').append(`
     <div class='folder-box shadow' id=${obj._id}>
     <div class='icons-box'>
@@ -389,7 +393,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async createFolder() {
-    if(this.filterFolderName != ''){
+    if (this.filterFolderName !== '') {
       this.filterFolderName = '';
       this.filterFolders();
     }
