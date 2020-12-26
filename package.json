@@ -14,11 +14,14 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-extensions/password-strength": "^4.1.2",
     "@angular/animations": "~8.2.14",
+    "@angular/cdk": "~8.2.3",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
     "@angular/forms": "~8.2.14",
+    "@angular/material": "~8.2.3",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
@@ -60,9 +63,9 @@
     "typescript": "~3.5.3"
   },
   "husky": {
-  "hooks": {
-    "pre-commit": "ng lint",
-    "pre-push":"ng test --no-watch"
+    "hooks": {
+      "pre-commit": "ng lint",
+      "pre-push": "ng test --no-watch"
+    }
   }
-}
 }
