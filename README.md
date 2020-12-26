@@ -38,10 +38,6 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
 Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks.
 
-## Want to create your own plugin or need help?
-
-Feel free to message us on our [IRC Channel](https://gitter.im/canvasbird/canvasboard-frontend)
-
 ## Screenshots [![Website Badge](https://img.shields.io/badge/Visit-Now-green?style=for-the-badge&logo=vercel)](https://canvasboard.live/)
 
 | ![cb_1][01] | ![cb_2][02] | ![cb3_3][03] |
