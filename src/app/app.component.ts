@@ -9,5 +9,7 @@ export class AppComponent {
   title = 'canvasboard';
 
   constructor() {
+
   }
+
 }
