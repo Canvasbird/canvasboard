@@ -12,14 +12,14 @@ export class SignUpComponent implements OnInit {
   email = '';
   password = '';
   hide = true;
-  passStrength = false;
+  checksPassed = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
   signUp(): any {
-    if (this.passStrength === true) {
+    if (this.checksPassed === true) {
       this.authService.signUpReqObj = {};
       this.authService.signUpReqObj.email_id = this.email;
       this.authService.signUpReqObj.password = this.password;
@@ -30,18 +30,15 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  onStrengthChanged(event) {
-    console.log(event);
-    if (event === 100) {
-      this.passStrength = true;
-      console.log(this.passStrength);
-    }
-    else {
-      this.passStrength = false;
+  onStrengthChanged(passStrength: number): void {
+    if (passStrength === 100) {
+      this.checksPassed = true;
+    } else {
+      this.checksPassed = false;
     }
   }
 
-  ontoggle() {
+  ontoggle(): void {
     this.hide = !this.hide;
   }
 }

@@ -17,7 +17,14 @@ describe('SignUpComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SignUpComponent ],
-      imports: [ RouterTestingModule, FormsModule, HttpClientTestingModule, BrowserAnimationsModule, MatPasswordStrengthModule, MatTooltipModule ]
+      imports: [
+        RouterTestingModule,
+        FormsModule,
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        MatPasswordStrengthModule,
+        MatTooltipModule
+      ]
     })
     .compileComponents();
   }));

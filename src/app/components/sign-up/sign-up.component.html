@@ -34,7 +34,6 @@
             #pass ='ngModel'
             [(ngModel)]="password"
             [ngModelOptions]="{standalone: true}"
-            passwordValidator
             matTooltip=" Must contain atleast one lower case character&#13;Must contain atleast one upper case character
             Must contain atleast one digit character&#13;Must contain atleast one special character&#13;Must contain atleast 6 characters"
             matTooltipPosition="right">
@@ -54,11 +53,6 @@
           (onStrengthChanged)= "onStrengthChanged($event)"
           [password]= "password">
         </mat-password-strength>
-
-        <!-- <mat-password-strength-info
-          minCharsCriteriaMsg="contains atleast 6 characters"
-          [passwordComponent]="passwordComponent">
-        </mat-password-strength-info> -->
         </div>
 
         <div class="form-group">
