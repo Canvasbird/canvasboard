@@ -1,3 +1,4 @@
+<script src="https://kit.fontawesome.com/061912f229.js" crossorigin="anonymous"></script>
 <div class="container-fluid height">
   <div class="row h-100">
     <div class="col-md-3 col-sm-10 main-scr">
@@ -9,6 +10,7 @@
         <div class="welcome">
           <p>Welcome!!👋</p>
         </div>
+
         <div class="form-group">
           <label for="inputUsername"><strong>Username</strong></label>
           <input type="text" class="form-control" id="inputUsername" placeholder="Enter Username" [(ngModel)]="userName" [ngModelOptions]="{standalone: true}">
@@ -20,9 +22,45 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1"><strong>Password</strong></label>
-          <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" >
+          <input
+            id="password-field"
+            type="password"
+            [type]="hide ? 'password' : 'text'"
+            class="form-control"
+            id="exampleInputPassword1"
+            aria-describedby="passwordHelp"
+            placeholder="Password"
+            ngModel
+            #pass ='ngModel'
+            [(ngModel)]="password"
+            [ngModelOptions]="{standalone: true}"
+            passwordValidator
+            matTooltip=" Must contain atleast one lower case character&#13;Must contain atleast one upper case character
+            Must contain atleast one digit character&#13;Must contain atleast one special character&#13;Must contain atleast 6 characters"
+            matTooltipPosition="right">
+          <span toggle="#password-field" class="toggle-password" (click)="ontoggle()">
+            <i *ngIf="hide" class="fa fa-eye-slash field-icon" aria-hidden="true"></i>
+            <i *ngIf="!hide" class="fa fa-eye field-icon" aria-hidden="true"></i>
+          </span>
           <small id="passwordHelp" class="form-text text-muted">Min 6 characters</small>
+
+        <mat-password-strength
+          #passwordComponent
+          [enableLowerCaseLetterRule] = true
+          [enableUpperCaseLetterRule] = "true"
+          [enableDigitRule] = "true"
+          [enableSpecialCharRule] = "true"
+          min = 6
+          (onStrengthChanged)= "onStrengthChanged($event)"
+          [password]= "password">
+        </mat-password-strength>
+
+        <!-- <mat-password-strength-info
+          minCharsCriteriaMsg="contains atleast 6 characters"
+          [passwordComponent]="passwordComponent">
+        </mat-password-strength-info> -->
         </div>
+
         <div class="form-group">
           <button type="button" class="btn-grad btn-outline-dark" (click)="signUp()"><strong style="padding:10px">Sign Up</strong></button>
           <p style="font-size: 15px;">Already have an account?</p>
