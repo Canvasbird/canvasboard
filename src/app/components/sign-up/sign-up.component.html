@@ -38,7 +38,7 @@
             matTooltip=" Must contain atleast one lower case character&#13;Must contain atleast one upper case character
             Must contain atleast one digit character&#13;Must contain atleast one special character&#13;Must contain atleast 6 characters"
             matTooltipPosition="right">
-          <span toggle="#password-field" class="toggle-password" (click)="ontoggle()">
+          <span toggle="#password-field" (click)="ontoggle()">
             <i *ngIf="hide" class="fa fa-eye-slash field-icon" aria-hidden="true"></i>
             <i *ngIf="!hide" class="fa fa-eye field-icon" aria-hidden="true"></i>
           </span>
