@@ -1,43 +1,23 @@
 @media only screen and (max-width: 340px) {
-    .logo-text {
-        display: none;
-    }
+  .logo-text {
+      display: none;
   }
-
-  @media only screen and (max-width: 900px) {
-    .navbar-nav{
-      float: right;
-      margin-left: 0;
-   }
-  }
-
- .navbar-nav{
-    margin: auto;
-    float: right;
-    margin-right: 0%;
-
- }
-
- .btn:hover{
-   color: white !important;
- }
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 230px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+@media only screen and (max-width: 900px) {
+  .navbar-nav{
+    margin-left: 0;
+ }
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.navbarItems a {
+  padding: 10px 40px;
+  font-size: 18px;
+  margin: 5px;
+  transition: transform .2s;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.navbarItems a:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
