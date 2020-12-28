@@ -30,20 +30,29 @@ export class DashboardComponent implements OnInit {
     const data = await response.content;
     this.data = data.folders;
     this.Username = data.user_name;
-
-    this.addFolders(data);
+    if (Object.keys(this.data).length === 0) {
+      $('#user-folders').html('');
+    } else {
+      this.addFolders(data);
+    }
   }
 
   filterFolders() {
-    $('#user-folders').html('');
-
-    let folderNames: any[] = [];
-    folderNames = this.filterFolder.transform(this.data, this.filterFolderName);
-    const newData = {
-      user_name: this.Username,
-      folders: folderNames
-    };
-    this.addFolders(newData);
+    if (this.filterFolderName === '' && Object.keys(this.data).length === 0) {
+      $('#user-folders').html('');
+    } else {
+      $('#user-folders').html('');
+      let folderNames: Array<string> = [];
+      folderNames = this.filterFolder.transform(
+        this.data,
+        this.filterFolderName
+      );
+      const newData = {
+        user_name: this.Username,
+        folders: folderNames,
+      };
+      this.addFolders(newData);
+    }
   }
   // ...............BLOCK BUILDING FUNCTION ......................
   addFolders(data) {
@@ -62,7 +71,6 @@ export class DashboardComponent implements OnInit {
            1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5
            0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
         </svg>
-
         <svg id=delete-${obj._id} width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
          xmlns="http://www.w3.org/2000/svg" style="float: right;">
           <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1
@@ -112,7 +120,8 @@ export class DashboardComponent implements OnInit {
       <h5 class="folder-title" id=folder-name-${obj._id}>
         <strong id=name-display-${obj._id}>${obj.folder_name}</strong>
       </h5>
-      <button style="border-style:none; color:rgb(99, 64, 88); outline: none; margin-left:1rem;margin-top:2.5rem;background-color:transparent"
+      <button style="border-style:none; color:rgb(99, 64, 88); outline: none;
+        margin-left:1rem;margin-top:2.5rem;background-color:transparent"
         id=button-edit-name-${obj._id}>
         <svg  width="0.8em" height="0.8em" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 388.947 388.947">
@@ -139,12 +148,12 @@ export class DashboardComponent implements OnInit {
         if (editText.style.display === 'block') {
           editText.style.display = 'none';
           folderName.style.display = 'block';
-          editButton.style.display= 'block';
+          editButton.style.display = 'block';
 
         } else {
           editText.style.display = 'block';
           folderName.style.display = 'none';
-          editButton.style.display= 'none';
+          editButton.style.display = 'none';
         }
       });
       // Click action to close the edit input
@@ -155,7 +164,7 @@ export class DashboardComponent implements OnInit {
         if (editText.style.display === 'block') {
           editText.style.display = 'none';
           folderName.style.display = 'block';
-          editButton.style.display= 'block';
+          editButton.style.display = 'block';
         }
         if (document.getElementById(`new-name-text-${obj._id}`).style.borderColor === 'red') {
           document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
@@ -175,7 +184,7 @@ export class DashboardComponent implements OnInit {
           if (editText.style.display === 'block') {
             editText.style.display = 'none';
             folderName.style.display = 'block';
-            editButton.style.display= 'block';
+            editButton.style.display = 'block';
           }
         }
       });
@@ -226,6 +235,14 @@ export class DashboardComponent implements OnInit {
   }
 
   addNewFolder(obj) {
+
+    if (this.filterFolderName !== '') {
+      this.filterFolderName = '';
+      this.filterFolders();
+    }
+    if (Object.keys(obj.folders).length === 0) {
+      $('#not-found').html('');
+    }
     $('#user-folders').append(`
     <div class="folder-box shadow" id=${obj._id}>
     <div class="icons-box">
@@ -235,7 +252,6 @@ export class DashboardComponent implements OnInit {
          1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5
          0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
       </svg>
-
       <svg id=delete-${obj._id} width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
        xmlns="http://www.w3.org/2000/svg" style="float: right;">
         <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1
@@ -285,7 +301,8 @@ export class DashboardComponent implements OnInit {
       <h5 class="folder-title" id=folder-name-${obj._id}>
         <strong id=name-display-${obj._id}>${obj.folder_name}</strong>
       </h5>
-        <button style="border-style:none; color:rgb(99, 64, 88); outline: none; margin-left:1rem;margin-top:2.5rem;background-color:transparent"
+        <button style="border-style:none; color:rgb(99, 64, 88); outline: none;
+        margin-left:1rem;margin-top:2.5rem;background-color:transparent"
         id=button-edit-name-${obj._id}>
         <svg  width="0.8em" height="0.8em" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 388.947 388.947">
