@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,10 +14,24 @@ export class SignUpComponent implements OnInit {
   password = '';
   hide = true;
   checksPassed = false;
+  screenWidth = 0;
+  position = '';
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getScreenSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?): void {
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth > 600) {
+      this.position = 'right';
+    } else {
+      this.position = 'below';
+    }
+    }
 
   signUp(): any {
     if (this.checksPassed === true) {

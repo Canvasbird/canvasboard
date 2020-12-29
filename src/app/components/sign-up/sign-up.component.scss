@@ -145,9 +145,17 @@
 }
 }
 
+@media (max-width: 600px) {
+  ::ng-deep .mat-tooltip {
+    display: block;
+    
+  }
+}
 
-.field-icon {
-  // margin-left: 13rem;
+
+
+
+.eye-icon {
   margin-top: -25px;
   float: right;
   position: relative;
