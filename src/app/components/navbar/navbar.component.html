@@ -1,56 +1,22 @@
-    <!-- navbar -->
-  <nav class="navbar d-flex justify-content-between navbar-expand-lg navbar-light bg-light sticky-top">
-    <!-- navbar header -->
-    <a class="logo navbar-brand d-flex align-items-center" href="#" title="Canvasboard">
-      <img src="../../../assets/home/logo_bw.png" width="38" height="38" class="d-inline-block align-top mr-1" alt="CB"
-        loading="lazy">
+<!-- Navbar -->
+<nav class="navbar d-flex justify-content-between navbar-expand-lg navbar-light bg-light sticky-top">
+  <!-- Logo   -->
+  <a class="logo navbar-brand d-flex align-items-center" href="#" title="Canvasboard">
+      <img src="../../../assets/home/logo_bw.png" width="38" height="40" class="d-inline-block align-top mr-1" alt="CB" loading="lazy">
       <span class="logo-text">
         Canvasboard Beta
       </span>
-
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- <div class="collapse navbar-collapse d-flex align-center" id="navbarSupportedContent" title="Logout"> -->
-      <div class="collapse navbar-collapse " id="navbarSupportedContent" title="Logout">
-      <ul class="navbar-nav ">
-        <li class="nav-item">
-          <button id="logout-button" class="btn btn-outline-dark nav-link" (click)="logoutButtonClick()">
-            Logout
-          </button>
-        </li>
-      </ul>
-
+  </a>
+  <!-- Collapse button -->
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- Dropdown items -->
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav ml-auto navbarItems">
+      <a class="nav-item nav-link" (click)="logoutButtonClick()">
+        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+      </a>
     </div>
-
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-
-
-    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div> -->
-  </nav>
+  </div>
+</nav>
