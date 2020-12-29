@@ -2,13 +2,20 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule,
+        MatPasswordStrengthModule,
+        MatTooltipModule
       ],
       declarations: [
         AppComponent
