@@ -24,7 +24,7 @@ export class SignUpComponent implements OnInit {
   }
 
   @HostListener('window:resize')
-  getScreenSize(): any {
+  getScreenSize(): void {
     this.screenWidth = window.innerWidth;
     if (this.screenWidth > 600) {
       this.position = 'right';
