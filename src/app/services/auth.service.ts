@@ -11,7 +11,7 @@ export class AuthService {
   signUpLoad = false;
   signUpReqObj;
   signUpResObj;
-
+  
   loginLoad = false;
   loginReqObj;
   loginResObj;
@@ -45,12 +45,19 @@ export class AuthService {
       .subscribe(
         (res) => {
           this.signUpResObj = res;
-          Swal.fire({ icon: 'success', text: `${this.signUpResObj.message} Please verify your email address!` });
+          Swal.fire({ icon: 'success', text: `${this.signUpResObj.message} Please verify your email address.
+           An email has been sent to your given email id!` });
           this.router.navigate(['/login']);
           this.signUpLoad = false;
         },
         (err) => {
-          Swal.fire({ icon: 'error', text: err.error.message });
+          let errMsg;
+          if (err.error.message.indexOf('dup key: { user_name:') !== -1) {
+            errMsg = 'Username already taken!';
+          } else {
+            errMsg = err.error.message;
+          }
+          Swal.fire({ icon: 'error', text: errMsg });
           this.signUpLoad = false;
         }
       );
@@ -74,7 +81,8 @@ export class AuthService {
 
   loginErrorAlert({ error }: ErrorEvent) {
     if (error.message === 'Please verify your email-id') {
-      Swal.fire({ icon: 'warning', text: 'Please verify your email account for sign in' });
+      Swal.fire({ icon: 'warning', text: `Please verify your email address.
+       An email has been sent to your registered email id!` });
     } else if (error.message === 'Incorrect password') {
       Swal.fire({ icon: 'error', text: 'Incorrect username or password.'});
     } else if (error.message === 'User not found.') {
