@@ -188,3 +188,19 @@
     color: #9513E4;
   }
 }
+
+.item {
+  display: none;
+  position: relative;
+  transition: .1s ease-in-out left;
+ 
+}
+
+.img-fluid,.img-responsive{
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon{
+  background-color: #000;
+}
