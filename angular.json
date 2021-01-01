@@ -135,8 +135,5 @@
       }
     }
   },
-  "defaultProject": "canvasboard",
-  "cli": {
-    "analytics": "f07f4b3b-52e3-4a35-8e03-3c8547e12d26"
-  }
+  "defaultProject": "canvasboard"
 }
