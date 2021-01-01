@@ -49,3 +49,6 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Configuration file
+angular.json
