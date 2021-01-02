@@ -127,6 +127,11 @@
     }
 }
 
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -139,21 +144,23 @@
 	}
 }
 
-@media (max-width: 999px) {
-.mob-hidden{
- display:none;
-}
-}
-
-@media (max-width: 600px) {
-  ::ng-deep .mat-tooltip {
+@media (min-width: 768px) and (max-width: 1146px){
+   .mob-hidden{
     display: block;
-    
+    margin-top: 100px;
+    position: relative;
+    z-index: -1;
   }
 }
 
-
-
+@media (max-width: 768px) {
+.header{
+  justify-content: center;
+}
+.mob-hidden{
+  display: none;
+}
+}
 
 .eye-icon {
   margin-top: -25px;
