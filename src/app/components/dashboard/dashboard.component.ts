@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 import {Router} from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
