@@ -34,6 +34,7 @@ import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
+import { ActivatedRoute, Data } from '@angular/router';
 
 declare var $: any;
 
@@ -43,6 +44,8 @@ declare var $: any;
   styleUrls: ['./new-board.component.scss'],
 })
 export class NewBoardComponent implements OnInit {
+
+  folderID: Data;
   fileToUpload: File = null;
 
   reader: FileReader;
@@ -81,7 +84,9 @@ export class NewBoardComponent implements OnInit {
     };
   })();
 
-  constructor(private apiService: RestService) {
+  constructor(private activatedRoute: ActivatedRoute, private apiService: RestService) {
+    this.activatedRoute.params.subscribe(params => this.folderID = params);
+
     this.AddH1Component = new AddH1Component();
     this.AddH2Component = new AddH2Component();
     this.AddH3Component = new AddH3Component();
@@ -499,10 +504,15 @@ export class NewBoardComponent implements OnInit {
 
   // Save board data
   saveData() {
-    // const boardTitle = document.getElementById('cb-title').innerHTML.trim();
+    const boardTitle = document.getElementById('title').innerText.trim();
     // const boardlData = document.getElementById('main-box').innerHTML.trim();
     // this.apiService.saveBoardData(boardTitle, boardlData);
-    const saveDataJson = {};
+    const saveDataJson = {
+      file_name: boardTitle,
+      folder_id: this.folderID ,
+      file_tag:  'testing' ,
+      data: {}
+    };
     this.userBlocks.forEach((value, key) => {
         console.log('saving card: id ', key);
         value.setData($(`#cb-box-2-${key}`).html());

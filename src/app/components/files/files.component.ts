@@ -21,9 +21,11 @@ export class FilesComponent implements OnInit {
 
   ngOnInit() {
     this.gettingData(this.activateID.id);
+    $(`#launchBoard`).click(() => {
+      this.route.navigate([`${this.activateID.id}/creative-board`]);
+    });
   }
-
-  // GETTING USER FILES
+ // GETING USER FILES
   async gettingData(id) {
     const response = await this.apiService.getFilesData(id);
     const data = await response.content;
