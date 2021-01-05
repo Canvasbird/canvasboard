@@ -29,7 +29,7 @@ Yayy!🌼 Your application is served locally in localhost:4200🚀
 
 ### Work on an issue 👨‍💻👩‍💻
 
-After you set up the Canvaboard set up on your local, you can choose any of the issues from 
+After you set up the Canvasboard set up on your local, you can choose any of the issues from
 [Issue tracker](https://github.com/Canvasbird/canvasboard/issues) of the repo to work on.
 
 For working on an issue:
@@ -43,7 +43,7 @@ For working on an issue:
 Try to give a meaningful branch name. For example if you are working on fixing the graph plugin,
 use "fix_graph_plugin" as the branch name
 
-2. After creating the branch, make the changes required to fix the issue you took and test it on 
+2. After creating the branch, make the changes required to fix the issue you took and test it on
   your local by running the server.
 
 
@@ -51,13 +51,13 @@ use "fix_graph_plugin" as the branch name
 
 After you are done with all the changes and have tested it, follow these steps for creating a PR:
 
-1. Add the changes to the staging using 
+1. Add the changes to the staging using
   `git add .`
 
 2. Commit the changes using:
   `git commit -a -m "<your_commit_msg>"`
 
-  Please make sure to give a meaningful commit message. For example if you fixed the graph plug, 
+  Please make sure to give a meaningful commit message. For example if you fixed the graph plug,
   use "fixed_graph_plugin" as the commit message.
 
 3. Pull the changes from the upstream using
