@@ -4,7 +4,7 @@ export interface NewBoardCardInterface {
     oldPosition: any;
     newPosition: any;
     pluginType: PluginType;
-    saveData: any;
+    content: any;
 }
 
 export class NewBoardCard implements NewBoardCardInterface {
@@ -12,7 +12,16 @@ export class NewBoardCard implements NewBoardCardInterface {
     oldPosition: any;
     newPosition: any;
     pluginType: PluginType;
-    saveData: any;
+    content: any;
+    classList: any;
+    createdOn: Date;
+
+    public getClassList(): any {
+        return this.classList;
+    }
+    public setClassList(value: any) {
+        this.classList = value;
+    }
 
     public getpluginType(): any {
         return this.pluginType;
@@ -20,16 +29,17 @@ export class NewBoardCard implements NewBoardCardInterface {
     public setpluginType(value: PluginType) {
         this.pluginType = value;
     }
-    public setData(value: any) {
-        this.saveData = value;
+    public setContent(value: any) {
+        this.content = value;
     }
-    public getData(): any {
-        return this.saveData;
+    public getContent(): any {
+        return this.content;
     }
     constructor(cardID: number, oldPosition: any, newPosition: any) {
         this.cardID = cardID;
         this.oldPosition = oldPosition;
         this.newPosition = newPosition;
+        this.createdOn = new Date();
     }
     updatePosition(oldPosition: any, newPosition: any) {
         this.oldPosition = oldPosition;

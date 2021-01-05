@@ -506,20 +506,25 @@ export class NewBoardComponent implements OnInit {
   saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
     // const boardlData = document.getElementById('main-box').innerHTML.trim();
-    // this.apiService.saveBoardData(boardTitle, boardlData);
     const saveDataJson = {
-      file_name: boardTitle,
-      folder_id: this.folderID ,
+      file_name: boardTitle === '' ? 'Title' : boardTitle,
+      folder_id: this.folderID.folderId,
       file_tag:  'testing' ,
-      data: {}
+      data: []
     };
     this.userBlocks.forEach((value, key) => {
-        console.log('saving card: id ', key);
-        value.setData($(`#cb-box-2-${key}`).html());
-        saveDataJson[key] = JSON.stringify(value);
+      console.log('saving card: id ', key);
+      value.setContent($(`#original-${key}`).text());
+      value.setClassList($(`#cb-box-2-${key}`).attr('class'));
+      saveDataJson.data.push(value);
     });
     console.log(JSON.stringify(saveDataJson));
+    this.apiService.saveBoardData(saveDataJson);
     // this.apiService.getBoardData();
+  }
+
+  retrieveData() {
+
   }
 
   // H1 Tag

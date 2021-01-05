@@ -13,7 +13,7 @@ export class FilesComponent implements OnInit {
   activateID: Data;
   data: any;
   FolderName: string = null;
-  FolderDiscription: string = null;
+  FolderDescription: string = null;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private apiService: RestService) {
     this.activatedRoute.params.subscribe( params => this.activateID = params );
@@ -29,8 +29,9 @@ export class FilesComponent implements OnInit {
   async gettingData(id) {
     const response = await this.apiService.getFilesData(id);
     const data = await response.content;
+    // console.log(response);
     this.data = data;
     this.FolderName = this.data.folder_name;
-    this.FolderDiscription = this.data.folder_title;
+    this.FolderDescription = this.data.folder_title;
   }
 }
