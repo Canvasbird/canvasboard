@@ -62,6 +62,7 @@
 
   .header{
     font-family: 'Poppins', sans-serif;
+    margin-top: 50px;
     font-weight: bold;
     font-size: 40px;
 
@@ -187,4 +188,27 @@
   .color3 {
     color: #9513E4;
   }
+
+  .item {
+    display: none;
+    position: relative;
+    transition: .1s ease-in-out left;
+  
+  }
+  
+  .img-fluid,.img-responsive{
+    max-width: 100%;
+    height: auto;
+  }
+
+  .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 100%;
+}
+
+.carousel-indicators {
+    bottom: -50px;
+}
 }
