@@ -21,24 +21,21 @@ export class RestService {
 
   constructor(private http: HttpClient, public router: Router) { }
 
-  saveBoardData(boardTitle, boardData) {
+  saveBoardData(boardData) {
     this.xAuthToken = localStorage.getItem('token');
-    const body = {
-      board_name: boardTitle,
-      board_data: boardData
-    };
-    this.http.post(environment.apiHost + '/api/v1/user/save/board', body, {
+    const body = boardData;
+    this.http.post(environment.apiHost + '/api/v1/user/folder/create-file', body, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).subscribe( res => {
-      this.boardId = JSON.parse(JSON.stringify(res)).board_id;
+      // this.boardId = JSON.parse(JSON.stringify(res)).board_id;
     });
   }
 
   getBoardData(boardId) {
     this.xAuthToken = localStorage.getItem('token');
-    this.http.get(environment.apiHost + `/api/v1/user/get/board?board_id=${boardId}`, {
+    this.http.get(environment.apiHost + `/api/v1/user/files/${boardId}`, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
