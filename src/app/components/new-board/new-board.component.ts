@@ -322,7 +322,7 @@ export class NewBoardComponent implements OnInit {
           pluginType = 'editor';
           break;
         }
-        case 17: {
+        case 19: {
           // PDF Render
           $('#pdfFile').change((event) => {
             $(`#${id}`).append(this.blockFunction(uid));
@@ -505,7 +505,6 @@ export class NewBoardComponent implements OnInit {
   // Save board data
   saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
-    // const boardlData = document.getElementById('main-box').innerHTML.trim();
     const saveDataJson = {
       file_name: boardTitle === '' ? 'Title' : boardTitle,
       folder_id: this.folderID.folderId,
@@ -520,7 +519,6 @@ export class NewBoardComponent implements OnInit {
     });
     console.log(JSON.stringify(saveDataJson));
     this.apiService.saveBoardData(saveDataJson);
-    // this.apiService.getBoardData();
   }
 
   retrieveData() {
@@ -662,6 +660,6 @@ export class NewBoardComponent implements OnInit {
   // Adding PdfRender
   cbToolboxPdfRender = () => {
     $('#pdfFile').click();
-    this.addBlockEditor('main-box', 17);
+    this.addBlockEditor('main-box', 19);
   }
 }
