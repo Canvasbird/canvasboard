@@ -24,6 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
+import * as bootstrap from 'bootstrap';
+import * as $ from 'jquery';
+
 @NgModule({
   declarations: [
     AppComponent,

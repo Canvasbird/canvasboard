@@ -1,4 +1,4 @@
-declare var $: any;
+// import $ from 'jquery';';';
 import { fabric } from 'fabric';
 
 class StateManager {
@@ -61,13 +61,13 @@ class StateManager {
     this.currentState = newState;
 
     // Lock the stacks for the incoming change
-    const thisStateManager = this;
+    const stateManager = this;
     this.locked = true;
 
     // Update canvas with the new current state
     this.canvas.loadFromJSON(this.currentState, () => {
       // Unlock the stacks
-      thisStateManager.locked = false;
+      stateManager.locked = false;
     });
     this.toggleUndoRedoButton(this.canvasId);
   }
@@ -125,7 +125,7 @@ export class AddCanvasBoard {
 
   addCanvasBoardToolbox = (uid) => {
     const parentWidth = $(`#original-${uid}`).width();
-    $(`#original-${uid}`).attr('contenteditable', false);
+    $(`#original-${uid}`).attr('contenteditable', 'false');
     $(`#original-${uid}`).append(`
       <div id="canvas-menu-box" class="canvas-menu-box">
           <input id="canvas-menu-box-color-${uid}" type="color" style="margin-left: 10%; margin-bottom: 5px;">
@@ -239,7 +239,7 @@ export class AddCanvasBoard {
       const shape = this.canvas.getActiveObject();
 
       // treating all shape objects individually
-      if (shape.hasOwnProperty('_objects')) {
+      if (Object.prototype.hasOwnProperty.call(shape, '_objects')) {
         (shape._objects).forEach(element => {
           this.canvas.remove(element);
         });
@@ -256,7 +256,7 @@ export class AddCanvasBoard {
     });
 
     $(`#canvas-menu-box-size-${uid}`).on('change', () => {
-      const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
+      const width = $(`#canvas-menu-box-size-${uid} option:selected`).val().toString();
       this.canvas.freeDrawingBrush.width = parseInt(width, 10);
     });
 
@@ -275,7 +275,7 @@ export class AddCanvasBoard {
         const shape = this.canvas.getActiveObject();
         if (shape != null) {
           // treating all shape objects individually
-          if (shape.hasOwnProperty('_objects')) {
+          if (Object.prototype.hasOwnProperty.call(shape, '_objects')) {
             (shape._objects).forEach(element => {
               this.canvas.remove(element);
             });

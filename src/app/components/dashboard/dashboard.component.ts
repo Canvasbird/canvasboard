@@ -3,8 +3,7 @@ import {Router} from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
 import { FilterFolderPipe } from 'src/app/shared/filter-folder.pipe';
-declare var $: any;
-
+// import $ from 'jquery';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,7 +15,7 @@ export class DashboardComponent implements OnInit {
   public quote: DailyQuote;
   constructor(private route: Router, private apiService: RestService, private filterFolder: FilterFolderPipe) {}
 
-  data: any;
+  data: Array<any>;
   Username: string = null;
   filterFolderName = '';
 
@@ -395,11 +394,11 @@ export class DashboardComponent implements OnInit {
   }
 
   async createFolder() {
-    const folderName: any = document.getElementById('folder-name-input');
-    const folderDiscription: any = document.getElementById('folder-discription-input');
+    const folderName =  document.getElementById('folder-name-input') as HTMLInputElement;
+    const folderDescription = document.getElementById('folder-discription-input') as HTMLInputElement;
     const body = {
       folder_name: folderName.value,
-      folder_title: folderDiscription.value,
+      folder_title: folderDescription.value,
       folder_tag: 'folder_tag',
       is_nested_folder: false
     };
@@ -411,9 +410,9 @@ export class DashboardComponent implements OnInit {
       this.addNewFolder(response.content);
       // Empty the strings
       folderName.value = '';
-      folderDiscription.value = '';
+      folderDescription.value = '';
       // Closing popup
-      $('#newCard').modal('hide');
+      ( $('#newCard') as any).modal('hide');
     } else {
       // Error Label in popup
       document.getElementById('error-label').style.display = 'block';

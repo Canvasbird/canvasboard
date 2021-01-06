@@ -10,9 +10,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es2015",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
     ],
     "lib": [
       "es2018",

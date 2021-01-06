@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Data, Router, ActivatedRoute} from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 
-declare var $: any;
+// import $ from 'jquery';
 @Component({
   selector: 'app-files',
   templateUrl: './files.component.html',
@@ -13,7 +13,7 @@ export class FilesComponent implements OnInit {
   activateID: Data;
   data: any;
   FolderName: string = null;
-  FolderDiscription: string = null;
+  FolderDescription: string = null;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private apiService: RestService) {
     this.activatedRoute.params.subscribe( params => this.activateID = params );
@@ -29,6 +29,6 @@ export class FilesComponent implements OnInit {
     const data = await response.content;
     this.data = data;
     this.FolderName = this.data.folder_name;
-    this.FolderDiscription = this.data.folder_title;
+    this.FolderDescription = this.data.folder_title;
   }
 }

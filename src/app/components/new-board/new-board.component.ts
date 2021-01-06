@@ -32,7 +32,7 @@ import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 
-declare var $: any;
+// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-new-board',
@@ -135,7 +135,7 @@ export class NewBoardComponent implements OnInit {
 
     // Enabling ToolTips for everything
     $(document).ready(() => {
-      $('[data-toggle="tooltip"]').tooltip();
+      ( $('[data-toggle="tooltip"]') as any).tooltip();
     });
 
     // ......................... DISABLING ENTER KEYWORD .........................
@@ -435,7 +435,7 @@ export class NewBoardComponent implements OnInit {
       // PDF Render
       $('#pdfFile').change((event) => {
         $(`#${id}`).append(this.blockFunction(uid));
-        this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
+        this.AddPdfRenderComponent.addPdfRenderToolBox(uid, ( event.target as HTMLInputElement).files[0], this.reader);
       });
 
     } catch (err) {

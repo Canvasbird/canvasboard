@@ -11,7 +11,7 @@ export class AuthService {
   signUpLoad = false;
   signUpReqObj;
   signUpResObj;
-  
+
   loginLoad = false;
   loginReqObj;
   loginResObj;
@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, public router: Router) {}
 
-  login(): any {
+  login(): void {
     this.loginLoad = true;
     this.http
       .post(environment.apiHost + '/api/v1/login', this.loginReqObj)
@@ -38,7 +38,7 @@ export class AuthService {
       );
   }
 
-  signUp(): any {
+  signUp(): void {
     this.signUpLoad = true;
     this.http
       .post(environment.apiHost + '/api/v1/register', this.signUpReqObj)
@@ -63,7 +63,7 @@ export class AuthService {
       );
   }
 
-  logout(): any {
+  logout(): void {
     this.token = null;
     // Removing Token Value
     localStorage.removeItem('token');

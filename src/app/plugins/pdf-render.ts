@@ -1,4 +1,4 @@
-declare var $: any;
+// // import $ from 'jquery';
 
 export class AddPdfRenderComponent {
 
@@ -40,7 +40,7 @@ export class AddPdfRenderComponent {
   // Adding PdfRender
   addPdfRenderToolBox = (uid, file: File, reader: FileReader) => {
 
-    let result: any;
+    let result: string | ArrayBuffer;
     console.log(file);
     $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
     reader.onloadend = () => {

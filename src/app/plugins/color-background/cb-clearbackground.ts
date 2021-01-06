@@ -1,4 +1,4 @@
-declare var $: any;
+// import $ from 'jquery';
 
 export class AddClearBackgroundComponent {
   constructor() {}
