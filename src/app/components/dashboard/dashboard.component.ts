@@ -189,6 +189,7 @@ export class DashboardComponent implements OnInit {
             folderName.style.display = 'block';
             editButton.style.display = 'block';
           }
+          this.data.find(x => x._id === obj._id).folder_name = newName;   // Changing the folder name in data variable that we used.
         }
       });
       // Open delete popup
@@ -330,7 +331,7 @@ export class DashboardComponent implements OnInit {
     $(`#button-edit-name-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
-      const editButton = document.getElementById(`#button-edit-name-${obj._id}`);
+      const editButton = document.getElementById(`button-edit-name-${obj._id}`);
       if (editText.style.display === 'block') {
         editText.style.display = 'none';
         folderName.style.display = 'block';
@@ -347,7 +348,7 @@ export class DashboardComponent implements OnInit {
     $(`#button-edit-name-no-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
-      const editButton = document.getElementById(`#button-edit-name-${obj._id}`);
+      const editButton = document.getElementById(`button-edit-name-${obj._id}`);
       if (editText.style.display === 'block') {
         editText.style.display = 'none';
         folderName.style.display = 'block';
@@ -362,7 +363,7 @@ export class DashboardComponent implements OnInit {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
-      const editButton = document.getElementById(`#button-edit-name-${obj._id}`);
+      const editButton = document.getElementById(`button-edit-name-${obj._id}`);
       if (newName === '') {      // If the new name is null then do not change the name.
         document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
       } else {
@@ -373,6 +374,7 @@ export class DashboardComponent implements OnInit {
           folderName.style.display = 'block';
           editButton.style.display = 'block';
         }
+        this.data.find(x => x._id === obj._id).folder_name = newName;     // Changing the folder name in data variable that we used.
       }
     });
 

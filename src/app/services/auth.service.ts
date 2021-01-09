@@ -11,7 +11,7 @@ export class AuthService {
   signUpLoad = false;
   signUpReqObj;
   signUpResObj;
-  
+
   loginLoad = false;
   loginReqObj;
   loginResObj;
