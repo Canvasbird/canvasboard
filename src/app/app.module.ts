@@ -23,6 +23,7 @@ import { ClockComponent } from './plugins/clock/clock.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { DemoComponent } from './components/demo/demo.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     FilesComponent,
     FilterFolderPipe,
     ClockComponent,
+    DemoComponent,
 
   ],
   imports: [
