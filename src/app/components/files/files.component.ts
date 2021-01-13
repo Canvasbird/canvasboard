@@ -53,9 +53,9 @@ export class FilesComponent implements OnInit {
     }
   }
   addFiles(data) {
-    // Add Folders
+    // Add files
     $('#user-files').append(`
-      <div class="folder-box shadow" id=${data._id}>
+      <div class="file-box shadow" id=${data._id}>
       <div class="icons-box">
         <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-folder2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958
@@ -76,7 +76,7 @@ export class FilesComponent implements OnInit {
       </div>
       <div id=edit-name-input-${data._id} style="display:none">
       <input
-      class="folder-title" style= "margin-top:2.7em; margin-bottom:0.6em; border-color:transparent;
+      class="file-title" style= "margin-top:2.7em; margin-bottom:0.6em; border-color:transparent;
       width:55%; outline:none; border-radius:10em"
       id = new-name-text-${data._id} value = "${data.file_name}" type="text"
       >
@@ -109,7 +109,7 @@ export class FilesComponent implements OnInit {
         </div>
         </div>
       <div style="display:flex">
-      <h5 class="folder-title" id=folder-name-${data._id}>
+      <h5 class="file-title" id=file-name-${data._id}>
         <strong id=name-display-${data._id}>${data.file_name}</strong>
       </h5>
       <button style="border-style:none; color:rgb(99, 64, 88); outline: none;
@@ -123,7 +123,7 @@ export class FilesComponent implements OnInit {
         </svg>
         </button>
       </div>
-      <!-- <p class="folder-description">Lorem ipsum dolor sit amet.</p> -->
+      <!-- <p class="file-description">Lorem ipsum dolor sit amet.</p> -->
       <button class="btn btn-dark" id=button-${data._id} title ="${data.file_name}">Enter</button>
     </div>
       `);
@@ -151,6 +151,57 @@ export class FilesComponent implements OnInit {
     $(`#delete-sure-${data._id}`).click(() => {
       this.deleteCard(data._id);
     });
+
+    // Click action to edit the file name.
+    $(`#button-edit-name-${data._id}`).click(() => {
+      const fileName = document.getElementById(`file-name-${data._id}`);
+      const editText = document.getElementById(`edit-name-input-${data._id}`);
+      const editButton = document.getElementById(`button-edit-name-${data._id}`);
+      if (editText.style.display === 'block') {
+        editText.style.display = 'none';
+        fileName.style.display = 'block';
+        editButton.style.display = 'block';
+
+      } else {
+        editText.style.display = 'block';
+        fileName.style.display = 'none';
+        editButton.style.display = 'none';
+      }
+    });
+
+    // Click action to close the edit input
+    $(`#button-edit-name-no-${data._id}`).click(() => {
+      const fileName = document.getElementById(`file-name-${data._id}`);
+      const editText = document.getElementById(`edit-name-input-${data._id}`);
+      const editButton = document.getElementById(`button-edit-name-${data._id}`);
+      if (editText.style.display === 'block') {
+        editText.style.display = 'none';
+        fileName.style.display = 'block';
+        editButton.style.display = 'block';
+      }
+      if (document.getElementById(`new-name-text-${data._id}`).style.borderColor === 'red') {
+        document.getElementById(`new-name-text-${data._id}`).style.borderColor = 'transparent';
+      }
+    });
+    // Click action to save the new edited name
+    $(`#button-edit-name-ok-${data._id}`).click(() => {
+      const newName = (document.getElementById(`new-name-text-${data._id}`) as HTMLInputElement).value;
+      const fileName = document.getElementById(`file-name-${data._id}`);
+      const editText = document.getElementById(`edit-name-input-${data._id}`);
+      const editButton = document.getElementById(`button-edit-name-${data._id}`);
+      if (newName === '') {      // If the new name is null then do not change the name.
+        document.getElementById(`new-name-text-${data._id}`).style.borderColor = 'red';
+      } else {
+        document.getElementById(`new-name-text-${data._id}`).style.borderColor = 'transparent';
+        this.renamefile(data, newName);
+        if (editText.style.display === 'block') {
+          editText.style.display = 'none';
+          fileName.style.display = 'block';
+          editButton.style.display = 'block';
+        }
+        this.data.find(x => x._id === data._id).file_name = newName;     // Changing the file name in data variable that we used.
+      }
+    });
   }
   async deleteCard(id) {
     const response = await this.apiService.deleteFile(this.activateID.id, id);
@@ -170,5 +221,21 @@ export class FilesComponent implements OnInit {
       // Removing from HTML
       document.getElementById(`${id}`).remove();
     }
+  }
+  async renamefile(obj, newName) {
+    const body = {
+      file_id: obj._id,
+      file_name: newName,
+      is_modified: true
+    };
+    const response = await this.apiService.renameFile(body);
+    if (response.success) {
+      // Change the previous name of the file in the display.
+      const fileNameHeading = document.getElementById(`name-display-${obj._id}`);
+      fileNameHeading.innerText = newName;
+    } else {
+      document.getElementById('error-label').style.display = 'block';
+    }
+
   }
 }

@@ -17,6 +17,7 @@ export class RestService {
   renameFolderResponse = null;
   viewFileResponse = null;
   deleteFileResponse = null;
+  renameFileResponse = null;
   getFilesDetails = null;
   dummyQuote: DailyQuote[] = [];
 
@@ -38,7 +39,7 @@ export class RestService {
       // this.boardId = JSON.parse(JSON.stringify(res)).board_id;
     });
   }
-  // ........................... UPDATE FOLDER ........................................
+  // ........................... UPDATE FILE ........................................
 
   async saveBoardData(boardData) {
     this.xAuthToken = localStorage.getItem('token');
@@ -81,6 +82,19 @@ export class RestService {
         this.deleteFileResponse = response;
       });
     return this.deleteFileResponse;
+  }
+  // ........................... RENAME FILE ........................................
+  async renameFile(body) {
+    this.xAuthToken = localStorage.getItem('token');
+    await this.http.post(`https://api.canvasboard.live/api/v1/user/folder/rename-file`, body, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+      .then((response) => {
+        this.renameFileResponse = response;
+      });
+    return this.renameFileResponse;
   }
 
   // ........................... DASHBOARD APIS........................................

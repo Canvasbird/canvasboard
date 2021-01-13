@@ -126,7 +126,8 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
 }
 
 // ........................DASHBOARD...........................
-.folder-box {
+.folder-box,
+.file-box {
   padding: 1rem 1rem;
   background: #53A453;
   background: #ee9ca7;  /* fallback for old browsers */
@@ -137,7 +138,8 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
   margin:10px;
   margin-left: 0px;
 
-  .folder-title {
+  .folder-title,
+  .file-title {
     font-family: Questrial,sans-serif;
     margin-top: 3rem;
     overflow: hidden;
@@ -146,12 +148,14 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
     max-width: 15rem;
   }
 
-  .folder-description {
+  .folder-description,
+  .file-description {
     font-family: Questrial,sans-serif;
   }
 }
 
-.new-folder {
+.new-folder,
+.new-file {
   text-align: center;
   background: rgb(241, 241, 241);
   padding: 1rem 1rem;
@@ -161,7 +165,8 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
   margin-left: 0px;
 }
 
-.folder-box:hover {
+.folder-box:hover,
+.file-box:hover {
   transform:translateY(-.2rem);
 }
 
