@@ -146,7 +146,7 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
     max-width: 15rem;
   }
 
-  .folder-discription {
+  .folder-description {
     font-family: Questrial,sans-serif;
   }
 }
@@ -172,6 +172,9 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
   grid-template-columns: repeat(3,1fr);
 }
 #user-folders{
+  position: relative;
+}
+#user-files {
   position: relative;
 }
 #not-found{

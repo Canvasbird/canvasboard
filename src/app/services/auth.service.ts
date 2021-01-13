@@ -18,7 +18,7 @@ export class AuthService {
 
   token = null;
 
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(private http: HttpClient, public router: Router) { }
 
   login(): any {
     this.loginLoad = true;
@@ -45,7 +45,8 @@ export class AuthService {
       .subscribe(
         (res) => {
           this.signUpResObj = res;
-          Swal.fire({ icon: 'success', text: `${this.signUpResObj.message} Please verify your email address.
+          Swal.fire({
+            icon: 'success', text: `${this.signUpResObj.message} Please verify your email address.
            An email has been sent to your given email id!` });
           this.router.navigate(['/login']);
           this.signUpLoad = false;
@@ -81,10 +82,11 @@ export class AuthService {
 
   loginErrorAlert({ error }: ErrorEvent) {
     if (error.message === 'Please verify your email-id') {
-      Swal.fire({ icon: 'warning', text: `Please verify your email address.
+      Swal.fire({
+        icon: 'warning', text: `Please verify your email address.
        An email has been sent to your registered email id!` });
     } else if (error.message === 'Incorrect password') {
-      Swal.fire({ icon: 'error', text: 'Incorrect username or password.'});
+      Swal.fire({ icon: 'error', text: 'Incorrect username or password.' });
     } else if (error.message === 'User not found.') {
       Swal.fire({
         icon: 'warning',
