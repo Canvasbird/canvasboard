@@ -43,9 +43,14 @@ export class FilesComponent implements OnInit {
     this.FolderName = this.data.folder_name;
     this.FolderDescription = this.data.folder_title;
     this.files = this.data.files;
-    this.files.forEach(element => {
-      this.addFiles(element);
-    });
+    if (Object.keys(this.files).length === 0) {
+      const noFile = 'Please add a File!';
+      $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
+    } else {
+      this.files.forEach(element => {
+        this.addFiles(element);
+      });
+    }
   }
   addFiles(data) {
     // Add Folders
@@ -132,5 +137,38 @@ export class FilesComponent implements OnInit {
       this.router.navigate([`creative-board/${data._id}`], {state: {fileData: dataToSend}});
     });
 
+    // Open delete popup
+    $(`#delete-${data._id}`).click(() => {
+      const popup = document.getElementById(`delete-sure-${data._id}`);
+      if (popup.style.display === 'block') {
+        popup.style.display = 'none';
+      } else {
+        popup.style.display = 'block';
+      }
+    });
+
+    // Delete sure popup
+    $(`#delete-sure-${data._id}`).click(() => {
+      this.deleteCard(data._id);
+    });
+  }
+  async deleteCard(id) {
+    const response = await this.apiService.deleteFile(this.activateID.id, id);
+    if (response.success) {
+      // removing from array
+      const index = this.files.findIndex((o) => {
+        return o._id === id;
+      });
+      if (index !== -1) {
+        this.files.splice(index, 1);
+      }
+      if (Object.keys(this.files).length === 0) {
+        const noFile = 'Please add a File!';
+        $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
+      }
+
+      // Removing from HTML
+      document.getElementById(`${id}`).remove();
+    }
   }
 }

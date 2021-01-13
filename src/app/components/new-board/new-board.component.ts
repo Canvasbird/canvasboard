@@ -179,7 +179,7 @@ export class NewBoardComponent implements OnInit {
       }
     });
     // console.log(this.fileID);
-    if (this.fileData !== null || this.fileData !== undefined ) {
+    if (this.fileData !== null && this.fileData !== undefined ) {
       this.populateData(this.fileData.queryParams);
 
     } else if (this.fileID !== undefined) {

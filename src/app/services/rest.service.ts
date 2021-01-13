@@ -16,10 +16,14 @@ export class RestService {
   deleteFolderResponse = null;
   renameFolderResponse = null;
   viewFileResponse = null;
+  deleteFileResponse = null;
   getFilesDetails = null;
   dummyQuote: DailyQuote[] = [];
 
   constructor(private http: HttpClient, public router: Router) { }
+
+
+  // ........................... FILE APIS........................................
 
   saveBoardData(boardData) {
     this.xAuthToken = localStorage.getItem('token');
@@ -45,6 +49,20 @@ export class RestService {
     });
     return this.viewFileResponse;
 
+  }
+
+  // ........................... DELETE File ........................................
+  async deleteFile(folderId, fileId) {
+    this.xAuthToken = localStorage.getItem('token');
+    await this.http.delete(`https://api.canvasboard.live/api/v1/user/folder/remove-file?folder_id=${folderId}&file_id=${fileId}`, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+      .then((response) => {
+        this.deleteFileResponse = response;
+      });
+    return this.deleteFileResponse;
   }
 
   // ........................... DASHBOARD APIS........................................
