@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit {
         </svg>
         </button>
       </div>
-      <!-- <p class="folder-discription">Lorem ipsum dolor sit amet.</p> -->
+      <!-- <p class="folder-description">Lorem ipsum dolor sit amet.</p> -->
       <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
     </div>
       `);
@@ -319,7 +319,7 @@ export class DashboardComponent implements OnInit {
         </svg>
         </button>
       </div>
-  <!-- <p class="folder-discription">Lorem ipsum dolor sit amet.</p> -->
+  <!-- <p class="folder-description">Lorem ipsum dolor sit amet.</p> -->
   <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
   </div>
     `);
@@ -399,10 +399,10 @@ export class DashboardComponent implements OnInit {
 
   async createFolder() {
     const folderName: any = document.getElementById('folder-name-input');
-    const folderDiscription: any = document.getElementById('folder-discription-input');
+    const folderdescription: any = document.getElementById('folder-description-input');
     const body = {
       folder_name: folderName.value,
-      folder_title: folderDiscription.value,
+      folder_title: folderdescription.value,
       folder_tag: 'folder_tag',
       is_nested_folder: false
     };
@@ -414,7 +414,7 @@ export class DashboardComponent implements OnInit {
       this.addNewFolder(response.content);
       // Empty the strings
       folderName.value = '';
-      folderDiscription.value = '';
+      folderdescription.value = '';
       // Closing popup
       $('#newCard').modal('hide');
     } else {

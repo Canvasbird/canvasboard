@@ -1,10 +1,12 @@
 export type PluginType = 'editor' | 'board' | 'youtube' | 'fileUpload';
 export interface NewBoardCardInterface {
-    cardID: number;
+    readonly cardID: number;
     oldPosition: any;
     newPosition: any;
     pluginType: PluginType;
     content: any;
+    classList: any;
+    createdOn: Date;
 }
 
 export class NewBoardCard implements NewBoardCardInterface {
@@ -15,6 +17,33 @@ export class NewBoardCard implements NewBoardCardInterface {
     content: any;
     classList: any;
     createdOn: Date;
+    constructor(cardID: number, oldPosition: any, newPosition: any) {
+        this.cardID = cardID;
+        this.oldPosition = oldPosition;
+        this.newPosition = newPosition;
+        this.createdOn = new Date();
+    }
+
+    static fromData(obj: NewBoardCardInterface): NewBoardCard {
+        const result = new NewBoardCard(obj.cardID, obj.oldPosition, obj.newPosition);
+        result.setpluginType(obj.pluginType);
+        result.setContent(obj.content);
+        result.setClassList(obj.classList);
+        result.setCreatedOn(obj.createdOn);
+        return result;
+    }
+    public getCreatedOn(): Date {
+        return this.createdOn;
+    }
+    public setCreatedOn(value: Date) {
+        this.createdOn = value;
+    }
+
+
+    updatePosition(oldPosition: any, newPosition: any) {
+        this.oldPosition = oldPosition;
+        this.newPosition = newPosition;
+    }
 
     public getClassList(): any {
         return this.classList;
@@ -34,16 +63,6 @@ export class NewBoardCard implements NewBoardCardInterface {
     }
     public getContent(): any {
         return this.content;
-    }
-    constructor(cardID: number, oldPosition: any, newPosition: any) {
-        this.cardID = cardID;
-        this.oldPosition = oldPosition;
-        this.newPosition = newPosition;
-        this.createdOn = new Date();
-    }
-    updatePosition(oldPosition: any, newPosition: any) {
-        this.oldPosition = oldPosition;
-        this.newPosition = newPosition;
     }
     getPosition(): [any, any] {
         return [this.oldPosition, this.newPosition];

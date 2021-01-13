@@ -11,11 +11,11 @@ export class RestService {
 
   xAuthToken = null;
   boardId = null;
-  gerBoardDetails = null;
+  viewFolderResponse = null;
   createFolderResponse = null;
   deleteFolderResponse = null;
   renameFolderResponse = null;
-
+  viewFileResponse = null;
   getFilesDetails = null;
   dummyQuote: DailyQuote[] = [];
 
@@ -33,15 +33,18 @@ export class RestService {
     });
   }
 
-  getBoardData(boardId) {
+  async getBoardData(boardId) {
     this.xAuthToken = localStorage.getItem('token');
-    this.http.get(environment.apiHost + `/api/v1/user/files/${boardId}`, {
+    await this.http.get(`https://api.canvasboard.live/api/v1/user/files/${boardId}`, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
-    }).subscribe(res => {
-      console.log(res);
+    }).toPromise()
+      .then((response) => {
+      this.viewFileResponse = response;
     });
+    return this.viewFileResponse;
+
   }
 
   // ........................... DASHBOARD APIS........................................
@@ -55,9 +58,9 @@ export class RestService {
       })
     }).toPromise()
       .then((response) => {
-        this.gerBoardDetails = response;
+        this.viewFolderResponse = response;
       });
-    return this.gerBoardDetails;
+    return this.viewFolderResponse;
   }
   // ........................... CREATE FOLDER ........................................
   async createFolder(body) {

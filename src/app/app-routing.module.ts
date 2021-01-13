@@ -75,7 +75,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'creative-board/:id',
+    path: 'creative-board/:fileId',
     component: NewBoardComponent,
     canActivate: [AuthGuard]
   },

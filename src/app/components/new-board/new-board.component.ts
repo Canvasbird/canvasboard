@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Data, Router, NavigationExtras, Params } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { fabric } from 'fabric';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
@@ -34,8 +35,8 @@ import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
-import { ActivatedRoute, Data } from '@angular/router';
-
+import { NewBoard } from 'src/interfaces/new-board';
+import { param } from 'jquery';
 declare var $: any;
 
 @Component({
@@ -45,12 +46,16 @@ declare var $: any;
 })
 export class NewBoardComponent implements OnInit {
 
+  fileName: string;
+  fileID: Data;
   folderID: Data;
+  fileData: NavigationExtras = null;
+  fileTag: Array<string>;
   fileToUpload: File = null;
 
   reader: FileReader;
-  currentChartID: number;
-  userBlocks: Map<number, NewBoardCard>;
+  currentChartID: string;
+  userBlocks: Array<NewBoardCard>;
   // Initializing plugins
   AddH1Component: any;
   AddH2Component: any;
@@ -84,8 +89,13 @@ export class NewBoardComponent implements OnInit {
     };
   })();
 
-  constructor(private activatedRoute: ActivatedRoute, private apiService: RestService) {
-    this.activatedRoute.params.subscribe(params => this.folderID = params);
+  constructor(private activatedRoute: ActivatedRoute, private apiService: RestService, private router: Router) {
+    this.activatedRoute.params.subscribe(params => { this.folderID = params.folderId; this.fileID = params.fileId; });
+    if (this.router.getCurrentNavigation().extras.state !== undefined) {
+      this.fileData = this.router.getCurrentNavigation().extras.state.fileData;
+    }
+    // Initialize the Map
+    this.userBlocks = new Array();
 
     this.AddH1Component = new AddH1Component();
     this.AddH2Component = new AddH2Component();
@@ -112,30 +122,43 @@ export class NewBoardComponent implements OnInit {
     this.AddEmbedComponent = new AddEmbedComponent();
     this.AddPdfRenderComponent = new AddPdfRenderComponent();
     this.reader = new FileReader();
+
+
   }
+
+
 
   ngOnInit() {
 
-    // Initialize the Map
-    this.userBlocks = new Map();
-
     // sortable-js
     const mainEl = document.getElementById('main-box');
-
+    let oldIdx: number;
+    let newIdx: number;
     const sortable = new Sortable(mainEl, {
       handle: '.dragHandle',
       animation: 150,
       easing: 'cubic-bezier(1, 0, 0, 1)',
-      onChange: (evt) => {
-        if (this.userBlocks.has(evt.clone.id)) {
-          const card: NewBoardCard = this.userBlocks.get(evt.clone.id);
-          card.updatePosition(evt.oldIndex, evt.newIndex);
-        } else {
-          const card: NewBoardCard = new NewBoardCard(evt.clone.id, evt.oldIndex, evt.newIndex);
-          this.userBlocks.set(evt.id, card);
+      onStart(evt) {
+        oldIdx = evt.oldIndex;  // element index within parent
+      },
+      onEnd: (evt) => {
+        newIdx = evt.newIndex - 2;
 
+        if (oldIdx === 1) {
+          if (this.userBlocks[oldIdx - 1].cardID === evt.clone.id.substring(9)) {
+            this.arrayMoveMutate(this.userBlocks, 0, newIdx);
+            this.userBlocks[0].updatePosition(0, newIdx);
+          }
+
+        } else {
+          if (this.userBlocks[oldIdx - 2].cardID === evt.clone.id.substring(9)) {
+            this.arrayMoveMutate(this.userBlocks, oldIdx - 2, newIdx);
+            this.userBlocks[oldIdx - 2].updatePosition(oldIdx - 2, newIdx);
+
+          }
         }
       }
+
     });
 
     // disable enter on title
@@ -154,7 +177,15 @@ export class NewBoardComponent implements OnInit {
         return false;
       }
     });
-    this.addBlockEditor('sub-title', 0);
+    console.log(this.fileID);
+    if (this.fileData !== null) {
+      this.populateData(this.fileData.queryParams);
+
+    } else if (this.fileID !== undefined) {
+      this.retrieveData(this.fileID);
+    } else {
+      this.addBlockEditor('sub-title', 0);
+    }
   }
 
   // ......................... BLOCK BUILDING FUNCITON............................
@@ -213,7 +244,7 @@ export class NewBoardComponent implements OnInit {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
 
-      const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.size);
+      const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.length);
       let pluginType: PluginType;
 
       switch (checker) {
@@ -229,7 +260,7 @@ export class NewBoardComponent implements OnInit {
         case 2: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddH1Component.addH1TagToolBox(uid);
-          pluginType  = 'editor';
+          pluginType = 'editor';
           break;
         }
         case 3: {
@@ -339,102 +370,25 @@ export class NewBoardComponent implements OnInit {
         }
         default:
           break;
-        }
+      }
 
-        // Adding listener to current card
+      // Adding listener to current card
       $(`#original-${uid}`).click(() => { this.currentChartID = uid; });
 
-        // Changing focus to Current Card
+      // Changing focus to Current Card
       $(`#original-${uid}`).focus();
 
-        // Setting current card id
+      // Setting current card id
       this.currentChartID = uid;
 
-        // Setting Plugin Type to card
+      // Setting Plugin Type to card
       newBoardCard.setpluginType(pluginType);
 
-        // Adding to UserBlocks Map
-      this.userBlocks.set(uid, newBoardCard);
+      // Adding to UserBlocks Map
+      // this.userBlocks.set(uid, newBoardCard);
+      this.userBlocks.push(newBoardCard);
 
-        // hiding and showing the TOOLBOX
-      $(`#show-more-toolbox-${uid}`).hover(
-        // display block
-        () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'block');
-        },
-        //  display none
-        () => {
-          $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
-        }
-      );
-
-      // Add Delete HTML and click Function
-      this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
-      this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
-
-      // Adding red background toolbox
-      this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
-      this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
-      // Adding green background toolbox
-      this.AddGreenBackgroundComponent.addGreenBackgroundHTMLCode(uid);
-      this.AddGreenBackgroundComponent.addGreenBackgroundClickFunction(uid);
-
-      // Adding yellow background toolbox
-      this.AddYellowBackgroundComponent.addYellowBackgroundHTMLCode(uid);
-      this.AddYellowBackgroundComponent.addYellowBackgroundClickFunction(uid);
-
-      // Adding blue background toolbox
-      this.AddBlueBackgroundComponent.addBlueBackgroundHTMLCode(uid);
-      this.AddBlueBackgroundComponent.addBlueBackgroundClickFunction(uid);
-
-      // Adding clear background toolbox
-      this.AddClearBackgroundComponent.addClearBackgroundHTMLCode(uid);
-      this.AddClearBackgroundComponent.addClearBackgroundClickFunction(uid);
-
-      // Add OrderedList HTML and click Function
-      this.AddOrderedListComponent.addOrderedListTagHTMLCode(uid);
-      this.AddOrderedListComponent.addOrderedListTagClickFunction(uid);
-
-      // Add UnOrderedList HTML and click Function
-      this.AddUnOrderedListComponent.addUnOrderedListTagHTMLCode(uid);
-      this.AddUnOrderedListComponent.addUnOrderedListTagClickFunction(uid);
-
-      // Add Top HTML and click Function
-      this.AddTopComponent.addTopTagHTMLCode(uid);
-      this.AddTopComponent.addTopTagClickFunction(uid, this.addBlockEditor, checker);
-
-      // Add Bottom HTML and click Function
-      this.AddBottomComponent.addBottomTagHTMLCode(uid);
-      this.AddBottomComponent.addBottomTagClickFunction(uid, this.addBlockEditor);
-
-      // Add H1 HTML and click Function
-      this.AddH1Component.addH1TagHTMLCode(uid);
-      this.AddH1Component.addH1TagClickFunction(uid);
-
-      // Adding H2 HTML and click function
-      this.AddH2Component.addH2TagHTMLCode(uid);
-      this.AddH2Component.addH2TagClickFunction(uid);
-
-      // Adding H3 Tags
-      this.AddH3Component.addH3TagHTMLCode(uid);
-      this.AddH3Component.addH3TagClickFunction(uid);
-
-      // Adding para tags
-      this.AddParaComponent.addParaTagHTMLCode(uid);
-      this.AddParaComponent.addParaTagClickFunction(uid);
-
-
-      // Adding Left Align HTML and click Function
-      this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
-      this.AddLeftAlignComponent.addLeftAlignTagClickFunction(uid);
-
-      // Adding Center Align HTML and click Function
-      this.AddCenterAlignComponent.addCenterAlignTagHTMLCode(uid);
-      this.AddCenterAlignComponent.addCenterAlignTagClickFunction(uid);
-
-      // Adding Right Align HTML and click Function
-      this.AddRightAlignComponent.addRightAlignTagHTMLCode(uid);
-      this.AddRightAlignComponent.addRightAlignTagClickFunction(uid);
+      this.addToolBox(uid, checker);
 
       // // Add Canvasboard Tag
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
@@ -476,6 +430,90 @@ export class NewBoardComponent implements OnInit {
     }
   }
 
+  addToolBox(uid, checker) {
+    // hiding and showing the TOOLBOX
+    $(`#show-more-toolbox-${uid}`).hover(
+      // display block
+      () => {
+        $(`#cb-expand-more-toolbox-${uid}`).css('display', 'block');
+      },
+      //  display none
+      () => {
+        $(`#cb-expand-more-toolbox-${uid}`).css('display', 'none');
+      }
+    );
+
+    // Add Delete HTML and click Function
+    this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
+    this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
+
+    // Adding red background toolbox
+    this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
+    this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
+    // Adding green background toolbox
+    this.AddGreenBackgroundComponent.addGreenBackgroundHTMLCode(uid);
+    this.AddGreenBackgroundComponent.addGreenBackgroundClickFunction(uid);
+
+    // Adding yellow background toolbox
+    this.AddYellowBackgroundComponent.addYellowBackgroundHTMLCode(uid);
+    this.AddYellowBackgroundComponent.addYellowBackgroundClickFunction(uid);
+
+    // Adding blue background toolbox
+    this.AddBlueBackgroundComponent.addBlueBackgroundHTMLCode(uid);
+    this.AddBlueBackgroundComponent.addBlueBackgroundClickFunction(uid);
+
+    // Adding clear background toolbox
+    this.AddClearBackgroundComponent.addClearBackgroundHTMLCode(uid);
+    this.AddClearBackgroundComponent.addClearBackgroundClickFunction(uid);
+
+    // Add OrderedList HTML and click Function
+    this.AddOrderedListComponent.addOrderedListTagHTMLCode(uid);
+    this.AddOrderedListComponent.addOrderedListTagClickFunction(uid);
+
+    // Add UnOrderedList HTML and click Function
+    this.AddUnOrderedListComponent.addUnOrderedListTagHTMLCode(uid);
+    this.AddUnOrderedListComponent.addUnOrderedListTagClickFunction(uid);
+
+    // Add Top HTML and click Function
+    this.AddTopComponent.addTopTagHTMLCode(uid);
+    this.AddTopComponent.addTopTagClickFunction(uid, this.addBlockEditor, checker);
+
+    // Add Bottom HTML and click Function
+    this.AddBottomComponent.addBottomTagHTMLCode(uid);
+    this.AddBottomComponent.addBottomTagClickFunction(uid, this.addBlockEditor);
+
+    // Add H1 HTML and click Function
+    this.AddH1Component.addH1TagHTMLCode(uid);
+    this.AddH1Component.addH1TagClickFunction(uid);
+
+    // Adding H2 HTML and click function
+    this.AddH2Component.addH2TagHTMLCode(uid);
+    this.AddH2Component.addH2TagClickFunction(uid);
+
+    // Adding H3 Tags
+    this.AddH3Component.addH3TagHTMLCode(uid);
+    this.AddH3Component.addH3TagClickFunction(uid);
+
+    // Adding para tags
+    this.AddParaComponent.addParaTagHTMLCode(uid);
+    this.AddParaComponent.addParaTagClickFunction(uid);
+
+
+    // Adding Left Align HTML and click Function
+    this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
+    this.AddLeftAlignComponent.addLeftAlignTagClickFunction(uid);
+
+    // Adding Center Align HTML and click Function
+    this.AddCenterAlignComponent.addCenterAlignTagHTMLCode(uid);
+    this.AddCenterAlignComponent.addCenterAlignTagClickFunction(uid);
+
+    // Adding Right Align HTML and click Function
+    this.AddRightAlignComponent.addRightAlignTagHTMLCode(uid);
+    this.AddRightAlignComponent.addRightAlignTagClickFunction(uid);
+
+  }
+
+
   // ......................... ESSENTIALS.............................
 
   disableTitleEnter() {
@@ -502,29 +540,63 @@ export class NewBoardComponent implements OnInit {
     return !!pattern.test(str);
   }
 
+  arrayMoveMutate = (array, from, to) => {
+    const startIndex = from < 0 ? array.length + from : from;
+
+    if (startIndex >= 0 && startIndex < array.length) {
+      const endIndex = to < 0 ? array.length + to : to;
+
+      const [item] = array.splice(from, 1);
+      array.splice(endIndex, 0, item);
+    }
+  }
   // Save board data
   saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
+    this.fileName = boardTitle;
     const saveDataJson = {
-      file_name: boardTitle === '' ? 'Title' : boardTitle,
-      folder_id: this.folderID.folderId,
-      file_tag:  'testing' ,
+      file_name: boardTitle === '' ? 'untitled' : boardTitle,
+      folder_id: this.folderID,
+      file_tag: 'testing',
       data: []
     };
-    this.userBlocks.forEach((value, key) => {
-      console.log('saving card: id ', key);
-      value.setContent($(`#original-${key}`).text());
-      value.setClassList($(`#cb-box-2-${key}`).attr('class'));
-      saveDataJson.data.push(value);
+    this.userBlocks.forEach((ele) => {
+      console.log('saving card: id ', ele.cardID);
+      ele.setContent($(`#original-${ele.cardID}`).text());
+      ele.setClassList($(`#cb-box-2-${ele.cardID}`).attr('class'));
+      saveDataJson.data.push(ele);
     });
-    console.log(JSON.stringify(saveDataJson));
+    // console.log(JSON.stringify(saveDataJson));
     this.apiService.saveBoardData(saveDataJson);
   }
 
-  retrieveData() {
-
+  // Retrieve board data from Api
+  async retrieveData(fileID) {
+    const response = await this.apiService.getBoardData(fileID);
+    const boardData = await response.content;
+    // console.log(boardData);
+    this.populateData(boardData);
   }
 
+  // Populate data from files component from Navigation Extras
+  populateData(data: NewBoard | Params) {
+    this.fileTag = data.file_tag;
+    this.fileName = data.file_name;
+    document.getElementById('title').innerText = this.fileName;
+    data.data.sort((a, b) => (a.newPosition > b.newPosition) ? 1 : -1);
+    data.data.forEach((element, index) => {
+      this.userBlocks.push(NewBoardCard.fromData(element));
+      if (index === 0) {
+        $(`#sub-title`).after(this.blockFunction(element.cardID));
+        this.addToolBox(element.cardID, 0);
+      } else {
+        $(`#cb-box-1-${this.userBlocks[index - 1].cardID}`).after(this.blockFunction(element.cardID));
+        this.addToolBox(element.cardID, 1);
+      }
+      $(`#original-${element.cardID}`).html(element.content);
+      $(`#cb-box-2-${element.cardID}`).addClass(element.classList);
+    });
+  }
   // H1 Tag
   addH1TagHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
