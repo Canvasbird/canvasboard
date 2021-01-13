@@ -49,7 +49,7 @@ export class NewBoardComponent implements OnInit {
   fileName: string;
   fileID: Data;
   folderID: Data;
-  fileData: NavigationExtras = null;
+  fileData: NavigationExtras;
   fileTag: Array<string>;
   fileToUpload: File = null;
 
@@ -91,9 +91,10 @@ export class NewBoardComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private apiService: RestService, private router: Router) {
     this.activatedRoute.params.subscribe(params => { this.folderID = params.folderId; this.fileID = params.fileId; });
-    if (this.router.getCurrentNavigation().extras.state !== undefined) {
+    if (this.router.getCurrentNavigation() !== null) {
+       if (this.router.getCurrentNavigation().extras.state !== undefined) {
       this.fileData = this.router.getCurrentNavigation().extras.state.fileData;
-    }
+    }}
     // Initialize the Map
     this.userBlocks = new Array();
 
@@ -177,8 +178,8 @@ export class NewBoardComponent implements OnInit {
         return false;
       }
     });
-    console.log(this.fileID);
-    if (this.fileData !== null) {
+    // console.log(this.fileID);
+    if (this.fileData !== null || this.fileData !== undefined ) {
       this.populateData(this.fileData.queryParams);
 
     } else if (this.fileID !== undefined) {
