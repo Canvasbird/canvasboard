@@ -25,17 +25,35 @@ export class RestService {
 
   // ........................... FILE APIS........................................
 
-  saveBoardData(boardData) {
+  // ........................... CREATE FILE ........................................
+  async createBoardData(boardData) {
     this.xAuthToken = localStorage.getItem('token');
     const body = boardData;
-    this.http.post(environment.apiHost + '/api/v1/user/folder/create-file', body, {
+    await this.http.post('https://api.canvasboard.live/api/v1/user/folder/create-file', body, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
-    }).subscribe( res => {
+    }).toPromise()
+      .then((response) => {
       // this.boardId = JSON.parse(JSON.stringify(res)).board_id;
     });
   }
+  // ........................... UPDATE FOLDER ........................................
+
+  async saveBoardData(boardData) {
+    this.xAuthToken = localStorage.getItem('token');
+    const body = boardData;
+    await this.http.post('https://api.canvasboard.live/api/v1/user/folder/edit-file', body, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+      .then((response) => {
+      // this.boardId = JSON.parse(JSON.stringify(res)).board_id;
+    });
+  }
+
+  // ........................... GET FILE...........................................
 
   async getBoardData(boardId) {
     this.xAuthToken = localStorage.getItem('token');

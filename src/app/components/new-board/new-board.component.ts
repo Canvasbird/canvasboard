@@ -36,7 +36,7 @@ import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 import { NewBoard } from 'src/interfaces/new-board';
-import { param } from 'jquery';
+import { each, param } from 'jquery';
 declare var $: any;
 
 @Component({
@@ -45,6 +45,45 @@ declare var $: any;
   styleUrls: ['./new-board.component.scss'],
 })
 export class NewBoardComponent implements OnInit {
+
+  constructor(private activatedRoute: ActivatedRoute, private apiService: RestService, private router: Router) {
+    this.activatedRoute.params.subscribe(params => { this.folderID = params.folderId; this.fileID = params.fileId; });
+    if (this.router.getCurrentNavigation() !== null) {
+      if (this.router.getCurrentNavigation().extras.state !== undefined) {
+        this.fileData = this.router.getCurrentNavigation().extras.state.fileData;
+      }
+    }
+    // Initialize the Map
+    this.userBlocks = new Map();
+
+    this.AddH1Component = new AddH1Component();
+    this.AddH2Component = new AddH2Component();
+    this.AddH3Component = new AddH3Component();
+    this.AddParaComponent = new AddParaComponent();
+    this.AddRedBackgroundComponent = new AddRedBackgroundComponent();
+    this.AddBlueBackgroundComponent = new AddBlueBackgroundComponent();
+    this.AddYellowBackgroundComponent = new AddYellowBackgroundComponent();
+    this.AddGreenBackgroundComponent = new AddGreenBackgroundComponent();
+    this.AddClearBackgroundComponent = new AddClearBackgroundComponent();
+    this.AddCanvasBoard = new AddCanvasBoard();
+    this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
+    this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
+    this.AddFontKalamComponent = new AddFontKalamComponent();
+    this.AddClearFontComponent = new AddClearFontComponent();
+    this.AddLeftAlignComponent = new AddLeftAlignComponent();
+    this.AddCenterAlignComponent = new AddCenterAlignComponent();
+    this.AddRightAlignComponent = new AddRightAlignComponent();
+    this.AddOrderedListComponent = new AddOrderedListComponent();
+    this.AddUnOrderedListComponent = new AddUnOrderedListComponent();
+    this.AddTopComponent = new AddTopComponent();
+    this.AddBottomComponent = new AddBottomComponent();
+    this.AddDeleteComponent = new AddDeleteComponent();
+    this.AddEmbedComponent = new AddEmbedComponent();
+    this.AddPdfRenderComponent = new AddPdfRenderComponent();
+    this.reader = new FileReader();
+
+
+  }
 
   fileName: string;
   fileID: Data;
@@ -55,7 +94,7 @@ export class NewBoardComponent implements OnInit {
 
   reader: FileReader;
   currentChartID: string;
-  userBlocks: Array<NewBoardCard>;
+  userBlocks: Map<string, NewBoardCard>;
   // Initializing plugins
   AddH1Component: any;
   AddH2Component: any;
@@ -89,76 +128,39 @@ export class NewBoardComponent implements OnInit {
     };
   })();
 
-  constructor(private activatedRoute: ActivatedRoute, private apiService: RestService, private router: Router) {
-    this.activatedRoute.params.subscribe(params => { this.folderID = params.folderId; this.fileID = params.fileId; });
-    if (this.router.getCurrentNavigation() !== null) {
-       if (this.router.getCurrentNavigation().extras.state !== undefined) {
-      this.fileData = this.router.getCurrentNavigation().extras.state.fileData;
-    }}
-    // Initialize the Map
-    this.userBlocks = new Array();
-
-    this.AddH1Component = new AddH1Component();
-    this.AddH2Component = new AddH2Component();
-    this.AddH3Component = new AddH3Component();
-    this.AddParaComponent = new AddParaComponent();
-    this.AddRedBackgroundComponent = new AddRedBackgroundComponent();
-    this.AddBlueBackgroundComponent = new AddBlueBackgroundComponent();
-    this.AddYellowBackgroundComponent = new AddYellowBackgroundComponent();
-    this.AddGreenBackgroundComponent = new AddGreenBackgroundComponent();
-    this.AddClearBackgroundComponent = new AddClearBackgroundComponent();
-    this.AddCanvasBoard = new AddCanvasBoard();
-    this.AddFontMonospaceComponent = new AddFontMonospaceComponent();
-    this.AddFontPlayfairComponent = new AddFontPlayfairComponent();
-    this.AddFontKalamComponent = new AddFontKalamComponent();
-    this.AddClearFontComponent = new AddClearFontComponent();
-    this.AddLeftAlignComponent = new AddLeftAlignComponent();
-    this.AddCenterAlignComponent = new AddCenterAlignComponent();
-    this.AddRightAlignComponent = new AddRightAlignComponent();
-    this.AddOrderedListComponent = new AddOrderedListComponent();
-    this.AddUnOrderedListComponent = new AddUnOrderedListComponent();
-    this.AddTopComponent = new AddTopComponent();
-    this.AddBottomComponent = new AddBottomComponent();
-    this.AddDeleteComponent = new AddDeleteComponent();
-    this.AddEmbedComponent = new AddEmbedComponent();
-    this.AddPdfRenderComponent = new AddPdfRenderComponent();
-    this.reader = new FileReader();
-
-
-  }
-
+  // Retrieve board data from Api
+  async;
 
 
   ngOnInit() {
 
     // sortable-js
     const mainEl = document.getElementById('main-box');
-    let oldIdx: number;
-    let newIdx: number;
+    // let oldIdx: number;
+    // let newIdx: number;
     const sortable = new Sortable(mainEl, {
       handle: '.dragHandle',
       animation: 150,
       easing: 'cubic-bezier(1, 0, 0, 1)',
-      onStart(evt) {
-        oldIdx = evt.oldIndex;  // element index within parent
-      },
-      onEnd: (evt) => {
-        newIdx = evt.newIndex - 2;
+      // onStart(evt) {
+      //   oldIdx = evt.oldIndex;  // element index within parent
+      // },
+      // onEnd: (evt) => {
+      //   newIdx = evt.newIndex - 2;
 
-        if (oldIdx === 1) {
-          if (this.userBlocks[oldIdx - 1].cardID === evt.clone.id.substring(9)) {
-            this.arrayMoveMutate(this.userBlocks, 0, newIdx);
-            this.userBlocks[0].updatePosition(0, newIdx);
-          }
+      //   if (oldIdx === 1) {
+      //     if (this.userBlocks[oldIdx - 1].cardID === evt.clone.id.substring(9)) {
+      //       this.arrayMoveMutate(this.userBlocks, 0, newIdx);
+      //       this.userBlocks[0].updatePosition(0, newIdx);
+      //     }
 
-        } else {
-          if (this.userBlocks[oldIdx - 2].cardID === evt.clone.id.substring(9)) {
-            this.arrayMoveMutate(this.userBlocks, oldIdx - 2, newIdx);
-            this.userBlocks[oldIdx - 2].updatePosition(oldIdx - 2, newIdx);
+      //   } else {
+      //     if (this.userBlocks[oldIdx - 2].cardID === evt.clone.id.substring(9)) {
+      //       this.arrayMoveMutate(this.userBlocks, oldIdx - 2, newIdx);
+      //       this.userBlocks[oldIdx - 2].updatePosition(oldIdx - 2, newIdx);
 
-          }
-        }
-      }
+      //     }
+      //   }}
 
     });
 
@@ -179,7 +181,7 @@ export class NewBoardComponent implements OnInit {
       }
     });
     // console.log(this.fileID);
-    if (this.fileData !== null && this.fileData !== undefined ) {
+    if (this.fileData !== null && this.fileData !== undefined) {
       this.populateData(this.fileData.queryParams);
 
     } else if (this.fileID !== undefined) {
@@ -245,7 +247,7 @@ export class NewBoardComponent implements OnInit {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
 
-      const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.length);
+      const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.size);
       let pluginType: PluginType;
 
       switch (checker) {
@@ -386,8 +388,8 @@ export class NewBoardComponent implements OnInit {
       newBoardCard.setpluginType(pluginType);
 
       // Adding to UserBlocks Map
-      // this.userBlocks.set(uid, newBoardCard);
-      this.userBlocks.push(newBoardCard);
+      this.userBlocks.set(uid, newBoardCard);
+      // this.userBlocks.push(newBoardCard);
 
       this.addToolBox(uid, checker);
 
@@ -555,23 +557,46 @@ export class NewBoardComponent implements OnInit {
   saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
     this.fileName = boardTitle;
-    const saveDataJson = {
-      file_name: boardTitle === '' ? 'untitled' : boardTitle,
-      folder_id: this.folderID,
-      file_tag: 'testing',
-      data: []
-    };
-    this.userBlocks.forEach((ele) => {
-      console.log('saving card: id ', ele.cardID);
-      ele.setContent($(`#original-${ele.cardID}`).text());
-      ele.setClassList($(`#cb-box-2-${ele.cardID}`).attr('class'));
-      saveDataJson.data.push(ele);
+    const data = [];
+
+    const ids = [];
+    $('#main-box>div').each(function(i) {
+      if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
+        ids.push($(this).prop('id').substring(9));
+      }
     });
+    ids.forEach((key) => {
+      const ele: NewBoardCard = this.userBlocks.get(key);
+      console.log('saving card: id ', key);
+      ele.setContent($(`#original-${key}`).text());
+      ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
+      data.push(ele);
+    });
+    if ((this.fileData !== null && this.fileData !== undefined) || this.fileID !== undefined) {
+      const saveDataJson = {
+        // file_name: boardTitle === '' ? 'untitled' : boardTitle,
+        file_id: this.fileID,
+        // file_tag: 'testing',
+        data: [],
+        is_modified: true
+      };
+      saveDataJson.data = data;
+      this.apiService.saveBoardData(saveDataJson);
+
+    } else {
+      const createDataJson = {
+        file_name: boardTitle === '' ? 'untitled' : boardTitle,
+        folder_id: this.folderID,
+        file_tag: 'testing',
+        data: []
+      };
+      createDataJson.data = data;
+      this.apiService.createBoardData(createDataJson);
+    }
+
     // console.log(JSON.stringify(saveDataJson));
-    this.apiService.saveBoardData(saveDataJson);
   }
 
-  // Retrieve board data from Api
   async retrieveData(fileID) {
     const response = await this.apiService.getBoardData(fileID);
     const boardData = await response.content;
@@ -584,18 +609,19 @@ export class NewBoardComponent implements OnInit {
     this.fileTag = data.file_tag;
     this.fileName = data.file_name;
     document.getElementById('title').innerText = this.fileName;
-    data.data.sort((a, b) => (a.newPosition > b.newPosition) ? 1 : -1);
+    let prevId = '';
     data.data.forEach((element, index) => {
-      this.userBlocks.push(NewBoardCard.fromData(element));
+      this.userBlocks.set(element.cardID, NewBoardCard.fromData(element));
       if (index === 0) {
         $(`#sub-title`).after(this.blockFunction(element.cardID));
         this.addToolBox(element.cardID, 0);
       } else {
-        $(`#cb-box-1-${this.userBlocks[index - 1].cardID}`).after(this.blockFunction(element.cardID));
+        $(`#cb-box-1-${prevId}`).after(this.blockFunction(element.cardID));
         this.addToolBox(element.cardID, 1);
       }
       $(`#original-${element.cardID}`).html(element.content);
       $(`#cb-box-2-${element.cardID}`).addClass(element.classList);
+      prevId = element.cardID;
     });
   }
   // H1 Tag
