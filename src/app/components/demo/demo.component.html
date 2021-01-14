@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div id="content" (click)="checker()">
+<div id="demo-content" (click)="checker()">
   <span class="slide" title="Open Toolbox🚀">
     <a (click)="openSlideMenu()">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor"
@@ -11,7 +11,7 @@
     </a>
   </span>
 
-  <div id="menu" class="nav shadow">
+  <div id="demo-menu" class="nav shadow">
     <a (click)="closeSlideMenu()" class="close" title="Close Toolbox🚀">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
@@ -293,7 +293,7 @@
           </div>
           <!-- Embed -->
           <div class="tool box4 m-1" title="Embed link">
-            <button class="btn btn-light" data-toggle="modal" data-target="#embedModal">
+            <button class="btn btn-light" data-toggle="modal" data-target="#demo-embedModal">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-square" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -305,7 +305,7 @@
           </div>
           <!-- PdfRender button -->
           <div class="tool box1 m-1" title="File Upload" (click)="cbToolboxPdfRender()">
-            <input type="file" hidden id="myPdfFile">
+            <input type="file" hidden id="demo-PdfFile">
             <button class="btn btn-light" id="pdf-render-cb-box1-${uid}">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi
               bi-file-earmark-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -339,20 +339,20 @@
     <div class="main">
       <!-----------------title---------------------->
       <div class="cb-title" id="cb-title">
-        <h2 id="title" class="heading" contenteditable="true" data-text="Title"></h2>
+        <h2 id="demo-title" class="heading" contenteditable="true" data-text="Title"></h2>
       </div>
 
       <!-----------------notes box ----------------->
-      <div id="main-box" class="main-box">
         <!-- temp -->
-        <div id="sub-title" class="demo"></div>
+        <div id="demo-main-box" class="main-box">
+        <div id="demo-sub-title" class="demo"></div>
         <!-- Modal -->
-        <div class="modal fade" id="embedModal" tabindex="-1" role="dialog" aria-labelledby="embedModalCenterTitle"
+        <div class="modal fade" id="demo-embedModal" tabindex="-1" role="dialog" aria-labelledby="embedModalCenterTitle"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="embedModalLongTitle">Embed Link URL</h5>
+                <h5 class="modal-title" id="demo-embedModalLongTitle">Embed Link URL</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -361,9 +361,9 @@
                 <form>
                   <div class="form-group"
                     style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
-                    <input type="text" placeholder="Enter Embed link here" class="form-control" id="embedURL">
+                    <input type="text" placeholder="Enter Embed link here" class="form-control" id="demo-embedURL">
                     <label style="margin-top: 5px;">OR</label>
-                    <input type="text" placeholder="Enter youtube link here" class="form-control" id="youtubeEmbedURL">
+                    <input type="text" placeholder="Enter youtube link here" class="form-control" id="demo-youtubeEmbedURL">
                   </div>
                 </form>
               </div>
@@ -376,7 +376,6 @@
           </div>
         </div>
         <!-- .........................TESTING CODE GOES HERE!................................. -->
-
         <!-- .........................END OF TESTING CODE!.......................... -->
       </div>
       <!-- --------------END OF NOTES BOX -->

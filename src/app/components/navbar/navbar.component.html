@@ -20,6 +20,9 @@
       <a [hidden]="bool" class="nav-item nav-link" (click)="logoutButtonClick()">
         <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
       </a>
+      <a [hidden]="!bool" class="nav-item nav-link" (click)="loginButtonClick()">
+        <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+      </a>
     </div>
   </div>
 </nav>

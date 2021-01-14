@@ -36,7 +36,7 @@ declare var $: any;
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
-  styleUrls: ['./demo.component.scss']
+  styleUrls: ['./demo.component.scss', '../new-board/new-board.component.scss']
 })
 export class DemoComponent implements OnInit {
   fileToUpload: File = null;
@@ -114,7 +114,7 @@ export class DemoComponent implements OnInit {
        this.userBlocks = new Map();
 
        // sortable-js
-       const mainEl = document.getElementById('main-box');
+       const mainEl = document.getElementById('demo-main-box');
    
        const sortable = new Sortable(mainEl, {
          handle: '.dragHandle',
@@ -314,7 +314,7 @@ export class DemoComponent implements OnInit {
         }
         case 18: {
           $(`#${id}`).append(this.blockFunction(uid));
-          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val(), $('#youtubeEmbedURL').val());
+          this.AddEmbedComponent.addEmbedToolBox(uid, $('#demo-embedURL').val(), $('#demo-youtubeEmbedURL').val());
           break;
         }
         default:
@@ -424,7 +424,7 @@ export class DemoComponent implements OnInit {
         $(`#add-canvas-cb-${uid}`).click(() => {
           const parentWidth = $(`#original-${uid}`).width();
           $(`#original-${uid}`).append(`
-          <div id="canvas-menu-box" class="canvas-menu-box">
+          <div id="demo-canvas-menu-box" class="canvas-menu-box">
              <input id="canvas-menu-box-${uid}" type="color" style="margin-left: 50%; margin-bottom: 5px;">
           </div>
           <canvas id="canvas-${uid}" class="shadow"></canvas>
@@ -446,7 +446,7 @@ export class DemoComponent implements OnInit {
         });
       }
 
-      $('#myPdfFile').change((event) => {
+      $('demo-myPdfFile').change((event) => {
         $(`#${id}`).append(this.blockFunction(uid));
         this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
       });
@@ -459,7 +459,7 @@ export class DemoComponent implements OnInit {
   // ......................... ESSENTIALS.............................
 
   disableTitleEnter() {
-    $('#title[contenteditable]').keypress((evt) => {
+    $('demo-title[contenteditable]').keypress((evt) => {
       const keycode = evt.charCode || evt.keyCode;
       if (keycode === 13) {
         // Enter key's keycode
@@ -506,33 +506,33 @@ export class DemoComponent implements OnInit {
   }
 
   openSlideMenu = () => {
-    document.getElementById('menu').style.width = '250px';
-    document.getElementById('content').style.marginLeft = '250px';
+    document.getElementById('demo-menu').style.width = '250px';
+    document.getElementById('demo-content').style.marginLeft = '250px';
   }
   closeSlideMenu = () => {
-    document.getElementById('menu').style.width = '0';
-    document.getElementById('content').style.marginLeft = '0';
+    document.getElementById('demo-menu').style.width = '0';
+    document.getElementById('demo-content').style.marginLeft = '0';
   }
 
   // H1 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolBoxH1Tag = () => {
-    this.addBlockEditor('main-box', 2);
+    this.addBlockEditor('demo-main-box', 2);
   }
   // H2 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolboxH2Tag = () => {
-    this.addBlockEditor('main-box', 4);
+    this.addBlockEditor('demo-main-box', 4);
   }
   // H3 TAG TOOLBOX CLICK FUNCTIONALITY
   cbToolboxH3Tag = () => {
-    this.addBlockEditor('main-box', 5);
+    this.addBlockEditor('demo-main-box', 5);
   }
   // Canvasboard TOOLBOX CLICK FUNCTION
   addCanvasBoard = () => {
-    this.addBlockEditor('main-box', 3);
+    this.addBlockEditor('demo-main-box', 3);
   }
   // Adding paragraph
   cbToolboxParaTag = () => {
-    this.addBlockEditor('main-box', 6);
+    this.addBlockEditor('demo-main-box', 6);
   }
 
   // Adding Delete
@@ -551,42 +551,42 @@ export class DemoComponent implements OnInit {
   }
   // Adding Red background color
   cbToolboxRedBackground = () => {
-    this.addBlockEditor('main-box', 7);
+    this.addBlockEditor('demo-main-box', 7);
   }
 
   // Adding Blue background color
   cbToolboxBlueBackground = () => {
-    this.addBlockEditor('main-box', 8);
+    this.addBlockEditor('demo-main-box', 8);
   }
 
   // Adding Yellow background color
   cbToolboxYellowBackground = () => {
-    this.addBlockEditor('main-box', 9);
+    this.addBlockEditor('demo-main-box', 9);
   }
 
   // Adding Green background color
   cbToolboxGreenBackground = () => {
-    this.addBlockEditor('main-box', 10);
+    this.addBlockEditor('demo-main-box', 10);
   }
 
   // Adding Monospace font
   cbToolboxMonospace = () => {
-    this.addBlockEditor('main-box', 11);
+    this.addBlockEditor('demo-main-box', 11);
   }
 
   // Adding Playfair font
   cbToolboxPlayfair = () => {
-    this.addBlockEditor('main-box', 12);
+    this.addBlockEditor('demo-main-box', 12);
   }
 
   // Adding Kalam font
   cbToolboxKalam = () => {
-    this.addBlockEditor('main-box', 17);
+    this.addBlockEditor('demo-main-box', 17);
   }
 
   // Clearing all fonts for Roboto font
   cbToolboxRoboto = () => {
-    this.addBlockEditor('main-box', 13);
+    this.addBlockEditor('demo-main-box', 13);
   }
 
   // Clearing all fonts
@@ -596,27 +596,27 @@ export class DemoComponent implements OnInit {
 
   // Adding Left Align Text
   cbToolboxLeftAlign = () => {
-    this.addBlockEditor('main-box', 14);
+    this.addBlockEditor('demo-main-box', 14);
   }
 
   // Adding Center Align Text
   cbToolboxCenterAlign = () => {
-    this.addBlockEditor('main-box', 15);
+    this.addBlockEditor('demo-main-box', 15);
   }
 
   // Adding Right Align Text
   cbToolboxRightAlign = () => {
-    this.addBlockEditor('main-box', 16);
+    this.addBlockEditor('demo-main-box', 16);
   }
 
   // Adding Embed Link
   cbToolboxEmbed = () => {
-    this.addBlockEditor('main-box', 18);
+    this.addBlockEditor('demo-main-box', 18);
   }
 
   // Adding PdfRender
   cbToolboxPdfRender = () => {
-    $('#myPdfFile').click();
+    $('#demo-PdfFile').click();
   }
 
 }

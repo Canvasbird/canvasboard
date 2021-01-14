@@ -32,4 +32,8 @@ export class NavbarComponent implements OnInit {
   backButtonClick() {
     this.loc.back();
   }
+
+  loginButtonClick() {
+  this.router.navigate(['/login']);    
+  }
 }
