@@ -13,7 +13,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
@@ -24,6 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DemoComponent } from './components/demo/demo.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthService } from './services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -36,14 +38,13 @@ import { DemoComponent } from './components/demo/demo.component';
     LoginComponent,
     SignUpComponent,
     DashboardComponent,
-    NavbarComponent,
     NewBoardComponent,
     ContributionComponent,
     FilesComponent,
     FilterFolderPipe,
     ClockComponent,
     DemoComponent,
-
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +53,8 @@ import { DemoComponent } from './components/demo/demo.component';
     FormsModule,
     BrowserAnimationsModule,
     MatPasswordStrengthModule,
-    MatTooltipModule
+    MatTooltipModule,
+    RouterModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
