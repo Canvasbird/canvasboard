@@ -567,16 +567,16 @@ export class NewBoardComponent implements OnInit {
     });
     ids.forEach((key) => {
       const ele: NewBoardCard = this.userBlocks.get(key);
-      console.log('saving card: id ', key);
-      ele.setContent($(`#original-${key}`).text());
+      ele.setContent($(`#original-${key}`).html());
       ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
       data.push(ele);
     });
+
+    // Data Save
+
     if ((this.fileData !== null && this.fileData !== undefined) || this.fileID !== undefined) {
       const saveDataJson = {
-        // file_name: boardTitle === '' ? 'untitled' : boardTitle,
         file_id: this.fileID,
-        // file_tag: 'testing',
         data: [],
         is_modified: true
       };
