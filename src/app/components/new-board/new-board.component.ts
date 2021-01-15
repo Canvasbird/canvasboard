@@ -576,13 +576,13 @@ export class NewBoardComponent implements OnInit {
 
     if ((this.fileData !== null && this.fileData !== undefined) || this.fileID !== undefined) {
       const saveDataJson = {
+        file_name: boardTitle === '' ? 'untitled' : boardTitle,
         file_id: this.fileID,
         data: [],
         is_modified: true
       };
       saveDataJson.data = data;
       this.apiService.saveBoardData(saveDataJson);
-
     } else {
       const createDataJson = {
         file_name: boardTitle === '' ? 'untitled' : boardTitle,
