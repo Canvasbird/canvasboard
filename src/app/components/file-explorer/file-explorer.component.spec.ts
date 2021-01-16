@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FileExplorerComponent } from './file-explorer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -9,7 +9,7 @@ describe('FileExplorerComponent', () => {
   let component: FileExplorerComponent;
   let fixture: ComponentFixture<FileExplorerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FileExplorerComponent, NavbarComponent ],
       imports: [ HttpClientTestingModule, RouterTestingModule ]
