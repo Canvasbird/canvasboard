@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FileExplorerComponent} from './components/file-explorer/file-explorer.component';
-import { BoardComponent } from './components/board/board.component';
+// import { BoardComponent } from './components/board/board.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 
 // guard
@@ -55,11 +55,11 @@ const routes: Routes = [
     component: FileExplorerComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'board',
-    component: BoardComponent,
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'board',
+  //   component: BoardComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'folder/:id',
     component: FilesComponent,
