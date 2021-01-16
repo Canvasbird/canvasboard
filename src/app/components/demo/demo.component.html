@@ -1,31 +1,4 @@
-<!-- Navbar -->
-<nav class="navbar d-flex justify-content-between navbar-expand-lg navbar-light bg-light sticky-top">
-  <!-- Logo   -->
-  <a class="logo navbar-brand d-flex align-items-center" href="#" title="Canvasboard">
-      <img src="../../../assets/home/logo_bw.png" width="38" height="40" class="d-inline-block align-top mr-1" alt="CB" loading="lazy">
-      <span class="logo-text">
-        Canvasboard Beta
-      </span>
-  </a>
-  <!-- Collapse button -->
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!-- Dropdown items -->
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ml-auto navbarItems">
-      <a class="nav-item nav-link" (click)="backButtonClick()">
-        <i class="fa fa-back" aria-hidden="true"></i> Go back
-      </a>
-      <a [hidden]="!navBool" class="nav-item nav-link">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> Login
-      </a>
-      <a [hidden]="navBool" class="nav-item nav-link">
-        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-      </a>
-    </div>
-  </div>
-</nav>
+<app-navbar></app-navbar>
 
 <div id="demo-content" (click)="checker()">
   <span class="slide" title="Open Toolbox🚀">

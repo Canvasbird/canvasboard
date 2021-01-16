@@ -30,9 +30,6 @@ import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
-import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 declare var $: any;
 
@@ -43,7 +40,6 @@ declare var $: any;
 })
 export class DemoComponent implements OnInit {
 
-  navBool: boolean;
   fileToUpload: File = null;
   reader: FileReader;
   currentChartID: number;
@@ -85,7 +81,6 @@ export class DemoComponent implements OnInit {
   })();
 
   constructor() {
-    this.navBool = false;
     this.bool = true;
 
     this.AddH1Component = new AddH1Component();
@@ -116,8 +111,6 @@ export class DemoComponent implements OnInit {
    }
 
   ngOnInit() {
-      //check if user is loggedIn
-      //if yes, set this.navBool = true;
 
        // Initialize the Map
        this.userBlocks = new Map();
@@ -626,10 +619,6 @@ export class DemoComponent implements OnInit {
   // Adding PdfRender
   cbToolboxPdfRender = () => {
     $('#demo-PdfFile').click();
-  }
-
-  backButtonClick() {
-    
   }
 
 }

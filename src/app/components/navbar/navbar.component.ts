@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Host, OnInit, Optional } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { Router } from '@angular/router';
@@ -7,8 +7,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  providers: [ AuthService ]
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
 
@@ -19,8 +18,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isUserLoggedIn()) {
-      this.bool = false;
+    if(this.authService) {
+      if(this.authService.isUserLoggedIn()) {
+        this.bool = false;
+      }
     }
   }
 

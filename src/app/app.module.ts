@@ -56,6 +56,7 @@ import { RouterModule } from '@angular/router';
     MatTooltipModule,
     RouterModule
   ],
+  exports:[NavbarComponent],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })

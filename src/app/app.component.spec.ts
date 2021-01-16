@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 describe('AppComponent', () => {
@@ -15,7 +17,8 @@ describe('AppComponent', () => {
         FormsModule,
         BrowserAnimationsModule,
         MatPasswordStrengthModule,
-        MatTooltipModule
+        MatTooltipModule,
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent
