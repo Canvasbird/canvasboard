@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "ci:clean": "rimraf ./dist",
     "ci:test": "ng test --watch=false --browsers=ChromeHeadlessCustom --code-coverage",
-    "ci:build": "ng build --prod"
+    "ci:build": "ng build --prod",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
