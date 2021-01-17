@@ -567,7 +567,7 @@ export class NewBoardComponent implements OnInit {
     }
   }
   // Save board data
-  saveData() {
+  async saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
     this.fileName = boardTitle;
     const data = [];
@@ -604,10 +604,10 @@ export class NewBoardComponent implements OnInit {
         data: []
       };
       createDataJson.data = data;
-      this.apiService.createBoardData(createDataJson);
+      this.fileID = (await this.apiService.createBoardData(createDataJson))._id;
+
     }
 
-    // console.log(JSON.stringify(saveDataJson));
   }
 
   async retrieveData(fileID) {
