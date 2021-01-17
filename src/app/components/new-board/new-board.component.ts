@@ -371,17 +371,13 @@ export class NewBoardComponent implements OnInit {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val());
           pluginType = 'embed';
+          newBoardCard.setContent($('#embedURL').val());
           } else {
             $(`#${id}`).append(this.blockFunction(uid));
             this.AddEmbedComponent.addEmbedToolBox(uid, embedUrl);
             pluginType = 'embed';
+            newBoardCard.setContent(embedUrl);
           }
-          break;
-        }
-        case 20: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddEmbedComponent.addEmbedToolBox(uid, $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/'));
-          pluginType = 'youtube';
           break;
         }
         default:
@@ -580,7 +576,9 @@ export class NewBoardComponent implements OnInit {
     });
     ids.forEach((key) => {
       const ele: NewBoardCard = this.userBlocks.get(key);
-      ele.setContent($(`#original-${key}`).html());
+      if (ele.getpluginType() === 'editor') {
+        ele.setContent($(`#original-${key}`).html());
+      }
       ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
       data.push(ele);
     });
@@ -632,7 +630,11 @@ export class NewBoardComponent implements OnInit {
         $(`#cb-box-1-${prevId}`).after(this.blockFunction(element.cardID));
         this.addToolBox(element.cardID, 1);
       }
+      if (element.pluginType === 'editor') {
       $(`#original-${element.cardID}`).html(element.content);
+      } else if (element.pluginType === 'embed') {
+        this.AddEmbedComponent.addEmbedToolBox(element.cardID, element.content);
+      }
       $(`#cb-box-2-${element.cardID}`).addClass(element.classList);
       prevId = element.cardID;
     });
@@ -777,7 +779,7 @@ export class NewBoardComponent implements OnInit {
 
   // Adding Youtube
   cbToolboxYoutube = () => {
-    this.addBlockEditor('main-box', 20);
+    this.addBlockEditor('main-box', 18, false, $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/'));
   }
 
   // Adding Clock
