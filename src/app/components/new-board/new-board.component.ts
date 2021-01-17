@@ -37,6 +37,7 @@ import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 import { NewBoard } from 'src/interfaces/new-board';
 import { each, param } from 'jquery';
+
 declare var $: any;
 
 @Component({
@@ -242,7 +243,7 @@ export class NewBoardComponent implements OnInit {
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
-  addBlockEditor = (id, checker, addBefore = false, category = null) => {
+  addBlockEditor = (id, checker, addBefore = false, embedUrl = null) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
@@ -366,8 +367,20 @@ export class NewBoardComponent implements OnInit {
           break;
         }
         case 18: {
+          if (embedUrl === null) {
           $(`#${id}`).append(this.blockFunction(uid));
-          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val(), $('#youtubeEmbedURL').val());
+          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val());
+          pluginType = 'embed';
+          } else {
+            $(`#${id}`).append(this.blockFunction(uid));
+            this.AddEmbedComponent.addEmbedToolBox(uid, embedUrl);
+            pluginType = 'embed';
+          }
+          break;
+        }
+        case 20: {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddEmbedComponent.addEmbedToolBox(uid, $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/'));
           pluginType = 'youtube';
           break;
         }
@@ -760,5 +773,15 @@ export class NewBoardComponent implements OnInit {
   cbToolboxPdfRender = () => {
     $('#pdfFile').click();
     this.addBlockEditor('main-box', 19);
+  }
+
+  // Adding Youtube
+  cbToolboxYoutube = () => {
+    this.addBlockEditor('main-box', 20);
+  }
+
+  // Adding Clock
+  cbToolboxClock = () => {
+    this.addBlockEditor('main-box', 18, false, 'plugins/clock');
   }
 }
