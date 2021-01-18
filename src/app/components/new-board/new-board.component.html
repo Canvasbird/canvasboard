@@ -368,7 +368,8 @@
   <!-- Buttons -->
   <div class="container row mt-2 justify-content-between" style="margin-right: auto;
     margin-left: auto;">
-    <button type="button" class="btn btn-light btn-lg" routerLink="/folder/{{this.folderID}}">Back</button>
+    <button type="button" class="btn btn-light btn-lg" routerLink="/folder/{{this.folderID}}"
+      (click)="saveData()">Back</button>
     <button type="button" class="btn btn-light btn-lg" (click)="saveData()">Save</button>
   </div>
 
