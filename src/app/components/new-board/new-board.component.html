@@ -365,6 +365,34 @@
       </div> -->
     </div>
   </div>
+  <!-- Buttons -->
+  <div class="container row mt-2 justify-content-between" style="margin-right: auto;
+    margin-left: auto;">
+    <button type="button" class="btn btn-light btn-lg" routerLink="/folder/{{this.folderID}}">Back</button>
+    <button type="button" class="btn btn-light btn-lg" (click)="saveData()">Save</button>
+  </div>
+
+  <!-- Notifications -->
+
+  <div aria-live="polite" aria-atomic="true" style="position: relative;">
+    <div id="toasts" style="position: absolute; top: 0; right: 0;">
+      <!-- Toast tag -->
+      <div class="toast" id="saveToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-header">
+          <img src="../../../assets/home/logo_bw.png" width="38" height="40" class="d-inline-block align-top mr-1"
+            alt="CB" loading="lazy">
+          <strong class="mr-4">Canvasboard Beta</strong>
+          <small class="text-muted">just now</small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+          Board is Saved.
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main content -->
   <div class="container shadow mt-2 cb-container-main">
@@ -373,7 +401,6 @@
       <div class="cb-title" id="cb-title">
         <h2 id="title" class="heading" contenteditable="true" data-text="Title"></h2>
       </div>
-
       <!-----------------notes box ----------------->
       <div id="main-box" class="main-box">
         <!-- temp -->
@@ -440,4 +467,4 @@
     </div>
   </div>
 
-</div>
+  </div>
