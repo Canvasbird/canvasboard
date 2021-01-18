@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { DailyQuote } from 'src/interfaces/daily-quote';
+import { NewBoard } from 'src/interfaces/new-board';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class RestService {
   createFolderResponse = null;
   deleteFolderResponse = null;
   renameFolderResponse = null;
+  createFileResponse = null;
   viewFileResponse = null;
   deleteFileResponse = null;
   renameFileResponse = null;
@@ -27,7 +29,7 @@ export class RestService {
   // ........................... FILE APIS........................................
 
   // ........................... CREATE FILE ........................................
-  async createBoardData(boardData) {
+  async createBoardData(boardData): Promise<NewBoard> {
     this.xAuthToken = localStorage.getItem('token');
     const body = boardData;
     await this.http.post('https://api.canvasboard.live/api/v1/user/folder/create-file', body, {
@@ -37,7 +39,10 @@ export class RestService {
     }).toPromise()
       .then((response) => {
       // this.boardId = JSON.parse(JSON.stringify(res)).board_id;
+        this.createFileResponse = JSON.parse(JSON.stringify(response)).file;
     });
+    return this.createFileResponse;
+
   }
   // ........................... UPDATE FILE ........................................
 
@@ -50,8 +55,7 @@ export class RestService {
       })
     }).toPromise()
       .then((response) => {
-      // this.boardId = JSON.parse(JSON.stringify(res)).board_id;
-    });
+      });
   }
 
   // ........................... GET FILE...........................................

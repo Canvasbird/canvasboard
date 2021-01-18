@@ -37,6 +37,7 @@ import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 import { NewBoard } from 'src/interfaces/new-board';
 import { each, param } from 'jquery';
+
 declare var $: any;
 
 @Component({
@@ -242,7 +243,7 @@ export class NewBoardComponent implements OnInit {
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
-  addBlockEditor = (id, checker, addBefore = false, category = null) => {
+  addBlockEditor = (id, checker, addBefore = false, embedUrl = null) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
@@ -366,9 +367,17 @@ export class NewBoardComponent implements OnInit {
           break;
         }
         case 18: {
+          if (embedUrl === null) {
           $(`#${id}`).append(this.blockFunction(uid));
-          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val(), $('#youtubeEmbedURL').val());
-          pluginType = 'youtube';
+          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val());
+          pluginType = 'embed';
+          newBoardCard.setContent($('#embedURL').val());
+          } else {
+            $(`#${id}`).append(this.blockFunction(uid));
+            this.AddEmbedComponent.addEmbedToolBox(uid, embedUrl);
+            pluginType = 'embed';
+            newBoardCard.setContent(embedUrl);
+          }
           break;
         }
         default:
@@ -554,7 +563,7 @@ export class NewBoardComponent implements OnInit {
     }
   }
   // Save board data
-  saveData() {
+  async saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
     this.fileName = boardTitle;
     const data = [];
@@ -567,7 +576,9 @@ export class NewBoardComponent implements OnInit {
     });
     ids.forEach((key) => {
       const ele: NewBoardCard = this.userBlocks.get(key);
-      ele.setContent($(`#original-${key}`).html());
+      if (ele.getpluginType() === 'editor') {
+        ele.setContent($(`#original-${key}`).html());
+      }
       ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
       data.push(ele);
     });
@@ -591,10 +602,10 @@ export class NewBoardComponent implements OnInit {
         data: []
       };
       createDataJson.data = data;
-      this.apiService.createBoardData(createDataJson);
+      this.fileID = (await this.apiService.createBoardData(createDataJson))._id;
+
     }
 
-    // console.log(JSON.stringify(saveDataJson));
   }
 
   async retrieveData(fileID) {
@@ -619,7 +630,11 @@ export class NewBoardComponent implements OnInit {
         $(`#cb-box-1-${prevId}`).after(this.blockFunction(element.cardID));
         this.addToolBox(element.cardID, 1);
       }
+      if (element.pluginType === 'editor') {
       $(`#original-${element.cardID}`).html(element.content);
+      } else if (element.pluginType === 'embed') {
+        this.AddEmbedComponent.addEmbedToolBox(element.cardID, element.content);
+      }
       $(`#cb-box-2-${element.cardID}`).addClass(element.classList);
       prevId = element.cardID;
     });
@@ -760,5 +775,15 @@ export class NewBoardComponent implements OnInit {
   cbToolboxPdfRender = () => {
     $('#pdfFile').click();
     this.addBlockEditor('main-box', 19);
+  }
+
+  // Adding Youtube
+  cbToolboxYoutube = () => {
+    this.addBlockEditor('main-box', 18, false, $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/'));
+  }
+
+  // Adding Clock
+  cbToolboxClock = () => {
+    this.addBlockEditor('main-box', 18, false, 'plugins/clock');
   }
 }
