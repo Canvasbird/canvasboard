@@ -11,7 +11,7 @@ describe('AuthService', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule, RouterTestingModule ]
     });
-    authService = TestBed.get(AuthService);
+    authService = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {

@@ -74,13 +74,15 @@
               </svg>
             </button>
           </div>
-          <!-- BOLD -->
-          <div class="m-1" title="Bold">
-            <button class="btn btn-light">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-bold" fill="currentColor"
+          <!-- Save -->
+          <div class="m-1" title="Save">
+            <button class="btn btn-light" (click)="saveData()">
+              <svg width=" 1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-arrow-down" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M8.21 13c2.106 0 3.412-1.087 3.412-2.823 0-1.306-.984-2.283-2.324-2.386v-.055a2.176 2.176 0 0 0 1.852-2.14c0-1.51-1.162-2.46-3.014-2.46H3.843V13H8.21zM5.908 4.674h1.696c.963 0 1.517.451 1.517 1.244 0 .834-.629 1.32-1.73 1.32H5.908V4.673zm0 6.788V8.598h1.73c1.217 0 1.88.492 1.88 1.415 0 .943-.643 1.449-1.832 1.449H5.907z" />
+                <path fill-rule="evenodd"
+                  d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z" />
+                <path fill-rule="evenodd"
+                  d="M8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z" />
               </svg>
             </button>
           </div>
@@ -314,15 +316,38 @@
           <div class="tool box1 m-1" title="File Upload" (click)="cbToolboxPdfRender()">
             <input type="file" hidden id="pdfFile">
             <button class="btn btn-light" id="pdf-render-cb-box1-${uid}">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi
-              bi-file-earmark-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0
-                2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z" />
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Youtube button -->
+          <div class="tool box1 m-1" title="Youtube">
+            <input type="file" hidden id="youtube">
+            <button class="btn btn-light" id="youtube-cb-box1-${uid}" data-toggle="modal" data-target="#youtubeModal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Clock button -->
+          <div class="tool box1 m-1" title="Clock" (click)="cbToolboxClock()">
+            <input type="file" hidden id="clock">
+            <button class="btn btn-light" id="clock-cb-box1-${uid}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
+                viewBox="0 0 16 16">
+                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
               </svg>
             </button>
           </div>
         </div>
-      </div>
+        </div>
       <!-- Graphs -->
       <!-- <div class="cb-graphs">
         <p><strong>Graphs</strong></p>
@@ -340,6 +365,35 @@
       </div> -->
     </div>
   </div>
+  <!-- Buttons -->
+  <div class="container row mt-2 justify-content-between" style="margin-right: auto;
+    margin-left: auto;">
+    <button type="button" class="btn btn-light btn-lg" routerLink="/folder/{{this.folderID}}"
+      (click)="saveData()">Back</button>
+    <button type="button" class="btn btn-light btn-lg" (click)="saveData()">Save</button>
+  </div>
+
+  <!-- Notifications -->
+
+  <div aria-live="polite" aria-atomic="true" style="position: relative;">
+    <div id="toasts" style="position: absolute; top: 0; right: 0;">
+      <!-- Toast tag -->
+      <div class="toast" id="saveToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-header">
+          <img src="../../../assets/home/logo_bw.png" width="38" height="40" class="d-inline-block align-top mr-1"
+            alt="CB" loading="lazy">
+          <strong class="mr-4">Canvasboard Beta</strong>
+          <small class="text-muted">just now</small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+          Board is Saved.
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main content -->
   <div class="container shadow mt-2 cb-container-main">
@@ -348,12 +402,11 @@
       <div class="cb-title" id="cb-title">
         <h2 id="title" class="heading" contenteditable="true" data-text="Title"></h2>
       </div>
-
       <!-----------------notes box ----------------->
       <div id="main-box" class="main-box">
         <!-- temp -->
         <div id="sub-title" class="demo"></div>
-        <!-- Modal -->
+        <!--Embed Modal -->
         <div class="modal fade" id="embedModal" tabindex="-1" role="dialog" aria-labelledby="embedModalCenterTitle"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -369,7 +422,32 @@
                   <div class="form-group"
                     style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
                     <input type="text" placeholder="Enter Embed link here" class="form-control" id="embedURL">
-                    <label style="margin-top: 5px;">OR</label>
+                    </div>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="cbToolboxEmbed()">Enter</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <!--Youtube Modal -->
+                    <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog"
+                      aria-labelledby="youtubeModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="youtubeModalLongTitle">youtube Link URL</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group"
+                                style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
                     <input type="text" placeholder="Enter youtube link here" class="form-control" id="youtubeEmbedURL">
                   </div>
                 </form>
@@ -377,7 +455,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
-                  (click)="cbToolboxEmbed()">Enter</button>
+                  (click)="cbToolboxYoutube()">Enter</button>
               </div>
             </div>
           </div>
@@ -390,4 +468,4 @@
     </div>
   </div>
 
-</div>
+  </div>

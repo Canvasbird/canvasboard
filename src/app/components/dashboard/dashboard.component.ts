@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
 import {Router} from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
@@ -134,7 +135,7 @@ export class DashboardComponent implements OnInit {
         </svg>
         </button>
       </div>
-      <!-- <p class="folder-discription">Lorem ipsum dolor sit amet.</p> -->
+      <!-- <p class="folder-description">Lorem ipsum dolor sit amet.</p> -->
       <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
     </div>
       `);
@@ -189,6 +190,7 @@ export class DashboardComponent implements OnInit {
             folderName.style.display = 'block';
             editButton.style.display = 'block';
           }
+          this.data.find(x => x._id === obj._id).folder_name = newName;   // Changing the folder name in data variable that we used.
         }
       });
       // Open delete popup
@@ -317,7 +319,7 @@ export class DashboardComponent implements OnInit {
         </svg>
         </button>
       </div>
-  <!-- <p class="folder-discription">Lorem ipsum dolor sit amet.</p> -->
+  <!-- <p class="folder-description">Lorem ipsum dolor sit amet.</p> -->
   <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
   </div>
     `);
@@ -330,7 +332,7 @@ export class DashboardComponent implements OnInit {
     $(`#button-edit-name-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
-      const editButton = document.getElementById(`#button-edit-name-${obj._id}`);
+      const editButton = document.getElementById(`button-edit-name-${obj._id}`);
       if (editText.style.display === 'block') {
         editText.style.display = 'none';
         folderName.style.display = 'block';
@@ -347,7 +349,7 @@ export class DashboardComponent implements OnInit {
     $(`#button-edit-name-no-${obj._id}`).click(() => {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
-      const editButton = document.getElementById(`#button-edit-name-${obj._id}`);
+      const editButton = document.getElementById(`button-edit-name-${obj._id}`);
       if (editText.style.display === 'block') {
         editText.style.display = 'none';
         folderName.style.display = 'block';
@@ -362,7 +364,7 @@ export class DashboardComponent implements OnInit {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
-      const editButton = document.getElementById(`#button-edit-name-${obj._id}`);
+      const editButton = document.getElementById(`button-edit-name-${obj._id}`);
       if (newName === '') {      // If the new name is null then do not change the name.
         document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
       } else {
@@ -373,6 +375,7 @@ export class DashboardComponent implements OnInit {
           folderName.style.display = 'block';
           editButton.style.display = 'block';
         }
+        this.data.find(x => x._id === obj._id).folder_name = newName;     // Changing the folder name in data variable that we used.
       }
     });
 
@@ -396,10 +399,10 @@ export class DashboardComponent implements OnInit {
 
   async createFolder() {
     const folderName: any = document.getElementById('folder-name-input');
-    const folderDiscription: any = document.getElementById('folder-discription-input');
+    const folderdescription: any = document.getElementById('folder-description-input');
     const body = {
       folder_name: folderName.value,
-      folder_title: folderDiscription.value,
+      folder_title: folderdescription.value,
       folder_tag: 'folder_tag',
       is_nested_folder: false
     };
@@ -411,7 +414,7 @@ export class DashboardComponent implements OnInit {
       this.addNewFolder(response.content);
       // Empty the strings
       folderName.value = '';
-      folderDiscription.value = '';
+      folderdescription.value = '';
       // Closing popup
       $('#newCard').modal('hide');
     } else {

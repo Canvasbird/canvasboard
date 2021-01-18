@@ -114,4 +114,15 @@
   font-weight: bold;
 }
 
+.block-with-username {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;       
+}
 
+.block-with-username:hover {
+  overflow: visible;
+  word-break: break-all;
+  white-space: normal;
+  text-overflow: clip;
+}

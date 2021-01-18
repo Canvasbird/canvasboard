@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FileExplorerComponent} from './components/file-explorer/file-explorer.component';
-import { BoardComponent } from './components/board/board.component';
+// import { BoardComponent } from './components/board/board.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
 
 // guard
@@ -55,11 +55,11 @@ const routes: Routes = [
     component: FileExplorerComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'board',
-    component: BoardComponent,
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'board',
+  //   component: BoardComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'folder/:id',
     component: FilesComponent,
@@ -70,7 +70,12 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'creative-board',
+    path: ':folderId/creative-board',
+    component: NewBoardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'creative-board/:fileId',
     component: NewBoardComponent,
     canActivate: [AuthGuard]
   },
@@ -81,7 +86,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
