@@ -52,6 +52,7 @@ export class NewBoardComponent implements OnInit {
     if (this.router.getCurrentNavigation() !== null) {
       if (this.router.getCurrentNavigation().extras.state !== undefined) {
         this.fileData = this.router.getCurrentNavigation().extras.state.fileData;
+        this.folderID = this.router.getCurrentNavigation().extras.state.folderId;
       }
     }
     // Initialize the Map
@@ -605,7 +606,8 @@ export class NewBoardComponent implements OnInit {
       this.fileID = (await this.apiService.createBoardData(createDataJson))._id;
 
     }
-
+    // this.addToast('testing');
+    $('#saveToast').toast('show');
   }
 
   async retrieveData(fileID) {
@@ -639,6 +641,26 @@ export class NewBoardComponent implements OnInit {
       prevId = element.cardID;
     });
   }
+
+  // Notification Code
+  addToast = (body) => {
+    $('#toasts').append(`
+    <!-- Toast tag -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="../../../assets/home/logo_bw.png" width="38" height="40" class="d-inline-block align-top mr-1" alt="CB" loading="lazy">
+        <strong class="me-auto">Canvasboard Beta</strong>
+        <small class="text-muted">just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        ${body}
+      </div>
+    </div>
+    `);
+  }
+
+
   // H1 Tag
   addH1TagHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`

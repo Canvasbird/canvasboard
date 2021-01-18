@@ -32,7 +32,7 @@ export class FilesComponent implements OnInit {
     this.gettingData(this.activateID.id);
     $(`#launchBoard`).click(() => {
 
-      this.router.navigate([`${this.activateID.id}/creative-board`], {state: {fileData: null}});
+      this.router.navigate([`${this.activateID.id}/creative-board`], { state: { fileData: null, folderId: this.activateID.id}});
     });
   }
   // GETING USER FILES
@@ -57,11 +57,11 @@ export class FilesComponent implements OnInit {
     $('#user-files').append(`
       <div class="file-box shadow" id=${data._id}>
       <div class="icons-box">
-        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-folder2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958
-           0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5
-           1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5
-           0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-files" viewBox="0 0 16 16">
+          <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0
+          0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1
+          1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/
+          >
         </svg>
         <svg id=delete-${data._id} width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
          xmlns="http://www.w3.org/2000/svg" style="float: right;">
@@ -134,7 +134,7 @@ export class FilesComponent implements OnInit {
         skipLocationChange: false,
         fragment: 'top'
       };
-      this.router.navigate([`creative-board/${data._id}`], {state: {fileData: dataToSend}});
+      this.router.navigate([`creative-board/${data._id}`], { state: { fileData: dataToSend, folderId: this.activateID.id}});
     });
 
     // Open delete popup
