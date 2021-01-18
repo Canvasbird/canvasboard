@@ -576,7 +576,7 @@ export class NewBoardComponent implements OnInit {
     });
     ids.forEach((key) => {
       const ele: NewBoardCard = this.userBlocks.get(key);
-      if (ele.getpluginType() === 'editor') {
+      if (ele.getpluginType() === 'editor' || ele.getpluginType() === undefined) {
         ele.setContent($(`#original-${key}`).html());
       }
       ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
@@ -630,7 +630,7 @@ export class NewBoardComponent implements OnInit {
         $(`#cb-box-1-${prevId}`).after(this.blockFunction(element.cardID));
         this.addToolBox(element.cardID, 1);
       }
-      if (element.pluginType === 'editor') {
+      if (element.pluginType === 'editor' || element.pluginType === undefined) {
       $(`#original-${element.cardID}`).html(element.content);
       } else if (element.pluginType === 'embed') {
         this.AddEmbedComponent.addEmbedToolBox(element.cardID, element.content);
