@@ -8,7 +8,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FileExplorerComponent} from './components/file-explorer/file-explorer.component';
 // import { BoardComponent } from './components/board/board.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
-
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
 // guard
 import { AuthGuard, LoginGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
@@ -29,6 +30,16 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'verify',
+    component: VerifyCodeComponent,
     canActivate: [LoginGuard]
   },
   {
