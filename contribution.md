@@ -34,14 +34,14 @@ Unsure where to begin contributing to Canvasboard? Start by browsing issues labe
 - [Good first issue](https://github.com/Canvasbird/canvasboard/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues are generally straightforward to complete.
 - [Help wanted](https://github.com/Canvasbird/canvasboard/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) issues are problems we would like the community to help us with regardless of complexity.
 
-If you're looking to make a code change, see how to set up your environment for [local development](#set-up-the-development-environment) and [work on an issue](#work-on-an-issue-👨‍💻👩‍💻).
+If you're looking to make a code change, see how to set up your environment for [local development](#set-up-the-development-environment) and [work on an issue](#work-on-an-issue).
 
 When you're ready to contribute, it's time to [create a pull request](#create-a-pull-request).
 
 
-## Set up the development environment 🖥️
+## Set up the development environment 
 
-For setting up the Canvasboard project on your local:
+🖥️For setting up the Canvasboard project on your local:
 
 1. Fork the repo by clicking on the `fork` icon.
 
@@ -64,10 +64,10 @@ For setting up the Canvasboard project on your local:
 Yayy!🌼 Your application is served locally in localhost:4200🚀
 
 
-## Work on an issue 👨‍💻👩‍💻
+## Work on an issue 
 
 After you set up the Canvasboard set up on your local, you can choose any of the issues from
-[Issue tracker](https://github.com/Canvasbird/canvasboard/issues) of the repo to work on.
+[Issue tracker](https://github.com/Canvasbird/canvasboard/issues) of the repo to work on.👨‍💻👩‍💻
 
 For working on an issue:
 
@@ -84,9 +84,9 @@ use "fix_graph_plugin" as the branch name
   your local by running the server.
 
 
-## Create a Pull Request 🚀
+## Create a Pull Request 
 
-After you are done with all the changes and have tested it, follow these steps for creating a Pull Request:
+🚀After you are done with all the changes and have tested it, follow these steps for creating a Pull Request:
 
 1. Add the changes to the staging using
   `git add .`
