@@ -34,7 +34,7 @@ Unsure where to begin contributing to Canvasboard? Start by browsing issues labe
 - [Good first issue](https://github.com/Canvasbird/canvasboard/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) issues are generally straightforward to complete.
 - [Help wanted](https://github.com/Canvasbird/canvasboard/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) issues are problems we would like the community to help us with regardless of complexity.
 
-If you're looking to make a code change, see how to set up your environment for [local development](#set-up-the-development-environment) and [work on an issue](#work-on-an-issue).
+If you're looking to make a code change, see how to set up your environment for [local development](#set-up-the-development-environment) and [work on an issue](#work-on-an-issue-👨‍💻👩‍💻).
 
 When you're ready to contribute, it's time to [create a pull request](#create-a-pull-request).
 
