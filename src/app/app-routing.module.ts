@@ -6,9 +6,10 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FileExplorerComponent} from './components/file-explorer/file-explorer.component';
-import { BoardComponent } from './components/board/board.component';
+// import { BoardComponent } from './components/board/board.component';
 import { AssignmentComponent } from './components/assignment/assignment.component';
-
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
 // guard
 import { AuthGuard, LoginGuard } from './shared/auth.guard';
 import { NewBoardComponent } from './components/new-board/new-board.component';
@@ -29,6 +30,16 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'verify',
+    component: VerifyCodeComponent,
     canActivate: [LoginGuard]
   },
   {
@@ -55,11 +66,11 @@ const routes: Routes = [
     component: FileExplorerComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'board',
-    component: BoardComponent,
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'board',
+  //   component: BoardComponent,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: 'folder/:id',
     component: FilesComponent,
@@ -70,7 +81,12 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'creative-board',
+    path: ':folderId/creative-board',
+    component: NewBoardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'creative-board/:fileId',
     component: NewBoardComponent,
     canActivate: [AuthGuard]
   },
@@ -81,7 +97,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

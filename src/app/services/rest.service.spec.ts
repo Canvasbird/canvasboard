@@ -11,7 +11,7 @@ describe('RestService', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule, RouterTestingModule ]
     });
-    restService = TestBed.get(RestService);
+    restService = TestBed.inject(RestService);
   });
 
   it('should be created', () => {
