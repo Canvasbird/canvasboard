@@ -16,6 +16,7 @@ import { NewBoardComponent } from './components/new-board/new-board.component';
 import { ContributionComponent } from './components/contribution/contribution.component';
 import { FilesComponent } from './components/files/files.component';
 import { ClockComponent } from './plugins/clock/clock.component';
+import { DemoComponent } from './components/demo/demo.component';
 const routes: Routes = [
   {
     path: '',
@@ -89,6 +90,10 @@ const routes: Routes = [
     path: 'creative-board/:fileId',
     component: NewBoardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'demo',
+    component: DemoComponent
   },
   {
     path: '**',
