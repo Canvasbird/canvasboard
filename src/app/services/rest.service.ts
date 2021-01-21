@@ -220,7 +220,17 @@ export class RestService {
 
     // This function get a random number within the range of the length of the dailyQuote array.
     function randomQuote(min: number, max: number) {
-      return Math.floor(Math.random() * (max - min) + min);
+      // return Math.floor(Math.random() * (max - min) + min);
+      // Create byte array and fill with 1 random number
+      const byteArray = new Uint8Array(1);
+      window.crypto.getRandomValues(byteArray);
+
+      const range = max - min + 1;
+      const maxRange = 256;
+      if (byteArray[0] >= Math.floor(maxRange / range) * range) {
+        return randomQuote(min, max);
+      }
+      return min + (byteArray[0] % range);
     }
     // This returns one key-value pair from the array of objects
     return this.dummyQuote[randomQuote(0, 5)];
