@@ -36,4 +36,14 @@ export class AddEmbedComponent {
     `);
     }
   }
+
+  addEmbedHtmlToolBox = (uid, html: string) => {
+    if (html !== '') {
+      $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
+      $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
+      <!-- Embed Html -->
+      ${html}
+    `);
+    }
+  }
 }

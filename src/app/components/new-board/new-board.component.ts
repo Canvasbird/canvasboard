@@ -37,6 +37,7 @@ import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 import { NewBoard } from 'src/interfaces/new-board';
 import { each, param } from 'jquery';
+import { TwitterData } from 'src/interfaces/twitterData';
 
 declare var $: any;
 
@@ -381,6 +382,15 @@ export class NewBoardComponent implements OnInit {
           }
           break;
         }
+        case 20: {
+          if (embedUrl !== null && embedUrl !== undefined){
+            $(`#${id}`).append(this.blockFunction(uid));
+            this.AddEmbedComponent.addEmbedHtmlToolBox(uid, embedUrl);
+            pluginType = 'tweet';
+            newBoardCard.setContent(embedUrl);
+          }
+          break;
+        }
         default:
           break;
       }
@@ -623,7 +633,7 @@ export class NewBoardComponent implements OnInit {
     this.fileName = data.file_name;
     document.getElementById('title').innerText = this.fileName;
     let prevId = '';
-    data.data.forEach((element, index) => {
+    data.data.forEach( (element, index) => {
       this.userBlocks.set(element.cardID, NewBoardCard.fromData(element));
       if (index === 0) {
         $(`#sub-title`).after(this.blockFunction(element.cardID));
@@ -636,6 +646,8 @@ export class NewBoardComponent implements OnInit {
       $(`#original-${element.cardID}`).html(element.content);
       } else if (element.pluginType === 'embed') {
         this.AddEmbedComponent.addEmbedToolBox(element.cardID, element.content);
+      } else if (element.pluginType === 'tweet'){
+        this.AddEmbedComponent.addEmbedHtmlToolBox(element.cardID, element.content);
       }
       $(`#cb-box-2-${element.cardID}`).addClass(element.classList);
       prevId = element.cardID;
@@ -807,5 +819,12 @@ export class NewBoardComponent implements OnInit {
   // Adding Clock
   cbToolboxClock = () => {
     this.addBlockEditor('main-box', 18, false, 'plugins/clock');
+  }
+
+  // Adding Twitter
+  cbToolboxTwitter = async () => {
+    const response = await this.apiService.getTweet($('#twitterEmbedURL').val());
+    this.addBlockEditor('main-box', 20, false, response.html);
+
   }
 }

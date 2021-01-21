@@ -5,10 +5,16 @@ import { environment } from 'src/environments/environment';
 import { DailyQuote } from 'src/interfaces/daily-quote';
 import { NewBoard } from 'src/interfaces/new-board';
 import Swal from 'sweetalert2';
+import { TwitterData } from 'src/interfaces/twitterData';
+import { ConstantPool } from '@angular/compiler';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
+declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class RestService {
 
   xAuthToken = null;
@@ -25,6 +31,7 @@ export class RestService {
   resetPasswordEmailResponse = null;
   newPasswordResponse = null;
   dummyQuote: DailyQuote[] = [];
+  getTwitterResponse = null;
 
 
   constructor(private http: HttpClient, public router: Router) { }
@@ -233,7 +240,7 @@ export class RestService {
     }
   }
 
-  // ....................... SEDN NEW PASSWORD DETAILS ...................................
+  // ....................... SEND NEW PASSWORD DETAILS ...................................
   async sendNewPasswordDetails(body) {
     try {
       await this.http.post(`https://api.canvasboard.live/api/v1/reset`, body).toPromise()
@@ -246,5 +253,30 @@ export class RestService {
       Swal.fire({ icon: 'error', text: 'Something went wrong! Please try again. ' });
     }
   }
+
+  // ........................... GET TWITTER EMBED........................................
+  async getTweet(tweetUrl) {
+    // this.xAuthToken = localStorage.getItem('token');
+    this.getTwitterResponse  = await $.ajax({
+      url: 'https://publish.twitter.com/oembed?url=' + tweetUrl,
+      dataType: 'jsonp',
+      success: (response) => {
+        return response;
+      }
+    });
+    return this.getTwitterResponse ;
+    // await this.http.get(`https://publish.twitter.com/oembed?url=${tweetUrl}`, {
+    //   headers: new HttpHeaders({
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    //     'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Access-Control-Allow-Origin',
+    //     'Access-Control-Allow-Credentials': 'true',
+    //     'x-frame-options': 'SAMEORIGIN'
+    //   })
+    // }).toPromise().then((response: TwitterData) => {
+    //     this.getTwitterResponse = response.html;
+    //   });
+    // return this.getTwitterResponse;
 }
 
+}
