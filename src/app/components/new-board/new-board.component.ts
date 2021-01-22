@@ -272,7 +272,7 @@ export class NewBoardComponent implements OnInit {
         case 3: {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddCanvasBoard.addCanvasBoardToolbox(uid);
-          pluginType = 'editor';
+          pluginType = 'board';
           break;
         }
         case 4: {
@@ -589,6 +589,8 @@ export class NewBoardComponent implements OnInit {
       const ele: NewBoardCard = this.userBlocks.get(key);
       if (ele.getpluginType() === 'editor' || ele.getpluginType() === undefined) {
         ele.setContent($(`#original-${key}`).html());
+      } else if (ele.getpluginType() === 'board'){
+        ele.setContent(this.AddCanvasBoard.getContent(ele.cardID));
       }
       ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
       data.push(ele);
@@ -644,6 +646,8 @@ export class NewBoardComponent implements OnInit {
       }
       if (element.pluginType === 'editor' || element.pluginType === undefined) {
       $(`#original-${element.cardID}`).html(element.content);
+      } else if (element.pluginType === 'board'){
+        this.AddCanvasBoard.setContent(element.cardID, element.content);
       } else if (element.pluginType === 'embed') {
         this.AddEmbedComponent.addEmbedToolBox(element.cardID, element.content);
       } else if (element.pluginType === 'tweet'){
