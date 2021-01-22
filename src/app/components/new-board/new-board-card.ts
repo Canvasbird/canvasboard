@@ -1,4 +1,4 @@
-export type PluginType = 'editor' | 'board' |'embed' | 'fileUpload';
+export type PluginType = 'editor' | 'board' |'embed' | 'tweet' | 'fileUpload';
 export interface NewBoardCardInterface {
     readonly cardID: number;
     oldPosition: any;
