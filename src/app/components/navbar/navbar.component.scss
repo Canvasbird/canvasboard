@@ -4,6 +4,13 @@
     }
   }
 
+  .min-text{
+    font-family: Harmattan,sans-serif;
+    font-size: 18px;
+    color: gray;
+  }
+
+
   @media only screen and (max-width: 900px) {
     .navbar-nav{
       margin-left: 0;
