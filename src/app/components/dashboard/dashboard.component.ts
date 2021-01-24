@@ -139,6 +139,32 @@ export class DashboardComponent implements OnInit {
       <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
     </div>
       `);
+      
+      //Conditions to check for the selected colour and apply the required gradient
+      if(`${obj.folder_color}` === '#ee9ca7' )
+      {
+        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #ffdde1,${obj.folder_color})`;
+        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #ffdde1, ${obj.folder_color})`;
+      }
+  
+      else if(`${obj.folder_color}` === '#96e6a1' )
+      {
+        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
+        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
+      }
+  
+      else if(`${obj.folder_color}` === '#66a6ff' )
+      {
+        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
+        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
+      }
+  
+      else if(`${obj.folder_color}` === '#274046' )
+      {
+        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
+        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
+      }
+
 
       // Click action to enter files folder
       $(`#button-${obj._id}`).click(() => {
@@ -323,6 +349,32 @@ export class DashboardComponent implements OnInit {
   <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
   </div>
     `);
+    
+    //Conditions to check for the selected colour and apply the required gradient
+    if(`${obj.folder_color}` === '#ee9ca7' )
+    {
+      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #ffdde1,${obj.folder_color})`;
+      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #ffdde1, ${obj.folder_color})`;
+    }
+
+    if(`${obj.folder_color}` === '#96e6a1' )
+    {
+      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
+      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
+    }
+
+    if(`${obj.folder_color}` === '#66a6ff' )
+    {
+      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
+      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
+    }
+
+    if(`${obj.folder_color}` === '#274046' )
+    {
+      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
+      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
+    }
+
 
     // Click action to enter files folder
     $(`#button-${obj._id}`).click(() => {
@@ -400,9 +452,11 @@ export class DashboardComponent implements OnInit {
   async createFolder() {
     const folderName: any = document.getElementById('folder-name-input');
     const folderdescription: any = document.getElementById('folder-description-input');
+    const folderColour: any = document.getElementById('folder-colour-input');
     const body = {
       folder_name: folderName.value,
       folder_title: folderdescription.value,
+      folder_color: folderColour.value,
       folder_tag: 'folder_tag',
       is_nested_folder: false
     };
@@ -415,6 +469,7 @@ export class DashboardComponent implements OnInit {
       // Empty the strings
       folderName.value = '';
       folderdescription.value = '';
+      folderColour.value = '';
       // Closing popup
       $('#newCard').modal('hide');
     } else {
@@ -432,6 +487,11 @@ export class DashboardComponent implements OnInit {
         // Here we store a random dummyQuote to the quote property.
         this.quote = this.apiService.getDummyQuote();
       });
+  }
+
+  //Assign the selected colour to input value
+  assignColour(colour) {
+    (document.getElementById('folder-colour-input') as HTMLInputElement).value = colour;
   }
 
   async renameFolder(obj, newName) {
