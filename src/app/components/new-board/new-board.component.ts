@@ -625,7 +625,8 @@ export class NewBoardComponent implements OnInit {
 
   // Adding Youtube
   cbToolboxYoutube = () => {
-    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddEmbedComponent, embedUrl: $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/') });
+    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddEmbedComponent,
+    embedUrl: $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/') });
   }
 
   // Adding Clock
