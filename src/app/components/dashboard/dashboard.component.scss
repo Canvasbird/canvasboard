@@ -89,8 +89,12 @@
 .folder_colour{
   margin:0px 7px;
   width:50px;
-  border:0px;
+  border:none;
   border-radius: 8px;
+}
+
+.folder_colour:focus{
+  border:thin solid black
 }
 
 .quote, .container:after{
