@@ -1,10 +1,12 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddH3Component {
+export class AddH3Component implements PluginComponent{
   constructor() {}
 
   // h3 tag
-  addH3TagHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- h3 tag -->
     <div class="tool box3 m-1" title="H3">
@@ -23,13 +25,13 @@ export class AddH3Component {
     `);
   }
 
-  addH3TagClickFunction = (uid) => {
+  addClickFunction = (uid) => {
     $(`#add-h3-box2-${uid}`).click(() => {
       $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
     });
   }
 
-  addH3TagToolBox = (uid) => {
+  addToolBox = (uid) => {
     $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
   }
 }

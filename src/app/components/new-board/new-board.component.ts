@@ -7,7 +7,14 @@ import { RestService } from '../../services/rest.service';
 import { Chart } from 'chart.js';
 import Swal from 'sweetalert2';
 import { BrowserStack } from 'protractor/built/driverProviders';
-import { NewBoardCard, PluginType } from './new-board-card';
+import { NewBoardCard } from './new-board-card';
+import { NewBoard } from 'src/interfaces/new-board';
+import { each, param } from 'jquery';
+import { TwitterData } from 'src/interfaces/twitterData';
+import { AddBlockEditorParameters } from 'src/interfaces/add-block-parameters';
+import { PluginComponent } from 'src/interfaces/plugin-component';
+import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
+import { PluginType } from 'src/interfaces/plugin-type';
 
 // Importing Plugins
 import { AddH1Component } from '../../plugins/cb-h1';
@@ -35,9 +42,8 @@ import { AddBottomComponent } from '../../plugins/bottom';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
-import { NewBoard } from 'src/interfaces/new-board';
-import { each, param } from 'jquery';
-import { TwitterData } from 'src/interfaces/twitterData';
+import { AddTwitterComponent } from 'src/app/plugins/twitter';
+
 
 declare var $: any;
 
@@ -83,6 +89,7 @@ export class NewBoardComponent implements OnInit {
     this.AddDeleteComponent = new AddDeleteComponent();
     this.AddEmbedComponent = new AddEmbedComponent();
     this.AddPdfRenderComponent = new AddPdfRenderComponent();
+    this.AddTwitterComponent = new AddTwitterComponent();
     this.reader = new FileReader();
 
 
@@ -99,30 +106,31 @@ export class NewBoardComponent implements OnInit {
   currentChartID: string;
   userBlocks: Map<string, NewBoardCard>;
   // Initializing plugins
-  AddH1Component: any;
-  AddH2Component: any;
-  AddH3Component: any;
-  AddParaComponent: any;
-  AddRedBackgroundComponent: any;
-  AddBlueBackgroundComponent: any;
-  AddYellowBackgroundComponent: any;
-  AddGreenBackgroundComponent: any;
-  AddClearBackgroundComponent: any;
+  AddH1Component: PluginComponent;
+  AddH2Component: PluginComponent;
+  AddH3Component: PluginComponent;
+  AddParaComponent: PluginComponent;
+  AddRedBackgroundComponent: PluginComponent;
+  AddBlueBackgroundComponent: PluginComponent;
+  AddYellowBackgroundComponent: PluginComponent;
+  AddGreenBackgroundComponent: PluginComponent;
+  AddClearBackgroundComponent: PluginComponent;
   AddCanvasBoard: any;
-  AddFontMonospaceComponent: any;
-  AddFontPlayfairComponent: any;
-  AddFontKalamComponent: any;
-  AddClearFontComponent: any;
-  AddLeftAlignComponent: any;
-  AddCenterAlignComponent: any;
-  AddRightAlignComponent: any;
-  AddOrderedListComponent: any;
-  AddUnOrderedListComponent: any;
-  AddTopComponent: any;
-  AddBottomComponent: any;
-  AddDeleteComponent: any;
-  AddEmbedComponent: any;
-  AddPdfRenderComponent: any;
+  AddFontMonospaceComponent: BasePluginComponent;
+  AddFontPlayfairComponent: BasePluginComponent;
+  AddFontKalamComponent: BasePluginComponent;
+  AddClearFontComponent: BasePluginComponent;
+  AddLeftAlignComponent: PluginComponent;
+  AddCenterAlignComponent: PluginComponent;
+  AddRightAlignComponent: PluginComponent;
+  AddOrderedListComponent: PluginComponent;
+  AddUnOrderedListComponent: PluginComponent;
+  AddTopComponent: PluginComponent;
+  AddBottomComponent: PluginComponent;
+  AddDeleteComponent: PluginComponent;
+  AddEmbedComponent: PluginComponent;
+  AddPdfRenderComponent: PluginComponent;
+  AddTwitterComponent: PluginComponent;
 
   uniqueChartID = (() => {
     let id = 0;
@@ -131,39 +139,16 @@ export class NewBoardComponent implements OnInit {
     };
   })();
 
-  // Retrieve board data from Api
-  async;
-
 
   ngOnInit() {
 
     // sortable-js
     const mainEl = document.getElementById('main-box');
-    // let oldIdx: number;
-    // let newIdx: number;
+
     const sortable = new Sortable(mainEl, {
       handle: '.dragHandle',
       animation: 150,
       easing: 'cubic-bezier(1, 0, 0, 1)',
-      // onStart(evt) {
-      //   oldIdx = evt.oldIndex;  // element index within parent
-      // },
-      // onEnd: (evt) => {
-      //   newIdx = evt.newIndex - 2;
-
-      //   if (oldIdx === 1) {
-      //     if (this.userBlocks[oldIdx - 1].cardID === evt.clone.id.substring(9)) {
-      //       this.arrayMoveMutate(this.userBlocks, 0, newIdx);
-      //       this.userBlocks[0].updatePosition(0, newIdx);
-      //     }
-
-      //   } else {
-      //     if (this.userBlocks[oldIdx - 2].cardID === evt.clone.id.substring(9)) {
-      //       this.arrayMoveMutate(this.userBlocks, oldIdx - 2, newIdx);
-      //       this.userBlocks[oldIdx - 2].updatePosition(oldIdx - 2, newIdx);
-
-      //     }
-      //   }}
 
     });
 
@@ -190,7 +175,7 @@ export class NewBoardComponent implements OnInit {
     } else if (this.fileID !== undefined) {
       this.retrieveData(this.fileID);
     } else {
-      this.addBlockEditor('sub-title', 0);
+      this.addBlockEditor({ id: 'sub-title', pluginComponent: null });
     }
   }
 
@@ -245,154 +230,49 @@ export class NewBoardComponent implements OnInit {
   }
 
   // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
-  addBlockEditor = (id, checker, addBefore = false, embedUrl = null) => {
+  addBlockEditor = ({ id, pluginComponent = null, pType = 'editor', addBefore = false, embedUrl = null }: AddBlockEditorParameters) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
 
       const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.size);
-      let pluginType: PluginType;
+      let pluginType: PluginType = pType;
 
-      switch (checker) {
-        case 0: {
+      if (pluginComponent !== null) {
+
+        if (pluginComponent === this.AddTopComponent || pluginComponent === this.AddBottomComponent) {
+
           addBefore ? $(`#${id}`).before(this.blockFunction(uid)) : $(`#${id}`).after(this.blockFunction(uid));
 
-          break;
-        }
-        case 1: {
-          addBefore ? $(`#cb-box-1-${id}`).before(this.blockFunction(uid)) : $(`#cb-box-1-${id}`).after(this.blockFunction(uid));
-          break;
-        }
-        case 2: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddH1Component.addH1TagToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 3: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddCanvasBoard.addCanvasBoardToolbox(uid);
-          pluginType = 'board';
-          break;
-        }
-        case 4: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddH2Component.addH2TagToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 5: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddH3Component.addH3TagToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 6: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddParaComponent.addParaTagToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 7: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddRedBackgroundComponent.addRedBackgroundToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 8: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddBlueBackgroundComponent.addBlueBackgroundToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 9: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddYellowBackgroundComponent.addYellowBackgroundToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 10: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddGreenBackgroundComponent.addGreenBackgroundToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 11: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddFontMonospaceComponent.addMonospaceFontToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 12: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddFontPlayfairComponent.addPlayfairFontToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 17: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddFontKalamComponent.addKalamFontToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 13: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddClearFontComponent.addClearFontToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 14: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddLeftAlignComponent.addLeftAlignTextToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 15: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddCenterAlignComponent.addCenterAlignTextToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 16: {
-          $(`#${id}`).append(this.blockFunction(uid));
-          this.AddRightAlignComponent.addRightAlignTextToolBox(uid);
-          pluginType = 'editor';
-          break;
-        }
-        case 19: {
-          // PDF Render
+        } else if (pluginComponent === this.AddPdfRenderComponent) {
+
           $('#pdfFile').change((event) => {
             $(`#${id}`).append(this.blockFunction(uid));
-            this.AddPdfRenderComponent.addPdfRenderToolBox(uid, event.target.files[0], this.reader);
+            this.AddPdfRenderComponent.addToolBox(uid, event.target.files[0], this.reader);
           });
           pluginType = 'fileUpload';
-          break;
-        }
-        case 18: {
-          if (embedUrl === null) {
+
+        } else if (pluginComponent === this.AddEmbedComponent) {
+
           $(`#${id}`).append(this.blockFunction(uid));
-          this.AddEmbedComponent.addEmbedToolBox(uid, $('#embedURL').val());
+          this.AddEmbedComponent.addToolBox(uid, embedUrl);
           pluginType = 'embed';
-          newBoardCard.setContent($('#embedURL').val());
-          } else {
-            $(`#${id}`).append(this.blockFunction(uid));
-            this.AddEmbedComponent.addEmbedToolBox(uid, embedUrl);
-            pluginType = 'embed';
-            newBoardCard.setContent(embedUrl);
-          }
-          break;
+          newBoardCard.setContent(embedUrl);
+
+        } else if (pluginComponent === this.AddTwitterComponent) {
+          $(`#${id}`).append(this.blockFunction(uid));
+          this.AddTwitterComponent.addToolBox(uid, embedUrl);
+          pluginType = 'tweet';
+          newBoardCard.setContent(embedUrl);
+
+        } else {
+          $(`#${id}`).append(this.blockFunction(uid));
+          pluginComponent.addToolBox(uid);
+
         }
-        case 20: {
-          if (embedUrl !== null && embedUrl !== undefined){
-            $(`#${id}`).append(this.blockFunction(uid));
-            this.AddEmbedComponent.addEmbedHtmlToolBox(uid, embedUrl);
-            pluginType = 'tweet';
-            newBoardCard.setContent(embedUrl);
-          }
-          break;
-        }
-        default:
-          break;
+      } else {
+
+        addBefore ? $(`#${id}`).before(this.blockFunction(uid)) : $(`#${id}`).after(this.blockFunction(uid));
       }
 
       // Adding listener to current card
@@ -411,7 +291,7 @@ export class NewBoardComponent implements OnInit {
       this.userBlocks.set(uid, newBoardCard);
       // this.userBlocks.push(newBoardCard);
 
-      this.addToolBox(uid, checker);
+      this.addToolBar(uid);
 
       // // Add Canvasboard Tag
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
@@ -453,8 +333,8 @@ export class NewBoardComponent implements OnInit {
     }
   }
 
-  addToolBox(uid, checker) {
-    // hiding and showing the TOOLBOX
+  addToolBar(uid) {
+    // hiding and showing the TOOLBAR
     $(`#show-more-toolbox-${uid}`).hover(
       // display block
       () => {
@@ -467,72 +347,72 @@ export class NewBoardComponent implements OnInit {
     );
 
     // Add Delete HTML and click Function
-    this.AddDeleteComponent.addDeleteTagHTMLCode(uid);
-    this.AddDeleteComponent.addDeleteTagClickFunction(uid, checker);
+    this.AddDeleteComponent.addHTMLCode(uid);
+    this.AddDeleteComponent.addClickFunction(uid);
 
     // Adding red background toolbox
-    this.AddRedBackgroundComponent.addRedBackgroundHTMLCode(uid);
-    this.AddRedBackgroundComponent.addRedBackgroundClickFunction(uid);
+    this.AddRedBackgroundComponent.addHTMLCode(uid);
+    this.AddRedBackgroundComponent.addClickFunction(uid);
     // Adding green background toolbox
-    this.AddGreenBackgroundComponent.addGreenBackgroundHTMLCode(uid);
-    this.AddGreenBackgroundComponent.addGreenBackgroundClickFunction(uid);
+    this.AddGreenBackgroundComponent.addHTMLCode(uid);
+    this.AddGreenBackgroundComponent.addClickFunction(uid);
 
     // Adding yellow background toolbox
-    this.AddYellowBackgroundComponent.addYellowBackgroundHTMLCode(uid);
-    this.AddYellowBackgroundComponent.addYellowBackgroundClickFunction(uid);
+    this.AddYellowBackgroundComponent.addHTMLCode(uid);
+    this.AddYellowBackgroundComponent.addClickFunction(uid);
 
     // Adding blue background toolbox
-    this.AddBlueBackgroundComponent.addBlueBackgroundHTMLCode(uid);
-    this.AddBlueBackgroundComponent.addBlueBackgroundClickFunction(uid);
+    this.AddBlueBackgroundComponent.addHTMLCode(uid);
+    this.AddBlueBackgroundComponent.addClickFunction(uid);
 
     // Adding clear background toolbox
-    this.AddClearBackgroundComponent.addClearBackgroundHTMLCode(uid);
-    this.AddClearBackgroundComponent.addClearBackgroundClickFunction(uid);
+    this.AddClearBackgroundComponent.addHTMLCode(uid);
+    this.AddClearBackgroundComponent.addClickFunction(uid);
 
     // Add OrderedList HTML and click Function
-    this.AddOrderedListComponent.addOrderedListTagHTMLCode(uid);
-    this.AddOrderedListComponent.addOrderedListTagClickFunction(uid);
+    this.AddOrderedListComponent.addHTMLCode(uid);
+    this.AddOrderedListComponent.addClickFunction(uid);
 
     // Add UnOrderedList HTML and click Function
-    this.AddUnOrderedListComponent.addUnOrderedListTagHTMLCode(uid);
-    this.AddUnOrderedListComponent.addUnOrderedListTagClickFunction(uid);
+    this.AddUnOrderedListComponent.addHTMLCode(uid);
+    this.AddUnOrderedListComponent.addClickFunction(uid);
 
     // Add Top HTML and click Function
-    this.AddTopComponent.addTopTagHTMLCode(uid);
-    this.AddTopComponent.addTopTagClickFunction(uid, this.addBlockEditor, checker);
+    this.AddTopComponent.addHTMLCode(uid);
+    this.AddTopComponent.addClickFunction(uid, this.addBlockEditor);
 
     // Add Bottom HTML and click Function
-    this.AddBottomComponent.addBottomTagHTMLCode(uid);
-    this.AddBottomComponent.addBottomTagClickFunction(uid, this.addBlockEditor);
+    this.AddBottomComponent.addHTMLCode(uid);
+    this.AddBottomComponent.addClickFunction(uid, this.addBlockEditor);
 
     // Add H1 HTML and click Function
-    this.AddH1Component.addH1TagHTMLCode(uid);
-    this.AddH1Component.addH1TagClickFunction(uid);
+    this.AddH1Component.addHTMLCode(uid);
+    this.AddH1Component.addClickFunction(uid);
 
     // Adding H2 HTML and click function
-    this.AddH2Component.addH2TagHTMLCode(uid);
-    this.AddH2Component.addH2TagClickFunction(uid);
+    this.AddH2Component.addHTMLCode(uid);
+    this.AddH2Component.addClickFunction(uid);
 
     // Adding H3 Tags
-    this.AddH3Component.addH3TagHTMLCode(uid);
-    this.AddH3Component.addH3TagClickFunction(uid);
+    this.AddH3Component.addHTMLCode(uid);
+    this.AddH3Component.addClickFunction(uid);
 
     // Adding para tags
-    this.AddParaComponent.addParaTagHTMLCode(uid);
-    this.AddParaComponent.addParaTagClickFunction(uid);
+    this.AddParaComponent.addHTMLCode(uid);
+    this.AddParaComponent.addClickFunction(uid);
 
 
     // Adding Left Align HTML and click Function
-    this.AddLeftAlignComponent.addLeftAlignTagHTMLCode(uid);
-    this.AddLeftAlignComponent.addLeftAlignTagClickFunction(uid);
+    this.AddLeftAlignComponent.addHTMLCode(uid);
+    this.AddLeftAlignComponent.addClickFunction(uid);
 
     // Adding Center Align HTML and click Function
-    this.AddCenterAlignComponent.addCenterAlignTagHTMLCode(uid);
-    this.AddCenterAlignComponent.addCenterAlignTagClickFunction(uid);
+    this.AddCenterAlignComponent.addHTMLCode(uid);
+    this.AddCenterAlignComponent.addClickFunction(uid);
 
     // Adding Right Align HTML and click Function
-    this.AddRightAlignComponent.addRightAlignTagHTMLCode(uid);
-    this.AddRightAlignComponent.addRightAlignTagClickFunction(uid);
+    this.AddRightAlignComponent.addHTMLCode(uid);
+    this.AddRightAlignComponent.addClickFunction(uid);
 
   }
 
@@ -563,35 +443,34 @@ export class NewBoardComponent implements OnInit {
     return !!pattern.test(str);
   }
 
-  arrayMoveMutate = (array, from, to) => {
-    const startIndex = from < 0 ? array.length + from : from;
 
-    if (startIndex >= 0 && startIndex < array.length) {
-      const endIndex = to < 0 ? array.length + to : to;
-
-      const [item] = array.splice(from, 1);
-      array.splice(endIndex, 0, item);
-    }
-  }
-  // Save board data
   async saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
-    this.fileName = boardTitle;
-    const data = [];
+    this.fileName = boardTitle; // Board Title
 
-    const ids = [];
+    const data = []; // Array of card Data
+
+    const ids = []; // ID's Array for Order
+
+    // Retrieve Order of IDs of cards
     $('#main-box>div').each(function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         ids.push($(this).prop('id').substring(9));
       }
     });
+
+    // Push Data of Each Card into data Array
     ids.forEach((key) => {
       const ele: NewBoardCard = this.userBlocks.get(key);
+
+      // For Editor Save Html Data which is Text
       if (ele.getpluginType() === 'editor' || ele.getpluginType() === undefined) {
         ele.setContent($(`#original-${key}`).html());
-      } else if (ele.getpluginType() === 'board'){
+      } else if (ele.getpluginType() === 'board') {
+        // For Board Save FabricJS object data
         ele.setContent(this.AddCanvasBoard.getContent(ele.cardID));
       }
+      // Save Class List of each Card
       ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
       data.push(ele);
     });
@@ -618,14 +497,13 @@ export class NewBoardComponent implements OnInit {
       this.fileID = (await this.apiService.createBoardData(createDataJson))._id;
 
     }
-    // this.addToast('testing');
+
+    // Save Notification
     $('#saveToast').toast('show');
   }
-
   async retrieveData(fileID) {
     const response = await this.apiService.getBoardData(fileID);
     const boardData = await response.content;
-    // console.log(boardData);
     this.populateData(boardData);
   }
 
@@ -633,28 +511,54 @@ export class NewBoardComponent implements OnInit {
   populateData(data: NewBoard | Params) {
     this.fileTag = data.file_tag;
     this.fileName = data.file_name;
-    document.getElementById('title').innerText = this.fileName;
-    let prevId = '';
-    data.data.forEach( (element, index) => {
+    document.getElementById('title').innerText = this.fileName; // Set Title
+    let prevId = ''; // Previous Card ID
+    data.data.forEach((element, index) => {
+
+      // Add Cards to CardsMap
       this.userBlocks.set(element.cardID, NewBoardCard.fromData(element));
+
+      // First Card add below sub-title Element else after Previous Card
       if (index === 0) {
         $(`#sub-title`).after(this.blockFunction(element.cardID));
-        this.addToolBox(element.cardID, 0);
       } else {
         $(`#cb-box-1-${prevId}`).after(this.blockFunction(element.cardID));
-        this.addToolBox(element.cardID, 1);
       }
-      if (element.pluginType === 'editor' || element.pluginType === undefined) {
-      $(`#original-${element.cardID}`).html(element.content);
-      } else if (element.pluginType === 'board'){
-        this.AddCanvasBoard.setContent(element.cardID, element.content);
-      } else if (element.pluginType === 'embed') {
-        this.AddEmbedComponent.addEmbedToolBox(element.cardID, element.content);
-      } else if (element.pluginType === 'tweet'){
-        this.AddEmbedComponent.addEmbedHtmlToolBox(element.cardID, element.content);
+
+      // Add ToolBar
+      this.addToolBar(element.cardID);
+
+      // Add Cards according to Plugin Type
+      switch (element.pluginType){
+        case 'editor' || undefined : {
+          $(`#original-${element.cardID}`).html(element.content);
+          break;
+        }
+        case 'board': {
+          this.AddCanvasBoard.setContent(element.cardID, element.content);
+          break;
+        }
+        case 'embed': {
+          this.AddEmbedComponent.addToolBox(element.cardID, element.content);
+          break;
+        }
+        case 'tweet': {
+          this.AddTwitterComponent.addToolBox(element.cardID, element.content);
+          break;
+        }
+        default: {
+          $(`#original-${element.cardID}`).html(element.content);
+        }
       }
+
+      // Add Class list to the card
       $(`#cb-box-2-${element.cardID}`).addClass(element.classList);
+
+      // Change CardID to previous CardID
       prevId = element.cardID;
+
+      // Adding listener to current card
+      $(`#original-${element.cardID}`).click(() => { this.currentChartID = element.cardID; });
     });
   }
 
@@ -677,29 +581,6 @@ export class NewBoardComponent implements OnInit {
   }
 
 
-  // H1 Tag
-  addH1TagHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
-    <!-- H1 tag -->
-    <div class="tool box1 m-1">
-      <button class="btn btn-light" id="add-h1-box2-${uid}">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-h1" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M8.637
-13V3.669H7.379V7.62H2.758V3.67H1.5V13h1.258V8.728h4.62V13h1.259zm5.329 0V3.669h-1.244L10.5 5.316v1.265l2.16-1.565h.062V13h1.244z"/>
-        </svg>
-      </button>
-    </div>
-    `);
-  }
-
-  addH1TagClickFunction = (uid) => {
-    $(`#add-h1-box2-${uid}`).click(() => {
-      $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
-    });
-  }
-
   openSlideMenu = () => {
     document.getElementById('menu').style.width = '250px';
     document.getElementById('content').style.marginLeft = '250px';
@@ -709,126 +590,54 @@ export class NewBoardComponent implements OnInit {
     document.getElementById('content').style.marginLeft = '0';
   }
 
-  // H1 TAG TOOLBOX CLICK FUNCTIONALITY
-  cbToolBoxH1Tag = () => {
-    this.addBlockEditor('main-box', 2);
-  }
-  // H2 TAG TOOLBOX CLICK FUNCTIONALITY
-  cbToolboxH2Tag = () => {
-    this.addBlockEditor('main-box', 4);
-  }
-  // H3 TAG TOOLBOX CLICK FUNCTIONALITY
-  cbToolboxH3Tag = () => {
-    this.addBlockEditor('main-box', 5);
-  }
-  // Canvasboard TOOLBOX CLICK FUNCTION
-  addCanvasBoard = () => {
-    this.addBlockEditor('main-box', 3);
-  }
-  // Adding paragraph
-  cbToolboxParaTag = () => {
-    this.addBlockEditor('main-box', 6);
+    // ......................... TOOLBOX CLICK FUNCTIONALITY .........................
+  cbToolbox(pluginComponent: BasePluginComponent, pType?: PluginType, embedUrl?: string){
+    this.addBlockEditor({ id: 'main-box', pluginComponent, pType, embedUrl });
+
   }
 
   // Adding Delete
   cbToolboxDeleteTag = () => {
-    this.AddDeleteComponent.addDeleteTagToolBox(this.currentChartID);
+    this.AddDeleteComponent.addToolBox(this.currentChartID);
   }
 
   // Adding Top
   cbToolboxTopTag = () => {
-    this.AddTopComponent.addTopTagToolBox(this.currentChartID, this.addBlockEditor);
+    console.log(this.currentChartID);
+    this.AddTopComponent.addToolBox(this.currentChartID, this.addBlockEditor);
   }
 
   // Adding Bottom
   cbToolboxBottomTag = () => {
-    this.AddBottomComponent.addBottomTagToolBox(this.currentChartID, this.addBlockEditor);
-  }
-  // Adding Red background color
-  cbToolboxRedBackground = () => {
-    this.addBlockEditor('main-box', 7);
-  }
-
-  // Adding Blue background color
-  cbToolboxBlueBackground = () => {
-    this.addBlockEditor('main-box', 8);
-  }
-
-  // Adding Yellow background color
-  cbToolboxYellowBackground = () => {
-    this.addBlockEditor('main-box', 9);
-  }
-
-  // Adding Green background color
-  cbToolboxGreenBackground = () => {
-    this.addBlockEditor('main-box', 10);
-  }
-
-  // Adding Monospace font
-  cbToolboxMonospace = () => {
-    this.addBlockEditor('main-box', 11);
-  }
-
-  // Adding Playfair font
-  cbToolboxPlayfair = () => {
-    this.addBlockEditor('main-box', 12);
-  }
-
-  // Adding Kalam font
-  cbToolboxKalam = () => {
-    this.addBlockEditor('main-box', 17);
-  }
-
-  // Clearing all fonts for Roboto font
-  cbToolboxRoboto = () => {
-    this.addBlockEditor('main-box', 13);
+    this.AddBottomComponent.addToolBox(this.currentChartID, this.addBlockEditor);
   }
 
   // Clearing all fonts
   cbToolboxClearFont = () => {
-    this.AddClearFontComponent.addClearFontToolBox(this.currentChartID);
-  }
-
-  // Adding Left Align Text
-  cbToolboxLeftAlign = () => {
-    this.addBlockEditor('main-box', 14);
-  }
-
-  // Adding Center Align Text
-  cbToolboxCenterAlign = () => {
-    this.addBlockEditor('main-box', 15);
-  }
-
-  // Adding Right Align Text
-  cbToolboxRightAlign = () => {
-    this.addBlockEditor('main-box', 16);
-  }
-
-  // Adding Embed Link
-  cbToolboxEmbed = () => {
-    this.addBlockEditor('main-box', 18);
+    this.AddClearFontComponent.addToolBox(this.currentChartID);
   }
 
   // Adding PdfRender
   cbToolboxPdfRender = () => {
     $('#pdfFile').click();
-    this.addBlockEditor('main-box', 19);
+    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddPdfRenderComponent });
   }
 
   // Adding Youtube
   cbToolboxYoutube = () => {
-    this.addBlockEditor('main-box', 18, false, $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/'));
+    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddEmbedComponent,
+    embedUrl: $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/') });
   }
 
   // Adding Clock
   cbToolboxClock = () => {
-    this.addBlockEditor('main-box', 18, false, 'plugins/clock');
+    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddEmbedComponent, embedUrl: 'plugins/clock' });
   }
 
   // Adding Twitter
   cbToolboxTwitter = async () => {
     const response = await this.apiService.getTweet($('#twitterEmbedURL').val());
-    this.addBlockEditor('main-box', 20, false, response.html);
+    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddTwitterComponent, embedUrl: response.html });
 
   }
 }

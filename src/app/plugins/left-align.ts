@@ -1,9 +1,11 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddLeftAlignComponent {
+export class AddLeftAlignComponent implements PluginComponent{
   constructor() {}
     // Left Align Tag
-    addLeftAlignTagHTMLCode(uid) {
+    addHTMLCode(uid) {
 
       $(`#cb-buttons-${uid}`).append(`
       <!-- H1 tag -->
@@ -21,14 +23,14 @@ export class AddLeftAlignComponent {
       `);
     }
 
-    addLeftAlignTagClickFunction = (uid) => {
+    addClickFunction = (uid) => {
         // Adding Left Align Tag Click Function
         $(`#add-left-align-box2-${uid}`).click(() => {
           $(`#cb-box-2-${uid}`).removeClass('text-center text-right').addClass('text-left');
         });
     }
   // Left Aligned Component
-  addLeftAlignTextToolBox = (uid) => {
+  addToolBox = (uid) => {
     $(`#cb-box-2-${uid}`)
       .removeClass('text-center text-right')
       .addClass('text-left');

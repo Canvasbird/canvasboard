@@ -1,9 +1,11 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddParaComponent {
+export class AddParaComponent implements PluginComponent{
   constructor() {}
 
-  addParaTagHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- paragraph -->
     <div class="tool box4 m-1" title="Paragraph">
@@ -20,14 +22,14 @@ export class AddParaComponent {
     `);
   }
 
-  addParaTagClickFunction = (uid) => {
+  addClickFunction = (uid) => {
     // Adding Paragraphs
     $(`#add-p-box2-${uid}`).click(() => {
       $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
     });
   }
 
-  addParaTagToolBox = (uid) => {
+  addToolBox = (uid) => {
     $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
   }
 }

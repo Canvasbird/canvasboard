@@ -1,10 +1,12 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddCenterAlignComponent {
+export class AddCenterAlignComponent implements PluginComponent{
   constructor() {}
 
   // Center Align Tag
-    addCenterAlignTagHTMLCode(uid) {
+    addHTMLCode(uid) {
 
       $(`#cb-buttons-${uid}`).append(`
       <!-- Center Align tag -->
@@ -22,14 +24,14 @@ export class AddCenterAlignComponent {
       `);
     }
 
-    addCenterAlignTagClickFunction = (uid) => {
+    addClickFunction = (uid) => {
         // Adding Center Align Tag Click Function
         $(`#add-center-align-box2-${uid}`).click(() => {
           $(`#cb-box-2-${uid}`).removeClass('text-left text-right').addClass('text-center');
         });
     }
   // Center Aligned Component
-  addCenterAlignTextToolBox = (uid) => {
+  addToolBox = (uid) => {
     $(`#cb-box-2-${uid}`)
       .removeClass('text-left text-right')
       .addClass('text-center');

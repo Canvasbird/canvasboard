@@ -1,13 +1,16 @@
+import { AddBlockEditorParameters } from 'src/interfaces/add-block-parameters';
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddTopComponent {
+export class AddTopComponent implements PluginComponent {
 
   constructor() {
 
   }
 
     // Top HTML Tag
-    addTopTagHTMLCode(uid) {
+    addHTMLCode(uid) {
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- top -->
@@ -25,18 +28,16 @@ export class AddTopComponent {
     }
 
     // Top HTML Tag Click Action
-    addTopTagClickFunction = (uid, addBlockEditor, checker) => {
+    addClickFunction = (uid, addBlockEditor) => {
       // Adding click action of above button
       $(`#add-new-box-prev-${uid}`).click(() => {
-        if (checker !== 0) {
-          addBlockEditor(uid, 1, true);
-        }
+        addBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this, addBefore : true});
       });
     }
 
     // Adding Top
-    addTopTagToolBox = (uid, addBeforeBlockEditor) => {
-    addBeforeBlockEditor(uid, 1, true);
+    addToolBox = (uid, addBlockEditor) => {
+      addBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this, addBefore: true });
     }
 
 }

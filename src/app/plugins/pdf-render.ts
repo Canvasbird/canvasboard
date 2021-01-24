@@ -1,19 +1,21 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddPdfRenderComponent {
+export class AddPdfRenderComponent implements PluginComponent{
 
   constructor() {
 
   }
 
   // PdfRender HTML Tag
-  addPdfRenderTagHTMLCode(uid) {
+  addHTMLCode(uid) {
     // console.log('Calling PdfRender html');
 
     $(`#cb-buttons-${uid}`).append(`
           <!-- PdfRender button -->
             <div class="tool box1 m-1" title="PdfRender">
-              <button class="btn btn-light" id="pdf-render-cb-box1-${uid}">
+              <button class="btn btn-light" id="add-pdf-render-box2-${uid}">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi
               bi-file-earmark-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0
@@ -25,7 +27,7 @@ export class AddPdfRenderComponent {
   }
 
   // PdfRender HTML Tag Click Action
-  addPdfRenderTagClickFunction = (uid, file: string = '') => {
+  addClickFunction = (uid, file: string = '') => {
     // PdfRender button
     $(`#pdf-render-cb-box1-${uid}`).click(() => {
       if (file !== '') {
@@ -38,7 +40,7 @@ export class AddPdfRenderComponent {
   }
 
   // Adding PdfRender
-  addPdfRenderToolBox = (uid, file: File, reader: FileReader) => {
+  addToolBox = (uid, file: File, reader: FileReader) => {
 
     let result: any;
     console.log(file);
