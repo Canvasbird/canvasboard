@@ -1,10 +1,12 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddGreenBackgroundComponent {
-  constructor() {}
+export class AddGreenBackgroundComponent implements PluginComponent {
+  constructor() { }
 
   // Green background color HTML Tag
-  addGreenBackgroundHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
      <!-- Green Background color button -->
             <div class="tool box1 m-1" title="Green Background">
@@ -21,22 +23,22 @@ export class AddGreenBackgroundComponent {
   }
 
   // Green Background HTML Tag Click Action
-  addGreenBackgroundClickFunction = (uid) => {
+  addClickFunction = (uid) => {
     // Adding Green background color
     $(`#add-background-cb-green-${uid}`).click(() => {
       $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-blue cb-background-red'
-          )
-          .addClass('cb-background-green');
+        .removeClass(
+          'cb-background-yellow cb-background-blue cb-background-red'
+        )
+        .addClass('cb-background-green');
     });
   }
   // Adding Green Background color
-  addGreenBackgroundToolBox = (uid) => {
-   $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-blue cb-background-red'
-          )
-          .addClass('cb-background-green');
+  addToolBox = (uid) => {
+    $(`#cb-box-2-${uid}`)
+      .removeClass(
+        'cb-background-yellow cb-background-blue cb-background-red'
+      )
+      .addClass('cb-background-green');
   }
 }

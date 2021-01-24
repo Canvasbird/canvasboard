@@ -134,7 +134,7 @@ export class FilesComponent implements OnInit {
         skipLocationChange: false,
         fragment: 'top'
       };
-      this.router.navigate([`creative-board/${data._id}`], { state: { fileData: dataToSend, folderId: this.activateID.id}});
+      this.router.navigate([`creative-board/${data._id}`], { state: { fileData: null, folderId: this.activateID.id}});
     });
 
     // Open delete popup

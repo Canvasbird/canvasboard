@@ -1,10 +1,12 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddClearBackgroundComponent {
+export class AddClearBackgroundComponent implements PluginComponent{
   constructor() {}
 
   // Clear background color HTML Tag
-  addClearBackgroundHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- light Background color button -->
           <div class="tool box1 m-1" title="Clear Background">
@@ -21,7 +23,7 @@ export class AddClearBackgroundComponent {
   }
 
   // Clear Background HTML Tag Click Action
-  addClearBackgroundClickFunction = (uid) => {
+  addClickFunction = (uid) => {
     // Adding Original background color
       $(`#add-background-cb-light-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).removeClass(
@@ -31,7 +33,7 @@ export class AddClearBackgroundComponent {
   }
 
   // Adding Clear Background color
-  addClearBackgroundToolBox = (uid) => {
+  addToolBox = (uid) => {
      $(`#cb-box-2-${uid}`).removeClass(
           'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
         );

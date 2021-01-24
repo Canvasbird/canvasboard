@@ -1,13 +1,5 @@
-export type PluginType = 'editor' | 'board' |'embed' | 'tweet' | 'fileUpload';
-export interface NewBoardCardInterface {
-    readonly cardID: number;
-    oldPosition: any;
-    newPosition: any;
-    pluginType: PluginType;
-    content: any;
-    classList: any;
-    createdOn: Date;
-}
+import { NewBoardCardInterface } from 'src/interfaces/new-board-card';
+import { PluginType } from 'src/interfaces/plugin-type';
 
 export class NewBoardCard implements NewBoardCardInterface {
     cardID: number;

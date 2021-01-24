@@ -1,13 +1,15 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddDeleteComponent {
+export class AddDeleteComponent implements PluginComponent{
 
   constructor() {
 
   }
 
     // Delete HTML Tag
-    addDeleteTagHTMLCode(uid) {
+    addHTMLCode(uid) {
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- delete button -->
@@ -26,17 +28,17 @@ export class AddDeleteComponent {
     }
 
     // Delete HTML Tag Click Action
-    addDeleteTagClickFunction = (uid, checker) => {
+    addClickFunction = (uid) => {
       // Delete/Remove button
       $(`#remove-cb-box1-${uid}`).click(() => {
-        if (checker !== 0) {
+        // if (checker !== 0) {
           $(`#cb-box-1-${uid}`).remove();
-        }
+        // }
       });
     }
 
     // Adding Delete
-    addDeleteTagToolBox = (uid) => {
+    addToolBox = (uid) => {
           $(`#cb-box-1-${uid}`).remove();
     }
 
