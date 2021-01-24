@@ -127,7 +127,7 @@ export class NewBoardComponent implements OnInit {
   AddUnOrderedListComponent: PluginComponent;
   AddTopComponent: PluginComponent;
   AddBottomComponent: PluginComponent;
-  AddDeleteComponent: PluginComponent;
+  AddDeleteComponent: any;
   AddEmbedComponent: PluginComponent;
   AddPdfRenderComponent: PluginComponent;
   AddTwitterComponent: PluginComponent;
@@ -349,7 +349,9 @@ export class NewBoardComponent implements OnInit {
     // Add Delete HTML and click Function
     this.AddDeleteComponent.addHTMLCode(uid);
     this.AddDeleteComponent.addClickFunction(uid);
-
+    $(`#remove-cb-box1-${uid}`).click(() => {
+      this.currentChartID = this.AddDeleteComponent.prevCardID;
+    });
     // Adding red background toolbox
     this.AddRedBackgroundComponent.addHTMLCode(uid);
     this.AddRedBackgroundComponent.addClickFunction(uid);
@@ -560,6 +562,9 @@ export class NewBoardComponent implements OnInit {
       // Adding listener to current card
       $(`#original-${element.cardID}`).click(() => { this.currentChartID = element.cardID; });
     });
+
+    // Adding Last card as current Card
+    this.currentChartID = prevId;
   }
 
   // Notification Code
@@ -599,11 +604,11 @@ export class NewBoardComponent implements OnInit {
   // Adding Delete
   cbToolboxDeleteTag = () => {
     this.AddDeleteComponent.addToolBox(this.currentChartID);
+    this.currentChartID = this.AddDeleteComponent.prevCardID;
   }
 
   // Adding Top
   cbToolboxTopTag = () => {
-    console.log(this.currentChartID);
     this.AddTopComponent.addToolBox(this.currentChartID, this.addBlockEditor);
   }
 
