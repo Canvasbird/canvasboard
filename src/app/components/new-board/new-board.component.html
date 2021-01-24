@@ -416,92 +416,92 @@
       <div id="main-box" class="main-box">
         <!-- temp -->
         <div id="sub-title" class="demo"></div>
-        <!--Embed Modal -->
-        <div class="modal fade" id="embedModal" tabindex="-1" role="dialog" aria-labelledby="embedModalCenterTitle"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="embedModalLongTitle">Embed Link URL</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group"
-                    style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
-                    <input type="text" placeholder="Enter Embed link here" class="form-control" id="embedURL" #embedURL>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"
-                  (click)="cbToolbox(this.AddEmbedComponent,'embed',embedURL.value)">Enter</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Youtube Modal -->
-        <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="youtubeModalCenterTitle"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="youtubeModalLongTitle">youtube Link URL</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group"
-                    style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
-                    <input type="text" placeholder="Enter youtube link here" class="form-control" id="youtubeEmbedURL">
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"
-                  (click)="cbToolboxYoutube()">Enter</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Twitter Modal -->
-        <div class="modal fade" id="twitterModal" tabindex="-1" role="dialog" aria-labelledby="twitterModalCenterTitle"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="twitterModalLongTitle">Twitter Link URL</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group"
-                    style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
-                    <input type="text" placeholder="Enter twitter link here" class="form-control" id="twitterEmbedURL">
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"
-                  (click)="cbToolboxTwitter()">Enter</button>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- .........................TESTING CODE GOES HERE!................................. -->
 
         <!-- .........................END OF TESTING CODE!.......................... -->
+        </div>
+        <!-- --------------END OF NOTES BOX -->
+      <!--Embed Modal -->
+      <div class="modal fade" id="embedModal" tabindex="-1" role="dialog" aria-labelledby="embedModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="embedModalLongTitle">Embed Link URL</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group"
+                  style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
+                  <input type="text" placeholder="Enter Embed link here" class="form-control" id="embedURL" #embedURL>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                (click)="cbToolbox(this.AddEmbedComponent,'embed',embedURL.value)">Enter</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- --------------END OF NOTES BOX -->
+      <!--Youtube Modal -->
+      <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="youtubeModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="youtubeModalLongTitle">youtube Link URL</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group"
+                  style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
+                  <input type="text" placeholder="Enter youtube link here" class="form-control" id="youtubeEmbedURL">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                (click)="cbToolboxYoutube()">Enter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Twitter Modal -->
+      <div class="modal fade" id="twitterModal" tabindex="-1" role="dialog" aria-labelledby="twitterModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="twitterModalLongTitle">Twitter Link URL</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group"
+                  style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
+                  <input type="text" placeholder="Enter twitter link here" class="form-control" id="twitterEmbedURL">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                (click)="cbToolboxTwitter()">Enter</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
