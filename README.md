@@ -77,7 +77,7 @@ Please feel free to checkout [Canvasbird Contribution Guidelines](https://github
 
 ## Contributors 🌟
 
-Thanks goes to these wonderful people ✨✨:
+Thanks goes to these wonderful people ✨✨
 
 <a href="https://github.com/Canvasbird/canvasboard/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Canvasbird/canvasboard" />
