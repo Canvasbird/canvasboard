@@ -75,10 +75,10 @@
             <span class = "input-group-text" id = "folder-colour">Color</span>
           </div>
             <input type="hidden" class="form-control" aria-label="Default" aria-describedby="folder-colour" value = "" id="folder-colour-input" readonly>
-            <button class = "folder_colour_pink" style="background-color: #ee9ca7;" (click)="assignColour('#ee9ca7')"></button>
-            <button class = "folder_colour_green" style="background-color: #96e6a1;" (click)="assignColour('#96e6a1')"></button>
-            <button class = "folder_colour_blue" style="background-color: #66a6ff;" (click)="assignColour('#66a6ff')"></button>
-            <button class = "folder_colour_dark" style="background-color: #274046;" (click)="assignColour('#274046')"></button>
+            <button class = "folder_colour_pink" (click)="assignColour('#ee9ca7')"></button>
+            <button class = "folder_colour_green" (click)="assignColour('#96e6a1')"></button>
+            <button class = "folder_colour_blue" (click)="assignColour('#66a6ff')"></button>
+            <button class = "folder_colour_dark" (click)="assignColour('#274046')"></button>
         </div>
 
         <!-- Error Label -->
