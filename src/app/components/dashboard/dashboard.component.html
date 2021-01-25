@@ -69,6 +69,17 @@
           <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-description"
             id="folder-description-input">
         </div>
+        <!-- Folder Color -->
+        <div class = "input-group mb-3">
+          <div class = "input-group-prepend">
+            <span class = "input-group-text" id = "folder-colour">Color</span>
+          </div>
+            <input type="hidden" class="form-control" aria-label="Default" aria-describedby="folder-colour" value = "" id="folder-colour-input" readonly>
+            <button class = "folder_colour_pink" (click)="assignColour('#ee9ca7')"></button>
+            <button class = "folder_colour_green" (click)="assignColour('#96e6a1')"></button>
+            <button class = "folder_colour_blue" (click)="assignColour('#66a6ff')"></button>
+            <button class = "folder_colour_dark" (click)="assignColour('#274046')"></button>
+        </div>
 
         <!-- Error Label -->
         <h5 class="error-label"><span class="badge badge-danger" id="error-label">Error Occurred!</span></h5>
