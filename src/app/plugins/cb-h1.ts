@@ -1,13 +1,15 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddH1Component {
+export class AddH1Component implements PluginComponent {
 
   constructor() {
 
   }
 
     // H1 HTML Tag
-    addH1TagHTMLCode(uid) {
+    addHTMLCode(uid) {
       // console.log('Calling h1 html');
 
       $(`#cb-buttons-${uid}`).append(`
@@ -26,14 +28,14 @@ export class AddH1Component {
       `);
     }
 
-    addH1TagClickFunction = (uid) => {
+    addClickFunction = (uid) => {
         // Adding H1 Tags
         $(`#add-h1-box2-${uid}`).click(() => {
-          $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
+          this.addToolBox(uid);
         });
     }
 
-    addH1TagToolBox = (uid) => {
+    addToolBox = (uid) => {
       $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
     }
 

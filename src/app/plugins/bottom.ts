@@ -1,13 +1,15 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddBottomComponent {
+export class AddBottomComponent implements PluginComponent {
 
   constructor() {
 
   }
 
     // Bottom HTML Tag
-    addBottomTagHTMLCode(uid) {
+    addHTMLCode(uid) {
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- bottom -->
@@ -25,16 +27,16 @@ export class AddBottomComponent {
     }
 
     // Bottom HTML Tag Click Action
-    addBottomTagClickFunction = (uid, addBlockEditor) => {
+    addClickFunction = (uid, addBlockEditor) => {
       //  Adding the click action of the below button
       $(`#add-new-box-${uid}`).click(() => {
-        addBlockEditor(uid, 1);
+        addBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this });
       });
     }
 
     // Adding Bottom
-    addBottomTagToolBox = (uid, addAfterBlockEditor) => {
-     addAfterBlockEditor(uid, 1);
+    addToolBox = (uid, addAfterBlockEditor) => {
+      addAfterBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this});
     }
 
 }

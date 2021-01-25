@@ -1,5 +1,6 @@
 declare var $: any;
 import { fabric } from 'fabric';
+import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
 
 class StateManager {
   private currentState: string;
@@ -87,7 +88,7 @@ class StateManager {
 
 }
 
-export class AddCanvasBoard {
+export class AddCanvasBoard implements BasePluginComponent{
   stateManager: Map<string, StateManager>;
   canvas: Map<string, fabric.Canvas>;
   DRAWING_MODE: Map<string, string>;
@@ -110,7 +111,7 @@ export class AddCanvasBoard {
 
   // Retrieve Save Data to load from server
   setContent(uid, data){
-    this.addCanvasBoardToolbox(uid);
+    this.addToolBox(uid);
     this.canvas.get(uid).loadFromJSON(data, () => this.canvas.get(uid).renderAll());
   }
 
@@ -129,7 +130,7 @@ export class AddCanvasBoard {
   }
 
   // Adding canvasboard
-  addCanvasBoardHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
         <!-- Canvas Board -->
         <div class="tool box1 m-1">
@@ -143,7 +144,8 @@ export class AddCanvasBoard {
       `);
   }
 
-  addCanvasBoardToolbox = (uid) => {
+
+  addToolBox = (uid) => {
     const parentWidth = $(`#original-${uid}`).width();
     $(`#original-${uid}`).attr('contenteditable', false);
     $(`#original-${uid}`).append(`

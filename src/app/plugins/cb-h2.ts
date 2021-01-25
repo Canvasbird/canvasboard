@@ -1,10 +1,12 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddH2Component {
+export class AddH2Component implements PluginComponent{
   constructor() {}
 
     // H2 Tag HTML
-    addH2TagHTMLCode = (uid) => {
+    addHTMLCode = (uid) => {
 
       $(`#cb-buttons-${uid}`).append(`
       <!-- h2 tag -->
@@ -22,13 +24,13 @@ export class AddH2Component {
       `);
     }
     // Add H2 tag click action
-    addH2TagClickFunction = (uid) => {
+    addClickFunction = (uid) => {
       $(`#add-h2-box2-${uid}`).click(() => {
         $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
       });
     }
 
-    addH2TagToolBox = (uid) => {
+    addToolBox = (uid) => {
       $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
     }
 }
