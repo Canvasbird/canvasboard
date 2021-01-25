@@ -86,11 +86,51 @@
   display: block;
 }
 
-.folder_colour{
+.folder_colour_pink{
   margin:0px 7px;
   width:50px;
   border:none;
   border-radius: 8px;
+  background-color:#ee9ca7;
+}
+
+.folder_colour_pink:focus{
+  border:thin solid black
+}
+
+.folder_colour_blue{
+  margin:0px 7px;
+  width:50px;
+  border:none;
+  border-radius: 8px;
+  background-color:#96e6a1;
+}
+
+.folder_colour_blue:focus{
+  border:thin solid black
+}
+
+.folder_colour_green{
+  margin:0px 7px;
+  width:50px;
+  border:none;
+  border-radius: 8px;
+  background-color:#66a6ff;
+}
+.folder_colour_green:focus{
+  border:thin solid black
+}
+
+.folder_colour_dark{
+  margin:0px 7px;
+  width:50px;
+  border:none;
+  border-radius: 8px;
+  background-color:#274046;
+}
+
+.folder_colour_dark:focus{
+  border:thin solid black
 }
 
 .folder_colour:focus{
