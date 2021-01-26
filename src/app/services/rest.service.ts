@@ -3,48 +3,113 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { DailyQuote } from 'src/interfaces/daily-quote';
+import { NewBoard } from 'src/interfaces/new-board';
+import Swal from 'sweetalert2';
+import { TwitterData } from 'src/interfaces/twitterData';
+import { ConstantPool } from '@angular/compiler';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
+declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class RestService {
 
   xAuthToken = null;
   boardId = null;
-  gerBoardDetails = null;
+  viewFolderResponse = null;
   createFolderResponse = null;
   deleteFolderResponse = null;
   renameFolderResponse = null;
-
+  createFileResponse = null;
+  viewFileResponse = null;
+  deleteFileResponse = null;
+  renameFileResponse = null;
   getFilesDetails = null;
+  resetPasswordEmailResponse = null;
+  newPasswordResponse = null;
   dummyQuote: DailyQuote[] = [];
+  getTwitterResponse = null;
+
 
   constructor(private http: HttpClient, public router: Router) { }
 
-  saveBoardData(boardTitle, boardData) {
+
+  // ........................... FILE APIS........................................
+
+  // ........................... CREATE FILE ........................................
+  async createBoardData(boardData): Promise<NewBoard> {
     this.xAuthToken = localStorage.getItem('token');
-    const body = {
-      board_name: boardTitle,
-      board_data: boardData
-    };
-    this.http.post(environment.apiHost + '/api/v1/user/save/board', body, {
+    const body = boardData;
+    await this.http.post('https://api.canvasboard.live/api/v1/user/folder/create-file', body, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
-    }).subscribe( res => {
-      this.boardId = JSON.parse(JSON.stringify(res)).board_id;
-    });
+    }).toPromise()
+      .then((response) => {
+        // this.boardId = JSON.parse(JSON.stringify(res)).board_id;
+        this.createFileResponse = JSON.parse(JSON.stringify(response)).file;
+      });
+    return this.createFileResponse;
+
+  }
+  // ........................... UPDATE FILE ........................................
+
+  async saveBoardData(boardData) {
+    this.xAuthToken = localStorage.getItem('token');
+    const body = boardData;
+    await this.http.post('https://api.canvasboard.live/api/v1/user/folder/edit-file', body, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+      .then((response) => {
+      });
   }
 
-  getBoardData(boardId) {
+  // ........................... GET FILE...........................................
+
+  async getBoardData(boardId) {
     this.xAuthToken = localStorage.getItem('token');
-    this.http.get(environment.apiHost + `/api/v1/user/get/board?board_id=${boardId}`, {
+    await this.http.get(`https://api.canvasboard.live/api/v1/user/files/${boardId}`, {
       headers: new HttpHeaders({
         'X-AUTH-TOKEN': this.xAuthToken
       })
-    }).subscribe(res => {
-      console.log(res);
-    });
+    }).toPromise()
+      .then((response) => {
+        this.viewFileResponse = response;
+      });
+    return this.viewFileResponse;
+
+  }
+
+  // ........................... DELETE File ........................................
+  async deleteFile(folderId, fileId) {
+    this.xAuthToken = localStorage.getItem('token');
+    await this.http.delete(`https://api.canvasboard.live/api/v1/user/folder/remove-file?folder_id=${folderId}&file_id=${fileId}`, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+      .then((response) => {
+        this.deleteFileResponse = response;
+      });
+    return this.deleteFileResponse;
+  }
+  // ........................... RENAME FILE ........................................
+  async renameFile(body) {
+    this.xAuthToken = localStorage.getItem('token');
+    await this.http.post(`https://api.canvasboard.live/api/v1/user/folder/rename-file`, body, {
+      headers: new HttpHeaders({
+        'X-AUTH-TOKEN': this.xAuthToken
+      })
+    }).toPromise()
+      .then((response) => {
+        this.renameFileResponse = response;
+      });
+    return this.renameFileResponse;
   }
 
   // ........................... DASHBOARD APIS........................................
@@ -58,9 +123,9 @@ export class RestService {
       })
     }).toPromise()
       .then((response) => {
-        this.gerBoardDetails = response;
+        this.viewFolderResponse = response;
       });
-    return this.gerBoardDetails;
+    return this.viewFolderResponse;
   }
   // ........................... CREATE FOLDER ........................................
   async createFolder(body) {
@@ -96,9 +161,9 @@ export class RestService {
         'X-AUTH-TOKEN': this.xAuthToken
       })
     }).toPromise()
-    .then((response) => {
-      this.renameFolderResponse = response;
-    });
+      .then((response) => {
+        this.renameFolderResponse = response;
+      });
     return this.renameFolderResponse;
   }
   // ........................... FILES APIS........................................
@@ -155,9 +220,73 @@ export class RestService {
 
     // This function get a random number within the range of the length of the dailyQuote array.
     function randomQuote(min: number, max: number) {
-      return Math.floor(Math.random() * (max - min) + min);
+      // return Math.floor(Math.random() * (max - min) + min);
+      // Create byte array and fill with 1 random number
+      const byteArray = new Uint8Array(1);
+      window.crypto.getRandomValues(byteArray);
+
+      const range = max - min + 1;
+      const maxRange = 256;
+      if (byteArray[0] >= Math.floor(maxRange / range) * range) {
+        return randomQuote(min, max);
+      }
+      return min + (byteArray[0] % range);
     }
     // This returns one key-value pair from the array of objects
     return this.dummyQuote[randomQuote(0, 5)];
   }
+
+  // ...................... FORGOT PASSWORD.....................................
+  async sendEmailAddressForReset(body) {
+    try {
+      await this.http.post(`https://api.canvasboard.live/api/v1/forget`, body).toPromise()
+        .then((response) => {
+          this.resetPasswordEmailResponse = response;
+        });
+      return this.resetPasswordEmailResponse;
+
+    } catch (err) {
+      Swal.fire({ icon: 'error', text: 'Something went wrong! Please try again. ' });
+    }
+  }
+
+  // ....................... SEND NEW PASSWORD DETAILS ...................................
+  async sendNewPasswordDetails(body) {
+    try {
+      await this.http.post(`https://api.canvasboard.live/api/v1/reset`, body).toPromise()
+        .then((response) => {
+          this.newPasswordResponse = response;
+        });
+      return this.newPasswordResponse;
+
+    } catch (err) {
+      Swal.fire({ icon: 'error', text: 'Something went wrong! Please try again. ' });
+    }
+  }
+
+  // ........................... GET TWITTER EMBED........................................
+  async getTweet(tweetUrl) {
+    // this.xAuthToken = localStorage.getItem('token');
+    this.getTwitterResponse  = await $.ajax({
+      url: 'https://publish.twitter.com/oembed?url=' + tweetUrl,
+      dataType: 'jsonp',
+      success: (response) => {
+        return response;
+      }
+    });
+    return this.getTwitterResponse ;
+    // await this.http.get(`https://publish.twitter.com/oembed?url=${tweetUrl}`, {
+    //   headers: new HttpHeaders({
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+    //     'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Access-Control-Allow-Origin',
+    //     'Access-Control-Allow-Credentials': 'true',
+    //     'x-frame-options': 'SAMEORIGIN'
+    //   })
+    // }).toPromise().then((response: TwitterData) => {
+    //     this.getTwitterResponse = response.html;
+    //   });
+    // return this.getTwitterResponse;
+}
+
 }

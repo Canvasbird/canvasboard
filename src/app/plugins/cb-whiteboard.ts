@@ -1,5 +1,6 @@
 declare var $: any;
 import { fabric } from 'fabric';
+import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
 
 class StateManager {
   private currentState: string;
@@ -87,29 +88,49 @@ class StateManager {
 
 }
 
-export class AddCanvasBoard {
-  stateManager: StateManager;
-  canvas: fabric.Canvas;
-  DRAWING_MODE: string;
-  MOVE_MODE: string;
-  canvasMode: string;
-  isDrawingMode: boolean;
-  constructor() { }
-  undo(): void {
-    this.stateManager.undo();
+export class AddCanvasBoard implements BasePluginComponent{
+  stateManager: Map<string, StateManager>;
+  canvas: Map<string, fabric.Canvas>;
+  DRAWING_MODE: Map<string, string>;
+  MOVE_MODE: Map<string, string>;
+  canvasMode: Map<string, string>;
+  isDrawingMode: Map<string, boolean>;
+  constructor() {
+    this.stateManager = new Map<string, StateManager>();
+    this.canvas = new Map<string, fabric.Canvas>();
+    this.DRAWING_MODE = new Map<string, string>();
+    this.MOVE_MODE = new Map<string, string>();
+    this.canvasMode = new Map<string, string>();
+    this.isDrawingMode = new Map<string, boolean>();
   }
 
-  redo(): void {
-    this.stateManager.redo();
+  // Save Data to store in server
+  getContent(uid){
+    return this.canvas.get(uid).toObject();
   }
 
-  private saveState() {
-    this.stateManager.saveState();
-    this.canvas.renderAll();
+  // Retrieve Save Data to load from server
+  setContent(uid, data){
+    this.addToolBox(uid);
+    this.canvas.get(uid).loadFromJSON(data, () => this.canvas.get(uid).renderAll());
+  }
+
+
+  undo(uid): void {
+    this.stateManager.get(uid).undo();
+  }
+
+  redo(uid): void {
+    this.stateManager.get(uid).redo();
+  }
+
+  private saveState(uid) {
+    this.stateManager.get(uid).saveState();
+    this.canvas.get(uid).renderAll();
   }
 
   // Adding canvasboard
-  addCanvasBoardHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
         <!-- Canvas Board -->
         <div class="tool box1 m-1">
@@ -123,7 +144,8 @@ export class AddCanvasBoard {
       `);
   }
 
-  addCanvasBoardToolbox = (uid) => {
+
+  addToolBox = (uid) => {
     const parentWidth = $(`#original-${uid}`).width();
     $(`#original-${uid}`).attr('contenteditable', false);
     $(`#original-${uid}`).append(`
@@ -200,71 +222,71 @@ export class AddCanvasBoard {
       <canvas id="canvas-${uid}" class="shadow"></canvas>
      `);
     // This code(styles) should not be added it will cause problems in fabric
-    this.canvas = new fabric.Canvas(`canvas-${uid}`);
-    this.DRAWING_MODE = 'drawing';
-    this.MOVE_MODE = 'move';
-    this.canvasMode = this.DRAWING_MODE;
-    this.isDrawingMode = true;
-    this.canvas.setHeight('400');
-    this.canvas.setWidth(parentWidth);
-    this.stateManager = new StateManager(this.canvas, uid);
+    this.canvas.set(uid, new fabric.Canvas(`canvas-${uid}`));
+    this.DRAWING_MODE.set(uid, 'drawing');
+    this.MOVE_MODE.set(uid, 'move');
+    this.canvasMode.set(uid, this.DRAWING_MODE.get(uid));
+    this.isDrawingMode.set(uid, true);
+    this.canvas.get(uid).setHeight('400');
+    this.canvas.get(uid).setWidth(parentWidth);
+    this.stateManager.set(uid, new StateManager(this.canvas.get(uid), uid));
     // changing pen color
     // canvas.freeDrawingBrush.color
     $(`#canvas-menu-box-color-${uid}`).on('change', () => {
       const color: any = document.getElementById(`canvas-menu-box-color-${uid}`);
       const data = color.value;
-      this.canvas.freeDrawingBrush.color = data;
+      this.canvas.get(uid).freeDrawingBrush.color = data;
     });
 
     $(`#canvas-menu-box-pencil-${uid}`).on('click', () => {
-      this.canvas.discardActiveObject().renderAll();
-      this.canvas.isDrawingMode = true;
-      this.canvasMode = this.DRAWING_MODE;
+      this.canvas.get(uid).discardActiveObject().renderAll();
+      this.canvas.get(uid).isDrawingMode = true;
+      this.canvasMode.set(uid, this.DRAWING_MODE.get(uid));
     });
-    this.canvas.on('mouse:up', (o) => {
+    this.canvas.get(uid).on('mouse:up', (o) => {
       if (this.canvasMode === this.DRAWING_MODE) {
         if (this.isDrawingMode) {
-          this.saveState();
+          this.saveState(uid);
         }
       }
       if (this.canvasMode === this.MOVE_MODE) {
-        if (this.canvas.hoverCursor === 'move') {
-          this.saveState();
+        if (this.canvas.get(uid).hoverCursor === 'move') {
+          this.saveState(uid);
         }
       }
     });
-    $(`#canvas-menu-box-undo-${uid}`).on('click', () => { this.undo(); });
-    $(`#canvas-menu-box-redo-${uid}`).on('click', () => { this.redo(); });
+    $(`#canvas-menu-box-undo-${uid}`).on('click', () => { this.undo(uid); });
+    $(`#canvas-menu-box-redo-${uid}`).on('click', () => { this.redo(uid); });
     $(`#canvas-menu-box-delete-${uid}`).on('click', () => {
-      const shape = this.canvas.getActiveObject();
+      const shape = this.canvas.get(uid).getActiveObject();
 
       // treating all shape objects individually
       if (shape.hasOwnProperty('_objects')) {
         (shape._objects).forEach(element => {
-          this.canvas.remove(element);
+          this.canvas.get(uid).remove(element);
         });
       } else {
-        this.canvas.remove(shape);
+        this.canvas.get(uid).remove(shape);
       }
-      this.saveState();
+      this.saveState(uid);
     });
 
     $(`#canvas-menu-box-move-${uid}`).on('click', () => {
-      this.canvas.hoverCursor = 'move';
-      this.canvas.isDrawingMode = false;
+      this.canvas.get(uid).hoverCursor = 'move';
+      this.canvas.get(uid).isDrawingMode = false;
       this.canvasMode = this.MOVE_MODE;
     });
 
     $(`#canvas-menu-box-size-${uid}`).on('change', () => {
       const width = $(`#canvas-menu-box-size-${uid} option:selected`).val();
-      this.canvas.freeDrawingBrush.width = parseInt(width, 10);
+      this.canvas.get(uid).freeDrawingBrush.width = parseInt(width, 10);
     });
 
-    this.canvas.on('selection:created', () => {
+    this.canvas.get(uid).on('selection:created', () => {
       $(`#canvas-menu-box-delete-${uid}`).prop('disabled', false);
     });
 
-    this.canvas.on('selection:cleared', () => {
+    this.canvas.get(uid).on('selection:cleared', () => {
       $(`#canvas-menu-box-delete-${uid}`).prop('disabled', true);
     });
 
@@ -272,27 +294,27 @@ export class AddCanvasBoard {
     document.addEventListener('keydown', (event) => {
       const key = event.key;
       if (key === 'Delete') {
-        const shape = this.canvas.getActiveObject();
+        const shape = this.canvas.get(uid).getActiveObject();
         if (shape != null) {
           // treating all shape objects individually
           if (shape.hasOwnProperty('_objects')) {
             (shape._objects).forEach(element => {
-              this.canvas.remove(element);
+              this.canvas.get(uid).remove(element);
             });
           } else {
-            this.canvas.remove(shape);
+            this.canvas.get(uid).remove(shape);
           }
-          this.saveState();
+          this.saveState(uid);
         }
       }
     });
     document.addEventListener('keydown', (event) => {
       const key = event.key;
       if (event.ctrlKey && key === 'z') {
-        this.undo();
+        this.undo(uid);
       }
       if (event.ctrlKey && key === 'y') {
-        this.redo();
+        this.redo(uid);
       }
     });
   }

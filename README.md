@@ -28,10 +28,11 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 ## Open Source Programs we have been associated with:
 
 <p align="center">
-<a href="https://winterofcode.com/"><img src="./src/assets/Open%20Source%20Program/WOC.jpg" width="200px" height="200px" /></a>
-<a href="https://kwoc.kossiitkgp.org/"><img src="./src/assets/Open%20Source%20Program/kwoc.jpg" width="200px" height="200px" /></a>
-<a href="https://swoc.tech/"><img src="./src/assets/Open%20Source%20Program/script.jpg" width="200px" height="200px" /></a>
-<a href="https://njackwinterofcode.github.io/"><img src="./src/assets/Open%20Source%20Program/nwoc.jpg" width="200px" height="200px" /></a>
+<a href="https://winterofcode.com/"><img src="./src/assets/Open%20Source%20Program/WOC.jpg" width="250px" height="250px" /></a>
+<a href="https://kwoc.kossiitkgp.org/"><img src="./src/assets/Open%20Source%20Program/kwoc.jpg" width="250px" height="250px" /></a>
+<a href="https://swoc.tech/"><img src="./src/assets/Open%20Source%20Program/script.jpg" width="250px" height="250px" /></a>
+<a href="https://njackwinterofcode.github.io/"><img src="./src/assets/Open%20Source%20Program/nwoc.jpg" width="250px" height="250px" /></a>
+<a href="https://devscript.tech/woc/"><img src="./src/assets/Open%20Source%20Program/dwoc.png" width="250px" height="250px" /></a>
 </p>
 
 ## Goal
@@ -76,7 +77,7 @@ Please feel free to checkout [Canvasbird Contribution Guidelines](https://github
 
 ## Contributors 🌟
 
-Thanks goes to these wonderful people ✨✨:
+Thanks goes to these wonderful people ✨✨
 
 <a href="https://github.com/Canvasbird/canvasboard/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Canvasbird/canvasboard" />

@@ -1,9 +1,11 @@
+import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
+
 declare var $: any;
 
-export class AddClearFontComponent {
+export class AddClearFontComponent implements BasePluginComponent {
   constructor() { }
 
-  addClearFontToolBox = (uid) => {
+  addToolBox = (uid) => {
     $(`#cb-box-2-${uid}`).removeClass(
       'playfair-font monospace-font kalam-font');
   }

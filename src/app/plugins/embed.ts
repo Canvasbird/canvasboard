@@ -1,9 +1,11 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddEmbedComponent {
+export class AddEmbedComponent implements PluginComponent{
   constructor() { }
 
-  addEmbedTagHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- Embed -->
     <div class="tool box4 m-1" title="Embed link">
@@ -23,24 +25,19 @@ export class AddEmbedComponent {
     `);
   }
 
-  addEmbedTagClickFunction = () => {
+  addClickFunction = () => {
 
   }
 
-  addEmbedToolBox = (uid, url: string, youtubeURL: string) => {
+  addToolBox = (uid, url: string) => {
     if (url !== '') {
       $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
       $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
     <!-- Embed iframe -->
     <embed src="${url}" width="100%" height="600" frameborder="0" allowfullscreen/>
     `);
-    } else if (youtubeURL !== '') {
-
-      $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
-      $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
-    <!-- Embed iframe -->
-    <embed src="${youtubeURL.replace(/watch\?v=/gi, 'embed/')}" width="100%" height="600" frameborder="0" allowfullscreen/>
-    `);
     }
   }
+
+
 }

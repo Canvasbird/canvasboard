@@ -1,13 +1,17 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+import { walkUpBindingElementsAndPatterns } from 'typescript';
+
 declare var $: any;
 
-export class AddDeleteComponent {
+export class AddDeleteComponent implements PluginComponent{
 
+  prevCardID: string;
   constructor() {
 
   }
 
     // Delete HTML Tag
-    addDeleteTagHTMLCode(uid) {
+    addHTMLCode(uid) {
 
       $(`#cb-buttons-${uid}`).append(`
           <!-- delete button -->
@@ -26,18 +30,31 @@ export class AddDeleteComponent {
     }
 
     // Delete HTML Tag Click Action
-    addDeleteTagClickFunction = (uid, checker) => {
+    addClickFunction = (uid) => {
+
       // Delete/Remove button
       $(`#remove-cb-box1-${uid}`).click(() => {
-        if (checker !== 0) {
-          $(`#cb-box-1-${uid}`).remove();
+        // if (checker !== 0) {
+        if ($(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id') !== undefined) {
+          this.prevCardID = $(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id').substring(9);
+        } else {
+          this.prevCardID = undefined;
         }
+        $(`#cb-box-1-${uid}`).remove();
+        // }
       });
     }
 
     // Adding Delete
-    addDeleteTagToolBox = (uid) => {
-          $(`#cb-box-1-${uid}`).remove();
+    addToolBox = (uid) => {
+      if ($(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id') !== undefined){
+        this.prevCardID = $(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id').substring(9);
+      }else{
+        this.prevCardID = undefined;
+      }
+      $(`#cb-box-1-${uid}`).remove();
     }
+
+
 
 }

@@ -1,10 +1,12 @@
+import { PluginComponent } from 'src/interfaces/plugin-component';
+
 declare var $: any;
 
-export class AddYellowBackgroundComponent {
+export class AddYellowBackgroundComponent implements PluginComponent{
   constructor() {}
 
   // Yellow background color HTML Tag
-  addYellowBackgroundHTMLCode = (uid) => {
+  addHTMLCode = (uid) => {
     $(`#cb-buttons-${uid}`).append(`
     <!-- Yellow Background color button -->
           <div class="tool box1 m-1" title="Yellow Background">
@@ -20,7 +22,7 @@ export class AddYellowBackgroundComponent {
     `);
   }
   // Yellow Background HTML Tag Click Action
-  addYellowBackgroundClickFunction = (uid) => {
+  addClickFunction = (uid) => {
     // Adding Yellow background color
     $(`#add-background-cb-yellow-${uid}`).click(() => {
       $(`#cb-box-2-${uid}`)
@@ -32,7 +34,7 @@ export class AddYellowBackgroundComponent {
   }
 
   // Adding Yellow Background color
-  addYellowBackgroundToolBox = (uid) => {
+  addToolBox = (uid) => {
     $(`#cb-box-2-${uid}`)
           .removeClass(
             'cb-background-green cb-background-blue cb-background-red'
