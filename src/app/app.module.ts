@@ -25,6 +25,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { VerifyCodeComponent } from './components/verify-code/verify-code.compon
     ClockComponent,
     ForgotPasswordComponent,
     VerifyCodeComponent,
+    ScrollToTopComponent,
 
   ],
   imports: [
