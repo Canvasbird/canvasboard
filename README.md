@@ -4,10 +4,7 @@
 </p>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
-[![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
 [![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
-[![Issues](https://img.shields.io/github/issues/Canvasbird/canvasboard)](#issues)
-[![forks](https://img.shields.io/github/forks/Canvasbird/canvasboard)](#forks)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
 [![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-jjdml591-~SsL4vdSX9Mc_GUVIvYV7g)
 </br>
