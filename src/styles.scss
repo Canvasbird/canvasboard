@@ -188,6 +188,36 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
   display: none;
 }
 
+// MarkDown
+.named-fence-block {
+  background-color:#ffdde1;
+  position: relative;
+  padding-top: 2em;
+}
+pre {
+  background-color:#f6f8fa;
+  padding: 16px;
+overflow: auto;
+font-size: 85%;
+border-radius: 6px;
+}
+ 
+.named-fence-filename {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 4px;
+  font-weight: bold;
+  color: #000000;
+  background: #c0c0c0;
+  opacity: 0.6;
+}
+.markdown-body h1,h2,h3 {
+    padding-bottom: .3em;
+    border-bottom: 1px solid #eaecef;
+
+}
+
 // ........................DASHBOARD...........................
 .folder-box,
 .file-box {
