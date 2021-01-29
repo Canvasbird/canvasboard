@@ -480,7 +480,7 @@ export class NewBoardComponent implements OnInit {
       } else if (ele.getpluginType() === 'board') {
         // For Board Save FabricJS object data
         ele.setContent(this.AddCanvasBoard.getContent(ele.cardID));
-      } else if (ele.getpluginType() === 'markdown') {
+      } else if (ele.getpluginType() === 'markdown'){
         ele.setContent(this.AddMarkDownComponent.getContent(ele.cardID));
       }
       // Save Class List of each Card

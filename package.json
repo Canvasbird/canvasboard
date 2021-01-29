@@ -49,7 +49,10 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-table-of-contents": "^0.5.2",
     "markdown-it-task-lists": "^2.1.1",
+<<<<<<< HEAD
     "mousetrap": "^1.6.5",
+=======
+>>>>>>> 63d904f (Added MarkDown Plugin)
     "ngx-markdown-editor": "^3.3.1",
     "popper.js": "^1.16.1",
     "rimraf": "^3.0.2",
