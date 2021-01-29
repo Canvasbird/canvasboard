@@ -43,7 +43,7 @@ import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
 import { AddPdfRenderComponent } from '../../plugins/pdf-render';
 import { AddTwitterComponent } from 'src/app/plugins/twitter';
-
+import { AddMarkDownComponent } from '../../plugins/markdown';
 
 declare var $: any;
 
@@ -90,6 +90,7 @@ export class NewBoardComponent implements OnInit {
     this.AddEmbedComponent = new AddEmbedComponent();
     this.AddPdfRenderComponent = new AddPdfRenderComponent();
     this.AddTwitterComponent = new AddTwitterComponent();
+    this.AddMarkDownComponent = new AddMarkDownComponent();
     this.reader = new FileReader();
 
 
@@ -131,6 +132,7 @@ export class NewBoardComponent implements OnInit {
   AddEmbedComponent: PluginComponent;
   AddPdfRenderComponent: PluginComponent;
   AddTwitterComponent: PluginComponent;
+  AddMarkDownComponent: any;
 
   uniqueChartID = (() => {
     let id = 0;
@@ -471,6 +473,8 @@ export class NewBoardComponent implements OnInit {
       } else if (ele.getpluginType() === 'board') {
         // For Board Save FabricJS object data
         ele.setContent(this.AddCanvasBoard.getContent(ele.cardID));
+      } else if (ele.getpluginType() === 'markdown'){
+        ele.setContent(this.AddMarkDownComponent.getContent(ele.cardID));
       }
       // Save Class List of each Card
       ele.setClassList($(`#cb-box-2-${key}`).attr('class'));
@@ -546,6 +550,10 @@ export class NewBoardComponent implements OnInit {
         }
         case 'tweet': {
           this.AddTwitterComponent.addToolBox(element.cardID, element.content);
+          break;
+        }
+        case 'markdown': {
+          this.AddMarkDownComponent.setContent(element.cardID, element.content);
           break;
         }
         default: {
