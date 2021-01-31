@@ -460,7 +460,7 @@ export class NewBoardComponent implements OnInit {
     const ids = []; // ID's Array for Order
 
     // Retrieve Order of IDs of cards
-    $('#main-box>div').each( (i) => {
+    $('#main-box>div').each( function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         ids.push($(this).prop('id').substring(9));
       }
@@ -596,6 +596,7 @@ export class NewBoardComponent implements OnInit {
     `);
   }
 
+  // Paste fix for contenteditable
   pasteFix = () => {
     $(document).on('copy', '[contenteditable]', (e) => {
       e = e.originalEvent;
@@ -612,8 +613,8 @@ export class NewBoardComponent implements OnInit {
     $(document).on('paste', '[contenteditable]', (e) => {
       e.preventDefault();
 
-      if ((<any>window).clipboardData) {
-        const content = (<any>window).clipboardData.getData('Text');
+      if ((window as any).clipboardData) {
+        const content = (window as any).clipboardData.getData('Text');
         if (window.getSelection) {
           const selObj = window.getSelection();
           const selRange = selObj.getRangeAt(0);
