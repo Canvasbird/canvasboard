@@ -179,6 +179,9 @@ export class NewBoardComponent implements OnInit {
     } else {
       this.addBlockEditor({ id: 'sub-title', pluginComponent: null });
     }
+
+    // Paste fix for contenteditable
+    this.pasteFix();
   }
 
   // ......................... BLOCK BUILDING FUNCITON............................
@@ -457,7 +460,7 @@ export class NewBoardComponent implements OnInit {
     const ids = []; // ID's Array for Order
 
     // Retrieve Order of IDs of cards
-    $('#main-box>div').each(function(i) {
+    $('#main-box>div').each( (i) => {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         ids.push($(this).prop('id').substring(9));
       }
@@ -473,7 +476,7 @@ export class NewBoardComponent implements OnInit {
       } else if (ele.getpluginType() === 'board') {
         // For Board Save FabricJS object data
         ele.setContent(this.AddCanvasBoard.getContent(ele.cardID));
-      } else if (ele.getpluginType() === 'markdown'){
+      } else if (ele.getpluginType() === 'markdown') {
         ele.setContent(this.AddMarkDownComponent.getContent(ele.cardID));
       }
       // Save Class List of each Card
@@ -535,8 +538,8 @@ export class NewBoardComponent implements OnInit {
       this.addToolBar(element.cardID);
 
       // Add Cards according to Plugin Type
-      switch (element.pluginType){
-        case 'editor' || undefined : {
+      switch (element.pluginType) {
+        case 'editor' || undefined: {
           $(`#original-${element.cardID}`).html(element.content);
           break;
         }
@@ -593,6 +596,36 @@ export class NewBoardComponent implements OnInit {
     `);
   }
 
+  pasteFix = () => {
+    $(document).on('copy', '[contenteditable]', (e) => {
+      e = e.originalEvent;
+      const selectedText = window.getSelection();
+      // console.log("original copied text\n--------\n", selectedText.toString());
+      const range = selectedText.getRangeAt(0);
+      const selectedTextReplacement = range.toString();
+      // console.log("replacement in clipboard\n--------\n", selectedTextReplacement);
+      e.clipboardData.setData('text/plain', selectedTextReplacement);
+      e.preventDefault(); // default behaviour is to copy any selected text
+    });
+
+
+    $(document).on('paste', '[contenteditable]', (e) => {
+      e.preventDefault();
+
+      if ((<any>window).clipboardData) {
+        const content = (<any>window).clipboardData.getData('Text');
+        if (window.getSelection) {
+          const selObj = window.getSelection();
+          const selRange = selObj.getRangeAt(0);
+          selRange.deleteContents();
+          selRange.insertNode(document.createTextNode(content));
+        }
+      } else if (e.originalEvent.clipboardData) {
+        const content = (e.originalEvent || e).clipboardData.getData('text/plain');
+        document.execCommand('insertText', false, content);
+      }
+    });
+  }
 
   openSlideMenu = () => {
     document.getElementById('menu').style.width = '250px';
@@ -603,8 +636,8 @@ export class NewBoardComponent implements OnInit {
     document.getElementById('content').style.marginLeft = '0';
   }
 
-    // ......................... TOOLBOX CLICK FUNCTIONALITY .........................
-  cbToolbox(pluginComponent: BasePluginComponent, pType?: PluginType, embedUrl?: string){
+  // ......................... TOOLBOX CLICK FUNCTIONALITY .........................
+  cbToolbox(pluginComponent: BasePluginComponent, pType?: PluginType, embedUrl?: string) {
     this.addBlockEditor({ id: 'main-box', pluginComponent, pType, embedUrl });
 
   }
@@ -638,8 +671,10 @@ export class NewBoardComponent implements OnInit {
 
   // Adding Youtube
   cbToolboxYoutube = () => {
-    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddEmbedComponent,
-    embedUrl: $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/') });
+    this.addBlockEditor({
+      id: 'main-box', pluginComponent: this.AddEmbedComponent,
+      embedUrl: $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/')
+    });
   }
 
   // Adding Clock
