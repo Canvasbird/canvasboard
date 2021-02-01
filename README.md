@@ -6,7 +6,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
 [![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
-[![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-jjdml591-~SsL4vdSX9Mc_GUVIvYV7g)
+[![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://join.slack.com/t/canvasbird-community/shared_invite/zt-lonbgryr-fhsZ5OWGtqDeEbP28GFn0g)
 </br>
 
 ## Project Overview:
@@ -70,7 +70,7 @@ Please feel free to checkout [Canvasbird Contribution Guidelines](https://github
 
 ## Community
 
-[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-workspace/shared_invite/zt-kdh1jv5x-_UH2fPZE5FIt4ZaHy2M2TQ)
+[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-community/shared_invite/zt-lonbgryr-fhsZ5OWGtqDeEbP28GFn0g)
 
 ## Contributors 🌟
 
