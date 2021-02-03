@@ -1,11 +1,21 @@
 .scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    opacity: 0;
-    transition: all .2s ease-in-out;
-   }
-   .show-scrollTop {
-    opacity: 1;
-    transition: all .2s ease-in-out;
-   }
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.show-scrollTop {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.scroll-to-top:hover {
+  background-color: #03506f;
+  border-radius: 8px;
+}
+svg:hover {
+  fill: white;
+  border: 3px solid #03506f;
+}
