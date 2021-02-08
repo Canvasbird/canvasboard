@@ -177,3 +177,12 @@
   white-space: normal;
   text-overflow: clip;
 }
+
+.bi-plus-circle{
+  transition: 0.3s;
+  fill:rgba(18, 16, 31, 0.603);
+}
+.bi-plus-circle:hover{
+  fill:rgb(0, 0, 0);
+  cursor:pointer;
+}
