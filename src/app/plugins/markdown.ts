@@ -1,5 +1,5 @@
 import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
-import * as ace from 'ace-builds';
+import ace from 'ace-builds';
 import 'ace-builds/webpack-resolver';
 import md from 'markdown-it';
 import emoji from 'markdown-it-emoji';
@@ -15,7 +15,7 @@ import taskLists from 'markdown-it-task-lists';
 import namedCodeBlocks from 'markdown-it-named-code-blocks';
 import highlightjs from 'markdown-it-highlightjs';
 import toc from 'markdown-it-table-of-contents';
-import * as hljs from 'highlight.js/lib/core';
+import hljs from 'highlight.js/lib/core';
 
 declare let $: any;
 
@@ -154,10 +154,12 @@ export class AddMarkDownComponent implements BasePluginComponent {
         editor.session.setValue('<!--- Enter your markdown code here --->\n');
         editor.focus();
         editor.navigateFileEnd();
+        // Changing Markdown Preview to match code in the Editor Tab
         $(`#md-nav-profile-tab-${uid}`).click(() => {
             const outHtml = this.markdown.render(editor.session.getValue());
             $(`#md-nav-preview-${uid}`).empty().append(outHtml);
         });
+        // To set focus to editor
         $(`#md-nav-home-tab-${uid}`).click(() => {
             editor.focus();
         });
@@ -171,7 +173,7 @@ export class AddMarkDownComponent implements BasePluginComponent {
             } catch (__) { }
         }
 
-        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+        return '<pre class="hljs"><code>' + this.markdown.utils.escapeHtml(str) + '</code></pre>';
     }
     getContent(uid): string {
         if (this.editors.has(uid)){
@@ -180,11 +182,15 @@ export class AddMarkDownComponent implements BasePluginComponent {
     }
     setContent(uid, content: string){
         if (this.editors.has(uid)){
-        this.editors.get(uid).session.setValue(content);
+            this.editors.get(uid).session.setValue(content);
+            // To Show Preview by default
+            $(`#md-nav-profile-tab-${uid}`).trigger('click');
         }
         else{
             this.addToolBox(uid);
             this.editors.get(uid).session.setValue(content);
+            // To Show Preview by default
+            $(`#md-nav-profile-tab-${uid}`).trigger('click');
         }
     }
 }
