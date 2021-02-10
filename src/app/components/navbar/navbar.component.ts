@@ -20,11 +20,4 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/home/']);
   }
-  
-  /**
-   * Link or button on Navigation bar to redirect to Dashboard
-   */
-  dashboardButtonClick() {
-    this.router.navigate(['/dashboard/']);
-  }
 }
