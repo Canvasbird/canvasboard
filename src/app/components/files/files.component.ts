@@ -34,6 +34,13 @@ export class FilesComponent implements OnInit {
 
       this.router.navigate([`${this.activateID.id}/creative-board`], { state: { fileData: null, folderId: this.activateID.id}});
     });
+
+    /**
+     * Button to redirect to Dashboard
+     */
+    $(`#dashboard`).click(() => {
+      this.router.navigate(['/dashboard/']);
+    })
   }
   // GETING USER FILES
   async gettingData(id) {
