@@ -15,7 +15,7 @@ import { AddBlockEditorParameters } from 'src/interfaces/add-block-parameters';
 import { PluginComponent } from 'src/interfaces/plugin-component';
 import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
 import { PluginType } from 'src/interfaces/plugin-type';
-
+import * as Mousetrap from 'mousetrap';
 // Importing Plugins
 import { AddH1Component } from '../../plugins/cb-h1';
 import { AddCanvasBoard } from '../../plugins/cb-whiteboard';
@@ -46,7 +46,7 @@ import { AddTwitterComponent } from 'src/app/plugins/twitter';
 import { AddMarkDownComponent } from '../../plugins/markdown';
 
 declare var $: any;
-
+// declare var Mousetrap: any;
 @Component({
   selector: 'app-new-board',
   templateUrl: './new-board.component.html',
@@ -182,6 +182,10 @@ export class NewBoardComponent implements OnInit {
 
     // Paste fix for contenteditable
     this.pasteFix();
+
+    // Shortcut to save
+    // saveData
+    this.shortcuts();
   }
 
   // ......................... BLOCK BUILDING FUNCITON............................
@@ -460,7 +464,7 @@ export class NewBoardComponent implements OnInit {
     const ids = []; // ID's Array for Order
 
     // Retrieve Order of IDs of cards
-    $('#main-box>div').each( function(i) {
+    $('#main-box>div').each(function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         ids.push($(this).prop('id').substring(9));
       }
@@ -609,7 +613,6 @@ export class NewBoardComponent implements OnInit {
       e.preventDefault(); // default behaviour is to copy any selected text
     });
 
-
     $(document).on('paste', '[contenteditable]', (e) => {
       e.preventDefault();
 
@@ -632,6 +635,53 @@ export class NewBoardComponent implements OnInit {
     document.getElementById('menu').style.width = '250px';
     document.getElementById('content').style.marginLeft = '250px';
   }
+
+  shortcuts = () => {
+    // Save
+    Mousetrap.bind(['command+s', 'ctrl+s'], (e) => {
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        // internet explorer
+        e.returnValue = false;
+      }
+      this.saveData();
+    });
+
+    // H1 tag
+    Mousetrap.bind(['command+shift+1', 'ctrl+shift+1'], (e) => {
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        // internet explorer
+        e.returnValue = false;
+      }
+      this.cbToolbox(this.AddH1Component);
+    });
+
+    // H2 tag
+    Mousetrap.bind(['command+shift+2', 'ctrl+shift+2'], (e) => {
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        // internet explorer
+        e.returnValue = false;
+      }
+      this.cbToolbox(this.AddH2Component);
+    });
+
+    // H3 tag
+    Mousetrap.bind(['command+shift+3', 'ctrl+shift+3'], (e) => {
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        // internet explorer
+        e.returnValue = false;
+      }
+      this.cbToolbox(this.AddH3Component);
+    });
+  }
+
   closeSlideMenu = () => {
     document.getElementById('menu').style.width = '0';
     document.getElementById('content').style.marginLeft = '0';

@@ -1,19 +1,21 @@
-.container{
+.container {
 
   .cb-image {
     width: 100%;
   }
 
-  .links{
+  .links {
     width: 100%;
     text-align: center;
+
     // border: 1px solid red;
-    ul{
+    ul {
       margin: 2px auto;
       line-height: 1.4;
       padding-left: 0;
     }
-    li{
+
+    li {
       display: inline;
       text-align: center;
       margin-left: 1rem;
@@ -26,19 +28,19 @@
     }
   }
 
-  .title{
+  .title {
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
     font-size: 2.5rem;
 
     @media (min-width: 768px) {
-        font-size: 6rem;
+      font-size: 6rem;
     }
   }
 
-  .ani{
-    background: rgb(179,227,221);
-    background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%); 
+  .ani {
+    background: rgb(179, 227, 221);
+    background: linear-gradient(90deg, rgba(179, 227, 221, 1) 0%, rgba(128, 208, 199, 1) 20%, rgba(0, 147, 233, 1) 40%, rgba(0, 147, 233, 1) 60%, rgba(128, 208, 199, 1) 80%, rgba(179, 227, 221, 1) 100%);
     /* Set the background size and repeat properties. */
     background-size: 200% auto;
     background-repeat: repeat;
@@ -46,10 +48,10 @@
     /* Use the text as a mask for the background. */
     /* This will show the gradient as a text color rather than element bg. */
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    
+    -webkit-text-fill-color: transparent;
+
     background-clip: text;
-  
+
     animation: shine 5s linear infinite;
     margin-bottom: 0px;
   }
@@ -60,57 +62,63 @@
     }
   }
 
-  .header{
+  .header {
     font-family: 'Poppins', sans-serif;
     margin-top: 50px;
     font-weight: bold;
     font-size: 40px;
 
     @media (min-width: 768px) {
-        font-size: 45px;
+      font-size: 45px;
     }
   }
 
-  .sub-header{
+  .sub-header {
     font-family: 'Questrial', sans-serif;
     font-size: 24px;
     line-height: 31px;
 
-    .webboard{
+    .webboard {
       // color: #EE6D9E;
       color: #0093E9;
       font-weight: 1000;
     }
-    .Schools{
+
+    .Schools {
       color: #1551EC;
       font-weight: bold;
     }
-    .Colleges{
+
+    .Colleges {
       color: #5217F9;
       font-weight: bold;
     }
-    .Universities{
+
+    .Universities {
       color: #9513E4;
       font-weight: bold;
     }
   }
-  .board{
+
+  .board {
     width: 90%;
     margin-top: 70px;
   }
 
-  .features{
+  .features {
     margin-top: 100px;
-    .pdf-img{
+
+    .pdf-img {
       width: 50%;
     }
-    .feature1-heading{
+
+    .feature1-heading {
       font-family: Poppins;
       font-weight: bold;
       font-size: 25px;
     }
 
-    .features-image{
+    .features-image {
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -119,72 +127,75 @@
   }
 
   // .demo-button{
-    // .btn-grad {background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)}
-    .btn-grad {
-       margin: 10px;
-       padding: 5px 10px;
-       text-align: center;
-       text-transform: uppercase;
-       transition: 0.5s;
-       background-size: 200% auto;
-       color: white;            
-       box-shadow: 0 0 20px #eee;
-       border-radius: 10px;
-       display: block;
-       font-family: Poppins;
+  // .btn-grad {background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)}
+  .btn-grad {
+    margin: 10px;
+    padding: 5px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    font-family: Poppins;
 
 
-       padding: 15px 30px;
-      font-size: 20px;
-      font-weight: 900;
-      color: #fff;
-      background-color: #0093e9;
-      border: 2px solid #0093E9;
-      cursor: pointer;
-      width: max-content;
-      transition: 0.25s ease;
-     }
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+    background-color: #0093e9;
+    border: 2px solid #0093E9;
+    cursor: pointer;
+    width: max-content;
+    transition: 0.25s ease;
+  }
 
-     .btn-grad:hover {
-        box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
-        color: #0093E9;
-        border-color: transparent;
-        background-color: transparent;
-     }
+  .btn-grad:hover {
+    box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
+    color: #0093E9;
+    border-color: transparent;
+    background-color: transparent;
+  }
 
   .text-center-wrapper {
-    float:right;
-    position:relative;
-    left:-50%;
-    text-align:left;
+    float: right;
+    position: relative;
+    left: -50%;
+    text-align: left;
 
-    ul{
-      list-style:none; 
-      position:relative;
-      left:50%;
+    ul {
+      list-style: none;
+      position: relative;
+      left: 50%;
       padding: 5px;
 
       li {
-        line-height:30px;
+        line-height: 30px;
       }
-      text-align: center; 
-      @media (min-width: 768px) {
-         
-      }
-  }
+
+      text-align: center;
+
+      @media (min-width: 768px) {}
+    }
   }
 
   .custom-img {
     @media (min-width: 768px) {
       padding-left: 20px;
+    }
   }
-  }
+
   .color1 {
     color: #1551EC;
   }
+
   .color2 {
     color: #5217F9;
   }
+
   .color3 {
     color: #9513E4;
   }
@@ -193,10 +204,11 @@
     display: none;
     position: relative;
     transition: .1s ease-in-out left;
-  
+
   }
-  
-  .img-fluid,.img-responsive{
+
+  .img-fluid,
+  .img-responsive {
     max-width: 100%;
     height: auto;
   }
@@ -206,13 +218,22 @@
     height: 10px;
     background-color: #000;
     border-radius: 100%;
-}
+  }
 
-.carousel-indicators {
+  .carousel-indicators {
     bottom: -50px;
-}
+  }
 }
 
 .poppins {
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
+}
+
+#client-testimonial-carousel {min-height: 200px;}
+
+#schools-universities {
+  margin-bottom: 45px; 
+  margin-top: 45px; 
+  margin-left:15px; 
+  margin-right: 15px;
 }
