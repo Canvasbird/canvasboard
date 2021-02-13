@@ -56,38 +56,32 @@
           is_nested_folder: false
         } -->
         <!-- Folder name -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="folder-name">Name</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-name" id="folder-name-input">
+        <div class="input-group">
+          <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-name" id="folder-name-input" placeholder="Name">
+          <label for="folder-name" id="folder-name">Name</label>
         </div>
         <!-- Folder description -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="folder-description">Description</span>
-          </div>
+        <div class="input-group">
           <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-description"
-            id="folder-description-input">
+            id="folder-description-input" placeholder="Description">
+          <label for="folder-description" id="folder-description">Description</label>
         </div>
         <!-- Folder Color -->
-        <div class = "input-group mb-3">
-          <div class = "input-group-prepend">
-            <span class = "input-group-text" id = "folder-colour">Color</span>
-          </div>
-            <input type="hidden" class="form-control" aria-label="Default" aria-describedby="folder-colour" value = "" id="folder-colour-input" readonly>
-            <button class = "folder_colour_pink" (click)="assignColour('#ee9ca7')"></button>
-            <button class = "folder_colour_green" (click)="assignColour('#96e6a1')"></button>
-            <button class = "folder_colour_blue" (click)="assignColour('#66a6ff')"></button>
-            <button class = "folder_colour_dark" (click)="assignColour('#274046')"></button>
-        </div>
+        <div  class="input-group-color wrapper">
+          <input type="hidden" class="form-control" aria-label="Default" aria-describedby="folder-colour" value = "" id="folder-colour-input" readonly>
+          <p for="folder-color" id="folder-color" style="font-size: 17px;">Color</p>
+          <button class = "folder_colour_pink" (click)="assignColour('#ee9ca7')"></button>
+          <button class = "folder_colour_green" (click)="assignColour('#96e6a1')"></button>
+          <button class = "folder_colour_blue" (click)="assignColour('#66a6ff')"></button>
+          <button class = "folder_colour_dark" (click)="assignColour('#274046')"></button>
+      </div>
 
         <!-- Error Label -->
         <h5 class="error-label"><span class="badge badge-danger" id="error-label">Error Occurred!</span></h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="createFolder()" >Save changes</button>
+        <button type="button" class="btn button--moema" data-dismiss="modal" (click)="close()">Close</button>
+        <button type="button" class="btn button--moema1" (click)="createFolder()" >Save changes</button>
       </div>
     </div>
   </div>

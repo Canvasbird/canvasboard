@@ -1,30 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap");
 
-
-.container{
+.container {
   min-height: calc(100vh - 68px);
   margin-bottom: -50px;
   .buttons {
     button {
-      margin-right:10px;
+      margin-right: 10px;
     }
   }
 
   .cb-files-container {
-    width:100%;
+    width: 100%;
     margin: 20px auto;
-    columns:3;
+    columns: 3;
     column-gap: 40px;
 
     .cb-box {
-      width:100%;
+      width: 100%;
       margin: 0 0 20px;
-      padding:10px;
+      padding: 10px;
       overflow: hidden;
       break-inside: avoid;
       border-radius: 10px;
       border: 2px solid;
-      transition: box-shadow .3s;
+      transition: box-shadow 0.3s;
 
       img {
         max-width: 100%;
@@ -36,7 +35,7 @@
         padding: 0 5px;
         font-size: 20px;
         font-weight: 600;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
       }
 
       p {
@@ -54,13 +53,13 @@
         span {
           margin-right: 5px;
           margin-top: 10px;
-          font-size:13px;
+          font-size: 13px;
         }
       }
     }
   }
 
-  @media (max-width:1200px) {
+  @media (max-width: 1200px) {
     .cb-files-container {
       columns: 3;
       width: calc(100%-40px);
@@ -68,97 +67,108 @@
     }
   }
 
-  @media (max-width:768px) {
+  @media (max-width: 768px) {
     .cb-files-container {
       columns: 2;
     }
   }
-  @media (max-width:480px) {
+  @media (max-width: 480px) {
     .cb-files-container {
       columns: 1;
     }
-
   }
 }
 
-.container:after{
+.container:after {
   content: "";
   display: block;
 }
 
-.folder_colour_pink{
-  margin:0px 7px;
-  width:50px;
-  border:none;
+.folder_colour_pink {
+  margin-left: 6%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  width: 50px;
+  height: 30px;
+  border: none;
   border-radius: 8px;
-  background-color:#ee9ca7;
+  background-color: #ee9ca7;
 }
 
-.folder_colour_pink:focus{
-  border:thin solid black
+.folder_colour_pink:focus {
+  border: thin solid black;
 }
 
-.folder_colour_green{
-  margin:0px 7px;
-  width:50px;
-  border:none;
+.folder_colour_green {
+  margin: 5px;
+  width: 50px;
+  height: 30px;
+  margin-top: 10px;
+  border: none;
   border-radius: 8px;
-  background-color:#96e6a1;
+  background-color: #96e6a1;
 }
 
-.folder_colour_green:focus{
-  border:thin solid black
+.folder_colour_green:focus {
+  border: thin solid black;
 }
 
-.folder_colour_blue{
-  margin:0px 7px;
-  width:50px;
-  border:none;
+.folder_colour_blue {
+  margin: 5px;
+  width: 50px;
+  height: 30px;
+  margin-top: 10px;
+  border: none;
   border-radius: 8px;
-  background-color:#66a6ff;
+  background-color: #66a6ff;
 }
-.folder_colour_blue:focus{
-  border:thin solid black
+.folder_colour_blue:focus {
+  border: thin solid black;
 }
 
-.folder_colour_dark{
-  margin:0px 7px;
-  width:50px;
-  border:none;
+.folder_colour_dark {
+  margin: 5px;
+  margin-top: 10px;
+  width: 50px;
+  height: 30px;
+  border: none;
   border-radius: 8px;
-  background-color:#274046;
+  background-color: #274046;
 }
 
-.folder_colour_dark:focus{
-  border:thin solid black
+.folder_colour_dark:focus,
+.folder_colour_dark:hover {
+  border: thin solid black;
 }
 
-.folder_colour:focus{
-  border:thin solid black
+.folder_colour:focus {
+  border: thin solid black;
 }
 
-.quote, .container:after{
+.quote,
+.container:after {
   background-color: transparent;
   height: 50px;
   clear: both;
 }
 
-.quoteText{
+.quoteText {
   color: black;
   display: flex;
   justify-content: center;
-  font-family: 'PT Serif', serif;
+  font-family: "PT Serif", serif;
   font-style: italic;
   font-size: 16px;
   font-weight: bold;
   opacity: 50%;
 }
 
-.quoteAuthor{
+.quoteAuthor {
   color: black;
   display: flex;
   justify-content: center;
-  font-family: 'PT Serif', serif;
+  font-family: "PT Serif", serif;
   font-style: italic;
   font-size: 16px;
   opacity: 50%;
@@ -168,7 +178,7 @@
 .block-with-username {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;       
+  text-overflow: ellipsis;
 }
 
 .block-with-username:hover {
@@ -178,11 +188,195 @@
   text-overflow: clip;
 }
 
-.bi-plus-circle{
+.bi-plus-circle {
   transition: 0.3s;
-  fill:rgba(18, 16, 31, 0.603);
+  fill: rgba(18, 16, 31, 0.603);
 }
-.bi-plus-circle:hover{
-  fill:rgb(0, 0, 0);
-  cursor:pointer;
+.bi-plus-circle:hover {
+  fill: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.input-group {
+  display: block;
+  width: 380px;
+  max-width: 100%;
+  height: 52px;
+  border: 2px solid #dddddd;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px 0 rgba(75, 128, 182, 0.07);
+  margin-bottom: 22px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  font-size: 17px;
+  color: #aaaaaa;
+  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out,
+    box-shadow 0.1s ease-in-out;
+}
+
+.input-group:hover {
+  box-shadow: 10px 14px 14px 0 rgba(0, 0, 0, 0.077);
+  border: 2px solid rgba(0, 0, 0, 0.329);
+}
+
+.input-group input {
+  position: absolute;
+  border: 0;
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0);
+  top: 0;
+  width: 100%;
+  padding: 0 53px;
+  box-sizing: border-box;
+  z-index: 3;
+  display: block;
+  font-size: 17px;
+  font-family: "Oxygen", sans-serif;
+  transition: top 0.1s ease-in-out;
+}
+
+.input-group input::placeholder {
+  color: rgba(0, 0, 0, 0);
+}
+
+.input-group input:focus,
+.input-group input:not(:placeholder-shown) {
+  top: 17px;
+}
+
+.input-group label {
+  position: absolute;
+  border: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 53px;
+  box-sizing: border-box;
+  transition: all 0.1s ease-in-out;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  bottom: 20px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.input-group-color button:hover {
+  margin-top: 1px;
+  box-shadow: 0 4px 4px 0 rgb(0, 0, 0);
+}
+
+.button--moema {
+  border-radius: 10px;
+  background: #a6a9b6;
+  color: #fff;
+  -webkit-transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button--moema::before,
+.button--moema1::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  bottom: -15px;
+  right: -15px;
+  background: inherit;
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0.4;
+  -webkit-transform: scale3d(0.8, 0.5, 1);
+  transform: scale3d(0.8, 0.5, 1);
+}
+.button--moema:hover {
+  -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+  transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+  color: #eceff1;
+  background-color: #a6a9b6;
+  -webkit-animation: anim-moema-1 0.3s forwards;
+  animation: anim-moema-1 0.3s forwards;
+}
+
+.button--moema1 {
+  border-radius: 10px;
+  background: #0a043c;
+  color: #fff;
+  -webkit-transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button--moema1:hover {
+  -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+  transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
+  color: #eceff1;
+  background-color: #0a043c;
+  -webkit-animation: anim-moema-1 0.3s forwards;
+  animation: anim-moema-1 0.3s forwards;
+}
+
+.button--moema:hover::before,
+.button--moema1:hover::before {
+  -webkit-animation: anim-moema-2 0.3s 0.3s forwards;
+  animation: anim-moema-2 0.3s 0.3s forwards;
+}
+
+@-webkit-keyframes anim-moema-1 {
+  60% {
+    -webkit-transform: scale3d(0.8, 0.8, 1);
+    transform: scale3d(0.8, 0.8, 1);
+  }
+  85% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes anim-moema-1 {
+  60% {
+    -webkit-transform: scale3d(0.8, 0.8, 1);
+    transform: scale3d(0.8, 0.8, 1);
+  }
+  85% {
+    -webkit-transform: scale3d(1.1, 1.1, 1);
+    transform: scale3d(1.1, 1.1, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes anim-moema-2 {
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes anim-moema-2 {
+  to {
+    opacity: 0;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.wrapper {
+  display: flex;
+}
+
+#folder-color {
+  margin-top: 10px;
+  margin-left: 15%;
+  color: #aaaaaa;
 }
