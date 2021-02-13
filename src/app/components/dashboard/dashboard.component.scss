@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Eczar&family=Sacramento&display=swap');
 
 
 .container{
@@ -165,10 +166,33 @@
   font-weight: bold;
 }
 
+.username-block{
+//   background: rgb(238,174,202);
+//   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+
+//   background: rgb(238,174,202);
+// background: linear-gradient(190deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+
+// background: rgb(238,174,232);
+// background: linear-gradient(190deg, rgba(238,174,232,1) 0%, rgba(255,188,105,1) 74%);
+
+  // background-color: #ff8f8f;
+  // background-color: #e4e4e4;
+  // background-color: #ffb790;
+  background: rgb(255,183,144);
+  background: linear-gradient(190deg, rgba(255,183,144,1) 0%, rgba(255,178,178,1) 92%);
+}
+
 .block-with-username {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;       
+  text-overflow: ellipsis;  
+  text-align: center;  
+  font-size: 2.5rem;
+  font-family: 'Sacramento', cursive;
+  border-bottom: none; 
+  margin: auto;
+  padding-bottom: 0px;
 }
 
 .block-with-username:hover {
@@ -176,6 +200,16 @@
   word-break: break-all;
   white-space: normal;
   text-overflow: clip;
+  
+}
+
+.close:hover span {
+  display: none;
+}
+
+.close:hover::after {
+  content: "Close";
+  font-size: 1rem;
 }
 
 .bi-plus-circle{
