@@ -1,12 +1,12 @@
 <p align="center">
   <a href="#">
-    <img src="https://github.com/Canvasbird/canvasboard/blob/master/src/assets/Canvasboard.png?raw=true" alt="Logo" width="800">
+    <img src="https://github.com/goliakshay357/hack-images/blob/master/cover.png?raw=true" alt="Logo" width="800">
 </p>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
 [![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
-[![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://join.slack.com/t/canvasbird-community/shared_invite/zt-lonbgryr-fhsZ5OWGtqDeEbP28GFn0g)
+[![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://join.slack.com/t/canvasbird-community/shared_invite/zt-mk7w8azl-77cZe4d3X7YzFKu5zikCtA)
 </br>
 
 ## Project Overview:
@@ -70,7 +70,7 @@ Please feel free to checkout [Canvasbird Contribution Guidelines](https://github
 
 ## Community
 
-[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-community/shared_invite/zt-lonbgryr-fhsZ5OWGtqDeEbP28GFn0g)
+[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://join.slack.com/t/canvasbird-community/shared_invite/zt-mk7w8azl-77cZe4d3X7YzFKu5zikCtA)
 
 ## Contributors 🌟
 
