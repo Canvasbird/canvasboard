@@ -199,12 +199,11 @@
 
 .input-group {
   display: block;
-  width: 380px;
+  width: 350px;
   max-width: 100%;
   height: 52px;
   border: 2px solid #dddddd;
   background-color: #ffffff;
-  border-radius: 20px;
   box-shadow: 5px 5px 5px 0 rgba(75, 128, 182, 0.07);
   margin-bottom: 22px;
   margin-left: auto;
@@ -228,12 +227,11 @@
   background-color: rgba(255, 255, 255, 0);
   top: 0;
   width: 100%;
-  padding: 0 53px;
+  padding: 0 20px;
   box-sizing: border-box;
   z-index: 3;
   display: block;
   font-size: 17px;
-  font-family: "Oxygen", sans-serif;
   transition: top 0.1s ease-in-out;
 }
 
@@ -256,7 +254,7 @@
   z-index: 2;
   display: flex;
   align-items: center;
-  padding: 0 53px;
+  padding: 0 20px;
   box-sizing: border-box;
   transition: all 0.1s ease-in-out;
 }
@@ -273,104 +271,6 @@
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0);
 }
 
-.button--moema {
-  border-radius: 10px;
-  background: #a6a9b6;
-  color: #fff;
-  -webkit-transition: background-color 0.3s, color 0.3s;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.button--moema::before,
-.button--moema1::before {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  bottom: -15px;
-  right: -15px;
-  background: inherit;
-  border-radius: 10px;
-  z-index: -1;
-  opacity: 0.4;
-  -webkit-transform: scale3d(0.8, 0.5, 1);
-  transform: scale3d(0.8, 0.5, 1);
-}
-.button--moema:hover {
-  -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
-  transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
-  color: #eceff1;
-  background-color: #a6a9b6;
-  -webkit-animation: anim-moema-1 0.3s forwards;
-  animation: anim-moema-1 0.3s forwards;
-}
-
-.button--moema1 {
-  border-radius: 10px;
-  background: #0a043c;
-  color: #fff;
-  -webkit-transition: background-color 0.3s, color 0.3s;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.button--moema1:hover {
-  -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
-  transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
-  color: #eceff1;
-  background-color: #0a043c;
-  -webkit-animation: anim-moema-1 0.3s forwards;
-  animation: anim-moema-1 0.3s forwards;
-}
-
-.button--moema:hover::before,
-.button--moema1:hover::before {
-  -webkit-animation: anim-moema-2 0.3s 0.3s forwards;
-  animation: anim-moema-2 0.3s 0.3s forwards;
-}
-
-@-webkit-keyframes anim-moema-1 {
-  60% {
-    -webkit-transform: scale3d(0.8, 0.8, 1);
-    transform: scale3d(0.8, 0.8, 1);
-  }
-  85% {
-    -webkit-transform: scale3d(1.1, 1.1, 1);
-    transform: scale3d(1.1, 1.1, 1);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-@keyframes anim-moema-1 {
-  60% {
-    -webkit-transform: scale3d(0.8, 0.8, 1);
-    transform: scale3d(0.8, 0.8, 1);
-  }
-  85% {
-    -webkit-transform: scale3d(1.1, 1.1, 1);
-    transform: scale3d(1.1, 1.1, 1);
-  }
-  100% {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-@-webkit-keyframes anim-moema-2 {
-  to {
-    opacity: 0;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-@keyframes anim-moema-2 {
-  to {
-    opacity: 0;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-
 .wrapper {
   display: flex;
 }
@@ -379,4 +279,27 @@
   margin-top: 10px;
   margin-left: 15%;
   color: #aaaaaa;
+}
+
+.button-close {
+  background-color: black;
+  color: white;
+  padding: 10px 40px 10px 40px;
+}
+
+.button-save {
+  background-color: white;
+  color: black;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid #aaaaaa;
+}
+
+.button-close:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.button-save:hover {
+  border: 1px solid black;
 }
