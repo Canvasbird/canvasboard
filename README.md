@@ -36,25 +36,39 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
 <!-- Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks. -->
 Our value proposition is to build an open-source community that is highly scalable and can host workspaces locally or on the cloud.
+<p align="center">
+<img src="https://github.com/Canvasbird/canvasboard/blob/master/src/assets/readme/plugins2.png?raw=true" width="800">
+</p>
 
 <!-- ## Screenshots [![Website Badge](https://img.shields.io/badge/Visit-Now-green?style=for-the-badge&logo=vercel)](https://canvasboard.live/)
 
 | ![cb_1][01] | ![cb_2][02] | ![cb3_3][03] |
-| --- | --- | --- | -->
+| --- | --- | --- | 
+
+-->
 
 ## Dependencies🗃:
-<p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot">
+- [Typescript](https://www.typescriptlang.org/)
+- [Jquery](https://jquery.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Angular](https://angular.io/)
+- [MongoDB](https://www.mongodb.com/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Amazon Web Services](https://aws.amazon.com/)
+
+<!-- <p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot">
 <img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&amp;logo=bootstrap" alt="Bootstrap" class="screenshot">
 <img src="https://img.shields.io/badge/-Jquery-black?style=flat-square&amp;logo=Jquery" alt="Jquery" class="screenshot">
 <img src="https://img.shields.io/badge/-FabricJS-yellow?style=flat-square&amp;logo=fabricjs" alt="FabricJS" class="screenshot">
 <img src="https://img.shields.io/badge/-Nodejs-black?style=flat-square&amp;logo=Node.js" alt="Nodejs" class="screenshot">
 <img src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&amp;logo=mongodb" alt="MongoDB" class="screenshot">
 <img src="https://img.shields.io/badge/-FastAPI-darkblue?style=flat-square&amp;logo=fastapi" alt="FastAPI" class="screenshot">
-<img src="https://img.shields.io/badge/Amazon%20AWS-232F3E?style=flat-square&amp;logo=amazon-aws" alt="Amazon AWS" class="screenshot"></p>
+<img src="https://img.shields.io/badge/Amazon%20AWS-232F3E?style=flat-square&amp;logo=amazon-aws" alt="Amazon AWS" class="screenshot"></p> -->
 
-
-
-<strong>Running the canvasboard application.</strong> [Link](https://github.com/Canvasbird/canvasboard/wiki/Cloning-Canvasboard-frontend)
+## Important Links
+- Running the canvasboard application. [Link](https://github.com/Canvasbird/canvasboard/wiki/Cloning-Canvasboard-frontend)
+- Canvasboard Docs [here](https://github.com/Canvasbird/canvasboard-docs)
+- Canvasboard backend. [Link](https://github.com/Canvasbird/canvasboard-backend)
 
 ## Contributing🤝 
 
@@ -65,9 +79,6 @@ Our value proposition is to build an open-source community that is highly scalab
 Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
 
 Please feel free to checkout [Canvasbird Contribution Guidelines](https://github.com/Canvasbird/canvasbird-wiki/wiki/Contribution-Guidelines)
-
-## Related Repositories❤️
-- [canvasbird/canvasboard-backend](https://github.com/Canvasbird/canvasboard-backend): Canvasboard Backend built on NodeJS
 
 ## Community
 
