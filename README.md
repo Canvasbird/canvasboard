@@ -22,16 +22,6 @@ Canvasboard can be scaled up to onboard multiple plugins in one place that can b
 
 More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
-## Open Source Programs we have been associated with:
-
-<p align="center">
-<a href="https://winterofcode.com/"><img src="./src/assets/Open%20Source%20Program/WOC.jpg" width="125px" height="125px" /></a>
-<a href="https://kwoc.kossiitkgp.org/"><img src="./src/assets/Open%20Source%20Program/kwoc.jpg" width="125px" height="125px" /></a>
-<a href="https://swoc.tech/"><img src="./src/assets/Open%20Source%20Program/script.jpg" width="125px" height="125px" /></a>
-<a href="https://njackwinterofcode.github.io/"><img src="./src/assets/Open%20Source%20Program/nwoc.jpg" width="125px" height="125px" /></a>
-<a href="https://devscript.tech/woc/"><img src="./src/assets/Open%20Source%20Program/dwoc.png" width="125px" height="125px" /></a>
-</p>
-
 ## Goal
 
 <!-- Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks. -->
@@ -70,11 +60,22 @@ Our value proposition is to build an open-source community that is highly scalab
 - Canvasboard Docs [here](https://github.com/Canvasbird/canvasboard-docs)
 - Canvasboard backend. [Link](https://github.com/Canvasbird/canvasboard-backend)
 
-## Contributing🤝 
+## Open Source Programs we have been associated with:
 
+<p align="center">
+<a href="https://winterofcode.com/"><img src="./src/assets/Open%20Source%20Program/WOC.jpg" width="125px" height="125px" /></a>
+<a href="https://kwoc.kossiitkgp.org/"><img src="./src/assets/Open%20Source%20Program/kwoc.jpg" width="125px" height="125px" /></a>
+<a href="https://swoc.tech/"><img src="./src/assets/Open%20Source%20Program/script.jpg" width="125px" height="125px" /></a>
+<a href="https://njackwinterofcode.github.io/"><img src="./src/assets/Open%20Source%20Program/nwoc.jpg" width="125px" height="125px" /></a>
+<a href="https://devscript.tech/woc/"><img src="./src/assets/Open%20Source%20Program/dwoc.png" width="125px" height="125px" /></a>
+</p>
+
+## Contributing🤝 
+<!--
 <p align="center">
 <img src="https://github.com/Canvasbird/canvasbird-wiki/blob/master/images/footer.png?raw=true">
 </p>
+-->
 
 Open source has gained huge popularity in the field of IT in recent years and it embraces strong values of community, collaboration, and transparency. Contributions are what make the open-source community an amazing place to learn, inspire, and create. Please consider contributing to the project, with your ideas, your artwork, and your code.
 
