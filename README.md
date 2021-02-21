@@ -34,12 +34,13 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
 ## Goal
 
-Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks.
+<!-- Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks. -->
+Our value proposition is to build an open-source community that is highly scalable and can host workspaces locally or on the cloud.
 
-## Screenshots [![Website Badge](https://img.shields.io/badge/Visit-Now-green?style=for-the-badge&logo=vercel)](https://canvasboard.live/)
+<!-- ## Screenshots [![Website Badge](https://img.shields.io/badge/Visit-Now-green?style=for-the-badge&logo=vercel)](https://canvasboard.live/)
 
 | ![cb_1][01] | ![cb_2][02] | ![cb3_3][03] |
-| --- | --- | --- |
+| --- | --- | --- | -->
 
 ## Dependencies🗃:
 <p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot">

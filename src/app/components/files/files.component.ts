@@ -40,7 +40,7 @@ export class FilesComponent implements OnInit {
      */
     $(`#dashboard`).click(() => {
       this.router.navigate(['/dashboard/']);
-    })
+    });
   }
   // GETING USER FILES
   async gettingData(id) {
