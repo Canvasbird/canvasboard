@@ -24,8 +24,8 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
 ## Goal
 
-<!-- Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks. -->
-Our value proposition is to build an open-source community that is highly scalable and can host workspaces locally or on the cloud.
+Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks.
+<!-- Our value proposition is to build an open-source community that is highly scalable and can host workspaces locally or on the cloud. -->
 <p align="center">
 <img src="https://github.com/Canvasbird/canvasboard/blob/master/src/assets/readme/2.png?raw=true" width="800">
 </p>
