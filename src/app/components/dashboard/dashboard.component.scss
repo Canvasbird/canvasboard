@@ -144,24 +144,24 @@
 }
 
 .quoteText{
-  color: black;
+  color: rgb(78, 4, 78);
   display: flex;
   justify-content: center;
   font-family: 'PT Serif', serif;
   font-style: italic;
   font-size: 16px;
   font-weight: bold;
-  opacity: 50%;
+  opacity: 80%;
 }
 
 .quoteAuthor{
-  color: black;
+  color: brown;
   display: flex;
   justify-content: center;
   font-family: 'PT Serif', serif;
   font-style: italic;
   font-size: 16px;
-  opacity: 50%;
+  opacity: 80%;
   font-weight: bold;
 }
 
