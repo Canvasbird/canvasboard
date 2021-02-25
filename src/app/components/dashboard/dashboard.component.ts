@@ -20,10 +20,13 @@ export class DashboardComponent implements OnInit {
   data: any;
   Username: string = null;
   filterFolderName = '';
+  date: Date;
 
   ngOnInit() {
     this.gettingData();
     this.getQuote();
+    this.date = new Date();
+    this.date.setDate( this.date.getDate() + 3 );
   }
   // GETTING USER DATA
   async gettingData() {
