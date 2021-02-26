@@ -220,6 +220,12 @@ export class DashboardComponent implements OnInit {
           this.data.find(x => x._id === obj._id).folder_name = newName;   // Changing the folder name in data variable that we used.
         }
       });
+      // Enter keyword action to save edited name
+      $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+          $(`#button-edit-name-ok-${obj._id}`).click();
+        }
+      });
       // Open delete popup
       $(`#delete-${obj._id}`).click(() => {
         const popup = document.getElementById(`delete-sure-${obj._id}`);
@@ -412,6 +418,12 @@ export class DashboardComponent implements OnInit {
         document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
       }
     });
+      // Enter keyword action to save edited name
+      $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+          $(`#button-edit-name-ok-${obj._id}`).click();
+        }
+      });
     // Click action to save the new edited name
     $(`#button-edit-name-ok-${obj._id}`).click(() => {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
