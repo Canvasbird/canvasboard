@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { DailyQuote } from 'src/interfaces/daily-quote';
 import { FilterFolderPipe } from 'src/app/shared/filter-folder.pipe';
+import quotes from 'src/interfaces/quotes';
 declare var $: any;
 
 @Component({
@@ -477,14 +478,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getQuote() {
-    this.apiService.getDailyQuote()
-      .then((quote: DailyQuote) => {
-        this.quote = quote;
-      })
-      .catch((err) => {
-        // Here we store a random dummyQuote to the quote property.
-        this.quote = this.apiService.getDummyQuote();
-      });
+   this.quote = quotes[Math.floor(Math.random()*quotes.length)];
   }
 
   // Assign the selected colour to input value
