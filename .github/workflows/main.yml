@@ -58,7 +58,26 @@ jobs:
       # Build the Application
       - name: Build Application
         run: npm run ci:build
+      
+      # Docker
+      - name: Login to Docker
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
+      - name: Build and Push to Dockerhub
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: goliakshay357/canvasboard:latest
+
+      - name: Image Digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+  
       # Deploy to Netlify
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1
@@ -74,6 +93,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
+    
   lighthouse:
     needs: build
     runs-on: ubuntu-latest
