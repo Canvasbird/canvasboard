@@ -36,20 +36,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      # Sets up Node and npm
-      - name: Setup Node
-        uses: actions/setup-node@v2.1.2
-        with:
-          node-version: ${{ matrix.node-version }}
-          check-latest: true
 
       # Install the Dependencies
       - name: Install Dependencies
         run: npm ci
-
-      # Run the Unit tests
-      - name: Run Unit Tests
-        run: npm run ci:test
 
       # Clean the dist directory
       - name: Clean Distribution Directory
@@ -58,6 +48,10 @@ jobs:
       # Build the Application
       - name: Build Application
         run: npm run ci:build
+      
+      # Run the Unit tests
+      - name: Run Unit Tests
+        run: npm run ci:test
       
       # Docker
       - name: Login to Docker
