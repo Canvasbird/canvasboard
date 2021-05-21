@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-to-deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -93,7 +93,7 @@ jobs:
         timeout-minutes: 1
     
   lighthouse:
-    needs: build
+    needs: build-to-deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
