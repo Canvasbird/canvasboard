@@ -419,11 +419,11 @@ export class DashboardComponent implements OnInit {
       }
     });
       // Enter keyword action to save edited name
-      $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number; }) => {
-        if (event.keyCode === 13) {
-          $(`#button-edit-name-ok-${obj._id}`).click();
-        }
-      });
+    $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number; }) => {
+      if (event.keyCode === 13) {
+        $(`#button-edit-name-ok-${obj._id}`).click();
+      }
+    });
     // Click action to save the new edited name
     $(`#button-edit-name-ok-${obj._id}`).click(() => {
       const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
