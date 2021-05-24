@@ -5,9 +5,6 @@ import { HomeComponent} from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {FileExplorerComponent} from './components/file-explorer/file-explorer.component';
-// import { BoardComponent } from './components/board/board.component';
-import { AssignmentComponent } from './components/assignment/assignment.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
 // guard
@@ -62,23 +59,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'file-explorer',
-    component: FileExplorerComponent,
-    canActivate: [AuthGuard]
-  },
-  // {
-  //   path: 'board',
-  //   component: BoardComponent,
-  //   canActivate: [AuthGuard]
-  // },
-  {
     path: 'folder/:id',
     component: FilesComponent,
-  },
-  {
-    path: 'assignment',
-    component: AssignmentComponent,
-    // canActivate: [AuthGuard]
   },
   {
     path: ':folderId/creative-board',
