@@ -20,7 +20,7 @@ Canvasboard is an interactive board with plugins focusing on replacing the need 
 Technology has helped come up with a board that is a dedicated workspace for all your needs. 
 Canvasboard can be scaled up to onboard multiple plugins in one place that can be used for the various business needs. The education sector, data scientists, and project managers will surely find their work become easier with the help of this platform. Rather than installing multiple different softwares, a person can have one single board to satiate all the requirements for their jobs. From writing on presentations, data exploration, and producing gantt charts, this board will definitely fulfill all needs.
 
-The software is considered to be at a beta level of readiness; there are a few missing features and bugs to be fixed, but the tool has been rapidly adopted by institutional organizations on a daily basis.
+The software is considered to be at a beta level of readiness; there are a few missing features and bugs to be fixed.
 
 More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
