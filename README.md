@@ -6,7 +6,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
 [![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
-[![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://canvasbird-slack.netlify.app)
+<!-- [![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://canvasbird-slack.netlify.app) -->
 </br>
 
 ## Project Overview:
@@ -83,9 +83,9 @@ Open source has gained huge popularity in the field of IT in recent years and it
 
 Please feel free to checkout [Canvasbird Contribution Guidelines](https://github.com/Canvasbird/canvasbird-wiki/wiki/Contribution-Guidelines)
 
-## Community
+<!-- ## Community
 
-[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://canvasbird-slack.netlify.app)
+[![Slack](https://img.shields.io/badge/chat-on_slack-purple.svg?style=for-the-badge&logo=slack)](https://canvasbird-slack.netlify.app) -->
 
 ## Contributors 🌟
 
