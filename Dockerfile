@@ -1,4 +1,3 @@
-
 # stage 1 (Build image)
 FROM node:latest as node
 
