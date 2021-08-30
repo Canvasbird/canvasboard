@@ -34,6 +34,7 @@
     "ci": "^1.0.0",
     "fabric": "^4.3.0",
     "highlight.js": "^10.5.0",
+    "inquirer": "^8.1.2",
     "jquery": "^3.5.1",
     "markdown-it": "^12.0.4",
     "markdown-it-abbr": "^1.0.4",

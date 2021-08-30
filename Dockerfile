@@ -1,16 +1,21 @@
 
 # stage 1 (Build image)
+FROM node as node
 
-# pulling base image
-FROM node:latest as node
-# Setting the remote DIR to /app
 WORKDIR /app
-# COPY the current folder
-COPY . .
-# run npm i (install all the dependencies)
+
+COPY package.json /app
 RUN npm install
-# this will generate dist
+
+COPY . /app
 RUN npm run build --prod
+
+
+# for NGNIX
+EXPOSE 80
+
+# Switch to non root user
+USER 1000
 
 # stage 2 (Running the app (i.e for production))
 FROM nginx:alpine
