@@ -11,7 +11,8 @@
     "ci:clean": "rimraf ./dist",
     "ci:test": "ng test --watch=false --browsers=ChromeHeadlessCustom --code-coverage",
     "ci:build": "ng build --prod",
-    "postinstall": "ngcc"
+    "postinstall": "ngcc",
+    "new-plugin": "node src/app/plugins_cli.js"
   },
   "private": true,
   "dependencies": {

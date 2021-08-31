@@ -3,17 +3,25 @@ let path = require('path');
 let inquirer = require('inquirer');
 
 let DESTINATION = path.join(__dirname,'plugins/')
-function generateTS(fname,description){
-    let content = "// Description : "+description;
+
+
+let generateTS = (fname, description)=>{
+    let content = `
+    // description: ${description}
+    import { PluginComponent } from 'src/interfaces/plugin-component';
+    declare var $: any;
+    export class ${fname} implements PluginComponent{
+    
+    }`;
     fs.readdir(DESTINATION,(err,files)=>{
       if(err){
         return console.log("Destination undefined");
       }
       if(!files.includes(fname+'.ts')){
         let filename = path.join(DESTINATION,fname+'.ts');
-        fs.writeFile(filename, content,function (err) {
+        fs.writeFile(filename, content,(err)=> {
             if (err) throw err;
-            console.log('Saved!');
+            console.log('File created in ',DESTINATION);
           });
       }
       else{

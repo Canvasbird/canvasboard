@@ -1,18 +1,16 @@
 # stage 1 (Build image)
+
+# pulling base image
 FROM node:latest as node
-
+# Setting the remote DIR to /app
 WORKDIR /app
-
-COPY package.json /app
+# COPY the current folder
+COPY . .
+# run npm i (install all the dependencies)
 RUN npm install
-
-COPY . /app
+# this will generate dist
 RUN npm run build --prod
 
-
-
-# for NGNIX
-EXPOSE 80
 # stage 2 (Running the app (i.e for production))
 FROM nginx:alpine
 COPY --from=node /app/dist/canvasboard /usr/share/nginx/html
