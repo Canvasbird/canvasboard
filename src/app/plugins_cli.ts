@@ -1,16 +1,16 @@
-var fs = require('fs');
-var path = require('path');
-var inquirer = require('inquirer');
+let fs = require('fs');
+let path = require('path');
+let inquirer = require('inquirer');
 
-DESTINATION = path.join(__dirname,'plugins/')
-generateTS(fname,description){
-    var content = "// Description : "+description;
+let DESTINATION = path.join(__dirname,'plugins/')
+function generateTS(fname,description){
+    let content = "// Description : "+description;
     fs.readdir(DESTINATION,(err,files)=>{
       if(err){
         return console.log("Destination undefined");
       }
-      if(!files.includes(name+'.ts')){
-        var filename = path.join(DESTINATION,fname+'.ts');
+      if(!files.includes(fname+'.ts')){
+        let filename = path.join(DESTINATION,fname+'.ts');
         fs.writeFile(filename, content,function (err) {
             if (err) throw err;
             console.log('Saved!');
