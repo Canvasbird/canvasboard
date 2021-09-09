@@ -296,8 +296,8 @@ export class NewBoardComponent implements OnInit {
     <div id="cb-box-1-${uid}" class="cb-box-1">
     <div class="row mx-0">
       <!-- plug for dragging -->
-      <div class="dragHandle col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;" title="Drag">
-        <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-grip-horizontal"
+      <div class="dragHandle svgHandler col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;" title="Drag">
+        <svg class="svgClass" width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-grip-horizontal"
         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7
           5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2
@@ -316,7 +316,7 @@ export class NewBoardComponent implements OnInit {
         </div>
       </div>
       <!-- menu icon -->
-      <div id="show-more-toolbox-${uid}" class="col-1 px-0" style="max-width: 5%; flex: 0 0 5%;">
+      <div id="show-more-toolbox-${uid}" class="col-1 px-0" style="max-width: 5%; flex: 0 0 5%;  display: flex;justify-content:center;">
         <!-- menu button -->
         <div class="cb-toolbox" title="Toolbar">
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor"
@@ -402,7 +402,7 @@ export class NewBoardComponent implements OnInit {
       this.userBlocks.set(uid, newBoardCard);
       // this.userBlocks.push(newBoardCard);
 
-      this.addToolBar(uid);
+      this.addToolBar(uid, pluginType);
 
       // // Add Canvasboard Tag
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
@@ -444,7 +444,7 @@ export class NewBoardComponent implements OnInit {
     }
   }
 
-  addToolBar(uid) {
+  addToolBar(uid, pluginType: PluginType) {
     // hiding and showing the TOOLBAR
     $(`#show-more-toolbox-${uid}`).hover(
       // display block
@@ -457,38 +457,53 @@ export class NewBoardComponent implements OnInit {
       }
     );
 
+    // Plugin Type specific plugins
+
+    const components = [];
+    switch (pluginType) {
+      case 'editor': {
+        components.push(this.AddRedBackgroundComponent);
+        components.push(this.AddGreenBackgroundComponent);
+        components.push(this.AddYellowBackgroundComponent);
+        components.push(this.AddBlueBackgroundComponent);
+        components.push(this.AddClearBackgroundComponent);
+        components.push(this.AddOrderedListComponent);
+        components.push(this.AddUnOrderedListComponent);
+        components.push(this.AddH1Component);
+        components.push(this.AddH2Component);
+        components.push(this.AddH3Component);
+        components.push(this.AddParaComponent);
+        components.push(this.AddLeftAlignComponent);
+        components.push(this.AddCenterAlignComponent);
+        components.push(this.AddRightAlignComponent);
+        break;
+      }
+      case 'board': {
+        break;
+      }
+      case 'embed': {
+        break;
+      }
+      case 'fileUpload': {
+        break;
+      }
+      case 'markdown': {
+        break;
+      }
+      case 'tweet': {
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
     // Add Delete HTML and click Function
     this.AddDeleteComponent.addHTMLCode(uid);
     this.AddDeleteComponent.addClickFunction(uid);
     $(`#remove-cb-box1-${uid}`).click(() => {
       this.currentChartID = this.AddDeleteComponent.prevCardID;
     });
-    // Adding red background toolbox
-    this.AddRedBackgroundComponent.addHTMLCode(uid);
-    this.AddRedBackgroundComponent.addClickFunction(uid);
-    // Adding green background toolbox
-    this.AddGreenBackgroundComponent.addHTMLCode(uid);
-    this.AddGreenBackgroundComponent.addClickFunction(uid);
-
-    // Adding yellow background toolbox
-    this.AddYellowBackgroundComponent.addHTMLCode(uid);
-    this.AddYellowBackgroundComponent.addClickFunction(uid);
-
-    // Adding blue background toolbox
-    this.AddBlueBackgroundComponent.addHTMLCode(uid);
-    this.AddBlueBackgroundComponent.addClickFunction(uid);
-
-    // Adding clear background toolbox
-    this.AddClearBackgroundComponent.addHTMLCode(uid);
-    this.AddClearBackgroundComponent.addClickFunction(uid);
-
-    // Add OrderedList HTML and click Function
-    this.AddOrderedListComponent.addHTMLCode(uid);
-    this.AddOrderedListComponent.addClickFunction(uid);
-
-    // Add UnOrderedList HTML and click Function
-    this.AddUnOrderedListComponent.addHTMLCode(uid);
-    this.AddUnOrderedListComponent.addClickFunction(uid);
 
     // Add Top HTML and click Function
     this.AddTopComponent.addHTMLCode(uid);
@@ -498,34 +513,11 @@ export class NewBoardComponent implements OnInit {
     this.AddBottomComponent.addHTMLCode(uid);
     this.AddBottomComponent.addClickFunction(uid, this.addBlockEditor);
 
-    // Add H1 HTML and click Function
-    this.AddH1Component.addHTMLCode(uid);
-    this.AddH1Component.addClickFunction(uid);
+    components.forEach((ele) => {
+      ele.addHTMLCode(uid);
+      ele.addClickFunction(uid);
+    });
 
-    // Adding H2 HTML and click function
-    this.AddH2Component.addHTMLCode(uid);
-    this.AddH2Component.addClickFunction(uid);
-
-    // Adding H3 Tags
-    this.AddH3Component.addHTMLCode(uid);
-    this.AddH3Component.addClickFunction(uid);
-
-    // Adding para tags
-    this.AddParaComponent.addHTMLCode(uid);
-    this.AddParaComponent.addClickFunction(uid);
-
-
-    // Adding Left Align HTML and click Function
-    this.AddLeftAlignComponent.addHTMLCode(uid);
-    this.AddLeftAlignComponent.addClickFunction(uid);
-
-    // Adding Center Align HTML and click Function
-    this.AddCenterAlignComponent.addHTMLCode(uid);
-    this.AddCenterAlignComponent.addClickFunction(uid);
-
-    // Adding Right Align HTML and click Function
-    this.AddRightAlignComponent.addHTMLCode(uid);
-    this.AddRightAlignComponent.addClickFunction(uid);
 
   }
 
@@ -641,7 +633,7 @@ export class NewBoardComponent implements OnInit {
       }
 
       // Add ToolBar
-      this.addToolBar(element.cardID);
+      this.addToolBar(element.cardID, element.pluginType);
 
       // Add Cards according to Plugin Type
       switch (element.pluginType) {
