@@ -735,6 +735,14 @@ export class NewBoardComponent implements OnInit {
 
   openSlideMenu = () => {
     document.getElementById('menu').style.width = '250px';
+    const divsToHide = document.getElementsByClassName('slide'); // divsToHide is an array
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < divsToHide.length; i++) {
+      // divsToHide[i].style.visibility = "hidden";
+      const div = divsToHide[i] as HTMLElement;
+      div.style.display = 'none';
+    }
     document.getElementById('content').style.marginLeft = '250px';
   }
 
@@ -784,7 +792,7 @@ export class NewBoardComponent implements OnInit {
     });
 
     // Fuse search
-    Mousetrap.bind(['command+shift+p', 'ctrl+shift+p'], (e) => {
+    Mousetrap.bind(['command+shift+z', 'ctrl+shift+z'], (e) => {
       if (e.preventDefault) {
         e.preventDefault();
       } else {
@@ -798,6 +806,13 @@ export class NewBoardComponent implements OnInit {
   closeSlideMenu = () => {
     document.getElementById('menu').style.width = '0';
     document.getElementById('content').style.marginLeft = '0';
+    const divsToHide = document.getElementsByClassName('slide'); // divsToHide is an array
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < divsToHide.length; i++) {
+      // divsToHide[i].style.visibility = "hidden";
+      const div = divsToHide[i] as HTMLElement;
+      div.style.display = '';
+    }
   }
 
   // ......................... TOOLBOX CLICK FUNCTIONALITY .........................
