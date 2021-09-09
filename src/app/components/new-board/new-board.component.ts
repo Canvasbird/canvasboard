@@ -16,6 +16,9 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
 import { PluginType } from 'src/interfaces/plugin-type';
 import * as Mousetrap from 'mousetrap';
+import { menu } from './menu';
+import Fuse from 'fuse.js';
+
 // Importing Plugins
 import { AddH1Component } from '../../plugins/cb-h1';
 import { AddCanvasBoard } from '../../plugins/cb-whiteboard';
@@ -103,6 +106,11 @@ export class NewBoardComponent implements OnInit {
   fileTag: Array<string>;
   fileToUpload: File = null;
 
+  // fuse search
+  listFuseSearch: any;
+  fuse: any;
+
+
   reader: FileReader;
   currentChartID: string;
   userBlocks: Map<string, NewBoardCard>;
@@ -143,6 +151,7 @@ export class NewBoardComponent implements OnInit {
 
 
   ngOnInit() {
+
 
     // sortable-js
     const mainEl = document.getElementById('main-box');
@@ -186,6 +195,99 @@ export class NewBoardComponent implements OnInit {
     // Shortcut to save
     // saveData
     this.shortcuts();
+
+    this.fuseSearch();
+  }
+
+  // ---------------------- FUSE JS ---------------------------
+
+  activateFuseList = () => {
+    const html = document.getElementById('fuseSearch');
+    if (html.style.display === 'none') {
+      html.style.display = 'block';
+    }
+    const inp: any = document.getElementById('fuseInput');
+    inp.value = '';
+    $(`#fuseInput`).focus();
+    this.listFuseSearch = [];
+  }
+
+  fuseSearch = async () => {
+    // Fuse JS COnfig
+    const options = {
+      // isCaseSensitive: false,
+      // includeScore: false,
+      // shouldSort: true,
+      // includeMatches: false,
+      // findAllMatches: false,
+      // minMatchCharLength: 1,
+      // location: 0,
+      // threshold: 0.6,
+      // distance: 100,
+      // useExtendedSearch: false,
+      // ignoreLocation: false,
+      // ignoreFieldNorm: false,
+      keys: [
+        'name', 'alternative'
+      ]
+    };
+    this.fuse = await new Fuse(menu, options);
+  }
+
+  textInputChange = (parameter: any) => {
+    this.listFuseSearch = this.fuse.search(parameter.value);
+  }
+
+  searchListClicked = (id: any) => {
+    const idFilter = parseInt(id, 10);
+    const exit = document.getElementById('fuseSearch');
+    exit.style.display = 'none';
+
+    // switch (element.pluginType) {
+    //   case 'editor' || undefined: {
+    //     $(`#original-${element.cardID}`).html(element.content);
+    //     break;
+    //   }
+    //   case 'board': {
+    //     this.AddCanvasBoard.setContent(element.cardID, element.content);
+    //     break;
+    //   }
+    //   case 'embed': {
+    //     this.AddEmbedComponent.addToolBox(element.cardID, element.content);
+    //     break;
+    //   }
+    //   case 'tweet': {
+    //     this.AddTwitterComponent.addToolBox(element.cardID, element.content);
+    //     break;
+    //   }
+    //   case 'markdown': {
+    //     this.AddMarkDownComponent.setContent(element.cardID, element.content);
+    //     break;
+    //   }
+    //   default: {
+    //     $(`#original-${element.cardID}`).html(element.content);
+    //   }
+    // }
+
+    switch (idFilter) {
+      case 1: {
+        this.cbToolbox(this.AddH1Component);
+        break;
+      }
+      case 2: {
+        this.cbToolbox(this.AddH2Component);
+        break;
+      }
+      case 3: {
+        this.cbToolbox(this.AddH3Component);
+        break;
+      }
+      case 4: {
+        this.cbToolbox(this.AddParaComponent);
+        break;
+      }
+    }
+
   }
 
   // ......................... BLOCK BUILDING FUNCITON............................
@@ -480,7 +582,7 @@ export class NewBoardComponent implements OnInit {
       } else if (ele.getpluginType() === 'board') {
         // For Board Save FabricJS object data
         ele.setContent(this.AddCanvasBoard.getContent(ele.cardID));
-      } else if (ele.getpluginType() === 'markdown'){
+      } else if (ele.getpluginType() === 'markdown') {
         ele.setContent(this.AddMarkDownComponent.getContent(ele.cardID));
       }
       // Save Class List of each Card
@@ -679,6 +781,17 @@ export class NewBoardComponent implements OnInit {
         e.returnValue = false;
       }
       this.cbToolbox(this.AddH3Component);
+    });
+
+    // Fuse search
+    Mousetrap.bind(['command+shift+p', 'ctrl+shift+p'], (e) => {
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        // internet explorer
+        e.returnValue = false;
+      }
+      this.activateFuseList();
     });
   }
 
