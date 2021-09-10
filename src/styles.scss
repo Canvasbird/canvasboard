@@ -167,7 +167,7 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
 }
 
 .cb-toolbox {
-  padding-left: 10px;
+  // padding-left: 10px;
 }
 
 // Fonts
@@ -186,6 +186,18 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
 .cb-more-toolbox {
   position: relative;
   display: none;
+}
+
+// Card
+
+.svgHandler{
+  display: flex;
+  align-items: center;
+}
+
+.svgClass{
+  margin: 0 auto;
+  display: block;
 }
 
 // MarkDown
