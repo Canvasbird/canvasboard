@@ -35,16 +35,17 @@
       <div class="header">
         <h3><strong>Toolbox</strong></h3>
       </div>
-      <!-- Save and Back Buttons -->
-      <div class="container row mt-2 " style="margin-right: auto;
+      <!---------------------------- SAVE AND BACK ---------------------------------------------->
+      <div class="container row mt-3 " style="margin-right: auto;
     margin-left: auto;">
         <button type="button" class="btn btn-success" (click)="saveData()" style="margin-right: 5px;">Save</button>
-        <button type="button" class="btn btn-light" routerLink="/folder/{{this.folderID}}"
+        <button type="button" class="btn btn-dark" routerLink="/folder/{{this.folderID}}"
           (click)="saveData()">Back</button>
       </div>
-
+      <!---------------------------- TOOLS LIST ------------------------------------------------->
       <div class="text-tools mt-3">
         <p><strong>Basic tools</strong></p>
+        <!---------------------------- EDITOR LIST ---------------------------------------------->
         <div class="button-tools d-flex flex-wrap">
           <!-- H1 tag -->
           <div class="m-1" title="H1">
@@ -132,9 +133,63 @@
           </div>
 
         </div>
+
+        <!---------------------------- COLOUR CARD LIST ----------------------------------------->
+        <div class="d-flex flex-wrap mt-2">
+          <!-- Red Background color button -->
+          <div class="m-1" title="Red Background">
+            <button class="btn btn-danger" (click)="cbToolbox(this.AddRedBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Green Background color button -->
+          <div class="m-1" title="Green Background">
+            <button class="btn btn-success" (click)="cbToolbox(this.AddGreenBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Yellow Background color button -->
+          <div class="m-1" title="Yellow Background">
+            <button class="btn btn-warning" (click)="cbToolbox(this.AddYellowBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Blue Background color button -->
+          <div class="m-1" title="Blue Background">
+            <button class="btn btn-primary" (click)="cbToolbox(this.AddBlueBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- light Background color button -->
+          <!-- <div class="m-1" title="Clear Background">
+            <button class="btn btn-light">
+              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div> -->
+        </div>
       </div>
       <!-- fonts Styles-->
-      <div class="font-cards-tools">
+      <div class="font-cards-tools mt-2">
         <p><strong>Font Styles</strong></p>
         <div class="d-flex flex-wrap mt-2">
           <!-- Roboto -->
@@ -170,64 +225,9 @@
         </div>
 
       </div>
-      <!-- Colour cards -->
-      <div class="color-cards-tools">
-        <p><strong>Colour Cards</strong></p>
-        <div class="d-flex flex-wrap mt-2">
-          <!-- Red Background color button -->
-          <div class="m-1" title="Red Background">
-            <button class="btn btn-danger" (click)="cbToolbox(this.AddRedBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- Green Background color button -->
-          <div class="m-1" title="Green Background">
-            <button class="btn btn-success" (click)="cbToolbox(this.AddGreenBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- Yellow Background color button -->
-          <div class="m-1" title="Yellow Background">
-            <button class="btn btn-warning" (click)="cbToolbox(this.AddYellowBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- Blue Background color button -->
-          <div class="m-1" title="Blue Background">
-            <button class="btn btn-primary" (click)="cbToolbox(this.AddBlueBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- light Background color button -->
-          <!-- <div class="m-1" title="Clear Background">
-            <button class="btn btn-light">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div> -->
-        </div>
-      </div>
+
       <!-- Plugins -->
-      <div class="plugins">
+      <div class="plugins mt-2">
         <p><strong>Plugins</strong></p>
         <div class="d-flex flex-wrap mt-2">
           <!-- Ordered list button -->
