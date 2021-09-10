@@ -3,10 +3,12 @@
     .cb-title {
       .heading {
         margin-bottom: 0px;
-        padding-top: 1rem;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #999999;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        border-bottom: 1px solid #dbdbdb;
         display: flex;
+        margin-left: 4.1%;
+        
       }
 
       .heading:focus {
@@ -120,6 +122,8 @@
   margin-bottom: 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  max-height: 88vh; 
+  overflow: scroll;
 }
 
 // navbar
