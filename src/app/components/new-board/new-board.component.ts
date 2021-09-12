@@ -331,7 +331,7 @@ export class NewBoardComponent implements OnInit {
     <div id="cb-box-1-${uid}" class="cb-box-1">
     <div class="row mx-0">
       <!-- plug for dragging -->
-      <div class="dragHandle svgHandler col-1 col-cb-1-custom" style="padding: 0px; padding-top: 7px; max-width: 4%; flex: 0 0 4%;" title="Drag">
+      <div class="dragHandle svgHandler col-1 col-cb-1-custom" style="padding: 0px; padding-top: 10px; max-width: 4%; flex: 0 0 4%;" title="Drag">
         <svg class="svgClass" width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-grip-horizontal"
         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7
@@ -621,7 +621,7 @@ export class NewBoardComponent implements OnInit {
 
     if ((this.fileData !== null && this.fileData !== undefined) || this.fileID !== undefined) {
       const saveDataJson = {
-        file_name: boardTitle === '' ? 'untitled' : boardTitle,
+        file_name: boardTitle === '' ? 'Untitled' : boardTitle,
         file_id: this.fileID,
         data: [],
         is_modified: true
@@ -630,7 +630,7 @@ export class NewBoardComponent implements OnInit {
       this.apiService.saveBoardData(saveDataJson);
     } else {
       const createDataJson = {
-        file_name: boardTitle === '' ? 'untitled' : boardTitle,
+        file_name: boardTitle === '' ? 'Untitled' : boardTitle,
         folder_id: this.folderID,
         file_tag: 'testing',
         data: []

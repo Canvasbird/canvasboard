@@ -191,8 +191,9 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
 // Card
 
 .svgHandler{
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
+  // padding-top: 5px;
 }
 
 .svgClass{
@@ -357,5 +358,5 @@ border-radius: 6px;
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 

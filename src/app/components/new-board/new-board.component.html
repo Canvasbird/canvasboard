@@ -1,44 +1,19 @@
 <app-navbar></app-navbar>
-<!-- Icons -->
-<!-- <div class="container mt-3">
-  <div class="d-flex">
-    <button class="btn btn-primary ml-auto mr-2" (click)="saveData()">Save as JSON</button>
-  </div>
-</div> -->
-<!-- <div class="search-wrapper" style="z-index: 9999;">
-  <div class="search">
-    <input type="text">
-    <div class="menu">
-      <ul>
-        <li>1</li>
-        <li>2</li>
-      </ul>
-    </div>
-  </div>
-</div> -->
 
-<div class="row searchBar" id="fuseSearch" style="display: none">
+<div class="row searchBar" id="fuseSearch" style="display: none;">
   <div class="bar">
     <input class="searchbar" id="fuseInput" type="text" title="Search" autocomplete="off"
-      (input)="textInputChange($event.target)" />
+      (input)="textInputChange($event.target)">
     <ul>
-      <!-- <li>lsdkjf</li>
-         <li>lsdkjf</li>
-         <li>lsdkjf</li>
-         <li>lsdkjf</li>
-         <li>lsdkjf</li>
-         <li>lsdkjf</li>
-         <li>lsdkjf</li> -->
-      <!-- listFuseSearch -->
-      <li *ngFor="let list of listFuseSearch" (click)="searchListClicked(list.item.id)">
-        {{ list.item.name }}
-      </li>
+  <!---------------------------- FUSE LIST ---------------------------------------------->
+      <li *ngFor="let list of listFuseSearch" (click)="searchListClicked(list.item.id)">{{list.item.name}}</li>
     </ul>
   </div>
 </div>
 
-<div id="content" style="margin-left: 250px; padding-top: 80px">
-  <span class="slider" style="display: none" title="Open Toolbox 🚀">
+<div id="content">
+  <span class="slide" style="display: none;" title="Open Toolbox 🚀">
+
     <a (click)="openSlideMenu()">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +23,7 @@
     </a>
   </span>
 
-  <div id="menu" class="nav shadow" style="margin-top: 85px">
+  <div id="menu" class="nav shadow">
     <a (click)="closeSlideMenu()" class="close" title="Close Toolbox 🚀">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
@@ -59,10 +34,19 @@
 
     <div class="cb-ul">
       <div class="header">
-        <h3><strong>Toolbox🚀</strong></h3>
+        <h3><strong>Toolbox</strong></h3>
       </div>
-      <div class="text-tools mt-4">
+      <!---------------------------- SAVE AND BACK ---------------------------------------------->
+      <div class="container row mt-3 " style="margin-right: auto;
+    margin-left: auto;">
+        <button type="button" class="btn btn-success" (click)="saveData()" style="margin-right: 5px;">Save</button>
+        <button type="button" class="btn btn-dark" routerLink="/folder/{{this.folderID}}"
+          (click)="saveData()">Back</button>
+      </div>
+      <!---------------------------- TOOLS LIST ------------------------------------------------->
+      <div class="text-tools mt-3">
         <p><strong>Basic tools</strong></p>
+        <!---------------------------- EDITOR LIST ---------------------------------------------->
         <div class="button-tools d-flex flex-wrap">
           <!-- H1 tag -->
           <div class="m-1" title="H1">
@@ -160,14 +144,69 @@
             </button>
           </div>
         </div>
+        <!---------------------------- COLOUR CARD LIST ----------------------------------------->
+        <div class="d-flex flex-wrap mt-2">
+          <!-- Red Background color button -->
+          <div class="m-1" title="Red Background">
+            <button class="btn btn-danger" (click)="cbToolbox(this.AddRedBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Green Background color button -->
+          <div class="m-1" title="Green Background">
+            <button class="btn btn-success" (click)="cbToolbox(this.AddGreenBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Yellow Background color button -->
+          <div class="m-1" title="Yellow Background">
+            <button class="btn btn-warning" (click)="cbToolbox(this.AddYellowBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- Blue Background color button -->
+          <div class="m-1" title="Blue Background">
+            <button class="btn btn-primary" (click)="cbToolbox(this.AddBlueBackgroundComponent)">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div>
+          <!-- light Background color button -->
+          <!-- <div class="m-1" title="Clear Background">
+            <button class="btn btn-light">
+              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
+              </svg>
+            </button>
+          </div> -->
+        </div>
       </div>
       <!-- fonts Styles-->
-      <div class="font-cards-tools">
+      <div class="font-cards-tools mt-2">
         <p><strong>Font Styles</strong></p>
         <div class="d-flex flex-wrap mt-2">
           <!-- Roboto -->
           <div class="m-1" title="Roboto Font" (click)="cbToolbox(this.AddClearFontComponent)">
-            <button class="btn btn-light">Roboto</button>
+            <button class="btn btn-light">
+              Roboto
+            </button>
           </div>
           <!-- Monospace -->
           <div class="m-1" title="Monospace Font">
@@ -188,69 +227,17 @@
             </button>
           </div>
           <!-- Clear Font -->
-          <div class="m-1" title="Clear Font" (click)="cbToolboxClearFont()">
-            <button class="btn btn-light">Clear Font</button>
-          </div>
-        </div>
-      </div>
-      <!-- Colour cards -->
-      <div class="color-cards-tools">
-        <p><strong>Colour Cards</strong></p>
-        <div class="d-flex flex-wrap mt-2">
-          <!-- Red Background color button -->
-          <div class="m-1" title="Red Background">
-            <button class="btn btn-danger" (click)="cbToolbox(this.AddRedBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- Green Background color button -->
-          <div class="m-1" title="Green Background">
-            <button class="btn btn-success" (click)="cbToolbox(this.AddGreenBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- Yellow Background color button -->
-          <div class="m-1" title="Yellow Background">
-            <button class="btn btn-warning" (click)="cbToolbox(this.AddYellowBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- Blue Background color button -->
-          <div class="m-1" title="Blue Background">
-            <button class="btn btn-primary" (click)="cbToolbox(this.AddBlueBackgroundComponent)">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- light Background color button -->
-          <div class="m-1" title="Clear Background">
+          <!-- <div class="m-1" title="Clear Font" (click)="cbToolboxClearFont()">
             <button class="btn btn-light">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
+              Clear Font
             </button>
-          </div>
+          </div> -->
         </div>
+
       </div>
+
       <!-- Plugins -->
-      <div class="plugins">
+      <div class="plugins mt-2">
         <p><strong>Plugins</strong></p>
         <div class="d-flex flex-wrap mt-2">
           <!-- Ordered list button -->
@@ -295,6 +282,7 @@
               </svg>
             </button>
           </div> -->
+
           <!-- Canvas Board -->
           <div class="m-1" title="Canvas Board">
             <button class="btn btn-light" (click)="cbToolbox(this.AddCanvasBoard, 'board')">
@@ -422,17 +410,8 @@
       </div> -->
     </div>
   </div>
-  <!-- Buttons -->
-  <div class="container row mt-2 justify-content-between" style="margin-right: auto; margin-left: auto">
-    <button type="button" class="btn btn-light btn-lg" routerLink="/folder/{{ this.folderID }}" (click)="saveData()">
-      Back
-    </button>
-    <button type="button" class="btn btn-light btn-lg" (click)="saveData()">
-      Save
-    </button>
-  </div>
 
-  <!-- Notifications -->
+  <!---------------------------- NOTIFICATIONS ---------------------------------------------->
 
   <div aria-live="polite" aria-atomic="true" style="position: relative">
     <div id="toasts" style="position: absolute; top: 0; right: 0">
@@ -452,20 +431,20 @@
     </div>
   </div>
 
-  <!-- Main content -->
-  <div class="container shadow mt-2 cb-container-main">
+  <!---------------------------- MAIN BLOCK ------------------------------------------------>
+  <div class="container mt-2 cb-container-main">
     <div class="main">
-      <!-----------------title---------------------->
+
       <div class="cb-title" id="cb-title">
         <h2 id="title" class="heading" contenteditable="true" data-text="Title"></h2>
       </div>
-      <!-----------------notes box ----------------->
-      <div id="main-box" class="main-box">
-        <!-- temp -->
-        <div id="sub-title" class="demo"></div>
-        <!-- .........................TESTING CODE GOES HERE!................................. -->
 
-        <!-- .........................END OF TESTING CODE!.......................... -->
+      <div id="main-box" class="main-box">
+        <!---------------------------- TEMP CARD------------------------------------------------>
+        <div id="sub-title" class="demo"></div>
+        <!---------------------------- BLOCKS INJECTION ---------------------------------------->
+
+        <!---------------------------- BLOCKS INJECTION END------------------------------------->
       </div>
       <!-- --------------END OF NOTES BOX -->
       <!-- Full screen modal -->
@@ -523,7 +502,7 @@
           </div>
         </div>
       </div>
-      <!--Youtube Modal -->
+  <!---------------------------- YOUTUBE MODAL ------------------------------------------------>
       <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="youtubeModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -559,7 +538,7 @@
           </div>
         </div>
       </div>
-      <!--Twitter Modal -->
+  <!---------------------------- TWITTER MODAL ------------------------------------------------>
       <div class="modal fade" id="twitterModal" tabindex="-1" role="dialog" aria-labelledby="twitterModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
