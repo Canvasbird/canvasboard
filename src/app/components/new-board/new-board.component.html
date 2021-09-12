@@ -5,7 +5,7 @@
     <input class="searchbar" id="fuseInput" type="text" title="Search" autocomplete="off"
       (input)="textInputChange($event.target)">
     <ul>
-  <!---------------------------- FUSE LIST ---------------------------------------------->
+      <!---------------------------- FUSE LIST ---------------------------------------------->
       <li *ngFor="let list of listFuseSearch" (click)="searchListClicked(list.item.id)">{{list.item.name}}</li>
     </ul>
   </div>
@@ -24,13 +24,13 @@
   </span>
 
   <div id="menu" class="nav shadow">
-    <a (click)="closeSlideMenu()" class="close" title="Close Toolbox 🚀">
+    <!-- <a (click)="closeSlideMenu()" class="close" title="Close Toolbox 🚀">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd"
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
       </svg>
-    </a>
+    </a> -->
 
     <div class="cb-ul">
       <div class="header">
@@ -40,8 +40,18 @@
       <div class="container row mt-3 " style="margin-right: auto;
     margin-left: auto;">
         <button type="button" class="btn btn-success" (click)="saveData()" style="margin-right: 5px;">Save</button>
+
         <button type="button" class="btn btn-dark" routerLink="/folder/{{this.folderID}}"
-          (click)="saveData()">Back</button>
+          (click)="saveData()" style="margin-right: 5px;">Back</button>
+          
+        <button class="btn btn-dark" data-toggle="modal" data-target="#presentModal" data-backdrop="static"
+          (click)="cbToolboxPresent()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 0a.5.5 0 0 1 .473.337L9.046 2H14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.85l1.323 3.837a.5.5 0 1 1-.946.326L11.092 11H8.5v3a.5.5 0 0 1-1 0v-3H4.908l-1.435 4.163a.5.5 0 1 1-.946-.326L3.85 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.954L7.527.337A.5.5 0 0 1 8 0zM2 3v7h12V3H2z" />
+          </svg>
+        </button>
       </div>
       <!---------------------------- TOOLS LIST ------------------------------------------------->
       <div class="text-tools mt-3">
@@ -132,17 +142,6 @@
               </svg>
             </button>
           </div>
-          <!-- Present -->
-          <div class="tool box5 m-1" title="Present Cards">
-            <button class="btn btn-light" data-toggle="modal" data-target="#presentModal" data-backdrop="static"
-              (click)="cbToolboxPresent()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel"
-                viewBox="0 0 16 16">
-                <path
-                  d="M8 0a.5.5 0 0 1 .473.337L9.046 2H14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.85l1.323 3.837a.5.5 0 1 1-.946.326L11.092 11H8.5v3a.5.5 0 0 1-1 0v-3H4.908l-1.435 4.163a.5.5 0 1 1-.946-.326L3.85 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.954L7.527.337A.5.5 0 0 1 8 0zM2 3v7h12V3H2z" />
-              </svg>
-            </button>
-          </div>
         </div>
         <!---------------------------- COLOUR CARD LIST ----------------------------------------->
         <div class="d-flex flex-wrap mt-2">
@@ -186,16 +185,6 @@
               </svg>
             </button>
           </div>
-          <!-- light Background color button -->
-          <!-- <div class="m-1" title="Clear Background">
-            <button class="btn btn-light">
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-fonts" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z" />
-              </svg>
-            </button>
-          </div> -->
         </div>
       </div>
       <!-- fonts Styles-->
@@ -262,16 +251,6 @@
               </svg>
             </button>
           </div>
-          <!-- Code snippet button -->
-          <!-- <div class="m-1" title="Code Snippet">
-            <button class="btn btn-light">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-slash" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0zm-.999-3.124a.5.5 0 0 1 .33.625l-4 13a.5.5 0 0 1-.955-.294l4-13a.5.5 0 0 1 .625-.33z" />
-              </svg>
-            </button>
-          </div> -->
           <!-- Image upload button -->
           <!-- <div class="m-1" title="Image Upload">
             <button class="btn btn-light">
@@ -453,15 +432,15 @@
         <div class="modal-fullscreen" style="max-width: 100vw; height: 100vh;">
           <div class="modal-content" style="width: 100%; height: 100%;">
             <div class="modal-body" style="padding: 0%;">
-                <div id="revealDiv" class="reveal">
-                  <div class="slides">
-                    <section data-background-color="white">Slide 1</section>
-                    <section data-background-color="white">Slide 2</section>
-                  </div>
+              <div id="revealDiv" class="reveal">
+                <div class="slides">
+                  <section data-background-color="white">Slide 1</section>
+                  <section data-background-color="white">Slide 2</section>
                 </div>
+              </div>
             </div>
           </div>
-          </div>
+        </div>
       </div>
 
       <!--Embed Modal -->
@@ -502,7 +481,7 @@
           </div>
         </div>
       </div>
-  <!---------------------------- YOUTUBE MODAL ------------------------------------------------>
+      <!---------------------------- YOUTUBE MODAL ------------------------------------------------>
       <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="youtubeModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -538,7 +517,7 @@
           </div>
         </div>
       </div>
-  <!---------------------------- TWITTER MODAL ------------------------------------------------>
+      <!---------------------------- TWITTER MODAL ------------------------------------------------>
       <div class="modal fade" id="twitterModal" tabindex="-1" role="dialog" aria-labelledby="twitterModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
