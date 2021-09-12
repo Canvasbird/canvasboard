@@ -39,7 +39,9 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/aos/dist/aos.css",
-              "node_modules/highlight.js/styles/github.css"
+              "node_modules/highlight.js/styles/github.css",
+              "node_modules/reveal.js/dist/reveal.css",
+              "node_modules/reveal.js/dist/theme/white.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
