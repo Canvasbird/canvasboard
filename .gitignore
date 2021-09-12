@@ -49,3 +49,7 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Workflows
+.github/auto_assign.yml
+.github/workflows/action.yml
