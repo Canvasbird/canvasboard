@@ -13,6 +13,7 @@
 
 <div id="content">
   <span class="slide" style="display: none;" title="Open Toolbox 🚀">
+
     <a (click)="openSlideMenu()">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-justify" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
@@ -131,9 +132,18 @@
               </svg>
             </button>
           </div>
-
+          <!-- Present -->
+          <div class="tool box5 m-1" title="Present Cards">
+            <button class="btn btn-light" data-toggle="modal" data-target="#presentModal" data-backdrop="static"
+              (click)="cbToolboxPresent()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-easel"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 0a.5.5 0 0 1 .473.337L9.046 2H14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.85l1.323 3.837a.5.5 0 1 1-.946.326L11.092 11H8.5v3a.5.5 0 0 1-1 0v-3H4.908l-1.435 4.163a.5.5 0 1 1-.946-.326L3.85 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.954L7.527.337A.5.5 0 0 1 8 0zM2 3v7h12V3H2z" />
+              </svg>
+            </button>
+          </div>
         </div>
-
         <!---------------------------- COLOUR CARD LIST ----------------------------------------->
         <div class="d-flex flex-wrap mt-2">
           <!-- Red Background color button -->
@@ -275,7 +285,7 @@
 
           <!-- Canvas Board -->
           <div class="m-1" title="Canvas Board">
-            <button class="btn btn-light" (click)="cbToolbox(this.AddCanvasBoard,'board')">
+            <button class="btn btn-light" (click)="cbToolbox(this.AddCanvasBoard, 'board')">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-square" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -327,7 +337,7 @@
           </div>
           <!-- PdfRender button -->
           <div class="tool box1 m-1" title="File Upload" (click)="cbToolboxPdfRender()">
-            <input type="file" hidden id="pdfFile">
+            <input type="file" hidden id="pdfFile" />
             <button class="btn btn-light" id="pdf-render-cb-box1-${uid}">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
@@ -339,7 +349,7 @@
           </div>
           <!-- Youtube button -->
           <div class="tool box1 m-1" title="Youtube">
-            <input type="file" hidden id="youtube">
+            <input type="file" hidden id="youtube" />
             <button class="btn btn-light" id="youtube-cb-box1-${uid}" data-toggle="modal" data-target="#youtubeModal">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube"
                 viewBox="0 0 16 16">
@@ -349,7 +359,9 @@
             </button>
           </div>
           <!-- Clock button -->
-          <div class="tool box1 m-1" title="Clock" (click)="cbToolbox(this.AddEmbedComponent,'embed','plugins/clock')">
+          <div class="tool box1 m-1" title="Clock" (click)="
+                                  cbToolbox(this.AddEmbedComponent, 'embed', 'plugins/clock')
+                                ">
             <button class="btn btn-light" id="clock-cb-box1-${uid}">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
                 viewBox="0 0 16 16">
@@ -360,8 +372,8 @@
           </div>
           <!-- Twitter button -->
           <div class="tool box1 m-1" title="Twitter">
-            <input type="file" hidden id="twitter">
-            <button class=" btn btn-light" id="twitter-cb-box1-${uid}" data-toggle="modal" data-target="#twitterModal">
+            <input type="file" hidden id="twitter" />
+            <button class="btn btn-light" id="twitter-cb-box1-${uid}" data-toggle="modal" data-target="#twitterModal">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter"
                 viewBox="0 0 16 16">
                 <path
@@ -370,7 +382,7 @@
             </button>
           </div>
           <!-- Markdown button -->
-          <div class="tool box1 m-1" title="Markdown" (click)="cbToolbox(this.AddMarkDownComponent,'markdown')">
+          <div class="tool box1 m-1" title="Markdown" (click)="cbToolbox(this.AddMarkDownComponent, 'markdown')">
             <button class="btn btn-light" id="markdown-cb-box1-${uid}">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-markdown-fill" viewBox="0 0 16 16">
@@ -401,22 +413,20 @@
 
   <!---------------------------- NOTIFICATIONS ---------------------------------------------->
 
-  <div aria-live="polite" aria-atomic="true" style="position: relative;">
-    <div id="toasts" style="position: absolute; top: 0; right: 0;">
+  <div aria-live="polite" aria-atomic="true" style="position: relative">
+    <div id="toasts" style="position: absolute; top: 0; right: 0">
       <!-- Toast tag -->
       <div class="toast" id="saveToast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
         <div class="toast-header">
           <img src="../../../assets/home/logo_bw.png" width="38" height="40" class="d-inline-block align-top mr-1"
-            alt="CB" loading="lazy">
+            alt="CB" loading="lazy" />
           <strong class="mr-4">Canvasboard Beta</strong>
           <small class="text-muted">just now</small>
           <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="toast-body">
-          Board is Saved.
-        </div>
+        <div class="toast-body">Board is Saved.</div>
       </div>
     </div>
   </div>
@@ -436,30 +446,58 @@
 
         <!---------------------------- BLOCKS INJECTION END------------------------------------->
       </div>
-      
-  <!---------------------------- EMBED MODAL------------------------------------------------->     
+      <!-- --------------END OF NOTES BOX -->
+      <!-- Full screen modal -->
+      <div class="modal" id="presentModal" tabindex="-1" role="dialog" aria-labelledby="presentModalCenterTitle"
+        data-backdrop="static" aria-hidden="true">
+        <div class="modal-fullscreen" style="max-width: 100vw; height: 100vh;">
+          <div class="modal-content" style="width: 100%; height: 100%;">
+            <div class="modal-body" style="padding: 0%;">
+                <div id="revealDiv" class="reveal">
+                  <div class="slides">
+                    <section data-background-color="white">Slide 1</section>
+                    <section data-background-color="white">Slide 2</section>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+      </div>
+
+      <!--Embed Modal -->
       <div class="modal fade" id="embedModal" tabindex="-1" role="dialog" aria-labelledby="embedModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="embedModalLongTitle">Embed Link URL</h5>
+              <h5 class="modal-title" id="embedModalLongTitle">
+                Embed Link URL
+              </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <form>
-                <div class="form-group"
-                  style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
-                  <input type="text" placeholder="Enter Embed link here" class="form-control" id="embedURL" #embedURL>
+                <div class="form-group" style="
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    justify-content: space-around;
+                                                  ">
+                  <input type="text" placeholder="Enter Embed link here" class="form-control" id="embedURL" #embedURL />
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="cbToolbox(this.AddEmbedComponent,'embed',embedURL.value)">Enter</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="
+                                              cbToolbox(this.AddEmbedComponent, 'embed', embedURL.value)
+                                            ">
+                Enter
+              </button>
             </div>
           </div>
         </div>
@@ -470,23 +508,32 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="youtubeModalLongTitle">youtube Link URL</h5>
+              <h5 class="modal-title" id="youtubeModalLongTitle">
+                youtube Link URL
+              </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <form>
-                <div class="form-group"
-                  style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
-                  <input type="text" placeholder="Enter youtube link here" class="form-control" id="youtubeEmbedURL">
+                <div class="form-group" style="
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    justify-content: space-around;
+                                                  ">
+                  <input type="text" placeholder="Enter youtube link here" class="form-control" id="youtubeEmbedURL" />
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="cbToolboxYoutube()">Enter</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="cbToolboxYoutube()">
+                Enter
+              </button>
             </div>
           </div>
         </div>
@@ -497,23 +544,32 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="twitterModalLongTitle">Twitter Link URL</h5>
+              <h5 class="modal-title" id="twitterModalLongTitle">
+                Twitter Link URL
+              </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <form>
-                <div class="form-group"
-                  style="display:flex; flex-direction: column; align-items: center; justify-content: space-around;">
-                  <input type="text" placeholder="Enter twitter link here" class="form-control" id="twitterEmbedURL">
+                <div class="form-group" style="
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    justify-content: space-around;
+                                                  ">
+                  <input type="text" placeholder="Enter twitter link here" class="form-control" id="twitterEmbedURL" />
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="cbToolboxTwitter()">Enter</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="cbToolboxTwitter()">
+                Enter
+              </button>
             </div>
           </div>
         </div>

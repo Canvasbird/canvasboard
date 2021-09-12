@@ -18,6 +18,9 @@ import { PluginType } from 'src/interfaces/plugin-type';
 import * as Mousetrap from 'mousetrap';
 import { menu } from './menu';
 import Fuse from 'fuse.js';
+import Reveal from 'reveal.js';
+import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
+import Highlight from 'reveal.js/plugin/highlight/highlight.esm';
 
 // Importing Plugins
 import { AddH1Component } from '../../plugins/cb-h1';
@@ -95,7 +98,13 @@ export class NewBoardComponent implements OnInit {
     this.AddTwitterComponent = new AddTwitterComponent();
     this.AddMarkDownComponent = new AddMarkDownComponent();
     this.reader = new FileReader();
-
+    this.deck = new Reveal({
+      plugins: [
+        Markdown,
+        Highlight
+      ],
+      hash: true
+    }) as Reveal;
 
   }
 
@@ -141,7 +150,7 @@ export class NewBoardComponent implements OnInit {
   AddPdfRenderComponent: PluginComponent;
   AddTwitterComponent: PluginComponent;
   AddMarkDownComponent: any;
-
+  deck: Reveal;
   uniqueChartID = (() => {
     let id = 0;
     return () => {
@@ -197,6 +206,32 @@ export class NewBoardComponent implements OnInit {
     this.shortcuts();
 
     this.fuseSearch();
+
+  }
+
+  ngAfterViewInit(){
+    // this.deck.initialize({ transition: 'none' });
+    Reveal.initialize(
+      {
+        plugins: [
+          Markdown,
+          Highlight,
+        ],
+        hash: true,
+        embedded: true,
+        minScale: 1.0,
+        controls: true,
+        controlsTutorial: true,
+        keyboardCondition: 'focused'
+      }
+    );
+    Reveal.configure({
+      keyboard: {
+        27: () => {
+          $('presentModal').hide();
+        }, // do Nothing when ESC is pressed
+      }
+    });
   }
 
   // ---------------------- FUSE JS ---------------------------
@@ -305,7 +340,7 @@ export class NewBoardComponent implements OnInit {
           1 2 0z"/>
         </svg>
       </div>
-      <div class="col-10 px-0" style="max-width: 90%; flex: 0 0 90%;">
+      <div id="real-content-box-${uid}" class="col-10 px-0" style="max-width: 90%; flex: 0 0 90%;">
         <!-- content box -->
         <div id="cb-box-2-${uid}" class="cb-box-2 mt-2 mb-2" style="margin-left: 3px; border-radius: 5px;">
           <div class="cb-box-3">
@@ -727,7 +762,7 @@ export class NewBoardComponent implements OnInit {
 
   openSlideMenu = () => {
     document.getElementById('menu').style.width = '250px';
-    const divsToHide = document.getElementsByClassName('slide'); // divsToHide is an array
+    const divsToHide = document.getElementsByClassName('slider'); // divsToHide is an array
 
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < divsToHide.length; i++) {
@@ -739,6 +774,19 @@ export class NewBoardComponent implements OnInit {
   }
 
   shortcuts = () => {
+
+    // ESC
+    Mousetrap.bind(['Esc', 'Esc'], (e) => {
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        // internet explorer
+        e.returnValue = false;
+      }
+      const div = document.getElementById('revealDiv');
+      div.style.display = 'none';
+    });
+
     // Save
     Mousetrap.bind(['command+s', 'ctrl+s'], (e) => {
       if (e.preventDefault) {
@@ -795,10 +843,24 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
+  cbToolboxPresent = () => {
+    const slides = $('#revealDiv .slides');
+    slides.empty();
+
+    $('#main-box>div').each(function(i) {
+      if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
+        const id = $(this).prop('id').substring(9);
+        const section = `<section data - background - color="white" >` + $(`#real-content-box-${id}`).html() + `</section>`;
+        slides.append(section);
+      }
+    });
+    Reveal.sync();
+    Reveal.slide(0);
+  }
   closeSlideMenu = () => {
     document.getElementById('menu').style.width = '0';
     document.getElementById('content').style.marginLeft = '0';
-    const divsToHide = document.getElementsByClassName('slide'); // divsToHide is an array
+    const divsToHide = document.getElementsByClassName('slider'); // divsToHide is an array
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < divsToHide.length; i++) {
       // divsToHide[i].style.visibility = "hidden";

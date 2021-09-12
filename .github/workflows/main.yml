@@ -76,31 +76,31 @@ jobs:
       - name: Image Digest
         run: echo ${{ steps.docker_build.outputs.digest }}
   
-      # Deploy to Netlify
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './dist/canvasboard'
-          production-branch: master
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+#       # Deploy to Netlify
+#       - name: Deploy to Netlify
+#         uses: nwtgck/actions-netlify@v1.1
+#         with:
+#           publish-dir: './dist/canvasboard'
+#           production-branch: master
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
+#           deploy-message: "Deploy from GitHub Actions"
+#           enable-pull-request-comment: false
+#           enable-commit-comment: true
+#           overwrites-pull-request-comment: true
+#         env:
+#           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+#           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+#         timeout-minutes: 1
     
-  lighthouse:
-    needs: build-to-deploy
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v7
-        with:
-          urls: https://canvasboard.live
-          budgetPath: ./budget.json # test performance budgets
-          uploadArtifacts: true # save results as an action artifacts
-          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+#   lighthouse:
+#     needs: build-to-deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Audit URLs using Lighthouse
+#         uses: treosh/lighthouse-ci-action@v7
+#         with:
+#           urls: https://canvasboard.live
+#           budgetPath: ./budget.json # test performance budgets
+#           uploadArtifacts: true # save results as an action artifacts
+#           temporaryPublicStorage: true # upload lighthouse report to the temporary storage
