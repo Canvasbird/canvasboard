@@ -217,7 +217,7 @@ export class NewBoardComponent implements OnInit {
           Markdown,
           Highlight,
         ],
-        hash: true,
+        // hash: true,
         embedded: true,
         minScale: 1.0,
         controls: true,
@@ -850,12 +850,13 @@ export class NewBoardComponent implements OnInit {
     $('#main-box>div').each(function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         const id = $(this).prop('id').substring(9);
-        const section = `<section data - background - color="white" >` + $(`#real-content-box-${id}`).html() + `</section>`;
+        const section = `<section data-background-color="white">` + $(`#real-content-box-${id}`).html() + `</section>`;
         slides.append(section);
       }
     });
     Reveal.sync();
     Reveal.slide(0);
+    Reveal.toggleHelp(true);
   }
   closeSlideMenu = () => {
     document.getElementById('menu').style.width = '0';
