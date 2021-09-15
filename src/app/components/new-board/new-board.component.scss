@@ -124,6 +124,13 @@
   border-top-right-radius: 20px;
   max-height: 88vh; 
   overflow: scroll;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.cb-container-main::-webkit-scrollbar {
+  display: none;
 }
 
 // navbar
