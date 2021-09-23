@@ -88,7 +88,7 @@ class StateManager {
 
 }
 
-export class AddCanvasBoard implements BasePluginComponent{
+export class AddCanvasBoard implements BasePluginComponent {
   stateManager: Map<string, StateManager>;
   canvas: Map<string, fabric.Canvas>;
   DRAWING_MODE: Map<string, string>;
@@ -105,12 +105,12 @@ export class AddCanvasBoard implements BasePluginComponent{
   }
 
   // Save Data to store in server
-  getContent(uid){
+  getContent(uid) {
     return this.canvas.get(uid).toObject();
   }
 
   // Retrieve Save Data to load from server
-  setContent(uid, data){
+  setContent(uid, data) {
     this.addToolBox(uid);
     this.canvas.get(uid).loadFromJSON(data, () => this.canvas.get(uid).renderAll());
   }
@@ -151,7 +151,7 @@ export class AddCanvasBoard implements BasePluginComponent{
     $(`#original-${uid}`).append(`
     <div id="canvas-menu-box" class="canvas-menu-box">
     <button id="canvas-menu-box-pencil-${uid}" class="btn btn-light m-1">
-       ✏️ 
+       ✏️
     </button>
     <button id="canvas-menu-box-delete-${uid}" class="btn btn-light m-1" disabled=false>
         🗑
@@ -173,7 +173,6 @@ export class AddCanvasBoard implements BasePluginComponent{
        <option value="10">Size 10</option>
        <option value="15">Size 15</option>
     </select>
-    
  </div>
  <canvas id="canvas-${uid}" style="border: 1px solid #dbdbdb;" ></canvas>
      `);
