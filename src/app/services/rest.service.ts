@@ -275,18 +275,6 @@ export class RestService {
       }
     });
     return this.getTwitterResponse ;
-    // await this.http.get(`https://publish.twitter.com/oembed?url=${tweetUrl}`, {
-    //   headers: new HttpHeaders({
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-    //     'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Access-Control-Allow-Origin',
-    //     'Access-Control-Allow-Credentials': 'true',
-    //     'x-frame-options': 'SAMEORIGIN'
-    //   })
-    // }).toPromise().then((response: TwitterData) => {
-    //     this.getTwitterResponse = response.html;
-    //   });
-    // return this.getTwitterResponse;
 }
 
 }
