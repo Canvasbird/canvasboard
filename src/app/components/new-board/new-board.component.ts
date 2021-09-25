@@ -861,11 +861,11 @@ export class NewBoardComponent implements OnInit {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH3Component);
       // }
-      // // P on Enter
-      // if (KEYS.size == 1 && KEYS.has(13)) {
-      //   e.preventDefault();
-      //   this.cbToolboxBottomTag()
-      // }
+      // P on Enter
+      if (KEYS.size == 1 && KEYS.has(13)) {
+        e.preventDefault();
+        this.cbToolboxBottomTag()
+      }
     })
 
     // Remove the keys from the set.
