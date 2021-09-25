@@ -829,43 +829,43 @@ export class NewBoardComponent implements OnInit {
         this.activateFuseList();
       }
 
-      // H1 -> shift +ctrl + 1
-      if (KEYS.has(16) && KEYS.has(17) && KEYS.has(49)) {
-        e.preventDefault();
-        this.cbToolbox(this.AddH1Component);
-      }
-      // H1 -> shift + cmd + 1           
-      if (KEYS.has(16) && KEYS.has(91) && KEYS.has(49)) {
-        e.preventDefault();
-        this.cbToolbox(this.AddH1Component);
-      }
+      // // H1 -> shift +ctrl + 1
+      // if (KEYS.has(16) && KEYS.has(17) && KEYS.has(49)) {
+      //   e.preventDefault();
+      //   this.cbToolbox(this.AddH1Component);
+      // }
+      // // H1 -> shift + cmd + 1           
+      // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(49)) {
+      //   e.preventDefault();
+      //   this.cbToolbox(this.AddH1Component);
+      // }
 
-      // H2 -> shift +ctrl + 2
-      if (KEYS.has(16) && KEYS.has(17) && KEYS.has(50)) {
-        e.preventDefault();
-        this.cbToolbox(this.AddH2Component);
-      }
-      // H2 -> shift + cmd + 2          
-      if (KEYS.has(16) && KEYS.has(91) && KEYS.has(50)) {
-        e.preventDefault();
-        this.cbToolbox(this.AddH2Component);
-      }
+      // // H2 -> shift +ctrl + 2
+      // if (KEYS.has(16) && KEYS.has(17) && KEYS.has(50)) {
+      //   e.preventDefault();
+      //   this.cbToolbox(this.AddH2Component);
+      // }
+      // // H2 -> shift + cmd + 2          
+      // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(50)) {
+      //   e.preventDefault();
+      //   this.cbToolbox(this.AddH2Component);
+      // }
 
-      // H3 -> shift +ctrl + 3
-      if (KEYS.has(16) && KEYS.has(17) && KEYS.has(51)) {
-        e.preventDefault();
-        this.cbToolbox(this.AddH3Component);
-      }
-      // H3 -> shift + cmd + 3         
-      if (KEYS.has(16) && KEYS.has(91) && KEYS.has(51)) {
-        e.preventDefault();
-        this.cbToolbox(this.AddH3Component);
-      }
-      // P on Enter
-      if (KEYS.size == 1 && KEYS.has(13)) {
-        e.preventDefault();
-        this.cbToolboxBottomTag()
-      }
+      // // H3 -> shift +ctrl + 3
+      // if (KEYS.has(16) && KEYS.has(17) && KEYS.has(51)) {
+      //   e.preventDefault();
+      //   this.cbToolbox(this.AddH3Component);
+      // }
+      // // H3 -> shift + cmd + 3         
+      // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(51)) {
+      //   e.preventDefault();
+      //   this.cbToolbox(this.AddH3Component);
+      // }
+      // // P on Enter
+      // if (KEYS.size == 1 && KEYS.has(13)) {
+      //   e.preventDefault();
+      //   this.cbToolboxBottomTag()
+      // }
     })
 
     // Remove the keys from the set.
