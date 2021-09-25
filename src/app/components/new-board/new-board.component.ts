@@ -52,7 +52,7 @@ import { AddTwitterComponent } from 'src/app/plugins/twitter';
 import { AddMarkDownComponent } from '../../plugins/markdown';
 
 declare var $: any;
-// declare var Mousetrap: any;
+
 @Component({
   selector: 'app-new-board',
   templateUrl: './new-board.component.html',
@@ -68,9 +68,10 @@ export class NewBoardComponent implements OnInit {
         this.folderID = this.router.getCurrentNavigation().extras.state.folderId;
       }
     }
-    // Initialize the Map
+    // Storing blocks in Map
     this.userBlocks = new Map();
 
+    // ----------------------- Components -----------------------
     this.AddH1Component = new AddH1Component();
     this.AddH2Component = new AddH2Component();
     this.AddH3Component = new AddH3Component();
@@ -114,8 +115,10 @@ export class NewBoardComponent implements OnInit {
   fileData: NavigationExtras;
   fileTag: Array<string>;
   fileToUpload: File = null;
-
-  // fuse search
+  focusElement: any;
+  
+  //----------------------- Fuse search Variables -----------------------
+  
   listFuseSearch: any;
   fuse: any;
 
@@ -123,6 +126,7 @@ export class NewBoardComponent implements OnInit {
   reader: FileReader;
   currentChartID: string;
   userBlocks: Map<string, NewBoardCard>;
+
   // Initializing plugins
   AddH1Component: PluginComponent;
   AddH2Component: PluginComponent;
@@ -151,6 +155,7 @@ export class NewBoardComponent implements OnInit {
   AddTwitterComponent: PluginComponent;
   AddMarkDownComponent: any;
   deck: Reveal;
+
   uniqueChartID = (() => {
     let id = 0;
     return () => {
@@ -158,11 +163,8 @@ export class NewBoardComponent implements OnInit {
     };
   })();
 
-
   ngOnInit() {
-
-
-    // sortable-js
+    // ----------------------- SORTABLE JS -----------------------
     const mainEl = document.getElementById('main-box');
 
     const sortable = new Sortable(mainEl, {
@@ -180,7 +182,7 @@ export class NewBoardComponent implements OnInit {
       $('[data-toggle="tooltip"]').tooltip();
     });
 
-    // ......................... DISABLING ENTER KEYWORD .........................
+    // ----------------------- Defaults-----------------------
     $('#original[contenteditable]').keypress((evt) => {
       const keycode = evt.charCode || evt.keyCode;
       if (keycode === 13) {
@@ -188,7 +190,7 @@ export class NewBoardComponent implements OnInit {
         return false;
       }
     });
-    // console.log(this.fileID);
+
     if (this.fileData !== null && this.fileData !== undefined) {
       this.populateData(this.fileData.queryParams);
 
@@ -198,19 +200,18 @@ export class NewBoardComponent implements OnInit {
       this.addBlockEditor({ id: 'sub-title', pluginComponent: null });
     }
 
-    // Paste fix for contenteditable
+    // ----------------------- Paste fix for contenteditable ------------
     this.pasteFix();
 
-    // Shortcut to save
-    // saveData
+    // ----------------------- Enabling Shortcuts -----------------------
     this.shortcuts();
 
+    // ----------------------- Enabing fuse for fuzzy search --------------
     this.fuseSearch();
 
   }
-
-  ngAfterViewInit(){
-    // this.deck.initialize({ transition: 'none' });
+  // ----------------------- Reveal JS Config -------------------------------
+  ngAfterViewInit() {
     Reveal.initialize(
       {
         plugins: [
@@ -234,9 +235,8 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
-  // ---------------------- FUSE JS ---------------------------
-
-  activateFuseList = () => {
+  // ---------------------- Activating fusy search ------------------------------------
+  activateFuseList() {
     const html = document.getElementById('fuseSearch');
     if (html.style.display === 'none') {
       html.style.display = 'block';
@@ -245,23 +245,54 @@ export class NewBoardComponent implements OnInit {
     inp.value = '';
     $(`#fuseInput`).focus();
     this.listFuseSearch = [];
-  }
 
+    //Esc events
+    $(`#fuseInput`).keydown((e) => {
+      if (e.which == 27) {
+        const html = document.getElementById('fuseSearch');
+        html.style.display = 'none';
+      }
+    })
+
+    //Arrow functions
+    $(`#fuseInput`).keyup((e) => {
+      //down arrow
+      if (e.which == 40) {
+        if ($("#search_results li.active").length != 0) {
+          let storeTarget = $('#search_results').find("li.active").next();
+          $("#search_results li.active").removeClass("active");
+          storeTarget.focus()
+          storeTarget.addClass("active");
+          this.focusElement += 1;
+        } else {
+          $('#search_results').find("li:first").focus().addClass("active");
+          this.focusElement = 0
+        }
+        return;
+      }
+      // up arrow
+      if (e.which == 38) {
+        if ($("#search_results li.active").length != 0) {
+          let storeTarget = $('#search_results').find("li.active").prev();
+          $("#search_results li.active").removeClass("active");
+          storeTarget.focus()
+          storeTarget.addClass("active");
+          if (this.focusElement > 0) {
+            this.focusElement = this.focusElement - 1;
+          }
+
+        }
+        else {
+          $('#search_results').find("li:first").focus().addClass("active");
+          this.focusElement = 0;
+        }
+        return;
+      }
+    })
+  }
+  // ----------------------- fuse config ----------------------------------------------
   fuseSearch = async () => {
-    // Fuse JS COnfig
     const options = {
-      // isCaseSensitive: false,
-      // includeScore: false,
-      // shouldSort: true,
-      // includeMatches: false,
-      // findAllMatches: false,
-      // minMatchCharLength: 1,
-      // location: 0,
-      // threshold: 0.6,
-      // distance: 100,
-      // useExtendedSearch: false,
-      // ignoreLocation: false,
-      // ignoreFieldNorm: false,
       keys: [
         'name', 'alternative'
       ]
@@ -269,40 +300,16 @@ export class NewBoardComponent implements OnInit {
     this.fuse = await new Fuse(menu, options);
   }
 
+  // ----------------------- On change in input field ---------------------------
   textInputChange = (parameter: any) => {
     this.listFuseSearch = this.fuse.search(parameter.value);
   }
 
+  // ----------------------- On clicking the list in Fuse -----------------------
   searchListClicked = (id: any) => {
     const idFilter = parseInt(id, 10);
     const exit = document.getElementById('fuseSearch');
     exit.style.display = 'none';
-
-    // switch (element.pluginType) {
-    //   case 'editor' || undefined: {
-    //     $(`#original-${element.cardID}`).html(element.content);
-    //     break;
-    //   }
-    //   case 'board': {
-    //     this.AddCanvasBoard.setContent(element.cardID, element.content);
-    //     break;
-    //   }
-    //   case 'embed': {
-    //     this.AddEmbedComponent.addToolBox(element.cardID, element.content);
-    //     break;
-    //   }
-    //   case 'tweet': {
-    //     this.AddTwitterComponent.addToolBox(element.cardID, element.content);
-    //     break;
-    //   }
-    //   case 'markdown': {
-    //     this.AddMarkDownComponent.setContent(element.cardID, element.content);
-    //     break;
-    //   }
-    //   default: {
-    //     $(`#original-${element.cardID}`).html(element.content);
-    //   }
-    // }
 
     switch (idFilter) {
       case 1: {
@@ -321,11 +328,23 @@ export class NewBoardComponent implements OnInit {
         this.cbToolbox(this.AddParaComponent);
         break;
       }
+      case 5: {
+        $("#embedModal").modal();
+        break;
+      }
+      case 6: {
+        this.cbToolbox(this.AddCanvasBoard, 'board')
+        break;
+      }
+      case 7: {
+        $("#youtubeModal").modal();
+        break;
+      }
     }
 
   }
 
-  // ......................... BLOCK BUILDING FUNCITON............................
+  // ----------------------- BLOCK BUILDING FUNCITON -----------------------
   blockFunction = (uid) => {
     const data = `
     <div id="cb-box-1-${uid}" class="cb-box-1">
@@ -375,7 +394,7 @@ export class NewBoardComponent implements OnInit {
     return data;
   }
 
-  // .........................ADDING BLOCK AFTER THE DIV FUNCTION.................
+  // ----------------------- ADDING BLOCK BEFORE/AFTER THE DIV FUNCTION -----------------------
   addBlockEditor = ({ id, pluginComponent = null, pType = 'editor', addBefore = false, embedUrl = null }: AddBlockEditorParameters) => {
     try {
       // getting uid and appending after specified ID
@@ -439,6 +458,9 @@ export class NewBoardComponent implements OnInit {
 
       this.addToolBar(uid, pluginType);
 
+      // keydown events
+      this.keyPressEvents(uid);
+
       // // Add Canvasboard Tag
       // this.AddCanvasBoard.addCanvasBoardHTMLCode(uid);
       // this.AddCanvasBoard.addCanvasBoardClickFunction(uid);
@@ -478,7 +500,7 @@ export class NewBoardComponent implements OnInit {
       console.log('Error', err);
     }
   }
-
+  // ----------------------- RIGHT TOOLBAR IN THE BLOCKS ----------------------------------------
   addToolBar(uid, pluginType: PluginType) {
     // hiding and showing the TOOLBAR
     $(`#show-more-toolbox-${uid}`).hover(
@@ -556,9 +578,7 @@ export class NewBoardComponent implements OnInit {
 
   }
 
-
-  // ......................... ESSENTIALS.............................
-
+  // ----------------------- Disable Enter Keyword in Title -----------------------
   disableTitleEnter() {
     $('#title[contenteditable]').keypress((evt) => {
       const keycode = evt.charCode || evt.keyCode;
@@ -569,7 +589,7 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
-  // Check url validity
+  // ----------------------- Check URL validity -----------------------
   validURL(str) {
     const pattern = new RegExp(
       '^(https?:\\/\\/)?' + // protocol
@@ -583,7 +603,7 @@ export class NewBoardComponent implements OnInit {
     return !!pattern.test(str);
   }
 
-
+  // ----------------------- Save, Retrieve Functions and Population -----------------------
   async saveData() {
     const boardTitle = document.getElementById('title').innerText.trim();
     this.fileName = boardTitle; // Board Title
@@ -593,7 +613,7 @@ export class NewBoardComponent implements OnInit {
     const ids = []; // ID's Array for Order
 
     // Retrieve Order of IDs of cards
-    $('#main-box>div').each(function(i) {
+    $('#main-box>div').each(function (i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         ids.push($(this).prop('id').substring(9));
       }
@@ -670,6 +690,9 @@ export class NewBoardComponent implements OnInit {
       // Add ToolBar
       this.addToolBar(element.cardID, element.pluginType);
 
+      //keydown events
+      this.keyPressEvents(element.cardID);
+
       // Add Cards according to Plugin Type
       switch (element.pluginType) {
         case 'editor' || undefined: {
@@ -711,7 +734,7 @@ export class NewBoardComponent implements OnInit {
     this.currentChartID = prevId;
   }
 
-  // Notification Code
+  // ----------------------- Save Toast Notification -----------------------
   addToast = (body) => {
     $('#toasts').append(`
     <!-- Toast tag -->
@@ -729,15 +752,13 @@ export class NewBoardComponent implements OnInit {
     `);
   }
 
-  // Paste fix for contenteditable
+  //----------------------- Paste fix for contenteditable -----------------------
   pasteFix = () => {
     $(document).on('copy', '[contenteditable]', (e) => {
       e = e.originalEvent;
       const selectedText = window.getSelection();
-      // console.log("original copied text\n--------\n", selectedText.toString());
       const range = selectedText.getRangeAt(0);
       const selectedTextReplacement = range.toString();
-      // console.log("replacement in clipboard\n--------\n", selectedTextReplacement);
       e.clipboardData.setData('text/plain', selectedTextReplacement);
       e.preventDefault(); // default behaviour is to copy any selected text
     });
@@ -760,6 +781,7 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
+  // ----------------------- Reveal JS ------------------------------------------
   openSlideMenu = () => {
     document.getElementById('menu').style.width = '250px';
     const divsToHide = document.getElementsByClassName('slider'); // divsToHide is an array
@@ -771,6 +793,85 @@ export class NewBoardComponent implements OnInit {
       div.style.display = 'none';
     }
     document.getElementById('content').style.marginLeft = '250px';
+  }
+
+  // ----------------------- Key board Shortcuts ---------------------------------
+  keyPressEvents(uid) {
+    const KEYS = new Set();
+
+    // On keydown Events
+    $(`#original-${uid}`).keydown((e) => {
+      KEYS.add(e.which);
+
+
+      // Key conditions
+      //ctrl + s
+      if (KEYS.has(17) && KEYS.has(83)) {
+        e.preventDefault();
+        this.saveData();
+      }
+
+      // cmd + s
+      if (KEYS.has(91) && KEYS.has(83)) {
+        e.preventDefault();
+        this.saveData();
+      }
+
+      // shift+ ctrl + z
+      if (KEYS.has(16) && KEYS.has(17) && KEYS.has(90)) {
+        e.preventDefault();
+        this.activateFuseList();
+      }
+
+      // shift+ cmd + z
+      if (KEYS.has(16) && KEYS.has(91) && KEYS.has(90)) {
+        e.preventDefault();
+        this.activateFuseList();
+      }
+
+      // H1 -> shift +ctrl + 1
+      if (KEYS.has(16) && KEYS.has(17) && KEYS.has(49)) {
+        e.preventDefault();
+        this.cbToolbox(this.AddH1Component);
+      }
+      // H1 -> shift + cmd + 1           
+      if (KEYS.has(16) && KEYS.has(91) && KEYS.has(49)) {
+        e.preventDefault();
+        this.cbToolbox(this.AddH1Component);
+      }
+
+      // H2 -> shift +ctrl + 2
+      if (KEYS.has(16) && KEYS.has(17) && KEYS.has(50)) {
+        e.preventDefault();
+        this.cbToolbox(this.AddH2Component);
+      }
+      // H2 -> shift + cmd + 2          
+      if (KEYS.has(16) && KEYS.has(91) && KEYS.has(50)) {
+        e.preventDefault();
+        this.cbToolbox(this.AddH2Component);
+      }
+
+      // H3 -> shift +ctrl + 3
+      if (KEYS.has(16) && KEYS.has(17) && KEYS.has(51)) {
+        e.preventDefault();
+        this.cbToolbox(this.AddH3Component);
+      }
+      // H3 -> shift + cmd + 3         
+      if (KEYS.has(16) && KEYS.has(91) && KEYS.has(51)) {
+        e.preventDefault();
+        this.cbToolbox(this.AddH3Component);
+      }
+      // P on Enter
+      if (KEYS.size == 1 && KEYS.has(13)) {
+        e.preventDefault();
+        this.cbToolboxBottomTag()
+      }
+    })
+
+    // Remove the keys from the set.
+    $(`#original-${uid}`).keyup((e) => {
+      KEYS.delete(e.which);
+    })
   }
 
   shortcuts = () => {
@@ -785,6 +886,8 @@ export class NewBoardComponent implements OnInit {
       }
       const div = document.getElementById('revealDiv');
       div.style.display = 'none';
+
+
     });
 
     // Save
@@ -843,11 +946,12 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
+
   cbToolboxPresent = () => {
     const slides = $('#revealDiv .slides');
     slides.empty();
 
-    $('#main-box>div').each(function(i) {
+    $('#main-box>div').each(function (i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         const id = $(this).prop('id').substring(9);
         const section = `<section data-background-color="white">` + $(`#real-content-box-${id}`).html() + `</section>`;
@@ -870,40 +974,34 @@ export class NewBoardComponent implements OnInit {
     }
   }
 
-  // ......................... TOOLBOX CLICK FUNCTIONALITY .........................
+  // ----------------------- TOOLBOX CLICK FUNCTIONALITY -------------------------
   cbToolbox(pluginComponent: BasePluginComponent, pType?: PluginType, embedUrl?: string) {
     this.addBlockEditor({ id: 'main-box', pluginComponent, pType, embedUrl });
 
   }
 
-  // Adding Delete
   cbToolboxDeleteTag = () => {
     this.AddDeleteComponent.addToolBox(this.currentChartID);
     this.currentChartID = this.AddDeleteComponent.prevCardID;
   }
 
-  // Adding Top
   cbToolboxTopTag = () => {
     this.AddTopComponent.addToolBox(this.currentChartID, this.addBlockEditor);
   }
 
-  // Adding Bottom
   cbToolboxBottomTag = () => {
     this.AddBottomComponent.addToolBox(this.currentChartID, this.addBlockEditor);
   }
 
-  // Clearing all fonts
   cbToolboxClearFont = () => {
     this.AddClearFontComponent.addToolBox(this.currentChartID);
   }
 
-  // Adding PdfRender
   cbToolboxPdfRender = () => {
     $('#pdfFile').click();
     this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddPdfRenderComponent });
   }
 
-  // Adding Youtube
   cbToolboxYoutube = () => {
     this.addBlockEditor({
       id: 'main-box', pluginComponent: this.AddEmbedComponent,
@@ -911,12 +1009,10 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
-  // Adding Clock
   cbToolboxClock = () => {
     this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddEmbedComponent, embedUrl: 'plugins/clock' });
   }
 
-  // Adding Twitter
   cbToolboxTwitter = async () => {
     const response = await this.apiService.getTweet($('#twitterEmbedURL').val());
     this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddTwitterComponent, embedUrl: response.html });
