@@ -46,8 +46,10 @@ export class AuthService {
         (res) => {
           this.signUpResObj = res;
           Swal.fire({
-            icon: 'success', text: `${this.signUpResObj.message} Please verify your email address.
-           An email has been sent to your given email id!` });
+            icon: 'success', 
+            title: `${this.signUpResObj.message}`,
+            text: `Verify your e-mail address to finish signing up for Canvasboard` 
+          });
           this.router.navigate(['/login']);
           this.signUpLoad = false;
         },

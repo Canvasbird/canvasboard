@@ -46,7 +46,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onStrengthChanged(passStrength: number): void {
-    if (passStrength === 100) {
+    if (passStrength >= 50) {
       this.checksPassed = true;
     } else {
       this.checksPassed = false;

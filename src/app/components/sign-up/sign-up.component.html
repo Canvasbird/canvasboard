@@ -25,21 +25,19 @@
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1"><strong>Password</strong></label>
+          <label for="password-field"><strong>Password</strong></label>
           <input
             id="password-field"
             type="password"
             [type]="hide ? 'password' : 'text'"
             class="form-control"
-            id="exampleInputPassword1"
             aria-describedby="passwordHelp"
             placeholder="Password"
             ngModel
             #pass ='ngModel'
             [(ngModel)]="password"
             [ngModelOptions]="{standalone: true}"
-            matTooltip=" Must contain atleast one lower case character&#13;Must contain atleast one upper case character
-            Must contain atleast one digit character&#13;Must contain atleast one special character&#13;Must contain atleast 6 characters"
+            matTooltip="Must contain atleast 6 characters"
             [matTooltipPosition]="position">
           <div toggle="#password-field" class="mb-2" (click)="ontoggle()">
             <i *ngIf="hide" class="fa fa-eye eye-icon" aria-hidden="true"></i>
@@ -47,10 +45,6 @@
           </div>
         <mat-password-strength
           #passwordComponent
-          [enableLowerCaseLetterRule] = true
-          [enableUpperCaseLetterRule] = "true"
-          [enableDigitRule] = "true"
-          [enableSpecialCharRule] = "true"
           min = 6
           (onStrengthChanged)= "onStrengthChanged($event)"
           [password]= "password">
