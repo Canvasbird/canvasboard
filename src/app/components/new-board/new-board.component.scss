@@ -122,19 +122,9 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   max-height: 88vh; 
-  overflow-y: auto;
-  -ms-overflow-style: auto;  /* IE and Edge */
-  scrollbar-width: thin; /* Firefox */
+  overflow:visible;
 }
 
-.cb-container-main::-webkit-scrollbar {
-  width: 0.5rem; /* width of the entire scrollbar */
-}
-
-.cb-container-main::-webkit-scrollbar-thumb {
-  background-color: #b9b9b9;
-  border-radius: 0.75rem;
-}
 
 // navbar
 .nav {
@@ -263,6 +253,20 @@
 #content{
   margin-left: 250px; 
   padding-top: 80px;
+  overflow-y: auto;
+  -ms-overflow-style: auto;  /* IE and Edge */
+  scrollbar-width: thin; /* Firefox */
+}
+
+#content::-webkit-scrollbar {
+  position: absolute;
+  right:0.5em;
+  width: 0.5rem; /* width of the entire scrollbar */
+}
+
+#content::-webkit-scrollbar-thumb {
+  background-color: #b9b9b9;
+  border-radius: 0.75rem;
 }
 
 #menu {
