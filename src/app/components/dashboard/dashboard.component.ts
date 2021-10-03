@@ -426,7 +426,7 @@ export class DashboardComponent implements OnInit {
     });
     // Click action to save the new edited name
     $(`#button-edit-name-ok-${obj._id}`).click(() => {
-      const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
+      const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value.trim();
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       const editButton = document.getElementById(`button-edit-name-${obj._id}`);
@@ -467,8 +467,8 @@ export class DashboardComponent implements OnInit {
     const folderdescription: any = document.getElementById('folder-description-input');
     const folderColour: any = document.getElementById('folder-colour-input');
     const body = {
-      folder_name: folderName.value,
-      folder_title: folderdescription.value,
+      folder_name: folderName.value.trim(),
+      folder_title: folderdescription.value.trim(),
       folder_color: folderColour.value,
       folder_tag: 'folder_tag',
       is_nested_folder: false
