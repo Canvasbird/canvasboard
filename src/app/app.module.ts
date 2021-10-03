@@ -19,10 +19,11 @@ import { FilterFolderPipe } from './shared/filter-folder.pipe';
 import { ClockComponent } from './plugins/clock/clock.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,6 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
     ForgotPasswordComponent,
     VerifyCodeComponent,
     ScrollToTopComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -50,9 +50,10 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
     FormsModule,
     BrowserAnimationsModule,
     MatPasswordStrengthModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule,
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
