@@ -20,7 +20,6 @@
     .main-box {
       display: block;
       margin-top: 5px;
-
       .cb-box-1 {
         width: 100%;
         // max-width: 630px;
@@ -123,14 +122,18 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   max-height: 88vh; 
-  overflow: scroll;
-
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  overflow-y: auto;
+  -ms-overflow-style: auto;  /* IE and Edge */
+  scrollbar-width: thin; /* Firefox */
 }
 
 .cb-container-main::-webkit-scrollbar {
-  display: none;
+  width: 0.5rem; /* width of the entire scrollbar */
+}
+
+.cb-container-main::-webkit-scrollbar-thumb {
+  background-color: #b9b9b9;
+  border-radius: 0.75rem;
 }
 
 // navbar
