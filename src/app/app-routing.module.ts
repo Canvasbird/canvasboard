@@ -1,85 +1,86 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent} from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
+import { HomeComponent } from "./components/home/home.component";
+import { LoginComponent } from "./components/login/login.component";
+import { SignUpComponent } from "./components/sign-up/sign-up.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
+import { VerifyCodeComponent } from "./components/verify-code/verify-code.component";
 // guard
-import { AuthGuard, LoginGuard } from './shared/auth.guard';
-import { NewBoardComponent } from './components/new-board/new-board.component';
-import { ContributionComponent } from './components/contribution/contribution.component';
-import { FilesComponent } from './components/files/files.component';
-import { ClockComponent } from './plugins/clock/clock.component';
+import { AuthGuard, LoginGuard } from "./shared/auth.guard";
+import { NewBoardComponent } from "./components/new-board/new-board.component";
+import { ContributionComponent } from "./components/contribution/contribution.component";
+import { FilesComponent } from "./components/files/files.component";
+import { ClockComponent } from "./plugins/clock/clock.component";
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full",
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [LoginGuard]
+    path: "home",
+    loadChildren: () =>
+      import("./components/home/home.module").then((m) => m.HomeModule),
+    canActivate: [LoginGuard],
   },
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
-    path: 'forgot-password',
+    path: "forgot-password",
     component: ForgotPasswordComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
-    path: 'verify',
+    path: "verify",
     component: VerifyCodeComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
-    path: 'sign-up',
+    path: "sign-up",
     component: SignUpComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
-    path: 'contribution',
-    component: ContributionComponent
+    path: "contribution",
+    component: ContributionComponent,
   },
   {
-    path: 'dashboard',
+    path: "dashboard",
     component: DashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
-    path: 'plugins/clock',
+    path: "plugins/clock",
     component: ClockComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
-    path: 'folder/:id',
+    path: "folder/:id",
     component: FilesComponent,
   },
   {
-    path: ':folderId/creative-board',
+    path: ":folderId/creative-board",
     component: NewBoardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
-    path: 'creative-board/:fileId',
+    path: "creative-board/:fileId",
     component: NewBoardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
-    path: '**',
-    redirectTo: 'home'
-  }
+    path: "**",
+    redirectTo: "home",
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: "legacy" })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
