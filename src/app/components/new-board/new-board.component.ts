@@ -99,13 +99,7 @@ export class NewBoardComponent implements OnInit {
     this.AddTwitterComponent = new AddTwitterComponent();
     this.AddMarkDownComponent = new AddMarkDownComponent();
     this.reader = new FileReader();
-    this.deck = new Reveal({
-      plugins: [
-        Markdown,
-        Highlight
-      ],
-      hash: true
-    }) as Reveal;
+    this.deck;
 
   }
 
@@ -212,7 +206,8 @@ export class NewBoardComponent implements OnInit {
   }
   // ----------------------- Reveal JS Config -------------------------------
   ngAfterViewInit() {
-    Reveal.initialize(
+    this.deck = new Reveal($('#revealDiv'))
+    this.deck.initialize(
       {
         plugins: [
           Markdown,
@@ -226,7 +221,7 @@ export class NewBoardComponent implements OnInit {
         keyboardCondition: 'focused'
       }
     );
-    Reveal.configure({
+    this.deck.configure({
       keyboard: {
         27: () => {
           $('presentModal').hide();
@@ -958,9 +953,9 @@ export class NewBoardComponent implements OnInit {
         slides.append(section);
       }
     });
-    Reveal.sync();
-    Reveal.slide(0);
-    Reveal.toggleHelp(true);
+    this.deck.sync();
+    this.deck.slide(0);
+    this.deck.toggleHelp(true);
   }
   closeSlideMenu = () => {
     document.getElementById('menu').style.width = '0';
