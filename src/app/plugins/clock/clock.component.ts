@@ -20,9 +20,10 @@ export class ClockComponent implements OnInit {
     const minutes: any = document.getElementById('minutes');
     const seconds: any = document.getElementById('seconds');
 
-    const h = new Date().getHours();
-    const m = new Date().getMinutes();
-    const s = new Date().getSeconds();
+    var time = new Date();
+    const h = (time.getHours() < 10) ? "0" + time.getHours() : time.getHours();
+    const m = (time.getMinutes() < 10) ? "0" + time.getMinutes() : time.getMinutes();
+    const s = (time.getSeconds() < 10) ? "0" + time.getSeconds() : time.getSeconds();
 
     hours.innerHTML = h;
     minutes.innerHTML = m;
