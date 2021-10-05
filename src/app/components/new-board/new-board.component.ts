@@ -99,6 +99,7 @@ export class NewBoardComponent implements OnInit {
     this.AddTwitterComponent = new AddTwitterComponent();
     this.AddMarkDownComponent = new AddMarkDownComponent();
     this.reader = new FileReader();
+    // tslint:disable-next-line: no-unused-expression
     this.deck;
 
   }
@@ -110,9 +111,9 @@ export class NewBoardComponent implements OnInit {
   fileTag: Array<string>;
   fileToUpload: File = null;
   focusElement: any;
-  
-  //----------------------- Fuse search Variables -----------------------
-  
+
+  // ----------------------- Fuse search Variables -----------------------
+
   listFuseSearch: any;
   fuse: any;
 
@@ -206,7 +207,7 @@ export class NewBoardComponent implements OnInit {
   }
   // ----------------------- Reveal JS Config -------------------------------
   ngAfterViewInit() {
-    this.deck = new Reveal($('#revealDiv'))
+    this.deck = new Reveal($('#revealDiv'));
     this.deck.initialize(
       {
         plugins: [
@@ -241,49 +242,50 @@ export class NewBoardComponent implements OnInit {
     $(`#fuseInput`).focus();
     this.listFuseSearch = [];
 
-    //Esc events
+    // Esc events
     $(`#fuseInput`).keydown((e) => {
-      if (e.which == 27) {
+      if (e.which === 27) {
+        // tslint:disable-next-line: no-shadowed-variable
         const html = document.getElementById('fuseSearch');
         html.style.display = 'none';
       }
-    })
+    });
 
-    //Arrow functions
+    // Arrow functions
     $(`#fuseInput`).keyup((e) => {
-      //down arrow
-      if (e.which == 40) {
-        if ($("#search_results li.active").length != 0) {
-          let storeTarget = $('#search_results').find("li.active").next();
-          $("#search_results li.active").removeClass("active");
-          storeTarget.focus()
-          storeTarget.addClass("active");
+      // down arrow
+      if (e.which === 40) {
+        if ($('#search_results li.active').length !== 0) {
+          const storeTarget = $('#search_results').find('li.active').next();
+          $('#search_results li.active').removeClass('active');
+          storeTarget.focus();
+          storeTarget.addClass('active');
           this.focusElement += 1;
         } else {
-          $('#search_results').find("li:first").focus().addClass("active");
-          this.focusElement = 0
+          $('#search_results').find('li:first').focus().addClass('active');
+          this.focusElement = 0;
         }
         return;
       }
       // up arrow
-      if (e.which == 38) {
-        if ($("#search_results li.active").length != 0) {
-          let storeTarget = $('#search_results').find("li.active").prev();
-          $("#search_results li.active").removeClass("active");
-          storeTarget.focus()
-          storeTarget.addClass("active");
+      if (e.which === 38) {
+        if ($('#search_results li.active').length !== 0) {
+          const storeTarget = $('#search_results').find('li.active').prev();
+          $('#search_results li.active').removeClass('active');
+          storeTarget.focus();
+          storeTarget.addClass('active');
           if (this.focusElement > 0) {
             this.focusElement = this.focusElement - 1;
           }
 
         }
         else {
-          $('#search_results').find("li:first").focus().addClass("active");
+          $('#search_results').find('li:first').focus().addClass('active');
           this.focusElement = 0;
         }
         return;
       }
-    })
+    });
   }
   // ----------------------- fuse config ----------------------------------------------
   fuseSearch = async () => {
@@ -324,15 +326,15 @@ export class NewBoardComponent implements OnInit {
         break;
       }
       case 5: {
-        $("#embedModal").modal();
+        $('#embedModal').modal();
         break;
       }
       case 6: {
-        this.cbToolbox(this.AddCanvasBoard, 'board')
+        this.cbToolbox(this.AddCanvasBoard, 'board');
         break;
       }
       case 7: {
-        $("#youtubeModal").modal();
+        $('#youtubeModal').modal();
         break;
       }
     }
@@ -608,7 +610,7 @@ export class NewBoardComponent implements OnInit {
     const ids = []; // ID's Array for Order
 
     // Retrieve Order of IDs of cards
-    $('#main-box>div').each(function (i) {
+    $('#main-box>div').each(function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         ids.push($(this).prop('id').substring(9));
       }
@@ -685,7 +687,7 @@ export class NewBoardComponent implements OnInit {
       // Add ToolBar
       this.addToolBar(element.cardID, element.pluginType);
 
-      //keydown events
+      // keydown events
       this.keyPressEvents(element.cardID);
 
       // Add Cards according to Plugin Type
@@ -747,7 +749,7 @@ export class NewBoardComponent implements OnInit {
     `);
   }
 
-  //----------------------- Paste fix for contenteditable -----------------------
+  // ----------------------- Paste fix for contenteditable -----------------------
   pasteFix = () => {
     $(document).on('copy', '[contenteditable]', (e) => {
       e = e.originalEvent;
@@ -800,7 +802,7 @@ export class NewBoardComponent implements OnInit {
 
 
       // Key conditions
-      //ctrl + s
+      // ctrl + s
       if (KEYS.has(17) && KEYS.has(83)) {
         e.preventDefault();
         this.saveData();
@@ -829,7 +831,7 @@ export class NewBoardComponent implements OnInit {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH1Component);
       // }
-      // // H1 -> shift + cmd + 1           
+      // // H1 -> shift + cmd + 1
       // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(49)) {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH1Component);
@@ -840,7 +842,7 @@ export class NewBoardComponent implements OnInit {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH2Component);
       // }
-      // // H2 -> shift + cmd + 2          
+      // // H2 -> shift + cmd + 2
       // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(50)) {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH2Component);
@@ -851,22 +853,22 @@ export class NewBoardComponent implements OnInit {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH3Component);
       // }
-      // // H3 -> shift + cmd + 3         
+      // // H3 -> shift + cmd + 3
       // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(51)) {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH3Component);
       // }
       // P on Enter
-      if (KEYS.size == 1 && KEYS.has(13)) {
+      if (KEYS.size === 1 && KEYS.has(13)) {
         e.preventDefault();
-        this.cbToolboxBottomTag()
+        this.cbToolboxBottomTag();
       }
-    })
+    });
 
     // Remove the keys from the set.
     $(`#original-${uid}`).keyup((e) => {
       KEYS.delete(e.which);
-    })
+    });
   }
 
   shortcuts = () => {
@@ -946,7 +948,7 @@ export class NewBoardComponent implements OnInit {
     const slides = $('#revealDiv .slides');
     slides.empty();
 
-    $('#main-box>div').each(function (i) {
+    $('#main-box>div').each(function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         const id = $(this).prop('id').substring(9);
         const section = `<section data-background-color="white">` + $(`#real-content-box-${id}`).html() + `</section>`;
