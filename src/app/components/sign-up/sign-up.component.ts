@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 import { HostListener } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,7 @@ export class SignUpComponent implements OnInit {
   screenWidth = 0;
   position = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, public loadingService: LoadingService) {}
 
   ngOnInit() {
     this.getScreenSize();
@@ -35,6 +36,7 @@ export class SignUpComponent implements OnInit {
 
   signUp(): any {
     if (this.checksPassed === true) {
+      this.loadingService.loadingStatus.next(true);
       this.authService.signUpReqObj = {};
       this.authService.signUpReqObj.email_id = this.email;
       this.authService.signUpReqObj.password = this.password;

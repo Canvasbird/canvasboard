@@ -173,6 +173,27 @@ export class DashboardComponent implements OnInit {
           document.getElementById(
             `${obj._id}`
           ).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
+        } else if (`${obj.folder_color}` === '#96e6a1') {
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
+        } else if (`${obj.folder_color}` === '#66a6ff') {
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
+        } else if (`${obj.folder_color}` === '#274046') {
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
         }
 
         // Click action to enter files folder
@@ -196,6 +217,64 @@ export class DashboardComponent implements OnInit {
             editText.style.display = 'block';
             folderName.style.display = 'none';
             editButton.style.display = 'none';
+          }
+        });
+        // Click action to close the edit input
+        $(`#button-edit-name-no-${obj._id}`).click(() => {
+          const folderName = document.getElementById(`folder-name-${obj._id}`);
+          const editText = document.getElementById(
+            `edit-name-input-${obj._id}`
+          );
+          const editButton = document.getElementById(
+            `button-edit-name-${obj._id}`
+          );
+          if (editText.style.display === 'block') {
+            editText.style.display = 'none';
+            folderName.style.display = 'block';
+            editButton.style.display = 'block';
+          }
+          if (
+            document.getElementById(`new-name-text-${obj._id}`).style
+              .borderColor === 'red'
+          ) {
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ).style.borderColor = 'transparent';
+          }
+        });
+        // Click action to save the new edited name
+        $(`#button-edit-name-ok-${obj._id}`).click(() => {
+          const newName = (
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ) as HTMLInputElement
+          ).value.trim();
+          const folderName = document.getElementById(`folder-name-${obj._id}`);
+          const editText = document.getElementById(
+            `edit-name-input-${obj._id}`
+          );
+          const editButton = document.getElementById(
+            `button-edit-name-${obj._id}`
+          );
+          if (newName === '') {
+            // If the new name is null then do not change the name.
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ).style.borderColor = 'red';
+          } else {
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ).style.borderColor = 'transparent';
+            this.renameFolder(obj, newName);
+            if (editText.style.display === 'block') {
+              editText.style.display = 'none';
+              folderName.style.display = 'block';
+              editButton.style.display = 'block';
+            } else {
+              editText.style.display = 'block';
+              folderName.style.display = 'none';
+              editButton.style.display = 'none';
+            }
           }
         });
         // Click action to close the edit input
@@ -466,7 +545,7 @@ export class DashboardComponent implements OnInit {
     $(`#button-edit-name-ok-${obj._id}`).click(() => {
       const newName = (
         document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement
-      ).value;
+      ).value.trim();
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       const editButton = document.getElementById(`button-edit-name-${obj._id}`);
@@ -512,8 +591,8 @@ export class DashboardComponent implements OnInit {
     );
     const folderColour: any = document.getElementById('folder-colour-input');
     const body = {
-      folder_name: folderName.value,
-      folder_title: folderdescription.value,
+      folder_name: folderName.value.trim(),
+      folder_title: folderdescription.value.trim(),
       folder_color: folderColour.value,
       folder_tag: 'folder_tag',
       is_nested_folder: false,

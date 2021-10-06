@@ -214,9 +214,7 @@ export class FilesComponent implements OnInit {
     });
     // Click action to save the new edited name
     $(`#button-edit-name-ok-${data._id}`).click(() => {
-      const newName = (
-        document.getElementById(`new-name-text-${data._id}`) as HTMLInputElement
-      ).value;
+      const newName = (document.getElementById(`new-name-text-${data._id}`) as HTMLInputElement).value.trim();
       const fileName = document.getElementById(`file-name-${data._id}`);
       const editText = document.getElementById(`edit-name-input-${data._id}`);
       const editButton = document.getElementById(

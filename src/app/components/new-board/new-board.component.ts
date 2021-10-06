@@ -106,10 +106,9 @@ export class NewBoardComponent implements OnInit {
     this.AddTwitterComponent = new AddTwitterComponent();
     this.AddMarkDownComponent = new AddMarkDownComponent();
     this.reader = new FileReader();
-    this.deck = new Reveal({
-      plugins: [Markdown, Highlight],
-      hash: true,
-    }) as Reveal;
+    // tslint:disable-next-line: no-unused-expression
+    this.deck;
+
   }
 
   fileName: string;
@@ -211,16 +210,22 @@ export class NewBoardComponent implements OnInit {
   }
   // ----------------------- Reveal JS Config -------------------------------
   ngAfterViewInit() {
-    Reveal.initialize({
-      plugins: [Markdown, Highlight],
-      // hash: true,
-      embedded: true,
-      minScale: 1.0,
-      controls: true,
-      controlsTutorial: true,
-      keyboardCondition: 'focused',
-    });
-    Reveal.configure({
+    this.deck = new Reveal($('#revealDiv'));
+    this.deck.initialize(
+      {
+        plugins: [
+          Markdown,
+          Highlight,
+        ],
+        // hash: true,
+        embedded: true,
+        minScale: 1.0,
+        controls: true,
+        controlsTutorial: true,
+        keyboardCondition: 'focused'
+      }
+    );
+    this.deck.configure({
       keyboard: {
         27: () => {
           $('presentModal').hide();
@@ -243,8 +248,9 @@ export class NewBoardComponent implements OnInit {
     // Esc events
     $(`#fuseInput`).keydown((e) => {
       if (e.which === 27) {
-        const element = document.getElementById('fuseSearch');
-        element.style.display = 'none';
+        // tslint:disable-next-line: no-shadowed-variable
+        const html = document.getElementById('fuseSearch');
+        html.style.display = 'none';
       }
     });
 
@@ -274,7 +280,9 @@ export class NewBoardComponent implements OnInit {
           if (this.focusElement > 0) {
             this.focusElement = this.focusElement - 1;
           }
-        } else {
+
+        }
+        else {
           $('#search_results').find('li:first').focus().addClass('active');
           this.focusElement = 0;
         }
@@ -962,9 +970,9 @@ export class NewBoardComponent implements OnInit {
         slides.append(section);
       }
     });
-    Reveal.sync();
-    Reveal.slide(0);
-    Reveal.toggleHelp(true);
+    this.deck.sync();
+    this.deck.slide(0);
+    this.deck.toggleHelp(true);
   }
   closeSlideMenu = () => {
     document.getElementById('menu').style.width = '0';
