@@ -210,7 +210,7 @@ export class NewBoardComponent implements OnInit {
   }
   // ----------------------- Reveal JS Config -------------------------------
   ngAfterViewInit() {
-    
+
     this.deck = new Reveal($('#revealDiv'));
     this.deck.initialize(
       {
@@ -600,18 +600,18 @@ export class NewBoardComponent implements OnInit {
   validURL(str) {
     const pattern = new RegExp(
       '^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$',
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
       'i'
     ); // fragment locator
     return !!pattern.test(str);
   }
   // ----------------------- BACK BUTTON ----------------------------------
-  async backButton(){
-    this.router.navigateByUrl(`/folder/${ this.folderID }`);
+  async backButton() {
+    this.router.navigateByUrl(`/folder/${this.folderID}`);
     this.saveData();
   }
 
