@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { v4 as uuidv4 } from 'uuid';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
-import { DailyQuote } from 'src/interfaces/daily-quote';
 import { FilterFolderPipe } from 'src/app/shared/filter-folder.pipe';
+import { DailyQuote } from 'src/interfaces/daily-quote';
 declare var $: any;
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [FilterFolderPipe]
+  providers: [FilterFolderPipe],
 })
 export class DashboardComponent implements OnInit {
-
   public quote: DailyQuote;
-  constructor(private route: Router, private apiService: RestService, private filterFolder: FilterFolderPipe) {}
+  constructor(
+    private route: Router,
+    private apiService: RestService,
+    private filterFolder: FilterFolderPipe
+  ) {}
 
   data: any;
   Username: string = null;
@@ -26,7 +28,7 @@ export class DashboardComponent implements OnInit {
     this.gettingData();
     this.getQuote();
     this.date = new Date();
-    this.date.setDate( this.date.getDate() + 3 );
+    this.date.setDate(this.date.getDate() + 3);
   }
   // GETTING USER DATA
   async gettingData() {
@@ -68,8 +70,8 @@ export class DashboardComponent implements OnInit {
       $('#user-folders').append(`<h5 id='not-found'>${notFound}</h5>`);
     } else {
       data.folders.forEach((obj) => {
-      // Add Folders
-      $('#user-folders').append(`
+        // Add Folders
+        $('#user-folders').append(`
       <div class="folder-box shadow" id=${obj._id}>
       <div class="icons-box">
         <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-folder2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -142,108 +144,137 @@ export class DashboardComponent implements OnInit {
       <button class="btn btn-dark" id=button-${obj._id} title ="${obj.folder_name}">Enter</button>
     </div>
       `);
-      // Conditions to check for the selected colour and apply the required gradient
-      if (`${obj.folder_color}` === '#ee9ca7' )
-      {
-        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #ffdde1,${obj.folder_color})`;
-        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #ffdde1, ${obj.folder_color})`;
-      }
-
-      else if (`${obj.folder_color}` === '#96e6a1' )
-      {
-        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
-        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
-      }
-
-      else if (`${obj.folder_color}` === '#66a6ff' )
-      {
-        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
-        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
-      }
-      else if (`${obj.folder_color}` === '#274046' )
-      {
-        document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
-        document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
-      }
-
-
-      // Click action to enter files folder
-      $(`#button-${obj._id}`).click(() => {
-        this.route.navigate([`/folder/${obj._id}`]);
-      });
-      // Click action to edit the folder_name
-      $(`#button-edit-name-${obj._id}`).click(() => {
-        const folderName = document.getElementById(`folder-name-${obj._id}`);
-        const editText = document.getElementById(`edit-name-input-${obj._id}`);
-        const editButton = document.getElementById(`button-edit-name-${obj._id}`);
-        if (editText.style.display === 'block') {
-          editText.style.display = 'none';
-          folderName.style.display = 'block';
-          editButton.style.display = 'block';
-
-        } else {
-          editText.style.display = 'block';
-          folderName.style.display = 'none';
-          editButton.style.display = 'none';
+        // Conditions to check for the selected colour and apply the required gradient
+        if (`${obj.folder_color}` === '#ee9ca7') {
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `-webkit-linear-gradient(to right, #ffdde1,${obj.folder_color})`;
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `linear-gradient(to right, #ffdde1, ${obj.folder_color})`;
+        } else if (`${obj.folder_color}` === '#96e6a1') {
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
+        } else if (`${obj.folder_color}` === '#66a6ff') {
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
+        } else if (`${obj.folder_color}` === '#274046') {
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
+          document.getElementById(
+            `${obj._id}`
+          ).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
         }
-      });
-      // Click action to close the edit input
-      $(`#button-edit-name-no-${obj._id}`).click(() => {
-        const folderName = document.getElementById(`folder-name-${obj._id}`);
-        const editText = document.getElementById(`edit-name-input-${obj._id}`);
-        const editButton = document.getElementById(`button-edit-name-${obj._id}`);
-        if (editText.style.display === 'block') {
-          editText.style.display = 'none';
-          folderName.style.display = 'block';
-          editButton.style.display = 'block';
-        }
-        if (document.getElementById(`new-name-text-${obj._id}`).style.borderColor === 'red') {
-          document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
-        }
-      });
-      // Click action to save the new edited name
-      $(`#button-edit-name-ok-${obj._id}`).click(() => {
-        const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
-        const folderName = document.getElementById(`folder-name-${obj._id}`);
-        const editText = document.getElementById(`edit-name-input-${obj._id}`);
-        const editButton = document.getElementById(`button-edit-name-${obj._id}`);
-        if (newName === '') {      // If the new name is null then do not change the name.
-          document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
-        } else {
-          document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
-          this.renameFolder(obj, newName);
+
+        // Click action to enter files folder
+        $(`#button-${obj._id}`).click(() => {
+          this.route.navigate([`/folder/${obj._id}`]);
+        });
+        // Click action to edit the folder_name
+        $(`#button-edit-name-${obj._id}`).click(() => {
+          const folderName = document.getElementById(`folder-name-${obj._id}`);
+          const editText = document.getElementById(
+            `edit-name-input-${obj._id}`
+          );
+          const editButton = document.getElementById(
+            `button-edit-name-${obj._id}`
+          );
+          if (editText.style.display === 'block') {
+            editText.style.display = 'none';
+            folderName.style.display = 'block';
+            editButton.style.display = 'block';
+          } else {
+            editText.style.display = 'block';
+            folderName.style.display = 'none';
+            editButton.style.display = 'none';
+          }
+        });
+        // Click action to close the edit input
+        $(`#button-edit-name-no-${obj._id}`).click(() => {
+          const folderName = document.getElementById(`folder-name-${obj._id}`);
+          const editText = document.getElementById(
+            `edit-name-input-${obj._id}`
+          );
+          const editButton = document.getElementById(
+            `button-edit-name-${obj._id}`
+          );
           if (editText.style.display === 'block') {
             editText.style.display = 'none';
             folderName.style.display = 'block';
             editButton.style.display = 'block';
           }
-          this.data.find(x => x._id === obj._id).folder_name = newName;   // Changing the folder name in data variable that we used.
-        }
-      });
-      // Enter keyword action to save edited name
-      $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number; }) => {
-        if (event.keyCode === 13) {
-          $(`#button-edit-name-ok-${obj._id}`).click();
-        }
-      });
-      // Open delete popup
-      $(`#delete-${obj._id}`).click(() => {
-        const popup = document.getElementById(`delete-sure-${obj._id}`);
-        if (popup.style.display === 'block') {
-          popup.style.display = 'none';
-        } else {
-          popup.style.display = 'block';
-        }
-      });
+          if (
+            document.getElementById(`new-name-text-${obj._id}`).style
+              .borderColor === 'red'
+          ) {
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ).style.borderColor = 'transparent';
+          }
+        });
+        // Click action to save the new edited name
+        $(`#button-edit-name-ok-${obj._id}`).click(() => {
+          const newName = (
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ) as HTMLInputElement
+          ).value;
+          const folderName = document.getElementById(`folder-name-${obj._id}`);
+          const editText = document.getElementById(
+            `edit-name-input-${obj._id}`
+          );
+          const editButton = document.getElementById(
+            `button-edit-name-${obj._id}`
+          );
+          if (newName === '') {
+            // If the new name is null then do not change the name.
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ).style.borderColor = 'red';
+          } else {
+            document.getElementById(
+              `new-name-text-${obj._id}`
+            ).style.borderColor = 'transparent';
+            this.renameFolder(obj, newName);
+            if (editText.style.display === 'block') {
+              editText.style.display = 'none';
+              folderName.style.display = 'block';
+              editButton.style.display = 'block';
+            }
+            this.data.find((x) => x._id === obj._id).folder_name = newName; // Changing the folder name in data variable that we used.
+          }
+        });
+        // Enter keyword action to save edited name
+        $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number }) => {
+          if (event.keyCode === 13) {
+            $(`#button-edit-name-ok-${obj._id}`).click();
+          }
+        });
+        // Open delete popup
+        $(`#delete-${obj._id}`).click(() => {
+          const popup = document.getElementById(`delete-sure-${obj._id}`);
+          if (popup.style.display === 'block') {
+            popup.style.display = 'none';
+          } else {
+            popup.style.display = 'block';
+          }
+        });
 
-      // Delete sure popup
-      $(`#delete-sure-${obj._id}`).click(() => {
-        this.deleteCard(obj._id);
+        // Delete sure popup
+        $(`#delete-sure-${obj._id}`).click(() => {
+          this.deleteCard(obj._id);
+        });
       });
-
-    });
-  }
-
+    }
   }
 
   navigateToFiles(e, item) {
@@ -275,7 +306,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addNewFolder(obj) {
-
     if (this.filterFolderName !== '') {
       this.filterFolderName = '';
       this.filterFolders();
@@ -358,30 +388,35 @@ export class DashboardComponent implements OnInit {
     `);
 
     // Conditions to check for the selected colour and apply the required gradient
-    if (`${obj.folder_color}` === '#ee9ca7' )
-    {
-      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #ffdde1,${obj.folder_color})`;
-      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #ffdde1, ${obj.folder_color})`;
+    if (`${obj.folder_color}` === '#ee9ca7') {
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `-webkit-linear-gradient(to right, #ffdde1,${obj.folder_color})`;
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `linear-gradient(to right, #ffdde1, ${obj.folder_color})`;
+    } else if (`${obj.folder_color}` === '#96e6a1') {
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
+    } else if (`${obj.folder_color}` === '#66a6ff') {
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
+    } else if (`${obj.folder_color}` === '#274046') {
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
+      document.getElementById(
+        `${obj._id}`
+      ).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
     }
-
-    else if (`${obj.folder_color}` === '#96e6a1' )
-    {
-      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
-      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
-    }
-
-    else if (`${obj.folder_color}` === '#66a6ff' )
-    {
-      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
-      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
-    }
-
-    else if (`${obj.folder_color}` === '#274046' )
-    {
-      document.getElementById(`${obj._id}`).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
-      document.getElementById(`${obj._id}`).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
-    }
-
 
     // Click action to enter files folder
     $(`#button-${obj._id}`).click(() => {
@@ -396,7 +431,6 @@ export class DashboardComponent implements OnInit {
         editText.style.display = 'none';
         folderName.style.display = 'block';
         editButton.style.display = 'block';
-
       } else {
         editText.style.display = 'block';
         folderName.style.display = 'none';
@@ -414,33 +448,42 @@ export class DashboardComponent implements OnInit {
         folderName.style.display = 'block';
         editButton.style.display = 'block';
       }
-      if (document.getElementById(`new-name-text-${obj._id}`).style.borderColor === 'red') {
-        document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
+      if (
+        document.getElementById(`new-name-text-${obj._id}`).style
+          .borderColor === 'red'
+      ) {
+        document.getElementById(`new-name-text-${obj._id}`).style.borderColor =
+          'transparent';
       }
     });
-      // Enter keyword action to save edited name
-    $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number; }) => {
+    // Enter keyword action to save edited name
+    $(`#edit-name-input-${obj._id}`).keyup((event: { keyCode: number }) => {
       if (event.keyCode === 13) {
         $(`#button-edit-name-ok-${obj._id}`).click();
       }
     });
     // Click action to save the new edited name
     $(`#button-edit-name-ok-${obj._id}`).click(() => {
-      const newName = (document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement).value;
+      const newName = (
+        document.getElementById(`new-name-text-${obj._id}`) as HTMLInputElement
+      ).value;
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       const editButton = document.getElementById(`button-edit-name-${obj._id}`);
-      if (newName === '') {      // If the new name is null then do not change the name.
-        document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
+      if (newName === '') {
+        // If the new name is null then do not change the name.
+        document.getElementById(`new-name-text-${obj._id}`).style.borderColor =
+          'red';
       } else {
-        document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
+        document.getElementById(`new-name-text-${obj._id}`).style.borderColor =
+          'transparent';
         this.renameFolder(obj, newName);
         if (editText.style.display === 'block') {
           editText.style.display = 'none';
           folderName.style.display = 'block';
           editButton.style.display = 'block';
         }
-        this.data.find(x => x._id === obj._id).folder_name = newName;     // Changing the folder name in data variable that we used.
+        this.data.find((x) => x._id === obj._id).folder_name = newName; // Changing the folder name in data variable that we used.
       }
     });
 
@@ -464,14 +507,16 @@ export class DashboardComponent implements OnInit {
 
   async createFolder() {
     const folderName: any = document.getElementById('folder-name-input');
-    const folderdescription: any = document.getElementById('folder-description-input');
+    const folderdescription: any = document.getElementById(
+      'folder-description-input'
+    );
     const folderColour: any = document.getElementById('folder-colour-input');
     const body = {
       folder_name: folderName.value,
       folder_title: folderdescription.value,
       folder_color: folderColour.value,
       folder_tag: 'folder_tag',
-      is_nested_folder: false
+      is_nested_folder: false,
     };
     const response = await this.apiService.createFolder(body);
     if (response.success) {
@@ -492,7 +537,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getQuote() {
-    this.apiService.getDailyQuote()
+    this.apiService
+      .getDailyQuote()
       .then((quote: DailyQuote) => {
         this.quote = quote;
       })
@@ -504,7 +550,8 @@ export class DashboardComponent implements OnInit {
 
   // Assign the selected colour to input value
   assignColour(colour) {
-    (document.getElementById('folder-colour-input') as HTMLInputElement).value = colour;
+    (document.getElementById('folder-colour-input') as HTMLInputElement).value =
+      colour;
   }
 
   async renameFolder(obj, newName) {
@@ -515,16 +562,17 @@ export class DashboardComponent implements OnInit {
       folder_tag: obj.folder_tag,
       folder_color: 'folder_color',
       is_modified: true,
-      is_pinned: false
+      is_pinned: false,
     };
     const response = await this.apiService.renameFolder(body);
     if (response.success) {
       // Change the previous name of the folder in the display.
-      const folderNameHeading = document.getElementById(`name-display-${obj._id}`);
+      const folderNameHeading = document.getElementById(
+        `name-display-${obj._id}`
+      );
       folderNameHeading.innerText = newName;
     } else {
       document.getElementById('error-label').style.display = 'block';
     }
-
   }
 }

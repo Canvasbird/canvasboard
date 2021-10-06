@@ -1,55 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, Router, NavigationExtras, Params } from '@angular/router';
-import { v4 as uuidv4 } from 'uuid';
+import {
+  ActivatedRoute,
+  Data, NavigationExtras,
+  Params, Router
+} from '@angular/router';
 import { fabric } from 'fabric';
-import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
-import { RestService } from '../../services/rest.service';
-import { Chart } from 'chart.js';
-import Swal from 'sweetalert2';
-import { BrowserStack } from 'protractor/built/driverProviders';
-import { NewBoardCard } from './new-board-card';
-import { NewBoard } from 'src/interfaces/new-board';
-import { each, param } from 'jquery';
-import { TwitterData } from 'src/interfaces/twitterData';
-import { AddBlockEditorParameters } from 'src/interfaces/add-block-parameters';
-import { PluginComponent } from 'src/interfaces/plugin-component';
-import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
-import { PluginType } from 'src/interfaces/plugin-type';
-import * as Mousetrap from 'mousetrap';
-import { menu } from './menu';
 import Fuse from 'fuse.js';
+import * as Mousetrap from 'mousetrap';
 import Reveal from 'reveal.js';
-import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 import Highlight from 'reveal.js/plugin/highlight/highlight.esm';
-
+import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
+import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
+import { AddTwitterComponent } from 'src/app/plugins/twitter';
+import { AddBlockEditorParameters } from 'src/interfaces/add-block-parameters';
+import { BasePluginComponent } from 'src/interfaces/base-plugin-component';
+import { NewBoard } from 'src/interfaces/new-board';
+import { PluginComponent } from 'src/interfaces/plugin-component';
+import { PluginType } from 'src/interfaces/plugin-type';
+import { v4 as uuidv4 } from 'uuid';
+import { AddBottomComponent } from '../../plugins/bottom';
 // Importing Plugins
 import { AddH1Component } from '../../plugins/cb-h1';
-import { AddCanvasBoard } from '../../plugins/cb-whiteboard';
 import { AddH2Component } from '../../plugins/cb-h2';
 import { AddH3Component } from '../../plugins/cb-h3';
 import { AddParaComponent } from '../../plugins/cb-p';
-import { AddRedBackgroundComponent } from '../../plugins/color-background/cb-redbackground';
-import { AddBlueBackgroundComponent } from '../../plugins/color-background/cb-bluebackground';
-import { AddYellowBackgroundComponent } from '../../plugins/color-background/cb-yellowbackground';
-import { AddGreenBackgroundComponent } from '../../plugins/color-background/cb-greenbackground';
-import { AddClearBackgroundComponent } from '../../plugins/color-background/cb-clearbackground';
-
-import { AddFontMonospaceComponent } from '../../plugins/monospace';
-import { AddFontPlayfairComponent } from '../../plugins/playfair';
-import { AddFontKalamComponent } from '../../plugins/kalam';
-import { AddClearFontComponent } from '../../plugins/clear-font';
-import { AddLeftAlignComponent } from '../../plugins/left-align';
+import { AddCanvasBoard } from '../../plugins/cb-whiteboard';
 import { AddCenterAlignComponent } from '../../plugins/center-align';
-import { AddRightAlignComponent } from '../../plugins/right-align';
-import { AddOrderedListComponent } from '../../plugins/ordered-list';
-import { AddUnOrderedListComponent } from '../../plugins/unordered-list';
-import { AddTopComponent } from '../../plugins/top';
-import { AddBottomComponent } from '../../plugins/bottom';
+import { AddClearFontComponent } from '../../plugins/clear-font';
+import { AddBlueBackgroundComponent } from '../../plugins/color-background/cb-bluebackground';
+import { AddClearBackgroundComponent } from '../../plugins/color-background/cb-clearbackground';
+import { AddGreenBackgroundComponent } from '../../plugins/color-background/cb-greenbackground';
+import { AddRedBackgroundComponent } from '../../plugins/color-background/cb-redbackground';
+import { AddYellowBackgroundComponent } from '../../plugins/color-background/cb-yellowbackground';
 import { AddDeleteComponent } from '../../plugins/delete';
 import { AddEmbedComponent } from '../../plugins/embed';
-import { AddPdfRenderComponent } from '../../plugins/pdf-render';
-import { AddTwitterComponent } from 'src/app/plugins/twitter';
+import { AddFontKalamComponent } from '../../plugins/kalam';
+import { AddLeftAlignComponent } from '../../plugins/left-align';
 import { AddMarkDownComponent } from '../../plugins/markdown';
+import { AddFontMonospaceComponent } from '../../plugins/monospace';
+import { AddOrderedListComponent } from '../../plugins/ordered-list';
+import { AddPdfRenderComponent } from '../../plugins/pdf-render';
+import { AddFontPlayfairComponent } from '../../plugins/playfair';
+import { AddRightAlignComponent } from '../../plugins/right-align';
+import { AddTopComponent } from '../../plugins/top';
+import { AddUnOrderedListComponent } from '../../plugins/unordered-list';
+import { RestService } from '../../services/rest.service';
+import { menu } from './menu';
+import { NewBoardCard } from './new-board-card';
+
+
 
 declare var $: any;
 
@@ -59,13 +58,21 @@ declare var $: any;
   styleUrls: ['./new-board.component.scss'],
 })
 export class NewBoardComponent implements OnInit {
-
-  constructor(private activatedRoute: ActivatedRoute, private apiService: RestService, private router: Router) {
-    this.activatedRoute.params.subscribe(params => { this.folderID = params.folderId; this.fileID = params.fileId; });
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private apiService: RestService,
+    private router: Router
+  ) {
+    this.activatedRoute.params.subscribe((params) => {
+      this.folderID = params.folderId;
+      this.fileID = params.fileId;
+    });
     if (this.router.getCurrentNavigation() !== null) {
       if (this.router.getCurrentNavigation().extras.state !== undefined) {
-        this.fileData = this.router.getCurrentNavigation().extras.state.fileData;
-        this.folderID = this.router.getCurrentNavigation().extras.state.folderId;
+        this.fileData =
+          this.router.getCurrentNavigation().extras.state.fileData;
+        this.folderID =
+          this.router.getCurrentNavigation().extras.state.folderId;
       }
     }
     // Storing blocks in Map
@@ -100,13 +107,9 @@ export class NewBoardComponent implements OnInit {
     this.AddMarkDownComponent = new AddMarkDownComponent();
     this.reader = new FileReader();
     this.deck = new Reveal({
-      plugins: [
-        Markdown,
-        Highlight
-      ],
-      hash: true
+      plugins: [Markdown, Highlight],
+      hash: true,
     }) as Reveal;
-
   }
 
   fileName: string;
@@ -116,12 +119,11 @@ export class NewBoardComponent implements OnInit {
   fileTag: Array<string>;
   fileToUpload: File = null;
   focusElement: any;
-  
-  //----------------------- Fuse search Variables -----------------------
-  
+
+  // ----------------------- Fuse search Variables -----------------------
+
   listFuseSearch: any;
   fuse: any;
-
 
   reader: FileReader;
   currentChartID: string;
@@ -171,7 +173,6 @@ export class NewBoardComponent implements OnInit {
       handle: '.dragHandle',
       animation: 150,
       easing: 'cubic-bezier(1, 0, 0, 1)',
-
     });
 
     // disable enter on title
@@ -193,7 +194,6 @@ export class NewBoardComponent implements OnInit {
 
     if (this.fileData !== null && this.fileData !== undefined) {
       this.populateData(this.fileData.queryParams);
-
     } else if (this.fileID !== undefined) {
       this.retrieveData(this.fileID);
     } else {
@@ -208,30 +208,24 @@ export class NewBoardComponent implements OnInit {
 
     // ----------------------- Enabing fuse for fuzzy search --------------
     this.fuseSearch();
-
   }
   // ----------------------- Reveal JS Config -------------------------------
   ngAfterViewInit() {
-    Reveal.initialize(
-      {
-        plugins: [
-          Markdown,
-          Highlight,
-        ],
-        // hash: true,
-        embedded: true,
-        minScale: 1.0,
-        controls: true,
-        controlsTutorial: true,
-        keyboardCondition: 'focused'
-      }
-    );
+    Reveal.initialize({
+      plugins: [Markdown, Highlight],
+      // hash: true,
+      embedded: true,
+      minScale: 1.0,
+      controls: true,
+      controlsTutorial: true,
+      keyboardCondition: 'focused',
+    });
     Reveal.configure({
       keyboard: {
         27: () => {
           $('presentModal').hide();
         }, // do Nothing when ESC is pressed
-      }
+      },
     });
   }
 
@@ -246,56 +240,52 @@ export class NewBoardComponent implements OnInit {
     $(`#fuseInput`).focus();
     this.listFuseSearch = [];
 
-    //Esc events
+    // Esc events
     $(`#fuseInput`).keydown((e) => {
-      if (e.which == 27) {
-        const html = document.getElementById('fuseSearch');
-        html.style.display = 'none';
+      if (e.which === 27) {
+        const element = document.getElementById('fuseSearch');
+        element.style.display = 'none';
       }
-    })
+    });
 
-    //Arrow functions
+    // Arrow functions
     $(`#fuseInput`).keyup((e) => {
-      //down arrow
-      if (e.which == 40) {
-        if ($("#search_results li.active").length != 0) {
-          let storeTarget = $('#search_results').find("li.active").next();
-          $("#search_results li.active").removeClass("active");
-          storeTarget.focus()
-          storeTarget.addClass("active");
+      // down arrow
+      if (e.which === 40) {
+        if ($('#search_results li.active').length !== 0) {
+          const storeTarget = $('#search_results').find('li.active').next();
+          $('#search_results li.active').removeClass('active');
+          storeTarget.focus();
+          storeTarget.addClass('active');
           this.focusElement += 1;
         } else {
-          $('#search_results').find("li:first").focus().addClass("active");
-          this.focusElement = 0
-        }
-        return;
-      }
-      // up arrow
-      if (e.which == 38) {
-        if ($("#search_results li.active").length != 0) {
-          let storeTarget = $('#search_results').find("li.active").prev();
-          $("#search_results li.active").removeClass("active");
-          storeTarget.focus()
-          storeTarget.addClass("active");
-          if (this.focusElement > 0) {
-            this.focusElement = this.focusElement - 1;
-          }
-
-        }
-        else {
-          $('#search_results').find("li:first").focus().addClass("active");
+          $('#search_results').find('li:first').focus().addClass('active');
           this.focusElement = 0;
         }
         return;
       }
-    })
+      // up arrow
+      if (e.which === 38) {
+        if ($('#search_results li.active').length !== 0) {
+          const storeTarget = $('#search_results').find('li.active').prev();
+          $('#search_results li.active').removeClass('active');
+          storeTarget.focus();
+          storeTarget.addClass('active');
+          if (this.focusElement > 0) {
+            this.focusElement = this.focusElement - 1;
+          }
+        } else {
+          $('#search_results').find('li:first').focus().addClass('active');
+          this.focusElement = 0;
+        }
+        return;
+      }
+    });
   }
   // ----------------------- fuse config ----------------------------------------------
   fuseSearch = async () => {
     const options = {
-      keys: [
-        'name', 'alternative'
-      ]
+      keys: ['name', 'alternative'],
     };
     this.fuse = await new Fuse(menu, options);
   }
@@ -329,19 +319,18 @@ export class NewBoardComponent implements OnInit {
         break;
       }
       case 5: {
-        $("#embedModal").modal();
+        $('#embedModal').modal();
         break;
       }
       case 6: {
-        this.cbToolbox(this.AddCanvasBoard, 'board')
+        this.cbToolbox(this.AddCanvasBoard, 'board');
         break;
       }
       case 7: {
-        $("#youtubeModal").modal();
+        $('#youtubeModal').modal();
         break;
       }
     }
-
   }
 
   // ----------------------- BLOCK BUILDING FUNCITON -----------------------
@@ -395,53 +384,66 @@ export class NewBoardComponent implements OnInit {
   }
 
   // ----------------------- ADDING BLOCK BEFORE/AFTER THE DIV FUNCTION -----------------------
-  addBlockEditor = ({ id, pluginComponent = null, pType = 'editor', addBefore = false, embedUrl = null }: AddBlockEditorParameters) => {
+  addBlockEditor = ({
+    id,
+    pluginComponent = null,
+    pType = 'editor',
+    addBefore = false,
+    embedUrl = null,
+  }: AddBlockEditorParameters) => {
     try {
       // getting uid and appending after specified ID
       const uid: any = uuidv4();
 
-      const newBoardCard: NewBoardCard = new NewBoardCard(uid, -1, this.userBlocks.size);
+      const newBoardCard: NewBoardCard = new NewBoardCard(
+        uid,
+        -1,
+        this.userBlocks.size
+      );
       let pluginType: PluginType = pType;
 
       if (pluginComponent !== null) {
-
-        if (pluginComponent === this.AddTopComponent || pluginComponent === this.AddBottomComponent) {
-
-          addBefore ? $(`#${id}`).before(this.blockFunction(uid)) : $(`#${id}`).after(this.blockFunction(uid));
-
+        if (
+          pluginComponent === this.AddTopComponent ||
+          pluginComponent === this.AddBottomComponent
+        ) {
+          addBefore
+            ? $(`#${id}`).before(this.blockFunction(uid))
+            : $(`#${id}`).after(this.blockFunction(uid));
         } else if (pluginComponent === this.AddPdfRenderComponent) {
-
           $('#pdfFile').change((event) => {
             $(`#${id}`).append(this.blockFunction(uid));
-            this.AddPdfRenderComponent.addToolBox(uid, event.target.files[0], this.reader);
+            this.AddPdfRenderComponent.addToolBox(
+              uid,
+              event.target.files[0],
+              this.reader
+            );
           });
           pluginType = 'fileUpload';
-
         } else if (pluginComponent === this.AddEmbedComponent) {
-
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddEmbedComponent.addToolBox(uid, embedUrl);
           pluginType = 'embed';
           newBoardCard.setContent(embedUrl);
-
         } else if (pluginComponent === this.AddTwitterComponent) {
           $(`#${id}`).append(this.blockFunction(uid));
           this.AddTwitterComponent.addToolBox(uid, embedUrl);
           pluginType = 'tweet';
           newBoardCard.setContent(embedUrl);
-
         } else {
           $(`#${id}`).append(this.blockFunction(uid));
           pluginComponent.addToolBox(uid);
-
         }
       } else {
-
-        addBefore ? $(`#${id}`).before(this.blockFunction(uid)) : $(`#${id}`).after(this.blockFunction(uid));
+        addBefore
+          ? $(`#${id}`).before(this.blockFunction(uid))
+          : $(`#${id}`).after(this.blockFunction(uid));
       }
 
       // Adding listener to current card
-      $(`#original-${uid}`).click(() => { this.currentChartID = uid; });
+      $(`#original-${uid}`).click(() => {
+        this.currentChartID = uid;
+      });
 
       // Changing focus to Current Card
       $(`#original-${uid}`).focus();
@@ -467,7 +469,6 @@ export class NewBoardComponent implements OnInit {
 
       // Calling Add Canvas board function when addBefore is True
       if (addBefore) {
-
         // Adding Canvas board
         $(`#add-canvas-cb-${uid}`).click(() => {
           const parentWidth = $(`#original-${uid}`).width();
@@ -487,15 +488,14 @@ export class NewBoardComponent implements OnInit {
           // changing pen color
           // canvas.freeDrawingBrush.color
           $(`#canvas-menu-box-${uid}`).on('change', () => {
-            const color: any = document.getElementById(`canvas-menu-box-${uid}`);
+            const color: any = document.getElementById(
+              `canvas-menu-box-${uid}`
+            );
             const data = color.value;
             canvas.freeDrawingBrush.color = data;
           });
         });
       }
-
-
-
     } catch (err) {
       console.log('Error', err);
     }
@@ -574,8 +574,6 @@ export class NewBoardComponent implements OnInit {
       ele.addHTMLCode(uid);
       ele.addClickFunction(uid);
     });
-
-
   }
 
   // ----------------------- Disable Enter Keyword in Title -----------------------
@@ -593,11 +591,11 @@ export class NewBoardComponent implements OnInit {
   validURL(str) {
     const pattern = new RegExp(
       '^(https?:\\/\\/)?' + // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-      '(\\#[-a-z\\d_]*)?$',
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$',
       'i'
     ); // fragment locator
     return !!pattern.test(str);
@@ -613,7 +611,7 @@ export class NewBoardComponent implements OnInit {
     const ids = []; // ID's Array for Order
 
     // Retrieve Order of IDs of cards
-    $('#main-box>div').each(function (i) {
+    $('#main-box>div').each(function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         ids.push($(this).prop('id').substring(9));
       }
@@ -624,7 +622,10 @@ export class NewBoardComponent implements OnInit {
       const ele: NewBoardCard = this.userBlocks.get(key);
 
       // For Editor Save Html Data which is Text
-      if (ele.getpluginType() === 'editor' || ele.getpluginType() === undefined) {
+      if (
+        ele.getpluginType() === 'editor' ||
+        ele.getpluginType() === undefined
+      ) {
         ele.setContent($(`#original-${key}`).html());
       } else if (ele.getpluginType() === 'board') {
         // For Board Save FabricJS object data
@@ -639,12 +640,15 @@ export class NewBoardComponent implements OnInit {
 
     // Data Save
 
-    if ((this.fileData !== null && this.fileData !== undefined) || this.fileID !== undefined) {
+    if (
+      (this.fileData !== null && this.fileData !== undefined) ||
+      this.fileID !== undefined
+    ) {
       const saveDataJson = {
         file_name: boardTitle === '' ? 'Untitled' : boardTitle,
         file_id: this.fileID,
         data: [],
-        is_modified: true
+        is_modified: true,
       };
       saveDataJson.data = data;
       this.apiService.saveBoardData(saveDataJson);
@@ -653,11 +657,10 @@ export class NewBoardComponent implements OnInit {
         file_name: boardTitle === '' ? 'Untitled' : boardTitle,
         folder_id: this.folderID,
         file_tag: 'testing',
-        data: []
+        data: [],
       };
       createDataJson.data = data;
       this.fileID = (await this.apiService.createBoardData(createDataJson))._id;
-
     }
 
     // Save Notification
@@ -676,7 +679,6 @@ export class NewBoardComponent implements OnInit {
     document.getElementById('title').innerText = this.fileName; // Set Title
     let prevId = ''; // Previous Card ID
     data.data.forEach((element, index) => {
-
       // Add Cards to CardsMap
       this.userBlocks.set(element.cardID, NewBoardCard.fromData(element));
 
@@ -690,7 +692,7 @@ export class NewBoardComponent implements OnInit {
       // Add ToolBar
       this.addToolBar(element.cardID, element.pluginType);
 
-      //keydown events
+      // keydown events
       this.keyPressEvents(element.cardID);
 
       // Add Cards according to Plugin Type
@@ -727,7 +729,9 @@ export class NewBoardComponent implements OnInit {
       prevId = element.cardID;
 
       // Adding listener to current card
-      $(`#original-${element.cardID}`).click(() => { this.currentChartID = element.cardID; });
+      $(`#original-${element.cardID}`).click(() => {
+        this.currentChartID = element.cardID;
+      });
     });
 
     // Adding Last card as current Card
@@ -752,7 +756,7 @@ export class NewBoardComponent implements OnInit {
     `);
   }
 
-  //----------------------- Paste fix for contenteditable -----------------------
+  // ----------------------- Paste fix for contenteditable -----------------------
   pasteFix = () => {
     $(document).on('copy', '[contenteditable]', (e) => {
       e = e.originalEvent;
@@ -775,7 +779,9 @@ export class NewBoardComponent implements OnInit {
           selRange.insertNode(document.createTextNode(content));
         }
       } else if (e.originalEvent.clipboardData) {
-        const content = (e.originalEvent || e).clipboardData.getData('text/plain');
+        const content = (e.originalEvent || e).clipboardData.getData(
+          'text/plain'
+        );
         document.execCommand('insertText', false, content);
       }
     });
@@ -803,9 +809,8 @@ export class NewBoardComponent implements OnInit {
     $(`#original-${uid}`).keydown((e) => {
       KEYS.add(e.which);
 
-
       // Key conditions
-      //ctrl + s
+      // ctrl + s
       if (KEYS.has(17) && KEYS.has(83)) {
         e.preventDefault();
         this.saveData();
@@ -834,7 +839,7 @@ export class NewBoardComponent implements OnInit {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH1Component);
       // }
-      // // H1 -> shift + cmd + 1           
+      // // H1 -> shift + cmd + 1
       // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(49)) {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH1Component);
@@ -845,7 +850,7 @@ export class NewBoardComponent implements OnInit {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH2Component);
       // }
-      // // H2 -> shift + cmd + 2          
+      // // H2 -> shift + cmd + 2
       // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(50)) {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH2Component);
@@ -856,26 +861,25 @@ export class NewBoardComponent implements OnInit {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH3Component);
       // }
-      // // H3 -> shift + cmd + 3         
+      // // H3 -> shift + cmd + 3
       // if (KEYS.has(16) && KEYS.has(91) && KEYS.has(51)) {
       //   e.preventDefault();
       //   this.cbToolbox(this.AddH3Component);
       // }
       // P on Enter
-      if (KEYS.size == 1 && KEYS.has(13)) {
+      if (KEYS.size === 1 && KEYS.has(13)) {
         e.preventDefault();
-        this.cbToolboxBottomTag()
+        this.cbToolboxBottomTag();
       }
-    })
+    });
 
     // Remove the keys from the set.
     $(`#original-${uid}`).keyup((e) => {
       KEYS.delete(e.which);
-    })
+    });
   }
 
   shortcuts = () => {
-
     // ESC
     Mousetrap.bind(['Esc', 'Esc'], (e) => {
       if (e.preventDefault) {
@@ -886,8 +890,6 @@ export class NewBoardComponent implements OnInit {
       }
       const div = document.getElementById('revealDiv');
       div.style.display = 'none';
-
-
     });
 
     // Save
@@ -946,15 +948,17 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
-
   cbToolboxPresent = () => {
     const slides = $('#revealDiv .slides');
     slides.empty();
 
-    $('#main-box>div').each(function (i) {
+    $('#main-box>div').each(function(i) {
       if ($(this).prop('id').substring(0, 9) === 'cb-box-1-') {
         const id = $(this).prop('id').substring(9);
-        const section = `<section data-background-color="white">` + $(`#real-content-box-${id}`).html() + `</section>`;
+        const section =
+          `<section data-background-color="white">` +
+          $(`#real-content-box-${id}`).html() +
+          `</section>`;
         slides.append(section);
       }
     });
@@ -975,9 +979,12 @@ export class NewBoardComponent implements OnInit {
   }
 
   // ----------------------- TOOLBOX CLICK FUNCTIONALITY -------------------------
-  cbToolbox(pluginComponent: BasePluginComponent, pType?: PluginType, embedUrl?: string) {
+  cbToolbox(
+    pluginComponent: BasePluginComponent,
+    pType?: PluginType,
+    embedUrl?: string
+  ) {
     this.addBlockEditor({ id: 'main-box', pluginComponent, pType, embedUrl });
-
   }
 
   cbToolboxDeleteTag = () => {
@@ -990,7 +997,10 @@ export class NewBoardComponent implements OnInit {
   }
 
   cbToolboxBottomTag = () => {
-    this.AddBottomComponent.addToolBox(this.currentChartID, this.addBlockEditor);
+    this.AddBottomComponent.addToolBox(
+      this.currentChartID,
+      this.addBlockEditor
+    );
   }
 
   cbToolboxClearFont = () => {
@@ -999,23 +1009,38 @@ export class NewBoardComponent implements OnInit {
 
   cbToolboxPdfRender = () => {
     $('#pdfFile').click();
-    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddPdfRenderComponent });
+    this.addBlockEditor({
+      id: 'main-box',
+      pluginComponent: this.AddPdfRenderComponent,
+    });
   }
 
   cbToolboxYoutube = () => {
     this.addBlockEditor({
-      id: 'main-box', pluginComponent: this.AddEmbedComponent,
-      embedUrl: $('#youtubeEmbedURL').val().replace(/watch\?v=/gi, 'embed/')
+      id: 'main-box',
+      pluginComponent: this.AddEmbedComponent,
+      embedUrl: $('#youtubeEmbedURL')
+        .val()
+        .replace(/watch\?v=/gi, 'embed/'),
     });
   }
 
   cbToolboxClock = () => {
-    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddEmbedComponent, embedUrl: 'plugins/clock' });
+    this.addBlockEditor({
+      id: 'main-box',
+      pluginComponent: this.AddEmbedComponent,
+      embedUrl: 'plugins/clock',
+    });
   }
 
   cbToolboxTwitter = async () => {
-    const response = await this.apiService.getTweet($('#twitterEmbedURL').val());
-    this.addBlockEditor({ id: 'main-box', pluginComponent: this.AddTwitterComponent, embedUrl: response.html });
-
+    const response = await this.apiService.getTweet(
+      $('#twitterEmbedURL').val()
+    );
+    this.addBlockEditor({
+      id: 'main-box',
+      pluginComponent: this.AddTwitterComponent,
+      embedUrl: response.html,
+    });
   }
 }

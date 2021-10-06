@@ -18,7 +18,7 @@ export class AuthService {
 
   token = null;
 
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(private http: HttpClient, public router: Router) {}
 
   login(): any {
     this.loginLoad = true;
@@ -46,9 +46,9 @@ export class AuthService {
         (res) => {
           this.signUpResObj = res;
           Swal.fire({
-            icon: 'success', 
+            icon: 'success',
             title: `${this.signUpResObj.message}`,
-            text: `Verify your e-mail address to finish signing up for Canvasboard` 
+            text: `Verify your e-mail address to finish signing up for Canvasboard`,
           });
           this.router.navigate(['/login']);
           this.signUpLoad = false;
@@ -85,14 +85,16 @@ export class AuthService {
   loginErrorAlert({ error }: ErrorEvent) {
     if (error.message === 'Please verify your email-id') {
       Swal.fire({
-        icon: 'warning', text: `Please verify your email address.
-       An email has been sent to your registered email id!` });
+        icon: 'warning',
+        text: `Please verify your email address.
+       An email has been sent to your registered email id!`,
+      });
     } else if (error.message === 'Incorrect password') {
       Swal.fire({ icon: 'error', text: 'Incorrect username or password.' });
     } else if (error.message === 'User not found.') {
       Swal.fire({
         icon: 'warning',
-        text: 'This email address does not correspond to a registered account.'
+        text: 'This email address does not correspond to a registered account.',
       });
     }
   }

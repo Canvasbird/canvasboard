@@ -31,7 +31,7 @@ export class SignUpComponent implements OnInit {
     } else {
       this.position = 'below';
     }
-    }
+  }
 
   signUp(): any {
     if (this.checksPassed === true) {

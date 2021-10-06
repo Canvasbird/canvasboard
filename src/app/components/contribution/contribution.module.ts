@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ContributionComponent } from "./contribution.component";
-import { FooterModule } from "../footer/footer.module";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ContributionRoutingModule } from './contribution-routing.module';
+import { ContributionComponent } from './contribution.component';
 
 @NgModule({
   declarations: [ContributionComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, ContributionRoutingModule],
 })
 export class ContributionModule {}

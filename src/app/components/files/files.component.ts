@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Data, Router, ActivatedRoute, NavigationStart, NavigationExtras } from '@angular/router';
+import {
+  Data,
+  Router,
+  ActivatedRoute,
+  NavigationStart,
+  NavigationExtras,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { RestService } from 'src/app/services/rest.service';
@@ -8,31 +14,38 @@ declare var $: any;
 @Component({
   selector: 'app-files',
   templateUrl: './files.component.html',
-  styleUrls: ['./files.component.scss']
+  styleUrls: ['./files.component.scss'],
 })
 export class FilesComponent implements OnInit {
-
   appstate$: Observable<object>;
   activateID: Data;
   data: any;
   FolderName = '';
   FolderDescription = '';
   files: Array<any> = [];
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: RestService) {
-    this.activatedRoute.params.subscribe(params => this.activateID = params);
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private apiService: RestService
+  ) {
+    this.activatedRoute.params.subscribe(
+      (params) => (this.activateID = params)
+    );
   }
 
   ngOnInit() {
     this.appstate$ = this.router.events.pipe(
-      filter(e => e instanceof NavigationStart),
+      filter((e) => e instanceof NavigationStart),
       map(() => {
         const currentState = this.router.getCurrentNavigation();
         return currentState.extras.state;
-      }));
+      })
+    );
     this.gettingData(this.activateID.id);
     $(`#launchBoard`).click(() => {
-
-      this.router.navigate([`${this.activateID.id}/creative-board`], { state: { fileData: null, folderId: this.activateID.id}});
+      this.router.navigate([`board/${this.activateID.id}/creative-board`], {
+        state: { fileData: null, folderId: this.activateID.id },
+      });
     });
 
     /**
@@ -54,7 +67,7 @@ export class FilesComponent implements OnInit {
       const noFile = 'Please add a File!';
       $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
     } else {
-      this.files.forEach(element => {
+      this.files.forEach((element) => {
         this.addFiles(element);
       });
     }
@@ -139,9 +152,11 @@ export class FilesComponent implements OnInit {
       const dataToSend: NavigationExtras = {
         queryParams: data,
         skipLocationChange: false,
-        fragment: 'top'
+        fragment: 'top',
       };
-      this.router.navigate([`creative-board/${data._id}`], { state: { fileData: null, folderId: this.activateID.id}});
+      this.router.navigate([`board/creative-board/${data._id}`], {
+        state: { fileData: null, folderId: this.activateID.id },
+      });
     });
 
     // Open delete popup
@@ -163,12 +178,13 @@ export class FilesComponent implements OnInit {
     $(`#button-edit-name-${data._id}`).click(() => {
       const fileName = document.getElementById(`file-name-${data._id}`);
       const editText = document.getElementById(`edit-name-input-${data._id}`);
-      const editButton = document.getElementById(`button-edit-name-${data._id}`);
+      const editButton = document.getElementById(
+        `button-edit-name-${data._id}`
+      );
       if (editText.style.display === 'block') {
         editText.style.display = 'none';
         fileName.style.display = 'block';
         editButton.style.display = 'block';
-
       } else {
         editText.style.display = 'block';
         fileName.style.display = 'none';
@@ -180,33 +196,46 @@ export class FilesComponent implements OnInit {
     $(`#button-edit-name-no-${data._id}`).click(() => {
       const fileName = document.getElementById(`file-name-${data._id}`);
       const editText = document.getElementById(`edit-name-input-${data._id}`);
-      const editButton = document.getElementById(`button-edit-name-${data._id}`);
+      const editButton = document.getElementById(
+        `button-edit-name-${data._id}`
+      );
       if (editText.style.display === 'block') {
         editText.style.display = 'none';
         fileName.style.display = 'block';
         editButton.style.display = 'block';
       }
-      if (document.getElementById(`new-name-text-${data._id}`).style.borderColor === 'red') {
-        document.getElementById(`new-name-text-${data._id}`).style.borderColor = 'transparent';
+      if (
+        document.getElementById(`new-name-text-${data._id}`).style
+          .borderColor === 'red'
+      ) {
+        document.getElementById(`new-name-text-${data._id}`).style.borderColor =
+          'transparent';
       }
     });
     // Click action to save the new edited name
     $(`#button-edit-name-ok-${data._id}`).click(() => {
-      const newName = (document.getElementById(`new-name-text-${data._id}`) as HTMLInputElement).value;
+      const newName = (
+        document.getElementById(`new-name-text-${data._id}`) as HTMLInputElement
+      ).value;
       const fileName = document.getElementById(`file-name-${data._id}`);
       const editText = document.getElementById(`edit-name-input-${data._id}`);
-      const editButton = document.getElementById(`button-edit-name-${data._id}`);
-      if (newName === '') {      // If the new name is null then do not change the name.
-        document.getElementById(`new-name-text-${data._id}`).style.borderColor = 'red';
+      const editButton = document.getElementById(
+        `button-edit-name-${data._id}`
+      );
+      if (newName === '') {
+        // If the new name is null then do not change the name.
+        document.getElementById(`new-name-text-${data._id}`).style.borderColor =
+          'red';
       } else {
-        document.getElementById(`new-name-text-${data._id}`).style.borderColor = 'transparent';
+        document.getElementById(`new-name-text-${data._id}`).style.borderColor =
+          'transparent';
         this.renamefile(data, newName);
         if (editText.style.display === 'block') {
           editText.style.display = 'none';
           fileName.style.display = 'block';
           editButton.style.display = 'block';
         }
-        this.data.find(x => x._id === data._id).file_name = newName;     // Changing the file name in data variable that we used.
+        this.data.find((x) => x._id === data._id).file_name = newName; // Changing the file name in data variable that we used.
       }
     });
   }
@@ -233,16 +262,17 @@ export class FilesComponent implements OnInit {
     const body = {
       file_id: obj._id,
       file_name: newName,
-      is_modified: true
+      is_modified: true,
     };
     const response = await this.apiService.renameFile(body);
     if (response.success) {
       // Change the previous name of the file in the display.
-      const fileNameHeading = document.getElementById(`name-display-${obj._id}`);
+      const fileNameHeading = document.getElementById(
+        `name-display-${obj._id}`
+      );
       fileNameHeading.innerText = newName;
     } else {
       document.getElementById('error-label').style.display = 'block';
     }
-
   }
 }
