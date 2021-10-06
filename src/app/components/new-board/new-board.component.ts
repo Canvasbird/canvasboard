@@ -51,6 +51,7 @@ import { NewBoardCard } from './new-board-card';
 
 
 declare var $: any;
+declare var document: any;
 
 @Component({
   selector: 'app-new-board',
@@ -200,7 +201,7 @@ export class NewBoardComponent implements OnInit {
     }
 
     // ----------------------- Paste fix for contenteditable ------------
-    this.pasteFix();
+    // this.pasteFix();
 
     // ----------------------- Enabling Shortcuts -----------------------
     this.shortcuts();
@@ -453,7 +454,10 @@ export class NewBoardComponent implements OnInit {
       $(`#original-${uid}`).click(() => {
         this.currentChartID = uid;
       });
+      $(`#original-${uid}`).bind('paste', (e) => {
 
+        this.onPaste(e, uid);
+      });
       // Changing focus to Current Card
       $(`#original-${uid}`).focus();
 
@@ -735,7 +739,10 @@ export class NewBoardComponent implements OnInit {
           $(`#original-${element.cardID}`).html(element.content);
         }
       }
+      $(`#original-${element.cardID}`).bind('paste', (e) => {
 
+        this.onPaste(e, element.cardID);
+      });
       // Add Class list to the card
       $(`#cb-box-2-${element.cardID}`).addClass(element.classList);
 
@@ -771,35 +778,35 @@ export class NewBoardComponent implements OnInit {
   }
 
   // ----------------------- Paste fix for contenteditable -----------------------
-  pasteFix = () => {
-    $(document).on('copy', '[contenteditable]', (e) => {
-      e = e.originalEvent;
-      const selectedText = window.getSelection();
-      const range = selectedText.getRangeAt(0);
-      const selectedTextReplacement = range.toString();
-      e.clipboardData.setData('text/plain', selectedTextReplacement);
-      e.preventDefault(); // default behaviour is to copy any selected text
-    });
+  // pasteFix = () => {
+  //   $(document).on('copy', '[contenteditable]', (e) => {
+  //     e = e.originalEvent;
+  //     const selectedText = window.getSelection();
+  //     const range = selectedText.getRangeAt(0);
+  //     const selectedTextReplacement = range.toString();
+  //     e.clipboardData.setData('text/plain', selectedTextReplacement);
+  //     e.preventDefault(); // default behaviour is to copy any selected text
+  //   });
 
-    $(document).on('paste', '[contenteditable]', (e) => {
-      e.preventDefault();
+  //   $(document).on('paste', '[contenteditable]', (e) => {
+  //     e.preventDefault();
 
-      if ((window as any).clipboardData) {
-        const content = (window as any).clipboardData.getData('Text');
-        if (window.getSelection) {
-          const selObj = window.getSelection();
-          const selRange = selObj.getRangeAt(0);
-          selRange.deleteContents();
-          selRange.insertNode(document.createTextNode(content));
-        }
-      } else if (e.originalEvent.clipboardData) {
-        const content = (e.originalEvent || e).clipboardData.getData(
-          'text/plain'
-        );
-        document.execCommand('insertText', false, content);
-      }
-    });
-  }
+  //     if ((window as any).clipboardData) {
+  //       const content = (window as any).clipboardData.getData('Text');
+  //       if (window.getSelection) {
+  //         const selObj = window.getSelection();
+  //         const selRange = selObj.getRangeAt(0);
+  //         selRange.deleteContents();
+  //         selRange.insertNode(document.createTextNode(content));
+  //       }
+  //     } else if (e.originalEvent.clipboardData) {
+  //       const content = (e.originalEvent || e).clipboardData.getData(
+  //         'text/plain'
+  //       );
+  //       document.execCommand('insertText', false, content);
+  //     }
+  //   });
+  // }
 
   // ----------------------- Reveal JS ------------------------------------------
   openSlideMenu = () => {
@@ -893,6 +900,36 @@ export class NewBoardComponent implements OnInit {
     });
   }
 
+  onPaste(event: any, uid: any) {
+    event.preventDefault();
+    const pastedData = event.originalEvent.clipboardData.getData('text');
+    if ($(`#original-${uid}`).html() === '<br>'){
+      $(`#original-${uid}`).html(pastedData);
+    }
+    else{
+      $(`#original-${uid}`).append(pastedData);
+    }
+    this.placeCaretAtEnd(document.getElementById(`original-${uid}`));
+  }
+
+  placeCaretAtEnd(el) {
+  el.focus();
+  if (typeof window.getSelection !== 'undefined'
+    && typeof document.createRange !== 'undefined') {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  } else if (typeof document.body.createTextRange !== 'undefined') {
+    const textRange = document.body.createTextRange();
+    textRange.moveToElementText(el);
+    textRange.collapse(false);
+    textRange.select();
+  }
+}
+
   shortcuts = () => {
     // ESC
     Mousetrap.bind(['Esc', 'Esc'], (e) => {
@@ -963,6 +1000,7 @@ export class NewBoardComponent implements OnInit {
   }
 
   cbToolboxPresent = () => {
+    this.saveData();
     const slides = $('#revealDiv .slides');
     slides.empty();
 
