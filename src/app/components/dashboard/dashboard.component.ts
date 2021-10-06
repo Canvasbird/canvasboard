@@ -174,7 +174,7 @@ export class DashboardComponent implements OnInit {
             `${obj._id}`
           ).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
         }
-        
+
         // Click action to enter files folder
         $(`#button-${obj._id}`).click(() => {
           this.route.navigate([`/folder/${obj._id}`]);
@@ -228,7 +228,7 @@ export class DashboardComponent implements OnInit {
             document.getElementById(
               `new-name-text-${obj._id}`
             ) as HTMLInputElement
-          ).value;
+          ).value.trim();
           const folderName = document.getElementById(`folder-name-${obj._id}`);
           const editText = document.getElementById(
             `edit-name-input-${obj._id}`
