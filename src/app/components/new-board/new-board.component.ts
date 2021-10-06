@@ -210,6 +210,7 @@ export class NewBoardComponent implements OnInit {
   }
   // ----------------------- Reveal JS Config -------------------------------
   ngAfterViewInit() {
+    
     this.deck = new Reveal($('#revealDiv'));
     this.deck.initialize(
       {
@@ -607,6 +608,11 @@ export class NewBoardComponent implements OnInit {
       'i'
     ); // fragment locator
     return !!pattern.test(str);
+  }
+  // ----------------------- BACK BUTTON ----------------------------------
+  async backButton(){
+    this.router.navigateByUrl(`/folder/${ this.folderID }`);
+    this.saveData();
   }
 
   // ----------------------- Save, Retrieve Functions and Population -----------------------
