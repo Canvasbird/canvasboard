@@ -9,14 +9,18 @@
       title="Search"
       autocomplete="off"
       (input)="textInputChange($event.target)"
+      (keyup.arrowup)="prevActiveMatch()"
+      (keyup.arrowdown)="nextActiveMatch()"
+      (keyup.enter)="enterFuseSearch()"
     />
     <div id="search_results">
       <ul>
         <!---------------------------- FUSE LIST ---------------------------------------------->
         <li
           *ngFor="let list of listFuseSearch; let i = index"
+          [ngClass]="{active: i==activeIndex}"
           (click)="searchListClicked(list.item.id)"
-          id="{{ 'enter' + i }}"
+          id="{{ 'enter' + list.item.id }}"
         >
           {{ list.item.name }}
         </li>

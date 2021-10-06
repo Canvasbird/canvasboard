@@ -165,6 +165,8 @@ export class NewBoardComponent implements OnInit {
     };
   })();
 
+public activeIndex = 0;
+
   ngOnInit() {
     // ----------------------- SORTABLE JS -----------------------
     const mainEl = document.getElementById('main-box');
@@ -257,40 +259,19 @@ export class NewBoardComponent implements OnInit {
     });
 
     // Arrow functions
-    $(`#fuseInput`).keyup((e) => {
-      // down arrow
-      if (e.which === 40) {
-        if ($('#search_results li.active').length !== 0) {
-          const storeTarget = $('#search_results').find('li.active').next();
-          $('#search_results li.active').removeClass('active');
-          storeTarget.focus();
-          storeTarget.addClass('active');
-          this.focusElement += 1;
-        } else {
-          $('#search_results').find('li:first').focus().addClass('active');
-          this.focusElement = 0;
-        }
-        return;
-      }
-      // up arrow
-      if (e.which === 38) {
-        if ($('#search_results li.active').length !== 0) {
-          const storeTarget = $('#search_results').find('li.active').prev();
-          $('#search_results li.active').removeClass('active');
-          storeTarget.focus();
-          storeTarget.addClass('active');
-          if (this.focusElement > 0) {
-            this.focusElement = this.focusElement - 1;
-          }
 
-        }
-        else {
-          $('#search_results').find('li:first').focus().addClass('active');
-          this.focusElement = 0;
-        }
-        return;
-      }
-    });
+  }
+
+
+  public nextActiveMatch() {
+    this.activeIndex = this.activeIndex < $('#search_results li').length - 1 ? ++this.activeIndex : this.activeIndex;
+  }
+  public prevActiveMatch() {
+    this.activeIndex = this.activeIndex > 0 ? --this.activeIndex : 0;
+  }
+  public enterFuseSearch(){
+    const storeTarget = $('#search_results').find('li.active');
+    this.searchListClicked(storeTarget.prop('id').substring(5));
   }
   // ----------------------- fuse config ----------------------------------------------
   fuseSearch = async () => {
@@ -1095,4 +1076,5 @@ export class NewBoardComponent implements OnInit {
       embedUrl: response.html,
     });
   }
+
 }
