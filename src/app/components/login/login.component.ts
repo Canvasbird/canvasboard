@@ -5,20 +5,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   emailId = '';
   password = '';
 
-  constructor(public authService: AuthService, private route: Router) { }
+  constructor(public authService: AuthService, private route: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login(): any {
-    this.authService.loginReqObj  = {};
+    this.authService.loginReqObj = {};
     this.authService.loginReqObj.email_id = this.emailId;
     this.authService.loginReqObj.password = this.password;
     this.authService.login();
@@ -26,5 +24,9 @@ export class LoginComponent implements OnInit {
 
   async forgotPassword() {
     this.route.navigate([`/forgot-password`]);
+  }
+
+  async signUp() {
+    this.route.navigate([`/sign-up`]);
   }
 }

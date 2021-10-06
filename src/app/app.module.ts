@@ -1,57 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { ScrollToTopModule } from './components/scroll-to-top/scroll-to-top.module';
 import { AuthGuard } from './shared/auth.guard';
-import { NewBoardComponent } from './components/new-board/new-board.component';
-import { ContributionComponent } from './components/contribution/contribution.component';
-import { FilesComponent } from './components/files/files.component';
-import { FilterFolderPipe } from './shared/filter-folder.pipe';
-import { ClockComponent } from './plugins/clock/clock.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyCodeComponent } from './components/verify-code/verify-code.component';
-import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    FooterComponent,
-    LoginComponent,
-    SignUpComponent,
-    DashboardComponent,
-    NavbarComponent,
-    NewBoardComponent,
-    ContributionComponent,
-    FilesComponent,
-    FilterFolderPipe,
-    ClockComponent,
-    ForgotPasswordComponent,
-    VerifyCodeComponent,
-    ScrollToTopComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
+    ScrollToTopModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatPasswordStrengthModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
