@@ -203,7 +203,8 @@ export class DashboardComponent implements OnInit {
           const folderName = document.getElementById(`folder-name-${obj._id}`);
           const editText = document.getElementById(`edit-name-input-${obj._id}`);
           const editButton = document.getElementById(`button-edit-name-${obj._id}`);
-          if (newName === '' || this.getAllFolderNames().includes(newName)) {      // If the new name is null then do not change the name.
+
+          if (newName === '' || (this.getAllFolderNames().includes(newName) && this.data.find(x => x._id === obj._id).folder_name.trim() != newName)) {      // If the new name is null then do not change the name.
             document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
           } else {
             document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
@@ -422,7 +423,7 @@ export class DashboardComponent implements OnInit {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       const editButton = document.getElementById(`button-edit-name-${obj._id}`);
-      if (newName === '' || this.getAllFolderNames().includes(newName)) {      // If the new name is null then do not change the name.
+      if (newName === '' || (this.getAllFolderNames().includes(newName) && this.data.find(x => x._id === obj._id).folder_name.trim() != newName)) {      // If the new name is null then do not change the name.
         document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'red';
       } else {
         document.getElementById(`new-name-text-${obj._id}`).style.borderColor = 'transparent';
