@@ -9,7 +9,8 @@ import {
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { RestService } from 'src/app/services/rest.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteFolderModalComponent } from '../delete-folder-modal/delete-folder-modal.component';
 declare var $: any;
 @Component({
   selector: 'app-files',
@@ -23,14 +24,8 @@ export class FilesComponent implements OnInit {
   FolderName = '';
   FolderDescription = '';
   files: Array<any> = [];
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private apiService: RestService
-  ) {
-    this.activatedRoute.params.subscribe(
-      (params) => (this.activateID = params)
-    );
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: RestService, public dialog: MatDialog) {
+    this.activatedRoute.params.subscribe(params => this.activateID = params);
   }
 
   ngOnInit() {
@@ -84,13 +79,13 @@ export class FilesComponent implements OnInit {
           >
         </svg>
         <svg id=delete-${data._id} width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
-         xmlns="http://www.w3.org/2000/svg" style="float: right;">
+         xmlns="http://www.w3.org/2000/svg" style="float: right;cursor:pointer;">
           <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1
           1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5
           0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8
           5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
         </svg>
-        <div id=delete-sure-${data._id} class="delete-popup" (click)="deleteCard(data._id)">
+        <div id=delete-sure-${data._id} class="delete-popup" >
           <button class="btn btn-outline-danger">Sure?</button>
         </div>
       </div>
@@ -161,12 +156,7 @@ export class FilesComponent implements OnInit {
 
     // Open delete popup
     $(`#delete-${data._id}`).click(() => {
-      const popup = document.getElementById(`delete-sure-${data._id}`);
-      if (popup.style.display === 'block') {
-        popup.style.display = 'none';
-      } else {
-        popup.style.display = 'block';
-      }
+      this.deleteCard(data._id);
     });
 
     // Delete sure popup
@@ -238,23 +228,31 @@ export class FilesComponent implements OnInit {
     });
   }
   async deleteCard(id) {
-    const response = await this.apiService.deleteFile(this.activateID.id, id);
-    if (response.success) {
-      // removing from array
-      const index = this.files.findIndex((o) => {
-        return o._id === id;
-      });
-      if (index !== -1) {
-        this.files.splice(index, 1);
-      }
-      if (Object.keys(this.files).length === 0) {
-        const noFile = 'Please add a File!';
-        $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
-      }
+    const dialogRef = this.dialog.open(DeleteFolderModalComponent, {
+      data: 'File'
+    });
+    dialogRef.afterClosed().subscribe(async (result) => {
+      // if clicked on "yes" option of  the delete modal
+      if (result){
+        const response = await this.apiService.deleteFolder(id);
+        if (response.success) {
+          // removing from array
+          const index = this.data.findIndex((o) => {
+            return o._id === id;
+          });
+          if (index !== -1) {
+            this.data.splice(index, 1);
+          }
+          if (Object.keys(this.data).length === 0) {
+            const noWorkspace = 'Please add a Workspace!';
+            $('#user-folders').append(`<h5 id='not-found'>${noWorkspace}</h5>`);
+          }
 
-      // Removing from HTML
-      document.getElementById(`${id}`).remove();
-    }
+          // Removing from HTML
+          document.getElementById(`${id}`).remove();
+        }
+      }
+    });
   }
   async renamefile(obj, newName) {
     const body = {

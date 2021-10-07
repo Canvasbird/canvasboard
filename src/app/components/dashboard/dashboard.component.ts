@@ -353,8 +353,11 @@ export class DashboardComponent implements OnInit {
   }
 
   async deleteCard(id) {
-    const dialogRef = this.dialog.open(DeleteFolderModalComponent);
+    const dialogRef = this.dialog.open(DeleteFolderModalComponent, {
+      data: 'Workspace'
+    });
     dialogRef.afterClosed().subscribe( async ( result ) => {
+      // if clicked on "yes" option of  the delete modal
       if (result ){
         const response = await this.apiService.deleteFolder(id);
         if (response.success) {
