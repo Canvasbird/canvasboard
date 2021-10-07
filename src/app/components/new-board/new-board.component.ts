@@ -640,7 +640,7 @@ public activeIndex = 0;
   }
   // ----------------------- BACK BUTTON ----------------------------------
   async backButton() {
-    let path = localStorage.getItem('current_route');
+    const path = localStorage.getItem('current_route');
     this.router.navigateByUrl(`/folder/${path}`);
     this.saveData();
   }
