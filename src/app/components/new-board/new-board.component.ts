@@ -321,6 +321,46 @@ public activeIndex = 0;
         $('#youtubeModal').modal();
         break;
       }
+      case 8: {
+        this.cbToolbox(this.AddEmbedComponent, 'embed', 'https://codesandbox.io/s/angular');
+        break;
+      }
+      case 9: {
+        this.cbToolbox(this.AddEmbedComponent, 'embed', 'https://codesandbox.io/s/new');
+        break;
+      }
+      case 10: {
+        this.cbToolbox(this.AddEmbedComponent, 'embed', 'https://codesandbox.io/s/vue');
+        break;
+      }
+      case 11: {
+        this.cbToolbox(this.AddEmbedComponent, 'embed', 'https://codesandbox.io/s/vanilla');
+        break;
+      }
+      case 12: {
+        this.cbToolbox(this.AddEmbedComponent, 'embed', 'https://codesandbox.io/s/github/codesandbox-app/static-template/tree/master/');
+        break;
+      }
+      case 13: {
+        this.cbToolbox(this.AddEmbedComponent, 'embed', 'https://witeboard.com/');
+        break;
+      }
+      case 14: {
+        $('#embedModal').modal();
+        break;
+      }
+      case 15: {
+        $('#embedModal').modal();
+        break;
+      }
+      case 16: {
+        this.cbToolbox(this.AddEmbedComponent, 'embed', 'https://node-event-loop.herokuapp.com/');
+        break;
+      }
+      case 17: {
+        $('#embedModal').modal();
+        break;
+      }
     }
   }
 
@@ -439,9 +479,13 @@ public activeIndex = 0;
 
         this.onPaste(e, uid);
       });
+
       // Changing focus to Current Card
       $(`#original-${uid}`).focus();
 
+      if (pluginType === 'embed'){
+        $(`#cb-box-2-${uid}`).focus();
+      }
       // Setting current card id
       this.currentChartID = uid;
 
