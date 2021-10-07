@@ -36,6 +36,7 @@ export class AddEmbedComponent implements PluginComponent{
     <!-- Embed iframe -->
     <embed src="${url}" width="100%" height="600" frameborder="0" allowfullscreen/>
     `);
+    
     }
   }
 
