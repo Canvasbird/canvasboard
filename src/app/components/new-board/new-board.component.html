@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="row searchBar" id="fuseSearch" style="display: none">
+<div class="row searchBar" id="fuseSearch" style="display: none;">
   <div class="bar">
     <input
       class="searchbar"
@@ -14,13 +14,14 @@
       (keyup.enter)="enterFuseSearch()"
     />
     <div id="search_results">
-      <ul>
+      <ul style="overflow:hidden;">
         <!---------------------------- FUSE LIST ---------------------------------------------->
         <li
           *ngFor="let list of listFuseSearch; let i = index"
           [ngClass]="{active: i==activeIndex}"
           (click)="searchListClicked(list.item.id)"
           id="{{ 'enter' + list.item.id }}"
+          style="padding: 10px;"
         >
           {{ list.item.name }}
         </li>
