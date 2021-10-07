@@ -41,6 +41,9 @@ export class FilesComponent implements OnInit {
         return currentState.extras.state;
       })
     );
+    // Add to local storage
+    localStorage.setItem('current_route', this.activateID.id);
+
     this.gettingData(this.activateID.id);
     $(`#launchBoard`).click(() => {
       this.router.navigate([`board/${this.activateID.id}/creative-board`], {

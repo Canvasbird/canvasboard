@@ -1,3 +1,7 @@
 <router-outlet></router-outlet>
-<!-- <app-dashboard></app-dashboard> -->
+<div class="d-flex justify-content-center" *ngIf = "loading">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
 <app-scroll-to-top></app-scroll-to-top>

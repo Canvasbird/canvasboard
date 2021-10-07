@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, RouteConfigLoadStart, RouteConfigLoadEnd, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'canvasboard';
+  loading: boolean;
+  constructor(router: Router) {
+    this.loading = false;
 
-  constructor() {
-
+    router.events.subscribe(
+      (event: RouterEvent): void => {
+        if (event instanceof RouteConfigLoadStart) {
+          this.loading = true;
+        } else if (event instanceof RouteConfigLoadEnd) {
+          this.loading = false;
+        }
+      }
+    );
   }
 
 }
