@@ -234,25 +234,25 @@ export class FilesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async (result) => {
       // if clicked on "yes" option of  the delete modal
       if (result){
-        const response = await this.apiService.deleteFolder(id);
+        const response = await this.apiService.deleteFile(this.activateID.id, id);
         if (response.success) {
           // removing from array
-          const index = this.data.findIndex((o) => {
+          const index = this.files.findIndex((o) => {
             return o._id === id;
           });
           if (index !== -1) {
-            this.data.splice(index, 1);
+            this.files.splice(index, 1);
           }
-          if (Object.keys(this.data).length === 0) {
-            const noWorkspace = 'Please add a Workspace!';
-            $('#user-folders').append(`<h5 id='not-found'>${noWorkspace}</h5>`);
+          if (Object.keys(this.files).length === 0) {
+            const noFile = 'Please add a File!';
+            $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
           }
 
           // Removing from HTML
           document.getElementById(`${id}`).remove();
-        }
       }
-    });
+    }
+  });
   }
   async renamefile(obj, newName) {
     const body = {
