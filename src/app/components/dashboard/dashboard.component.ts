@@ -173,27 +173,6 @@ export class DashboardComponent implements OnInit {
           document.getElementById(
             `${obj._id}`
           ).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
-        } else if (`${obj.folder_color}` === '#96e6a1') {
-          document.getElementById(
-            `${obj._id}`
-          ).style.background = `-webkit-linear-gradient(to right, #d4fc79,${obj.folder_color})`;
-          document.getElementById(
-            `${obj._id}`
-          ).style.background = `linear-gradient(to right, #d4fc79, ${obj.folder_color})`;
-        } else if (`${obj.folder_color}` === '#66a6ff') {
-          document.getElementById(
-            `${obj._id}`
-          ).style.background = `-webkit-linear-gradient(to right, #89f7fe,${obj.folder_color})`;
-          document.getElementById(
-            `${obj._id}`
-          ).style.background = `linear-gradient(to right, #89f7fe, ${obj.folder_color})`;
-        } else if (`${obj.folder_color}` === '#274046') {
-          document.getElementById(
-            `${obj._id}`
-          ).style.background = `-webkit-linear-gradient(to right, #e6dada,${obj.folder_color})`;
-          document.getElementById(
-            `${obj._id}`
-          ).style.background = `linear-gradient(to right, #e6dada, ${obj.folder_color})`;
         }
 
         // Click action to enter files folder
@@ -242,6 +221,7 @@ export class DashboardComponent implements OnInit {
             ).style.borderColor = 'transparent';
           }
         });
+
         // Click action to save the new edited name
         $(`#button-edit-name-ok-${obj._id}`).click(() => {
           const newName = (
@@ -256,65 +236,7 @@ export class DashboardComponent implements OnInit {
           const editButton = document.getElementById(
             `button-edit-name-${obj._id}`
           );
-          if (newName === '') {
-            // If the new name is null then do not change the name.
-            document.getElementById(
-              `new-name-text-${obj._id}`
-            ).style.borderColor = 'red';
-          } else {
-            document.getElementById(
-              `new-name-text-${obj._id}`
-            ).style.borderColor = 'transparent';
-            this.renameFolder(obj, newName);
-            if (editText.style.display === 'block') {
-              editText.style.display = 'none';
-              folderName.style.display = 'block';
-              editButton.style.display = 'block';
-            } else {
-              editText.style.display = 'block';
-              folderName.style.display = 'none';
-              editButton.style.display = 'none';
-            }
-          }
-        });
-        // Click action to close the edit input
-        $(`#button-edit-name-no-${obj._id}`).click(() => {
-          const folderName = document.getElementById(`folder-name-${obj._id}`);
-          const editText = document.getElementById(
-            `edit-name-input-${obj._id}`
-          );
-          const editButton = document.getElementById(
-            `button-edit-name-${obj._id}`
-          );
-          if (editText.style.display === 'block') {
-            editText.style.display = 'none';
-            folderName.style.display = 'block';
-            editButton.style.display = 'block';
-          }
-          if (
-            document.getElementById(`new-name-text-${obj._id}`).style
-              .borderColor === 'red'
-          ) {
-            document.getElementById(
-              `new-name-text-${obj._id}`
-            ).style.borderColor = 'transparent';
-          }
-        });
-        // Click action to save the new edited name
-        $(`#button-edit-name-ok-${obj._id}`).click(() => {
-          const newName = (
-            document.getElementById(
-              `new-name-text-${obj._id}`
-            ) as HTMLInputElement
-          ).value;
-          const folderName = document.getElementById(`folder-name-${obj._id}`);
-          const editText = document.getElementById(
-            `edit-name-input-${obj._id}`
-          );
-          const editButton = document.getElementById(
-            `button-edit-name-${obj._id}`
-          );
-          if (newName === '') {
+          if (newName === '' || (this.getAllFolderNames().includes(newName) && this.data.find(x => x._id === obj._id).folder_name.trim() != newName)) {      // If the new name is null then do not change the name.
             // If the new name is null then do not change the name.
             document.getElementById(
               `new-name-text-${obj._id}`
@@ -549,7 +471,7 @@ export class DashboardComponent implements OnInit {
       const folderName = document.getElementById(`folder-name-${obj._id}`);
       const editText = document.getElementById(`edit-name-input-${obj._id}`);
       const editButton = document.getElementById(`button-edit-name-${obj._id}`);
-      if (newName === '') {
+      if (newName === '' || (this.getAllFolderNames().includes(newName) && this.data.find(x => x._id === obj._id).folder_name.trim() != newName)) {      // If the new name is null then do not change the name.
         // If the new name is null then do not change the name.
         document.getElementById(`new-name-text-${obj._id}`).style.borderColor =
           'red';
@@ -597,18 +519,23 @@ export class DashboardComponent implements OnInit {
       folder_tag: 'folder_tag',
       is_nested_folder: false,
     };
-    const response = await this.apiService.createFolder(body);
-    if (response.success) {
-      // Error Label in popup
-      document.getElementById('error-label').style.display = 'none';
-      // Adding the folder in HTML
-      this.addNewFolder(response.content);
-      // Empty the strings
-      folderName.value = '';
-      folderdescription.value = '';
-      folderColour.value = '';
-      // Closing popup
-      $('#newCard').modal('hide');
+    if (!this.getAllFolderNames().includes(body.folder_name)) {
+      const response = await this.apiService.createFolder(body);
+      if (response.success) {
+        // Error Label in popup
+        document.getElementById('error-label').style.display = 'none';
+        // Adding the folder in HTML
+        this.addNewFolder(response.content);
+        // Empty the strings
+        folderName.value = '';
+        folderdescription.value = '';
+        folderColour.value = '';
+        // Closing popup
+        $('#newCard').modal('hide');
+      } else {
+        // Error Label in popup
+        document.getElementById('error-label').style.display = 'block';
+      }
     } else {
       // Error Label in popup
       document.getElementById('error-label').style.display = 'block';
@@ -653,5 +580,9 @@ export class DashboardComponent implements OnInit {
     } else {
       document.getElementById('error-label').style.display = 'block';
     }
+  }
+
+  private getAllFolderNames(): string[] {
+    return [...document.querySelectorAll('h5.folder-title strong')].map(node => node.innerHTML.trim());
   }
 }

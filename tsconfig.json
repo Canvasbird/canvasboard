@@ -18,7 +18,8 @@
     "types": ["node"],
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "dom.iterable"
     ]
   },
   "angularCompilerOptions": {
