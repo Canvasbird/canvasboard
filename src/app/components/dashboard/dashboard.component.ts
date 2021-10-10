@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { FilterFolderPipe } from 'src/app/shared/filter-folder.pipe';
 import { DailyQuote } from 'src/interfaces/daily-quote';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteFolderModalComponent } from '../delete-folder-modal/delete-folder-modal.component';
 declare var $: any;
 
 @Component({
@@ -13,11 +15,7 @@ declare var $: any;
 })
 export class DashboardComponent implements OnInit {
   public quote: DailyQuote;
-  constructor(
-    private route: Router,
-    private apiService: RestService,
-    private filterFolder: FilterFolderPipe
-  ) {}
+  constructor(private route: Router, private apiService: RestService, private filterFolder: FilterFolderPipe, public dialog: MatDialog) {}
 
   data: any;
   Username: string = null;
@@ -81,13 +79,13 @@ export class DashboardComponent implements OnInit {
            0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
         </svg>
         <svg id=delete-${obj._id} width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
-         xmlns="http://www.w3.org/2000/svg" style="float: right;">
+         xmlns="http://www.w3.org/2000/svg" style="float: right;cursor:pointer;">
           <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1
           1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5
           0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8
           5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
         </svg>
-        <div id=delete-sure-${obj._id} class="delete-popup" (click)="deleteCard(data._id)">
+        <div id=delete-sure-${obj._id} class="delete-popup" >
           <button class="btn btn-outline-danger">Sure?</button>
         </div>
       </div>
@@ -262,22 +260,12 @@ export class DashboardComponent implements OnInit {
         });
         // Open delete popup
         $(`#delete-${obj._id}`).click(() => {
-          const popup = document.getElementById(`delete-sure-${obj._id}`);
-          if (popup.style.display === 'block') {
-            popup.style.display = 'none';
-          } else {
-            popup.style.display = 'block';
-          }
-        });
-
-        // Delete sure popup
-        $(`#delete-sure-${obj._id}`).click(() => {
           this.deleteCard(obj._id);
         });
+
       });
     }
   }
-
   navigateToFiles(e, item) {
     this.route.navigate(['/files']);
   }
@@ -287,25 +275,31 @@ export class DashboardComponent implements OnInit {
   }
 
   async deleteCard(id) {
-    const response = await this.apiService.deleteFolder(id);
-    if (response.success) {
-      // removing from array
-      const index = this.data.findIndex((o) => {
-        return o._id === id;
-      });
-      if (index !== -1) {
-        this.data.splice(index, 1);
+    const dialogRef = this.dialog.open(DeleteFolderModalComponent, {
+      data: 'Workspace'
+    });
+    dialogRef.afterClosed().subscribe( async ( result ) => {
+      // if clicked on "yes" option of  the delete modal
+      if (result ){
+        const response = await this.apiService.deleteFolder(id);
+        if (response.success) {
+          // removing from array
+          const index = this.data.findIndex((o) => {
+            return o._id === id;
+          });
+          if (index !== -1) {
+            this.data.splice(index, 1);
+          }
+          if (Object.keys(this.data).length === 0) {
+            const noWorkspace = 'Please add a Workspace!';
+            $('#user-folders').append(`<h5 id='not-found'>${noWorkspace}</h5>`);
+          }
+          // Removing from HTML
+          document.getElementById(`${id}`).remove();
+        }
       }
-      if (Object.keys(this.data).length === 0) {
-        const noWorkspace = 'Please add a Workspace!';
-        $('#user-folders').append(`<h5 id='not-found'>${noWorkspace}</h5>`);
-      }
-
-      // Removing from HTML
-      document.getElementById(`${id}`).remove();
-    }
+    });
   }
-
   addNewFolder(obj) {
     if (this.filterFolderName !== '') {
       this.filterFolderName = '';
@@ -323,14 +317,13 @@ export class DashboardComponent implements OnInit {
          1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5
          0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
       </svg>
-      <svg id=delete-${obj._id} width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
-       xmlns="http://www.w3.org/2000/svg" style="float: right;">
+      <svg id=delete-${obj._id} width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="float: right;cursor:pointer;">
         <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1
         1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5
         0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8
         5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
       </svg>
-      <div id=delete-sure-${obj._id} class="delete-popup" (click)="deleteCard(data._id)">
+      <div id=delete-sure-${obj._id} class="delete-popup" >
         <button class="btn btn-outline-danger">Sure?</button>
       </div>
     </div>
@@ -490,22 +483,11 @@ export class DashboardComponent implements OnInit {
 
     // Open delete popup
     $(`#delete-${obj._id}`).click(() => {
-      const popup = document.getElementById(`delete-sure-${obj._id}`);
-      if (popup.style.display === 'block') {
-        popup.style.display = 'none';
-      } else {
-        popup.style.display = 'block';
-      }
-    });
-
-    // Delete sure popup
-    $(`#delete-sure-${obj._id}`).click(() => {
       this.deleteCard(obj._id);
     });
     // Push it to data array
     this.data.push(obj);
   }
-
   async createFolder() {
     const folderName: any = document.getElementById('folder-name-input');
     const folderdescription: any = document.getElementById(
@@ -586,3 +568,4 @@ export class DashboardComponent implements OnInit {
     return [...document.querySelectorAll('h5.folder-title strong')].map(node => node.innerHTML.trim());
   }
 }
+

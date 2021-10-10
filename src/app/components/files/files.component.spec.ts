@@ -4,6 +4,7 @@ import { FilesComponent } from './files.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('FilesComponent', () => {
   let component: FilesComponent;
@@ -12,7 +13,7 @@ describe('FilesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FilesComponent, NavbarComponent ],
-      imports: [ RouterTestingModule, HttpClientTestingModule ]
+      imports: [ RouterTestingModule, HttpClientTestingModule , MatDialogModule]
     })
     .compileComponents();
   }));
