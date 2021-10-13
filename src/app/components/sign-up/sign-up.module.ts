@@ -9,16 +9,16 @@ import { SignUpRoutingModule } from './sign-up-routing.module';
 import { SignUpComponent } from './sign-up.component';
 
 @NgModule({
-  declarations: [SignUpComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatPasswordStrengthModule,
-    MatTooltipModule,
-    HttpClientModule,
-    SignUpRoutingModule,
-    MatProgressSpinnerModule
-  ],
-  exports: [SignUpComponent],
+    declarations: [SignUpComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatPasswordStrengthModule,
+        MatTooltipModule,
+        HttpClientModule,
+        SignUpRoutingModule,
+        MatProgressSpinnerModule,
+    ],
+    exports: [SignUpComponent],
 })
 export class SignUpModule {}

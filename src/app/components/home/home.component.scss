@@ -1,243 +1,251 @@
 .container {
-
-  .cb-image {
-    width: 100%;
-  }
-
-  .links {
-    width: 100%;
-    text-align: center;
-
-    // border: 1px solid red;
-    ul {
-      margin: 2px auto;
-      line-height: 1.4;
-      padding-left: 0;
+    .cb-image {
+        width: 100%;
     }
 
-    li {
-      display: inline;
-      text-align: center;
-      margin-left: 1rem;
-      margin-right: 1rem;
-      padding-top: 0.5rem;
+    .links {
+        width: 100%;
+        text-align: center;
+
+        // border: 1px solid red;
+        ul {
+            margin: 2px auto;
+            line-height: 1.4;
+            padding-left: 0;
+        }
+
+        li {
+            display: inline;
+            text-align: center;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            padding-top: 0.5rem;
+        }
+
+        a {
+            color: black;
+        }
     }
 
-    a {
-      color: black;
-    }
-  }
+    .title {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 2.5rem;
 
-  .title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    font-size: 2.5rem;
-
-    @media (min-width: 768px) {
-      font-size: 6rem;
-    }
-  }
-
-  .ani {
-    background: rgb(179, 227, 221);
-    background: linear-gradient(90deg, rgba(179, 227, 221, 1) 0%, rgba(128, 208, 199, 1) 20%, rgba(0, 147, 233, 1) 40%, rgba(0, 147, 233, 1) 60%, rgba(128, 208, 199, 1) 80%, rgba(179, 227, 221, 1) 100%);
-    /* Set the background size and repeat properties. */
-    background-size: 200% auto;
-    background-repeat: repeat;
-
-    /* Use the text as a mask for the background. */
-    /* This will show the gradient as a text color rather than element bg. */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    background-clip: text;
-
-    animation: shine 5s linear infinite;
-    margin-bottom: 0px;
-  }
-
-  @keyframes shine {
-    to {
-      background-position: 200% center;
-    }
-  }
-
-  .header {
-    font-family: 'Poppins', sans-serif;
-    margin-top: 50px;
-    font-weight: bold;
-    font-size: 40px;
-
-    @media (min-width: 768px) {
-      font-size: 45px;
-    }
-  }
-
-  .sub-header {
-    font-family: 'Questrial', sans-serif;
-    font-size: 24px;
-    line-height: 31px;
-
-    .webboard {
-      // color: #EE6D9E;
-      color: #0093E9;
-      font-weight: 1000;
+        @media (min-width: 768px) {
+            font-size: 6rem;
+        }
     }
 
-    .Schools {
-      color: #1551EC;
-      font-weight: bold;
+    .ani {
+        background: rgb(179, 227, 221);
+        background: linear-gradient(
+            90deg,
+            rgba(179, 227, 221, 1) 0%,
+            rgba(128, 208, 199, 1) 20%,
+            rgba(0, 147, 233, 1) 40%,
+            rgba(0, 147, 233, 1) 60%,
+            rgba(128, 208, 199, 1) 80%,
+            rgba(179, 227, 221, 1) 100%
+        );
+        /* Set the background size and repeat properties. */
+        background-size: 200% auto;
+        background-repeat: repeat;
+
+        /* Use the text as a mask for the background. */
+        /* This will show the gradient as a text color rather than element bg. */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        background-clip: text;
+
+        animation: shine 5s linear infinite;
+        margin-bottom: 0px;
     }
 
-    .Colleges {
-      color: #5217F9;
-      font-weight: bold;
+    @keyframes shine {
+        to {
+            background-position: 200% center;
+        }
     }
 
-    .Universities {
-      color: #9513E4;
-      font-weight: bold;
-    }
-  }
+    .header {
+        font-family: 'Poppins', sans-serif;
+        margin-top: 50px;
+        font-weight: bold;
+        font-size: 40px;
 
-  .board {
-    width: 90%;
-    margin-top: 70px;
-  }
-
-  .features {
-    margin-top: 100px;
-
-    .pdf-img {
-      width: 50%;
+        @media (min-width: 768px) {
+            font-size: 45px;
+        }
     }
 
-    .feature1-heading {
-      font-family: Poppins;
-      font-weight: bold;
-      font-size: 25px;
+    .sub-header {
+        font-family: 'Questrial', sans-serif;
+        font-size: 24px;
+        line-height: 31px;
+
+        .webboard {
+            // color: #EE6D9E;
+            color: #0093e9;
+            font-weight: 1000;
+        }
+
+        .Schools {
+            color: #1551ec;
+            font-weight: bold;
+        }
+
+        .Colleges {
+            color: #5217f9;
+            font-weight: bold;
+        }
+
+        .Universities {
+            color: #9513e4;
+            font-weight: bold;
+        }
     }
 
-    .features-image {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 30%;
+    .board {
+        width: 90%;
+        margin-top: 70px;
     }
-  }
 
-  // .demo-button{
-  // .btn-grad {background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)}
-  .btn-grad {
-    margin: 10px;
-    padding: 5px 10px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
-    font-family: Poppins;
+    .features {
+        margin-top: 100px;
 
+        .pdf-img {
+            width: 50%;
+        }
 
-    padding: 15px 30px;
-    font-size: 20px;
-    font-weight: 900;
-    color: #fff;
-    background-color: #0093e9;
-    border: 2px solid #0093E9;
-    cursor: pointer;
-    width: max-content;
-    transition: 0.25s ease;
-  }
+        .feature1-heading {
+            font-family: Poppins;
+            font-weight: bold;
+            font-size: 25px;
+        }
 
-  .btn-grad:hover {
-    box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
-    color: #0093E9;
-    border-color: transparent;
-    background-color: transparent;
-  }
-
-  .text-center-wrapper {
-    float: right;
-    position: relative;
-    left: -50%;
-    text-align: left;
-
-    ul {
-      list-style: none;
-      position: relative;
-      left: 50%;
-      padding: 5px;
-
-      li {
-        line-height: 30px;
-      }
-
-      text-align: center;
-
-      @media (min-width: 768px) {}
+        .features-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 30%;
+        }
     }
-  }
 
-  .custom-img {
-    @media (min-width: 768px) {
-      padding-left: 20px;
+    // .demo-button{
+    // .btn-grad {background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)}
+    .btn-grad {
+        margin: 10px;
+        padding: 5px 10px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+        font-family: Poppins;
+
+        padding: 15px 30px;
+        font-size: 20px;
+        font-weight: 900;
+        color: #fff;
+        background-color: #0093e9;
+        border: 2px solid #0093e9;
+        cursor: pointer;
+        width: max-content;
+        transition: 0.25s ease;
     }
-  }
 
-  .color1 {
-    color: #1551EC;
-  }
+    .btn-grad:hover {
+        box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
+        color: #0093e9;
+        border-color: transparent;
+        background-color: transparent;
+    }
 
-  .color2 {
-    color: #5217F9;
-  }
+    .text-center-wrapper {
+        float: right;
+        position: relative;
+        left: -50%;
+        text-align: left;
 
-  .color3 {
-    color: #9513E4;
-  }
+        ul {
+            list-style: none;
+            position: relative;
+            left: 50%;
+            padding: 5px;
 
-  .item {
-    display: none;
-    position: relative;
-    transition: .1s ease-in-out left;
+            li {
+                line-height: 30px;
+            }
 
-  }
+            text-align: center;
 
-  .img-fluid,
-  .img-responsive {
-    max-width: 100%;
-    height: auto;
-  }
+            @media (min-width: 768px) {
+            }
+        }
+    }
 
-  .carousel-indicators li {
-    width: 10px;
-    height: 10px;
-    background-color: #000;
-    border-radius: 100%;
-  }
+    .custom-img {
+        @media (min-width: 768px) {
+            padding-left: 20px;
+        }
+    }
 
-  .carousel-indicators {
-    bottom: -50px;
-  }
+    .color1 {
+        color: #1551ec;
+    }
+
+    .color2 {
+        color: #5217f9;
+    }
+
+    .color3 {
+        color: #9513e4;
+    }
+
+    .item {
+        display: none;
+        position: relative;
+        transition: 0.1s ease-in-out left;
+    }
+
+    .img-fluid,
+    .img-responsive {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        background-color: #000;
+        border-radius: 100%;
+    }
+
+    .carousel-indicators {
+        bottom: -50px;
+    }
 }
 
 .poppins {
-  font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-#client-testimonial-carousel {min-height: 200px;}
+#client-testimonial-carousel {
+    min-height: 200px;
+}
 
 #schools-universities {
-  margin-bottom: 45px; 
-  margin-top: 45px; 
-  margin-left:15px; 
-  margin-right: 15px;
+    margin-bottom: 45px;
+    margin-top: 45px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 #notes {
-  margin-top: 90px;
+    margin-top: 90px;
 }

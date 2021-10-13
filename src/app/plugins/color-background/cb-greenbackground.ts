@@ -3,11 +3,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 declare var $: any;
 
 export class AddGreenBackgroundComponent implements PluginComponent {
-  constructor() { }
+    constructor() {}
 
-  // Green background color HTML Tag
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    // Green background color HTML Tag
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
      <!-- Green Background color button -->
             <div class="tool box1 m-1" title="Green Background">
             <button class="btn btn-success" id="add-background-cb-green-${uid}">
@@ -20,25 +20,25 @@ export class AddGreenBackgroundComponent implements PluginComponent {
             </button>
           </div>
     `);
-  }
+    };
 
-  // Green Background HTML Tag Click Action
-  addClickFunction = (uid) => {
-    // Adding Green background color
-    $(`#add-background-cb-green-${uid}`).click(() => {
-      $(`#cb-box-2-${uid}`)
-        .removeClass(
-          'cb-background-yellow cb-background-blue cb-background-red'
-        )
-        .addClass('cb-background-green');
-    });
-  }
-  // Adding Green Background color
-  addToolBox = (uid) => {
-    $(`#cb-box-2-${uid}`)
-      .removeClass(
-        'cb-background-yellow cb-background-blue cb-background-red'
-      )
-      .addClass('cb-background-green');
-  }
+    // Green Background HTML Tag Click Action
+    addClickFunction = (uid) => {
+        // Adding Green background color
+        $(`#add-background-cb-green-${uid}`).click(() => {
+            $(`#cb-box-2-${uid}`)
+                .removeClass(
+                    'cb-background-yellow cb-background-blue cb-background-red'
+                )
+                .addClass('cb-background-green');
+        });
+    };
+    // Adding Green Background color
+    addToolBox = (uid) => {
+        $(`#cb-box-2-${uid}`)
+            .removeClass(
+                'cb-background-yellow cb-background-blue cb-background-red'
+            )
+            .addClass('cb-background-green');
+    };
 }

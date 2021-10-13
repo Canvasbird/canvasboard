@@ -4,15 +4,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 declare var $: any;
 
 export class AddTopComponent implements PluginComponent {
-
-  constructor() {
-
-  }
+    constructor() {}
 
     // Top HTML Tag
     addHTMLCode(uid) {
-
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
           <!-- top -->
             <div class="tool box5 m-1"  title="Add Card Top">
               <button class="btn btn-light" id="add-new-box-prev-${uid}">
@@ -29,15 +25,22 @@ export class AddTopComponent implements PluginComponent {
 
     // Top HTML Tag Click Action
     addClickFunction = (uid, addBlockEditor) => {
-      // Adding click action of above button
-      $(`#add-new-box-prev-${uid}`).click(() => {
-        addBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this, addBefore : true});
-      });
-    }
+        // Adding click action of above button
+        $(`#add-new-box-prev-${uid}`).click(() => {
+            addBlockEditor({
+                id: `cb-box-1-${uid}`,
+                pluginComponent: this,
+                addBefore: true,
+            });
+        });
+    };
 
     // Adding Top
     addToolBox = (uid, addBlockEditor) => {
-      addBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this, addBefore: true });
-    }
-
+        addBlockEditor({
+            id: `cb-box-1-${uid}`,
+            pluginComponent: this,
+            addBefore: true,
+        });
+    };
 }

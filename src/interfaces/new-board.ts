@@ -2,7 +2,7 @@ export interface NewBoard {
     __v: number;
     _id: any;
     created_on: Date;
-    data: Array<any>;
+    data: any[];
     file_name: string;
-    file_tag: Array<string>;
+    file_tag: any[];
 }

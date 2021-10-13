@@ -1,225 +1,225 @@
 * {
-  font-family: "Questrial", sans-serif;
+    font-family: 'Questrial', sans-serif;
 }
 .height {
-  height: 100vh;
+    height: 100vh;
 }
-.scroll-not{
-  max-width: 100%; 
-  overflow-y: hidden;
+.scroll-not {
+    max-width: 100%;
+    overflow-y: hidden;
 }
 
 .back-img {
-  // background-image: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
-  // background-size: 400% 400%;
-  // animation: gradient 15s ease infinite;
-  // display: block;
-  // max-width: 100%;
+    // background-image: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
+    // background-size: 400% 400%;
+    // animation: gradient 15s ease infinite;
+    // display: block;
+    // max-width: 100%;
 }
 
 .main-scr {
-  .form-lst {
-    // margin-top: 10%;
-    label {
-      font-family: "Poppins", sans-serif;
-    }
-
-    .header {
-      margin-bottom: 30px;
-      display: flex;
-      .logo {
-        width: 50px;
-      }
-      .title {
-        p {
-          margin-bottom: 0px;
-          margin-top: 9%;
-          font-weight: bold;
-          font-size: 40px;
+    .form-lst {
+        // margin-top: 10%;
+        label {
+            font-family: 'Poppins', sans-serif;
         }
-      }
 
-      .ani {
-        // background: rgb(179,227,221);
-        // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
+        .header {
+            margin-bottom: 30px;
+            display: flex;
+            .logo {
+                width: 50px;
+            }
+            .title {
+                p {
+                    margin-bottom: 0px;
+                    margin-top: 9%;
+                    font-weight: bold;
+                    font-size: 40px;
+                }
+            }
 
-        // background: rgb(179,227,221);
-        // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 0%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 100%, rgba(179,227,221,1) 100%);
+            .ani {
+                // background: rgb(179,227,221);
+                // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
 
-        // background: rgb(128,208,199);
-        // background: linear-gradient(90deg, rgba(128,208,199,1) 0%, rgba(179,227,221,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
+                // background: rgb(179,227,221);
+                // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 0%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 100%, rgba(179,227,221,1) 100%);
 
-        background: rgb(179, 227, 221);
-        background: linear-gradient(
-          90deg,
-          rgba(179, 227, 221, 1) 0%,
-          rgba(128, 208, 199, 1) 20%,
-          rgba(0, 147, 233, 1) 40%,
-          rgba(0, 147, 233, 1) 60%,
-          rgba(128, 208, 199, 1) 80%,
-          rgba(179, 227, 221, 1) 100%
-        );
+                // background: rgb(128,208,199);
+                // background: linear-gradient(90deg, rgba(128,208,199,1) 0%, rgba(179,227,221,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
 
-        // background: rgb(179,227,221);
-        // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(179,227,221,1) 100%);
+                background: rgb(179, 227, 221);
+                background: linear-gradient(
+                    90deg,
+                    rgba(179, 227, 221, 1) 0%,
+                    rgba(128, 208, 199, 1) 20%,
+                    rgba(0, 147, 233, 1) 40%,
+                    rgba(0, 147, 233, 1) 60%,
+                    rgba(128, 208, 199, 1) 80%,
+                    rgba(179, 227, 221, 1) 100%
+                );
 
-        // background: rgb(54,188,229);
-        // background: linear-gradient(90deg, rgba(54,188,229,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(54,188,229,1) 100%);
+                // background: rgb(179,227,221);
+                // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(179,227,221,1) 100%);
 
-        /* Set the background size and repeat properties. */
-        background-size: 200% auto;
-        background-repeat: repeat;
+                // background: rgb(54,188,229);
+                // background: linear-gradient(90deg, rgba(54,188,229,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(54,188,229,1) 100%);
 
-        /* Use the text as a mask for the background. */
-        /* This will show the gradient as a text color rather than element bg. */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+                /* Set the background size and repeat properties. */
+                background-size: 200% auto;
+                background-repeat: repeat;
 
-        background-clip: text;
+                /* Use the text as a mask for the background. */
+                /* This will show the gradient as a text color rather than element bg. */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
 
-        animation: shine 5s linear infinite;
+                background-clip: text;
 
-        /* Animate the text when loading the element. */
-        /* This animates it on page load and when hovering out. */
-        // animation: rainbow-text-simple-animation-rev 0.25s ease forwards;
-      }
+                animation: shine 5s linear infinite;
 
-      @keyframes shine {
-        to {
-          background-position: 200% center;
+                /* Animate the text when loading the element. */
+                /* This animates it on page load and when hovering out. */
+                // animation: rainbow-text-simple-animation-rev 0.25s ease forwards;
+            }
+
+            @keyframes shine {
+                to {
+                    background-position: 200% center;
+                }
+            }
         }
-      }
+
+        .form-group {
+            input {
+                border: 1px solid;
+            }
+
+            .btn-grad {
+                margin: 10px;
+                margin-left: 0;
+                padding: 5px 10px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: 0.5s;
+                background-size: 200% auto;
+                color: white;
+                box-shadow: 0 0 20px #eee;
+                // border-radius: 10px;
+                display: block;
+                font-family: Poppins;
+
+                // padding: 15px 30px;
+                // font-size: 20px;
+                font-weight: 900;
+                color: #fff;
+                background-color: #0093e9;
+                border: 2px solid #0093e9;
+                cursor: pointer;
+                width: max-content;
+                transition: 0.25s ease;
+            }
+
+            .btn-grad:hover {
+                box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
+                color: #0093e9;
+                border-color: transparent;
+                background-color: transparent;
+            }
+        }
     }
-
-    .form-group {
-      input {
-        border: 1px solid;
-      }
-
-      .btn-grad {
-        margin: 10px;
-        margin-left: 0;
-        padding: 5px 10px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        // border-radius: 10px;
-        display: block;
-        font-family: Poppins;
-
-        // padding: 15px 30px;
-        // font-size: 20px;
-        font-weight: 900;
-        color: #fff;
-        background-color: #0093e9;
-        border: 2px solid #0093e9;
-        cursor: pointer;
-        width: max-content;
-        transition: 0.25s ease;
-      }
-
-      .btn-grad:hover {
-        box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
-        color: #0093e9;
-        border-color: transparent;
-        background-color: transparent;
-      }
-    }
-  }
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .mob-hidden-1 {
-    display: none;
-  }
-  .mob-hidden {
-    display: block;
-    margin-top: 100px;
-    position: relative;
-    z-index: -1;
-  }
-  .form-group {
-    width: 300px;
-  }
-  .img-responsive {
-    max-width: 100%;
-    height: auto;
-    margin-left: 20%;
-  }
+    .mob-hidden-1 {
+        display: none;
+    }
+    .mob-hidden {
+        display: block;
+        margin-top: 100px;
+        position: relative;
+        z-index: -1;
+    }
+    .form-group {
+        width: 300px;
+    }
+    .img-responsive {
+        max-width: 100%;
+        height: auto;
+        margin-left: 20%;
+    }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .mob-hidden-1 {
-    display: none;
-  }
-  .mob-hidden {
-    display: block;
-    margin-top: 100px;
-    position: relative;
-    z-index: -1;
-  }
-  .form-group {
-    width: 300px;
-  }
-  .img-responsive {
-    max-width: 100%;
-    height: auto;
-    margin-left: 20%;
-  }
+    .mob-hidden-1 {
+        display: none;
+    }
+    .mob-hidden {
+        display: block;
+        margin-top: 100px;
+        position: relative;
+        z-index: -1;
+    }
+    .form-group {
+        width: 300px;
+    }
+    .img-responsive {
+        max-width: 100%;
+        height: auto;
+        margin-left: 20%;
+    }
 }
 
 @media (min-width: 1025px) {
-  .mob-hidden {
-    display: block;
-  }
+    .mob-hidden {
+        display: block;
+    }
 
-  .mob-hidden-1 {
-    display: none;
-    margin-top: 100px;
-    position: relative;
-    z-index: -1;
-  }
-  .form-group {
-    max-width: 500px;
-  }
-  .img-responsive {
-    width: 100%;
-    height: auto;
-    margin-top: 3vh;
-  }
+    .mob-hidden-1 {
+        display: none;
+        margin-top: 100px;
+        position: relative;
+        z-index: -1;
+    }
+    .form-group {
+        max-width: 500px;
+    }
+    .img-responsive {
+        width: 100%;
+        height: auto;
+        margin-top: 3vh;
+    }
 }
 
 @media (max-width: 767px) {
-  .mob-hidden-1 {
-    display: block;
-    margin-bottom: 30px;
-  }
-  .header {
-    justify-content: center;
-  }
-  .mob-hidden {
-    display: none;
-  }
-  .form-group {
-    width: 300px;
-  }
-  .img-responsive {
-    width: 100%;
-    height: auto;
-  }
+    .mob-hidden-1 {
+        display: block;
+        margin-bottom: 30px;
+    }
+    .header {
+        justify-content: center;
+    }
+    .mob-hidden {
+        display: none;
+    }
+    .form-group {
+        width: 300px;
+    }
+    .img-responsive {
+        width: 100%;
+        height: auto;
+    }
 }

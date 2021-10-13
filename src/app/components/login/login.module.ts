@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
-  declarations: [LoginComponent],
-  imports: [CommonModule, FormsModule, HttpClientModule, LoginRoutingModule],
-  exports: [LoginComponent],
+    declarations: [LoginComponent],
+    imports: [CommonModule, FormsModule, HttpClientModule, LoginRoutingModule],
+    exports: [LoginComponent],
 })
 export class LoginModule {}

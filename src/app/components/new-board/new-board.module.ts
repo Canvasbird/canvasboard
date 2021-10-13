@@ -6,8 +6,8 @@ import { NewBoardRoutingModule } from './new-board-routing.module';
 import { NewBoardComponent } from './new-board.component';
 
 @NgModule({
-  declarations: [NewBoardComponent],
-  imports: [CommonModule, NavbarModule, FormsModule, NewBoardRoutingModule],
-  exports: [NewBoardComponent],
+    declarations: [NewBoardComponent],
+    imports: [CommonModule, NavbarModule, FormsModule, NewBoardRoutingModule],
+    exports: [NewBoardComponent],
 })
 export class NewBoardModule {}

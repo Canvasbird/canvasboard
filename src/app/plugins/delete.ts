@@ -3,17 +3,13 @@ import { walkUpBindingElementsAndPatterns } from 'typescript';
 
 declare var $: any;
 
-export class AddDeleteComponent implements PluginComponent{
-
-  prevCardID: string;
-  constructor() {
-
-  }
+export class AddDeleteComponent implements PluginComponent {
+    prevCardID: string;
+    constructor() {}
 
     // Delete HTML Tag
     addHTMLCode(uid) {
-
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
           <!-- delete button -->
             <div class="tool box1 m-1" title="Delete Card">
               <button class="btn btn-light" id="remove-cb-box1-${uid}">
@@ -31,30 +27,34 @@ export class AddDeleteComponent implements PluginComponent{
 
     // Delete HTML Tag Click Action
     addClickFunction = (uid) => {
-
-      // Delete/Remove button
-      $(`#remove-cb-box1-${uid}`).click(() => {
-        // if (checker !== 0) {
-        if ($(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id') !== undefined) {
-          this.prevCardID = $(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id').substring(9);
-        } else {
-          this.prevCardID = undefined;
-        }
-        $(`#cb-box-1-${uid}`).remove();
-        // }
-      });
-    }
+        // Delete/Remove button
+        $(`#remove-cb-box1-${uid}`).click(() => {
+            // if (checker !== 0) {
+            if (
+                $(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id') !== undefined
+            ) {
+                this.prevCardID = $(`#cb-box-1-${uid}`)
+                    .prev(`.cb-box-1`)
+                    .attr('id')
+                    .substring(9);
+            } else {
+                this.prevCardID = undefined;
+            }
+            $(`#cb-box-1-${uid}`).remove();
+            // }
+        });
+    };
 
     // Adding Delete
     addToolBox = (uid) => {
-      if ($(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id') !== undefined){
-        this.prevCardID = $(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id').substring(9);
-      }else{
-        this.prevCardID = undefined;
-      }
-      $(`#cb-box-1-${uid}`).remove();
-    }
-
-
-
+        if ($(`#cb-box-1-${uid}`).prev(`.cb-box-1`).attr('id') !== undefined) {
+            this.prevCardID = $(`#cb-box-1-${uid}`)
+                .prev(`.cb-box-1`)
+                .attr('id')
+                .substring(9);
+        } else {
+            this.prevCardID = undefined;
+        }
+        $(`#cb-box-1-${uid}`).remove();
+    };
 }

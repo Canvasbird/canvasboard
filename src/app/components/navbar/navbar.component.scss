@@ -2,29 +2,28 @@
     .logo-text {
         display: none;
     }
-  }
+}
 
-  .min-text{
-    font-family: Harmattan,sans-serif;
+.min-text {
+    font-family: Harmattan, sans-serif;
     font-size: 18px;
     color: gray;
-  }
+}
 
+@media only screen and (max-width: 900px) {
+    .navbar-nav {
+        margin-left: 0;
+    }
+}
 
-  @media only screen and (max-width: 900px) {
-    .navbar-nav{
-      margin-left: 0;
-   }
-  }
-
-  .navbarItems a {
+.navbarItems a {
     padding: 10px 40px;
     font-size: 18px;
     margin: 5px;
-    transition: transform .2s;
-  }
-  
-  .navbarItems a:hover {
+    transition: transform 0.2s;
+}
+
+.navbarItems a:hover {
     transform: scale(1.05);
     cursor: pointer;
-  }
+}

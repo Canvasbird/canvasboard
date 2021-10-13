@@ -1,33 +1,33 @@
 * {
-  font-family: "Questrial", sans-serif;
+    font-family: 'Questrial', sans-serif;
 }
 .height {
-  height: 100vh;
+    height: 100vh;
 }
 
 .scroll-no {
-  max-width: 100%;
-  overflow-y: hidden;
+    max-width: 100%;
+    overflow-y: hidden;
 }
 
 .background-overlay {
-  background-color: rgba(255, 255, 255, 0.5);
-  position: absolute;
-  z-index: 1002;
-  width: 100%;
-  height: 100%;
-
-  .spinnerloading {
-    bottom: 0;
-    height: 175px;
-    left: 0;
-    margin: auto;
+    background-color: rgba(255, 255, 255, 0.5);
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 175px;
-    z-index: 3;
-  }
+    z-index: 1002;
+    width: 100%;
+    height: 100%;
+
+    .spinnerloading {
+        bottom: 0;
+        height: 175px;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 175px;
+        z-index: 3;
+    }
 }
 
 // .back-img{
@@ -38,238 +38,238 @@
 // }
 
 .main-scr {
-  .form-lst {
-    // margin-top: 10%;
-    label {
-      font-family: "Poppins", sans-serif;
-    }
-
-    .header {
-      margin-bottom: 30px;
-      display: flex;
-      .logo {
-        width: 50px;
-      }
-
-      .title {
-        p {
-          margin-bottom: 0px;
-          margin-top: 9%;
-          font-weight: bold;
-          font-size: 40px;
+    .form-lst {
+        // margin-top: 10%;
+        label {
+            font-family: 'Poppins', sans-serif;
         }
-      }
 
-      .ani {
-        // background: rgb(179,227,221);
-        // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
+        .header {
+            margin-bottom: 30px;
+            display: flex;
+            .logo {
+                width: 50px;
+            }
 
-        // background: rgb(179,227,221);
-        // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 0%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 100%, rgba(179,227,221,1) 100%);
+            .title {
+                p {
+                    margin-bottom: 0px;
+                    margin-top: 9%;
+                    font-weight: bold;
+                    font-size: 40px;
+                }
+            }
 
-        // background: rgb(128,208,199);
-        // background: linear-gradient(90deg, rgba(128,208,199,1) 0%, rgba(179,227,221,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
+            .ani {
+                // background: rgb(179,227,221);
+                // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 20%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
 
-        background: rgb(179, 227, 221);
-        background: linear-gradient(
-          90deg,
-          rgba(179, 227, 221, 1) 0%,
-          rgba(128, 208, 199, 1) 20%,
-          rgba(0, 147, 233, 1) 40%,
-          rgba(0, 147, 233, 1) 60%,
-          rgba(128, 208, 199, 1) 80%,
-          rgba(179, 227, 221, 1) 100%
-        );
+                // background: rgb(179,227,221);
+                // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(128,208,199,1) 0%, rgba(0,147,233,1) 50%, rgba(128,208,199,1) 100%, rgba(179,227,221,1) 100%);
 
-        // background: rgb(179,227,221);
-        // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(179,227,221,1) 100%);
+                // background: rgb(128,208,199);
+                // background: linear-gradient(90deg, rgba(128,208,199,1) 0%, rgba(179,227,221,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(128,208,199,1) 80%, rgba(179,227,221,1) 100%);
 
-        // background: rgb(54,188,229);
-        // background: linear-gradient(90deg, rgba(54,188,229,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(54,188,229,1) 100%);
+                background: rgb(179, 227, 221);
+                background: linear-gradient(
+                    90deg,
+                    rgba(179, 227, 221, 1) 0%,
+                    rgba(128, 208, 199, 1) 20%,
+                    rgba(0, 147, 233, 1) 40%,
+                    rgba(0, 147, 233, 1) 60%,
+                    rgba(128, 208, 199, 1) 80%,
+                    rgba(179, 227, 221, 1) 100%
+                );
 
-        /* Set the background size and repeat properties. */
-        background-size: 200% auto;
-        background-repeat: repeat;
+                // background: rgb(179,227,221);
+                // background: linear-gradient(90deg, rgba(179,227,221,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(179,227,221,1) 100%);
 
-        /* Use the text as a mask for the background. */
-        /* This will show the gradient as a text color rather than element bg. */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+                // background: rgb(54,188,229);
+                // background: linear-gradient(90deg, rgba(54,188,229,1) 0%, rgba(0,171,233,1) 20%, rgba(0,147,233,1) 40%, rgba(0,147,233,1) 60%, rgba(0,171,233,1) 80%, rgba(54,188,229,1) 100%);
 
-        background-clip: text;
+                /* Set the background size and repeat properties. */
+                background-size: 200% auto;
+                background-repeat: repeat;
 
-        animation: shine 5s linear infinite;
+                /* Use the text as a mask for the background. */
+                /* This will show the gradient as a text color rather than element bg. */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
 
-        /* Animate the text when loading the element. */
-        /* This animates it on page load and when hovering out. */
-        // animation: rainbow-text-simple-animation-rev 0.25s ease forwards;
-      }
+                background-clip: text;
 
-      @keyframes shine {
-        to {
-          background-position: 200% center;
+                animation: shine 5s linear infinite;
+
+                /* Animate the text when loading the element. */
+                /* This animates it on page load and when hovering out. */
+                // animation: rainbow-text-simple-animation-rev 0.25s ease forwards;
+            }
+
+            @keyframes shine {
+                to {
+                    background-position: 200% center;
+                }
+            }
         }
-      }
+
+        .form-group {
+            input {
+                border: 1px solid;
+            }
+
+            .btn-grad {
+                margin: 10px;
+                margin-left: 0;
+                padding: 5px 10px;
+                text-align: center;
+                text-transform: uppercase;
+                transition: 0.5s;
+                background-size: 200% auto;
+                color: white;
+                box-shadow: 0 0 20px #eee;
+                // border-radius: 10px;
+                display: block;
+                font-family: Poppins;
+
+                // padding: 15px 30px;
+                // font-size: 20px;
+                font-weight: 900;
+                color: #fff;
+                background-color: #0093e9;
+                border: 2px solid #0093e9;
+                cursor: pointer;
+                width: max-content;
+                transition: 0.25s ease;
+            }
+
+            .btn-grad:hover {
+                box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
+                color: #0093e9;
+                border-color: transparent;
+                background-color: transparent;
+            }
+        }
+
+        .welcome {
+            font-size: 30px;
+        }
     }
-
-    .form-group {
-      input {
-        border: 1px solid;
-      }
-
-      .btn-grad {
-        margin: 10px;
-        margin-left: 0;
-        padding: 5px 10px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        // border-radius: 10px;
-        display: block;
-        font-family: Poppins;
-
-        // padding: 15px 30px;
-        // font-size: 20px;
-        font-weight: 900;
-        color: #fff;
-        background-color: #0093e9;
-        border: 2px solid #0093e9;
-        cursor: pointer;
-        width: max-content;
-        transition: 0.25s ease;
-      }
-
-      .btn-grad:hover {
-        box-shadow: 0 6px 18px 0 rgba(#000, 0.3);
-        color: #0093e9;
-        border-color: transparent;
-        background-color: transparent;
-      }
-    }
-
-    .welcome {
-      font-size: 30px;
-    }
-  }
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @media (max-width: 600px) {
-  ::ng-deep .mat-tooltip {
-    display: block;
-  }
+    ::ng-deep .mat-tooltip {
+        display: block;
+    }
 }
 
 .eye-icon {
-  margin-top: -25px;
-  float: right;
-  position: relative;
-  z-index: 2;
-  cursor: pointer;
+    margin-top: -25px;
+    float: right;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
 }
 
 ::ng-deep .mat-tooltip {
-  white-space: pre-line; // Allow line break
+    white-space: pre-line; // Allow line break
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  .mob-hidden-1 {
-    display: none;
-  }
+    .mob-hidden-1 {
+        display: none;
+    }
 
-  .mob-hidden {
-    display: block;
-    margin-top: 100px;
-    position: relative;
-    z-index: -1;
-  }
+    .mob-hidden {
+        display: block;
+        margin-top: 100px;
+        position: relative;
+        z-index: -1;
+    }
 
-  .form-group {
-    width: 300px;
-  }
+    .form-group {
+        width: 300px;
+    }
 
-  .img-responsive {
-    max-width: 100%;
-    height: auto;
-    margin-left: 20%;
-  }
+    .img-responsive {
+        max-width: 100%;
+        height: auto;
+        margin-left: 20%;
+    }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .mob-hidden-1 {
-    display: none;
-  }
-  .mob-hidden {
-    display: block;
-    margin-top: 100px;
-    position: relative;
-    z-index: -1;
-  }
+    .mob-hidden-1 {
+        display: none;
+    }
+    .mob-hidden {
+        display: block;
+        margin-top: 100px;
+        position: relative;
+        z-index: -1;
+    }
 
-  .form-group {
-    width: 300px;
-  }
+    .form-group {
+        width: 300px;
+    }
 
-  .img-responsive {
-    max-width: 100%;
-    height: auto;
-    margin-left: 20%;
-  }
+    .img-responsive {
+        max-width: 100%;
+        height: auto;
+        margin-left: 20%;
+    }
 }
 
 @media (min-width: 1025px) {
-  .mob-hidden {
-    display: block;
-  }
+    .mob-hidden {
+        display: block;
+    }
 
-  .mob-hidden-1 {
-    display: none;
-    margin-top: 100px;
-    position: relative;
-    z-index: -1;
-  }
-  .form-group {
-    max-width: 500px;
-  }
-  .img-responsive {
-    width: 100%;
-    height: auto;
-    margin-top: 3vh;
-  }
+    .mob-hidden-1 {
+        display: none;
+        margin-top: 100px;
+        position: relative;
+        z-index: -1;
+    }
+    .form-group {
+        max-width: 500px;
+    }
+    .img-responsive {
+        width: 100%;
+        height: auto;
+        margin-top: 3vh;
+    }
 }
 
 @media (max-width: 767px) {
-  .mob-hidden-1 {
-    display: block;
-    margin-bottom: 30px;
-  }
+    .mob-hidden-1 {
+        display: block;
+        margin-bottom: 30px;
+    }
 
-  .header {
-    justify-content: center;
-  }
-  .mob-hidden {
-    display: none;
-  }
-  .form-group {
-    width: 300px;
-  }
+    .header {
+        justify-content: center;
+    }
+    .mob-hidden {
+        display: none;
+    }
+    .form-group {
+        width: 300px;
+    }
 
-  .img-responsive {
-    width: 100%;
-    height: auto;
-  }
+    .img-responsive {
+        width: 100%;
+        height: auto;
+    }
 }

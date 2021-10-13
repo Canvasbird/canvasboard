@@ -10,16 +10,16 @@ import { ScrollToTopModule } from './components/scroll-to-top/scroll-to-top.modu
 import { AuthGuard } from './shared/auth.guard';
 
 @NgModule({
-  declarations: [AppComponent, DeleteFolderModalComponent],
-  imports: [
-    ScrollToTopModule,
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatDialogModule,
-    BrowserAnimationsModule
-  ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent, DeleteFolderModalComponent],
+    imports: [
+        ScrollToTopModule,
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+    ],
+    providers: [AuthGuard],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

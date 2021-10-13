@@ -2,11 +2,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddTwitterComponent implements PluginComponent{
-  constructor() { }
+export class AddTwitterComponent implements PluginComponent {
+    constructor() {}
 
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
     <!-- Twitter-->
     <div class="tool box1 m-1" title="Twitter">
             <input type="file" hidden id="twitter">
@@ -25,27 +25,29 @@ export class AddTwitterComponent implements PluginComponent{
             </button>
           </div>
     `);
-  }
+    };
 
-  addClickFunction = (uid, html) => {
-    $(`#add-twitter-box2-${uid}`).click(() => {
-      $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
-      $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
+    addClickFunction = (uid, html) => {
+        $(`#add-twitter-box2-${uid}`).click(() => {
+            $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
+            $(`#cb-box-2-${uid}`)
+                .css('display', 'flex')
+                .css('justify-content', 'center').append(`
       <!-- Embed Html -->
       ${html}
     `);
-    });
-  }
+        });
+    };
 
-  addToolBox = (uid, html: string) => {
-    if (html !== '') {
-      $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
-      $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
+    addToolBox = (uid, html: string) => {
+        if (html !== '') {
+            $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
+            $(`#cb-box-2-${uid}`)
+                .css('display', 'flex')
+                .css('justify-content', 'center').append(`
       <!-- Embed Html -->
       ${html}
     `);
-    }
-  }
-
-
+        }
+    };
 }

@@ -2,12 +2,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddRightAlignComponent implements PluginComponent{
-  constructor() {}
-  // right Align Tag
+export class AddRightAlignComponent implements PluginComponent {
+    constructor() {}
+    // right Align Tag
     addHTMLCode(uid) {
-
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
       <!-- Right tag -->
       <div class="tool box1 m-1" title="Right Align">
         <button class="btn btn-light" id="add-right-align-box2-${uid}">
@@ -26,13 +25,15 @@ export class AddRightAlignComponent implements PluginComponent{
     addClickFunction = (uid) => {
         // Adding Right Align Tag Click Function
         $(`#add-right-align-box2-${uid}`).click(() => {
-          $(`#cb-box-2-${uid}`).removeClass('text-left text-center').addClass('text-right');
+            $(`#cb-box-2-${uid}`)
+                .removeClass('text-left text-center')
+                .addClass('text-right');
         });
-    }
-  // Right Aligned Component
-  addToolBox = (uid) => {
-    $(`#cb-box-2-${uid}`)
-      .removeClass('text-left text-center')
-      .addClass('text-right');
-  }
+    };
+    // Right Aligned Component
+    addToolBox = (uid) => {
+        $(`#cb-box-2-${uid}`)
+            .removeClass('text-left text-center')
+            .addClass('text-right');
+    };
 }

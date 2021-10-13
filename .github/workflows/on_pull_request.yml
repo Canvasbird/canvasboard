@@ -1,46 +1,45 @@
 name: Build on Pull Request
 
 on:
-  pull_request:
-    branches: [ master ]
-  
+    pull_request:
+        branches: [master]
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout
-        uses: actions/checkout@v2.3.3
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [12.x]
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - name: Checkout
+              uses: actions/checkout@v2.3.3
 
-      # Cache node_modules for making builds a bit faster.
-      - name: Cache node modules
-        uses: actions/cache@v2.1.2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+            # Cache node_modules for making builds a bit faster.
+            - name: Cache node modules
+              uses: actions/cache@v2.1.2
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
 
-      # Install the Dependencies
-      - name: Install Dependencies
-        run: npm ci
+            # Install the Dependencies
+            - name: Install Dependencies
+              run: npm ci
 
-      # Clean the dist directory
-      - name: Clean Distribution Directory
-        run: npm run ci:clean
+            # Clean the dist directory
+            - name: Clean Distribution Directory
+              run: npm run ci:clean
 
-      # Build the Application
-      - name: Build Application
-        run: npm run build --prod
-      
-      # Run the Unit tests
-      - name: Run Unit Tests
-        run: npm run ci:test
-      
-      # Fix Vulnerabilities 
-      - name: Fix Vulnerabilities 
-        run: npm audit fix
-    
+            # Build the Application
+            - name: Build Application
+              run: npm run build --prod
+
+            # Run the Unit tests
+            - name: Run Unit Tests
+              run: npm run ci:test
+
+            # Fix Vulnerabilities
+            - name: Fix Vulnerabilities
+              run: npm audit fix

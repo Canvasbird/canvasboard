@@ -4,7 +4,7 @@ import { ContributionRoutingModule } from './contribution-routing.module';
 import { ContributionComponent } from './contribution.component';
 
 @NgModule({
-  declarations: [ContributionComponent],
-  imports: [CommonModule, ContributionRoutingModule],
+    declarations: [ContributionComponent],
+    imports: [CommonModule, ContributionRoutingModule],
 })
 export class ContributionModule {}
