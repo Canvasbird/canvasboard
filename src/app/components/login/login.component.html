@@ -39,7 +39,6 @@
               placeholder="Password"
               [(ngModel)]="password"
               [ngModelOptions]="{ standalone: true }"
-              (keyup.enter)="login()"
             />
           </div>
           <div class="form-group">
@@ -50,7 +49,6 @@
               type="button"
               class="btn-grad btn-outline-dark"
               (click)="login()"
-              (keyup.enter)="login()"
             >
               <strong style="padding: 10px">Log In</strong>
             </button>

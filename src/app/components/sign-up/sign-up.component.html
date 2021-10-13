@@ -72,7 +72,6 @@
               [ngModelOptions]="{ standalone: true }"
               matTooltip="Must contain atleast 6 characters"
               [matTooltipPosition]="position"
-              (keyup.enter)="signUp()"
             />
             <div toggle="#password-field" class="mb-2" (click)="ontoggle()">
               <i *ngIf="hide" class="fa fa-eye eye-icon" aria-hidden="true"></i>
