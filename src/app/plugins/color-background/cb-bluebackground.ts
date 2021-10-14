@@ -2,12 +2,12 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddBlueBackgroundComponent implements PluginComponent{
-  constructor() {}
+export class AddBlueBackgroundComponent implements PluginComponent {
+    constructor() {}
 
-  // Blue background color HTML Tag
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    // Blue background color HTML Tag
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
     <!-- Blue Background color button -->
           <div class="tool box1 m-1" title="Blue Background">
             <button class="btn btn-primary" id="add-background-cb-blue-${uid}">
@@ -20,26 +20,26 @@ export class AddBlueBackgroundComponent implements PluginComponent{
             </button>
           </div>
     `);
-  }
+    };
 
-  // Blue Background HTML Tag Click Action
-  addClickFunction = (uid) => {
-    // Adding Blue background color
-    $(`#add-background-cb-blue-${uid}`).click(() => {
-      $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-green cb-background-red'
-          )
-          .addClass('cb-background-blue');
-    });
-  }
+    // Blue Background HTML Tag Click Action
+    addClickFunction = (uid) => {
+        // Adding Blue background color
+        $(`#add-background-cb-blue-${uid}`).click(() => {
+            $(`#cb-box-2-${uid}`)
+                .removeClass(
+                    'cb-background-yellow cb-background-green cb-background-red'
+                )
+                .addClass('cb-background-blue');
+        });
+    };
 
-  // Adding Blue Background color
-  addToolBox = (uid) => {
-    $(`#cb-box-2-${uid}`)
-          .removeClass(
-            'cb-background-yellow cb-background-green cb-background-red'
-          )
-          .addClass('cb-background-blue');
-  }
+    // Adding Blue Background color
+    addToolBox = (uid) => {
+        $(`#cb-box-2-${uid}`)
+            .removeClass(
+                'cb-background-yellow cb-background-green cb-background-red'
+            )
+            .addClass('cb-background-blue');
+    };
 }

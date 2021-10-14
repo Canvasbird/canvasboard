@@ -4,8 +4,8 @@ import { ForgotPasswordComponent } from './forgot-password.component';
 import { ForgotPasswordRoutingModule } from './forgot-password-routing.module';
 
 @NgModule({
-  declarations: [ForgotPasswordComponent],
-  imports: [CommonModule, ForgotPasswordRoutingModule],
-  exports: [ForgotPasswordComponent],
+    declarations: [ForgotPasswordComponent],
+    imports: [CommonModule, ForgotPasswordRoutingModule],
+    exports: [ForgotPasswordComponent],
 })
 export class ForgotPasswordModule {}

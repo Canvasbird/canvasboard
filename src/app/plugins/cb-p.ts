@@ -2,11 +2,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddParaComponent implements PluginComponent{
-  constructor() {}
+export class AddParaComponent implements PluginComponent {
+    constructor() {}
 
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
     <!-- paragraph -->
     <div class="tool box4 m-1" title="Paragraph">
       <button class="btn btn-light" id="add-p-box2-${uid}">
@@ -20,16 +20,16 @@ export class AddParaComponent implements PluginComponent{
       </button>
     </div>
     `);
-  }
+    };
 
-  addClickFunction = (uid) => {
-    // Adding Paragraphs
-    $(`#add-p-box2-${uid}`).click(() => {
-      $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
-    });
-  }
+    addClickFunction = (uid) => {
+        // Adding Paragraphs
+        $(`#add-p-box2-${uid}`).click(() => {
+            $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
+        });
+    };
 
-  addToolBox = (uid) => {
-    $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
-  }
+    addToolBox = (uid) => {
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2 cb-H3');
+    };
 }

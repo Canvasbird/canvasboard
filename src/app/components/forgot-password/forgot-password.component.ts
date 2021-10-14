@@ -4,32 +4,29 @@ import { RestService } from 'src/app/services/rest.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+    selector: 'app-forgot-password',
+    templateUrl: './forgot-password.component.html',
+    styleUrls: ['./forgot-password.component.scss'],
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
+    constructor(private route: Router, private apiService: RestService) {}
 
-  constructor(private route: Router, private apiService: RestService) { }
+    async sendEmail() {
+        const email: any = document.getElementById('email');
+        const value = email.value;
+        // console.log(typeof value);
 
-  ngOnInit(): void {
-  }
+        const body = {
+            email_id: value,
+        };
 
-  async sendEmail() {
-    const email: any = document.getElementById('email');
-    const value = email.value;
-    console.log(typeof value);
+        const response: any = await this.apiService.sendEmailAddressForReset(
+            body
+        );
+        // console.log(response.success);
 
-    const body = {
-      email_id: value
-    };
-
-    const response: any = await this.apiService.sendEmailAddressForReset(body);
-    console.log(response.success);
-
-    if (response.success) {
-      this.route.navigate([`/verify`]);
+        if (response.success) {
+            this.route.navigate([`/verify`]);
+        }
     }
-
-  }
 }

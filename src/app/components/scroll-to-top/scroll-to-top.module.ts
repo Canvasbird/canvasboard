@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [ScrollToTopComponent],
-  imports: [CommonModule, BrowserModule, FormsModule],
-  exports: [ScrollToTopComponent],
+    declarations: [ScrollToTopComponent],
+    imports: [CommonModule, BrowserModule, FormsModule],
+    exports: [ScrollToTopComponent],
 })
 export class ScrollToTopModule {}

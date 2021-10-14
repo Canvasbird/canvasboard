@@ -5,8 +5,8 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { FilesRoutingModule } from './files-routing.module';
 
 @NgModule({
-  declarations: [FilesComponent],
-  imports: [CommonModule, NavbarModule, FilesRoutingModule],
-  exports: [FilesComponent],
+    declarations: [FilesComponent],
+    imports: [CommonModule, NavbarModule, FilesRoutingModule],
+    exports: [FilesComponent],
 })
 export class FilesModule {}

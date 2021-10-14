@@ -7,24 +7,30 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+    let component: DashboardComponent;
+    let fixture: ComponentFixture<DashboardComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, NavbarComponent ],
-      imports: [ RouterTestingModule, HttpClientTestingModule, FormsModule , MatDialogModule ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [DashboardComponent, NavbarComponent],
+                imports: [
+                    RouterTestingModule,
+                    HttpClientTestingModule,
+                    FormsModule,
+                    MatDialogModule,
+                ],
+            }).compileComponents();
+        })
+    );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(DashboardComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

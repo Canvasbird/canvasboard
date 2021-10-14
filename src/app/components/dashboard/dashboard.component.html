@@ -2,114 +2,225 @@
 <app-navbar></app-navbar>
 <!-- main -->
 <div class="container">
-  <div class="alert alert-warning alert-dismissible fade show username-block" role="alert">
-    <div class="block-with-username">
-      <h3><strong>Welcome,</strong> <br> <strong>{{Username}}!</strong></h3>  
-      <p>{{ date | date:'d MMMM y' }}</p> 
+    <div
+        class="alert alert-warning alert-dismissible fade show username-block"
+        role="alert"
+    >
+        <div class="block-with-username">
+            <h3>
+                <strong>Welcome,</strong> <br />
+                <strong>{{ Username }}!</strong>
+            </h3>
+            <p>{{ date | date: 'd MMMM y' }}</p>
+        </div>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
 
-  <!-- new workspace -->
-  <div class="cbff-container mt-4">
-    <div class="new-folder">
-      <br>
-      <svg data-toggle="modal" data-target="#newCard" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle"
-       fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-      </svg>
-      <br>
-      <!-- <p class="folder-description">Lorem ipsum dolor sit amet.</p> -->
-      <button class="btn btn-dark mt-4" type="button" data-toggle="modal" data-target="#newCard">
-        <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958
+    <!-- new workspace -->
+    <div class="cbff-container mt-4">
+        <div class="new-folder">
+            <br />
+            <svg
+                data-toggle="modal"
+                data-target="#newCard"
+                width="2em"
+                height="2em"
+                viewBox="0 0 16 16"
+                class="bi bi-plus-circle"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                />
+                <path
+                    fill-rule="evenodd"
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                />
+            </svg>
+            <br />
+            <!-- <p class="folder-description">Lorem ipsum dolor sit amet.</p> -->
+            <button
+                class="btn btn-dark mt-4"
+                type="button"
+                data-toggle="modal"
+                data-target="#newCard"
+            >
+                <svg
+                    width="1.2em"
+                    height="1.2em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958
            0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5
            1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5
-           0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
-        </svg>
-         New Folder</button>
+           0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"
+                    />
+                </svg>
+                New Folder
+            </button>
+        </div>
     </div>
-  </div>
 
-  <div class="form-group mb-0" >
-    <input type="text" class="form-control"
-    [(ngModel)]="filterFolderName"
-    [ngModelOptions]="{standalone: true}"
-    (ngModelChange)="filterFolders()"
-    placeholder="Search Workspace"
+    <div class="form-group mb-0">
+        <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="filterFolderName"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="filterFolders()"
+            placeholder="Search Workspace"
+        />
+    </div>
+    <!-- Folders -->
+    <div id="user-folders" class="cbff-container bd-grid mt-0"></div>
+
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        id="newCard"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
     >
-  </div>
-  <!-- Folders -->
-  <div id="user-folders" class="cbff-container bd-grid mt-0">
-  </div>
-
-
-
-  <!-- Modal -->
-<div class="modal fade" id="newCard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create Workspace</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- const body = {
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Create Workspace
+                    </h5>
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- const body = {
           folder_name: 'Akshay folder 1',
           folder_title: 'Folder 1',
           folder_tag: 'folder_tag',
           is_nested_folder: false
         } -->
-        <!-- Folder name -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="folder-name">Name</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-name" id="folder-name-input">
-        </div>
-        <!-- Folder description -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="folder-description">Description</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Default" aria-describedby="folder-description"
-            id="folder-description-input">
-        </div>
-        <!-- Folder Color -->
-        <div class = "input-group mb-3">
-          <div class = "input-group-prepend">
-            <span class = "input-group-text" id = "folder-colour">Color</span>
-          </div>
-            <input type="hidden" class="form-control" aria-label="Default" aria-describedby="folder-colour" value = "" id="folder-colour-input" readonly>
-            <button class = "folder_colour_pink" (click)="assignColour('#ee9ca7')"></button>
-            <button class = "folder_colour_green" (click)="assignColour('#96e6a1')"></button>
-            <button class = "folder_colour_blue" (click)="assignColour('#66a6ff')"></button>
-            <button class = "folder_colour_dark" (click)="assignColour('#274046')"></button>
-        </div>
+                    <!-- Folder name -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="folder-name"
+                                >Name</span
+                            >
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            aria-label="Default"
+                            aria-describedby="folder-name"
+                            id="folder-name-input"
+                        />
+                    </div>
+                    <!-- Folder description -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span
+                                class="input-group-text"
+                                id="folder-description"
+                                >Description</span
+                            >
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            aria-label="Default"
+                            aria-describedby="folder-description"
+                            id="folder-description-input"
+                        />
+                    </div>
+                    <!-- Folder Color -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="folder-colour"
+                                >Color</span
+                            >
+                        </div>
+                        <input
+                            type="hidden"
+                            class="form-control"
+                            aria-label="Default"
+                            aria-describedby="folder-colour"
+                            value=""
+                            id="folder-colour-input"
+                            readonly
+                        />
+                        <button
+                            class="folder_colour_pink"
+                            (click)="assignColour('#ee9ca7')"
+                        ></button>
+                        <button
+                            class="folder_colour_green"
+                            (click)="assignColour('#96e6a1')"
+                        ></button>
+                        <button
+                            class="folder_colour_blue"
+                            (click)="assignColour('#66a6ff')"
+                        ></button>
+                        <button
+                            class="folder_colour_dark"
+                            (click)="assignColour('#274046')"
+                        ></button>
+                    </div>
 
-        <!-- Error Label -->
-        <h5 class="error-label"><span class="badge badge-danger" id="error-label">Error Occurred!</span></h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="createFolder()" >Save changes</button>
-      </div>
+                    <!-- Error Label -->
+                    <h5 class="error-label">
+                        <span class="badge badge-danger" id="error-label"
+                            >Error Occurred!</span
+                        >
+                    </h5>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                        (click)="close()"
+                    >
+                        Close
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="createFolder()"
+                    >
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </div>
 
 <!-- Quote -->
 <footer class="quote mt-1 pb-0">
-  <span class="quoteText"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/quote-left.png"/>{{quote?.text}}</span>
-  <span class="quoteAuthor">- {{quote?.author === "" ? 'Anonymous' : quote?.author}}</span>
+    <span class="quoteText"
+        ><img
+            src="https://img.icons8.com/fluent-systems-filled/24/000000/quote-left.png"
+        />{{ quote?.text }}</span
+    >
+    <span class="quoteAuthor"
+        >- {{ quote?.author === '' ? 'Anonymous' : quote?.author }}</span
+    >
 </footer>
-
-
-
-

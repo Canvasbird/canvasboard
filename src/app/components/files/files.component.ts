@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  Data,
-  Router,
-  ActivatedRoute,
-  NavigationStart,
-  NavigationExtras,
+    Data,
+    Router,
+    ActivatedRoute,
+    NavigationStart,
+    NavigationExtras,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -13,66 +13,76 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteFolderModalComponent } from '../delete-folder-modal/delete-folder-modal.component';
 declare var $: any;
 @Component({
-  selector: 'app-files',
-  templateUrl: './files.component.html',
-  styleUrls: ['./files.component.scss'],
+    selector: 'app-files',
+    templateUrl: './files.component.html',
+    styleUrls: ['./files.component.scss'],
 })
 export class FilesComponent implements OnInit {
-  appstate$: Observable<object>;
-  activateID: Data;
-  data: any;
-  FolderName = '';
-  FolderDescription = '';
-  files: Array<any> = [];
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: RestService, public dialog: MatDialog) {
-    this.activatedRoute.params.subscribe(params => this.activateID = params);
-  }
-
-  ngOnInit() {
-    this.appstate$ = this.router.events.pipe(
-      filter((e) => e instanceof NavigationStart),
-      map(() => {
-        const currentState = this.router.getCurrentNavigation();
-        return currentState.extras.state;
-      })
-    );
-    // Add to local storage
-    localStorage.setItem('current_route', this.activateID.id);
-
-    this.gettingData(this.activateID.id);
-    $(`#launchBoard`).click(() => {
-      this.router.navigate([`board/${this.activateID.id}/creative-board`], {
-        state: { fileData: null, folderId: this.activateID.id },
-      });
-    });
-
-    /**
-     * Button to redirect to Dashboard
-     */
-    $(`#dashboard`).click(() => {
-      this.router.navigate(['/dashboard/']);
-    });
-  }
-  // GETING USER FILES
-  async gettingData(id) {
-    const response = await this.apiService.getFilesData(id);
-    const data = await response.content;
-    this.data = data;
-    this.FolderName = this.data.folder_name;
-    this.FolderDescription = this.data.folder_title;
-    this.files = this.data.files;
-    if (Object.keys(this.files).length === 0) {
-      const noFile = 'Please add a File!';
-      $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
-    } else {
-      this.files.forEach((element) => {
-        this.addFiles(element);
-      });
+    appstate$: Observable<object>;
+    activateID: Data;
+    data: any;
+    FolderName = '';
+    FolderDescription = '';
+    files: any[] = [];
+    constructor(
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private apiService: RestService,
+        public dialog: MatDialog
+    ) {
+        this.activatedRoute.params.subscribe(
+            (params) => (this.activateID = params)
+        );
     }
-  }
-  addFiles(data) {
-    // Add files
-    $('#user-files').append(`
+
+    ngOnInit() {
+        this.appstate$ = this.router.events.pipe(
+            filter((e) => e instanceof NavigationStart),
+            map(() => {
+                const currentState = this.router.getCurrentNavigation();
+                return currentState.extras.state;
+            })
+        );
+        // Add to local storage
+        localStorage.setItem('current_route', this.activateID.id);
+
+        this.gettingData(this.activateID.id);
+        $(`#launchBoard`).click(() => {
+            this.router.navigate(
+                [`board/${this.activateID.id}/creative-board`],
+                {
+                    state: { fileData: null, folderId: this.activateID.id },
+                }
+            );
+        });
+
+        /**
+         * Button to redirect to Dashboard
+         */
+        $(`#dashboard`).click(() => {
+            this.router.navigate(['/dashboard/']);
+        });
+    }
+    // GETING USER FILES
+    async gettingData(id) {
+        const response = await this.apiService.getFilesData(id);
+        const data = await response.content;
+        this.data = data;
+        this.FolderName = this.data.folder_name;
+        this.FolderDescription = this.data.folder_title;
+        this.files = this.data.files;
+        if (Object.keys(this.files).length === 0) {
+            const noFile = 'Please add a File!';
+            $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
+        } else {
+            this.files.forEach((element) => {
+                this.addFiles(element);
+            });
+        }
+    }
+    addFiles(data) {
+        // Add files
+        $('#user-files').append(`
       <div class="file-box shadow" id=${data._id}>
       <div class="icons-box">
         <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-files" viewBox="0 0 16 16">
@@ -145,133 +155,151 @@ export class FilesComponent implements OnInit {
       <button class="btn btn-dark" id=button-${data._id} title ="${data.file_name}">Enter</button>
     </div>
       `);
-    // Click action to enter files
-    $(`#button-${data._id}`).click(() => {
-      const dataToSend: NavigationExtras = {
-        queryParams: data,
-        skipLocationChange: false,
-        fragment: 'top',
-      };
-      this.router.navigate([`board/creative-board/${data._id}`], {
-        state: { fileData: null, folderId: this.activateID.id },
-      });
-    });
+        // Click action to enter files
+        $(`#button-${data._id}`).click(() => {
+            const dataToSend: NavigationExtras = {
+                queryParams: data,
+                skipLocationChange: false,
+                fragment: 'top',
+            };
+            this.router.navigate([`board/creative-board/${data._id}`], {
+                state: { fileData: null, folderId: this.activateID.id },
+            });
+        });
 
-    // Open delete popup
-    $(`#delete-${data._id}`).click(() => {
-      this.deleteCard(data._id);
-    });
+        // Open delete popup
+        $(`#delete-${data._id}`).click(() => {
+            this.deleteCard(data._id);
+        });
 
-    // Delete sure popup
-    $(`#delete-sure-${data._id}`).click(() => {
-      this.deleteCard(data._id);
-    });
+        // Delete sure popup
+        $(`#delete-sure-${data._id}`).click(() => {
+            this.deleteCard(data._id);
+        });
 
-    // Click action to edit the file name.
-    $(`#button-edit-name-${data._id}`).click(() => {
-      const fileName = document.getElementById(`file-name-${data._id}`);
-      const editText = document.getElementById(`edit-name-input-${data._id}`);
-      const editButton = document.getElementById(
-        `button-edit-name-${data._id}`
-      );
-      if (editText.style.display === 'block') {
-        editText.style.display = 'none';
-        fileName.style.display = 'block';
-        editButton.style.display = 'block';
-      } else {
-        editText.style.display = 'block';
-        fileName.style.display = 'none';
-        editButton.style.display = 'none';
-      }
-    });
+        // Click action to edit the file name.
+        $(`#button-edit-name-${data._id}`).click(() => {
+            const fileName = document.getElementById(`file-name-${data._id}`);
+            const editText = document.getElementById(
+                `edit-name-input-${data._id}`
+            );
+            const editButton = document.getElementById(
+                `button-edit-name-${data._id}`
+            );
+            if (editText.style.display === 'block') {
+                editText.style.display = 'none';
+                fileName.style.display = 'block';
+                editButton.style.display = 'block';
+            } else {
+                editText.style.display = 'block';
+                fileName.style.display = 'none';
+                editButton.style.display = 'none';
+            }
+        });
 
-    // Click action to close the edit input
-    $(`#button-edit-name-no-${data._id}`).click(() => {
-      const fileName = document.getElementById(`file-name-${data._id}`);
-      const editText = document.getElementById(`edit-name-input-${data._id}`);
-      const editButton = document.getElementById(
-        `button-edit-name-${data._id}`
-      );
-      if (editText.style.display === 'block') {
-        editText.style.display = 'none';
-        fileName.style.display = 'block';
-        editButton.style.display = 'block';
-      }
-      if (
-        document.getElementById(`new-name-text-${data._id}`).style
-          .borderColor === 'red'
-      ) {
-        document.getElementById(`new-name-text-${data._id}`).style.borderColor =
-          'transparent';
-      }
-    });
-    // Click action to save the new edited name
-    $(`#button-edit-name-ok-${data._id}`).click(() => {
-      const newName = (document.getElementById(`new-name-text-${data._id}`) as HTMLInputElement).value.trim();
-      const fileName = document.getElementById(`file-name-${data._id}`);
-      const editText = document.getElementById(`edit-name-input-${data._id}`);
-      const editButton = document.getElementById(
-        `button-edit-name-${data._id}`
-      );
-      if (newName === '') {
-        // If the new name is null then do not change the name.
-        document.getElementById(`new-name-text-${data._id}`).style.borderColor =
-          'red';
-      } else {
-        document.getElementById(`new-name-text-${data._id}`).style.borderColor =
-          'transparent';
-        this.renamefile(data, newName);
-        if (editText.style.display === 'block') {
-          editText.style.display = 'none';
-          fileName.style.display = 'block';
-          editButton.style.display = 'block';
-        }
-        this.data.find((x) => x._id === data._id).file_name = newName; // Changing the file name in data variable that we used.
-      }
-    });
-  }
-  async deleteCard(id) {
-    const dialogRef = this.dialog.open(DeleteFolderModalComponent, {
-      data: 'File'
-    });
-    dialogRef.afterClosed().subscribe(async (result) => {
-      // if clicked on "yes" option of  the delete modal
-      if (result){
-        const response = await this.apiService.deleteFile(this.activateID.id, id);
+        // Click action to close the edit input
+        $(`#button-edit-name-no-${data._id}`).click(() => {
+            const fileName = document.getElementById(`file-name-${data._id}`);
+            const editText = document.getElementById(
+                `edit-name-input-${data._id}`
+            );
+            const editButton = document.getElementById(
+                `button-edit-name-${data._id}`
+            );
+            if (editText.style.display === 'block') {
+                editText.style.display = 'none';
+                fileName.style.display = 'block';
+                editButton.style.display = 'block';
+            }
+            if (
+                document.getElementById(`new-name-text-${data._id}`).style
+                    .borderColor === 'red'
+            ) {
+                document.getElementById(
+                    `new-name-text-${data._id}`
+                ).style.borderColor = 'transparent';
+            }
+        });
+        // Click action to save the new edited name
+        $(`#button-edit-name-ok-${data._id}`).click(() => {
+            const newName = (
+                document.getElementById(
+                    `new-name-text-${data._id}`
+                ) as HTMLInputElement
+            ).value.trim();
+            const fileName = document.getElementById(`file-name-${data._id}`);
+            const editText = document.getElementById(
+                `edit-name-input-${data._id}`
+            );
+            const editButton = document.getElementById(
+                `button-edit-name-${data._id}`
+            );
+            if (newName === '') {
+                // If the new name is null then do not change the name.
+                document.getElementById(
+                    `new-name-text-${data._id}`
+                ).style.borderColor = 'red';
+            } else {
+                document.getElementById(
+                    `new-name-text-${data._id}`
+                ).style.borderColor = 'transparent';
+                this.renamefile(data, newName);
+                if (editText.style.display === 'block') {
+                    editText.style.display = 'none';
+                    fileName.style.display = 'block';
+                    editButton.style.display = 'block';
+                }
+                this.data.find((x) => x._id === data._id).file_name = newName; // Changing the file name in data variable that we used.
+            }
+        });
+    }
+    async deleteCard(id) {
+        const dialogRef = this.dialog.open(DeleteFolderModalComponent, {
+            data: 'File',
+        });
+        dialogRef.afterClosed().subscribe(async (result) => {
+            // if clicked on "yes" option of  the delete modal
+            if (result) {
+                const response = await this.apiService.deleteFile(
+                    this.activateID.id,
+                    id
+                );
+                if (response.success) {
+                    // removing from array
+                    const index = this.files.findIndex((o) => {
+                        return o._id === id;
+                    });
+                    if (index !== -1) {
+                        this.files.splice(index, 1);
+                    }
+                    if (Object.keys(this.files).length === 0) {
+                        const noFile = 'Please add a File!';
+                        $('#user-files').append(
+                            `<h5 id='not-found'>${noFile}</h5>`
+                        );
+                    }
+
+                    // Removing from HTML
+                    document.getElementById(`${id}`).remove();
+                }
+            }
+        });
+    }
+    async renamefile(obj, newName) {
+        const body = {
+            file_id: obj._id,
+            file_name: newName,
+            is_modified: true,
+        };
+        const response = await this.apiService.renameFile(body);
         if (response.success) {
-          // removing from array
-          const index = this.files.findIndex((o) => {
-            return o._id === id;
-          });
-          if (index !== -1) {
-            this.files.splice(index, 1);
-          }
-          if (Object.keys(this.files).length === 0) {
-            const noFile = 'Please add a File!';
-            $('#user-files').append(`<h5 id='not-found'>${noFile}</h5>`);
-          }
-
-          // Removing from HTML
-          document.getElementById(`${id}`).remove();
-      }
+            // Change the previous name of the file in the display.
+            const fileNameHeading = document.getElementById(
+                `name-display-${obj._id}`
+            );
+            fileNameHeading.innerText = newName;
+        } else {
+            document.getElementById('error-label').style.display = 'block';
+        }
     }
-  });
-  }
-  async renamefile(obj, newName) {
-    const body = {
-      file_id: obj._id,
-      file_name: newName,
-      is_modified: true,
-    };
-    const response = await this.apiService.renameFile(body);
-    if (response.success) {
-      // Change the previous name of the file in the display.
-      const fileNameHeading = document.getElementById(
-        `name-display-${obj._id}`
-      );
-      fileNameHeading.innerText = newName;
-    } else {
-      document.getElementById('error-label').style.display = 'block';
-    }
-  }
 }

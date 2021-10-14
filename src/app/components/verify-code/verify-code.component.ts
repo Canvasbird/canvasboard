@@ -3,34 +3,33 @@ import { RestService } from 'src/app/services/rest.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-verify-code',
-  templateUrl: './verify-code.component.html',
-  styleUrls: ['./verify-code.component.scss']
+    selector: 'app-verify-code',
+    templateUrl: './verify-code.component.html',
+    styleUrls: ['./verify-code.component.scss'],
 })
-export class VerifyCodeComponent implements OnInit {
+export class VerifyCodeComponent {
+    constructor(private apiService: RestService) {}
 
-  constructor(private apiService: RestService) { }
+    async sendDetails() {
+        const codeid: any = document.getElementById('code');
+        const codeValue = codeid.value;
 
-  ngOnInit(): void {
-  }
+        const newPassword: any = document.getElementById('renamePassword');
+        const newPasswordValue = newPassword.value;
 
-  async sendDetails() {
-    const codeid: any = document.getElementById('code');
-    const codeValue = codeid.value;
+        const body = {
+            reset_token: codeValue,
+            password: newPasswordValue,
+        };
 
-    const newPassword: any = document.getElementById('renamePassword');
-    const newPasswordValue = newPassword.value;
+        const response: any = this.apiService.sendNewPasswordDetails(body);
+        // console.log(response);
 
-    const body = {
-      reset_token: codeValue,
-      password: newPasswordValue
-    };
-
-    const response: any = this.apiService.sendNewPasswordDetails(body);
-    console.log(response);
-
-    if (response.success) {
-      Swal.fire({ icon: 'success', text: 'Something went wrong! Please try again. ' });
+        if (response.success) {
+            Swal.fire({
+                icon: 'success',
+                text: 'Something went wrong! Please try again. ',
+            });
+        }
     }
-  }
 }

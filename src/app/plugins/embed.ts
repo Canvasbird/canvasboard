@@ -2,11 +2,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddEmbedComponent implements PluginComponent{
-  constructor() { }
+export class AddEmbedComponent implements PluginComponent {
+    constructor() {}
 
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
     <!-- Embed -->
     <div class="tool box4 m-1" title="Embed link">
       <button class="btn btn-light" id="add-embed-box2-${uid}">
@@ -23,21 +23,19 @@ export class AddEmbedComponent implements PluginComponent{
       </button>
     </div>
     `);
-  }
+    };
 
-  addClickFunction = () => {
+    addClickFunction = () => {};
 
-  }
-
-  addToolBox = (uid, url: string) => {
-    if (url !== '') {
-      $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
-      $(`#cb-box-2-${uid}`).css('display', 'flex').css('justify-content', 'center').append(`
+    addToolBox = (uid, url: string) => {
+        if (url !== '') {
+            $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
+            $(`#cb-box-2-${uid}`)
+                .css('display', 'flex')
+                .css('justify-content', 'center').append(`
     <!-- Embed iframe -->
     <embed src="${url}" width="100%" height="600" frameborder="0" allowfullscreen/>
     `);
-    }
-  }
-
-
+        }
+    };
 }
