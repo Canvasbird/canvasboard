@@ -17,7 +17,11 @@ export class NewBoardCard implements NewBoardCardInterface {
     }
 
     static fromData(obj: NewBoardCardInterface): NewBoardCard {
-        const result = new NewBoardCard(obj.cardID, obj.oldPosition, obj.newPosition);
+        const result = new NewBoardCard(
+            obj.cardID,
+            obj.oldPosition,
+            obj.newPosition
+        );
         result.setpluginType(obj.pluginType);
         result.setContent(obj.content);
         result.setClassList(obj.classList);
@@ -30,7 +34,6 @@ export class NewBoardCard implements NewBoardCardInterface {
     public setCreatedOn(value: Date) {
         this.createdOn = value;
     }
-
 
     updatePosition(oldPosition: any, newPosition: any) {
         this.oldPosition = oldPosition;

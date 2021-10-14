@@ -4,8 +4,8 @@ import { NavbarComponent } from './navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [NavbarComponent],
-  imports: [CommonModule, HttpClientModule],
-  exports: [NavbarComponent],
+    declarations: [NavbarComponent],
+    imports: [CommonModule, HttpClientModule],
+    exports: [NavbarComponent],
 })
 export class NavbarModule {}

@@ -5,16 +5,16 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
-  let authService: AuthService;
+    let authService: AuthService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, RouterTestingModule ]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule, RouterTestingModule],
+        });
+        authService = TestBed.inject(AuthService);
     });
-    authService = TestBed.inject(AuthService);
-  });
 
-  it('should be created', () => {
-    expect(authService).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(authService).toBeTruthy();
+    });
 });

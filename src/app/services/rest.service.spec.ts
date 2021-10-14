@@ -5,16 +5,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RestService } from './rest.service';
 
 describe('RestService', () => {
-  let restService: RestService;
+    let restService: RestService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, RouterTestingModule ]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule, RouterTestingModule],
+        });
+        restService = TestBed.inject(RestService);
     });
-    restService = TestBed.inject(RestService);
-  });
 
-  it('should be created', () => {
-    expect(restService).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(restService).toBeTruthy();
+    });
 });

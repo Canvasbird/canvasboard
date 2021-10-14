@@ -6,6 +6,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8d6b080-423d-45c8-974e-fb1f7986a028/deploy-status)](https://app.netlify.com/sites/canvasboard/deploys)
 [![build status](https://github.com/Canvasbird/canvasboard/workflows/Build/badge.svg)](https://github.com/Canvasbird/canvasboard/actions)
 [![license](https://img.shields.io/github/license/Canvasbird/canvasboard)](#license)
+
 <!-- [![Join our Slack community https://www.webiny.com/slack](https://img.shields.io/badge/Slack-Join%20our%20community!-orange)](https://canvasbird-slack.netlify.app) -->
 </br>
 
@@ -17,7 +18,7 @@ Canvasboard is an interactive board with plugins focusing on replacing the need 
 
 ## Why is it important?
 
-Technology has helped come up with a board that is a dedicated workspace for all your needs. 
+Technology has helped come up with a board that is a dedicated workspace for all your needs.
 Canvasboard can be scaled up to onboard multiple plugins in one place that can be used for the various business needs. The education sector, data scientists, and project managers will surely find their work become easier with the help of this platform. Rather than installing multiple different softwares, a person can have one single board to satiate all the requirements for their jobs. From writing on presentations, data exploration, and producing gantt charts, this board will definitely fulfill all needs.
 
 The software is considered to be at a beta level of readiness; there are a few missing features and bugs to be fixed.
@@ -27,6 +28,7 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 ## Goal
 
 Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks.
+
 <!-- Our value proposition is to build an open-source community that is highly scalable and can host workspaces locally or on the cloud. -->
 <p align="center">
 <img src="https://github.com/Canvasbird/canvasboard/blob/master/src/assets/readme/2.png?raw=true" width="800">
@@ -35,18 +37,19 @@ Build a standalone web application that has all your favorite tools(Plugins) so 
 <!-- ## Screenshots [![Website Badge](https://img.shields.io/badge/Visit-Now-green?style=for-the-badge&logo=vercel)](https://canvasboard.live/)
 
 | ![cb_1][01] | ![cb_2][02] | ![cb3_3][03] |
-| --- | --- | --- | 
+| --- | --- | --- |
 
 -->
 
 ## Dependencies🗃:
-- [Typescript](https://www.typescriptlang.org/)
-- [Jquery](https://jquery.com/)
-- [Bootstrap](https://getbootstrap.com/)
-- [Angular](https://angular.io/)
-- [MongoDB](https://www.mongodb.com/)
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [Amazon Web Services](https://aws.amazon.com/)
+
+-   [Typescript](https://www.typescriptlang.org/)
+-   [Jquery](https://jquery.com/)
+-   [Bootstrap](https://getbootstrap.com/)
+-   [Angular](https://angular.io/)
+-   [MongoDB](https://www.mongodb.com/)
+-   [FastAPI](https://fastapi.tiangolo.com/)
+-   [Amazon Web Services](https://aws.amazon.com/)
 
 <!-- <p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot">
 <img src="https://img.shields.io/badge/-Bootstrap-563D7C?style=flat-square&amp;logo=bootstrap" alt="Bootstrap" class="screenshot">
@@ -58,9 +61,10 @@ Build a standalone web application that has all your favorite tools(Plugins) so 
 <img src="https://img.shields.io/badge/Amazon%20AWS-232F3E?style=flat-square&amp;logo=amazon-aws" alt="Amazon AWS" class="screenshot"></p> -->
 
 ## Important Links
-- Running the canvasboard application. [Link](https://github.com/Canvasbird/canvasboard/wiki/Cloning-Canvasboard-frontend)
-- Canvasboard Docs [here](https://github.com/Canvasbird/canvasboard-docs)
-- Canvasboard backend. [Link](https://github.com/Canvasbird/canvasboard-backend)
+
+-   Running the canvasboard application. [Link](https://github.com/Canvasbird/canvasboard/wiki/Cloning-Canvasboard-frontend)
+-   Canvasboard Docs [here](https://github.com/Canvasbird/canvasboard-docs)
+-   Canvasboard backend. [Link](https://github.com/Canvasbird/canvasboard-backend)
 
 ## Open Source Programs we have been associated with:
 
@@ -72,7 +76,8 @@ Build a standalone web application that has all your favorite tools(Plugins) so 
 <a href="https://devscript.tech/woc/"><img src="./src/assets/Open%20Source%20Program/dwoc.png" width="125px" height="125px" /></a>
 </p>
 
-## Contributing🤝 
+## Contributing🤝
+
 <!--
 <p align="center">
 <img src="https://github.com/Canvasbird/canvasbird-wiki/blob/master/images/footer.png?raw=true">

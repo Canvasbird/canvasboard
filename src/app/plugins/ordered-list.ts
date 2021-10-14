@@ -2,16 +2,12 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddOrderedListComponent implements PluginComponent{
-
-  constructor() {
-
-  }
+export class AddOrderedListComponent implements PluginComponent {
+    constructor() {}
 
     // OrderedList HTML Tag
     addHTMLCode(uid) {
-
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
        <!-- Ordered list button -->
           <div class="tool box1 m-1" id="add-ordered-list-${uid}" title="Ordered List">
             <button class="btn btn-light">
@@ -34,21 +30,20 @@ export class AddOrderedListComponent implements PluginComponent{
     addClickFunction = (uid) => {
         // Adding OrderedList Tags
         $(`#add-ordered-list-${uid}`).click(() => {
-        $(`#original-${uid}`).append(
-          `<ol>
+            $(`#original-${uid}`).append(
+                `<ol>
           <li></li>
           </ol>`
-        );
-      });
-    }
+            );
+        });
+    };
 
     // Adding OrderedList
     addToolBox = (uid) => {
-      $(`#original-${uid}`).append(
-          `<ol>
+        $(`#original-${uid}`).append(
+            `<ol>
           <li></li>
           </ol>`
         );
-    }
-
+    };
 }

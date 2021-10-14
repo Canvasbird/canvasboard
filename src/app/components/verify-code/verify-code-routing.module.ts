@@ -5,7 +5,7 @@ import { VerifyCodeComponent } from './verify-code.component';
 const routes: Routes = [{ path: '', component: VerifyCodeComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class VerifyCodeRoutingModule {}

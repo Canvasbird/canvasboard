@@ -3,16 +3,13 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 declare var $: any;
 
 export class AddH1Component implements PluginComponent {
-
-  constructor() {
-
-  }
+    constructor() {}
 
     // H1 HTML Tag
     addHTMLCode(uid) {
-      // console.log('Calling h1 html');
+        // console.log('Calling h1 html');
 
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
       <!-- H1 tag -->
       <div class="tool box1 m-1" title="H1">
         <button class="btn btn-light" id="add-h1-box2-${uid}">
@@ -31,12 +28,11 @@ export class AddH1Component implements PluginComponent {
     addClickFunction = (uid) => {
         // Adding H1 Tags
         $(`#add-h1-box2-${uid}`).click(() => {
-          this.addToolBox(uid);
+            this.addToolBox(uid);
         });
-    }
+    };
 
     addToolBox = (uid) => {
-      $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
-    }
-
+        $(`#cb-box-2-${uid}`).removeClass('cb-H2 cb-H3').addClass('cb-H1');
+    };
 }

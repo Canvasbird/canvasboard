@@ -2,12 +2,12 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddH3Component implements PluginComponent{
-  constructor() {}
+export class AddH3Component implements PluginComponent {
+    constructor() {}
 
-  // h3 tag
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    // h3 tag
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
     <!-- h3 tag -->
     <div class="tool box3 m-1" title="H3">
       <button class="btn btn-light" id="add-h3-box2-${uid}">
@@ -23,15 +23,15 @@ export class AddH3Component implements PluginComponent{
       </button>
     </div>
     `);
-  }
+    };
 
-  addClickFunction = (uid) => {
-    $(`#add-h3-box2-${uid}`).click(() => {
-      $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
-    });
-  }
+    addClickFunction = (uid) => {
+        $(`#add-h3-box2-${uid}`).click(() => {
+            $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
+        });
+    };
 
-  addToolBox = (uid) => {
-    $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
-  }
+    addToolBox = (uid) => {
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H2').addClass('cb-H3');
+    };
 }

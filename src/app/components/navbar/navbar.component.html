@@ -1,26 +1,48 @@
 <!-- Navbar -->
-<nav class="navbar d-flex  fixed-top justify-content-between navbar-expand-lg navbar-light bg-light" 
+<nav
+    class="
+        navbar
+        d-flex
+        fixed-top
+        justify-content-between
+        navbar-expand-lg navbar-light
+        bg-light
+    "
 >
-  <!-- Logo   -->
-  <a class="logo navbar-brand d-flex align-items-center" href="#" title="Canvasboard">
-      <img src="../../../assets/home/logo_bw.png" width="38" height="40" class="d-inline-block align-top mr-1" alt="CB" loading="lazy">
-      <span class="logo-text">
-        Canvasboard
-        <span class = "min-text">
-          Beta
+    <!-- Logo   -->
+    <a
+        class="logo navbar-brand d-flex align-items-center"
+        href="#"
+        title="Canvasboard"
+    >
+        <img
+            src="../../../assets/home/logo_bw.png"
+            width="38"
+            height="40"
+            class="d-inline-block align-top mr-1"
+            alt="CB"
+            loading="lazy"
+        />
+        <span class="logo-text">
+            Canvasboard
+            <span class="min-text"> Beta </span>
         </span>
-      </span>
-  </a>
-  <!-- Collapse button -->
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!-- Dropdown items -->
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ml-auto navbarItems">
-      <a class="nav-item nav-link" (click)="logoutButtonClick()">
-        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-      </a>
+    </a>
+    <!-- Collapse button -->
+    <button
+        type="button"
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Dropdown items -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ml-auto navbarItems">
+            <a class="nav-item nav-link" (click)="logoutButtonClick()">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+            </a>
+        </div>
     </div>
-  </div>
 </nav>

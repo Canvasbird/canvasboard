@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -20,20 +19,21 @@ $canvasboard-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$canvasboard-theme: mat-light-theme((
-  color: (
-    primary: $canvasboard-primary,
-    accent: $canvasboard-accent,
-    warn: $canvasboard-warn,
-  )
-));
+$canvasboard-theme: mat-light-theme(
+    (
+        color: (
+            primary: $canvasboard-primary,
+            accent: $canvasboard-accent,
+            warn: $canvasboard-warn,
+        ),
+    )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($canvasboard-theme);
 
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -54,14 +54,17 @@ $canvasboard-accent: mat-palette($mat-pink, A200, A100, A400);
 $canvasboard-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $canvasboard-warn);
+$canvasboard-theme: mat-light-theme(
+    $canvasboard-primary,
+    $canvasboard-accent,
+    $canvasboard-warn
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 // @include angular-material-theme($canvasboard-theme);
 
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -82,7 +85,11 @@ $canvasboard-accent: mat-palette($mat-pink, A200, A100, A400);
 $canvasboard-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $canvasboard-warn);
+$canvasboard-theme: mat-light-theme(
+    $canvasboard-primary,
+    $canvasboard-accent,
+    $canvasboard-warn
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -92,271 +99,280 @@ $canvasboard-theme: mat-light-theme($canvasboard-primary, $canvasboard-accent, $
 /* You can add global styles to this file, and also import other style files */
 
 .marginTopTwo {
-  margin-top: 2%;
+    margin-top: 2%;
 }
 
 .borderBlack {
-  border: 2px solid black;
+    border: 2px solid black;
 }
 
 .marginBottomTwo {
-  margin-bottom: 2%;
+    margin-bottom: 2%;
 }
 
 .marginRightTwo {
-  margin-right: 2%;
+    margin-right: 2%;
 }
 
 .cursorHand {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .paddingOne {
-  padding: 1%;
+    padding: 1%;
 }
 
 .colorWhite {
-  color: white;
+    color: white;
 }
 
 /* You can add global styles to this file, and also import other style files */
 // .............. TOOLBOX UTILITIES..................
 .cb-H1 {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 .cb-H2 {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .cb-H3 {
-  font-size: 1.3em;
+    font-size: 1.3em;
 }
 
 .toolbox-main {
-  position: absolute;
-  display: flex;
-  background-color: white;
-  right: 0px;
-  border-radius: 5px;
-  z-index: 1000;
+    position: absolute;
+    display: flex;
+    background-color: white;
+    right: 0px;
+    border-radius: 5px;
+    z-index: 1000;
 }
 
 // for background colors
 .cb-background-red {
-  background-color: #f78080;
+    background-color: #f78080;
 }
 
 .cb-background-green {
-  background-color: #94e794;
+    background-color: #94e794;
 }
 
 .cb-background-yellow {
-  background-color: #f6ec89;
+    background-color: #f6ec89;
 }
 
 .cb-background-blue {
-  background-color: #96c7f7;
+    background-color: #96c7f7;
 }
 
 // code snippet style
 .cb-code-snippet {
-  background-color: black;
-  color: #e6db74;
-  font-family: "Inconsolata", monospace;
+    background-color: black;
+    color: #e6db74;
+    font-family: 'Inconsolata', monospace;
 }
 
 .cb-toolbox {
-  // padding-left: 10px;
+    // padding-left: 10px;
 }
 
 // Fonts
 .monospace-font {
-  font-family: 'Courier Prime', monospace;
+    font-family: 'Courier Prime', monospace;
 }
 .playfair-font {
-  font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif;
 }
 
 .kalam-font {
-  font-family: 'Kalam', cursive;
+    font-family: 'Kalam', cursive;
 }
 
 // Board
 .cb-more-toolbox {
-  position: relative;
-  display: none;
+    position: relative;
+    display: none;
 }
 
 // Card
 
-.svgHandler{
-  // display: flex;
-  // align-items: center;
-  // padding-top: 5px;
+.svgHandler {
+    // display: flex;
+    // align-items: center;
+    // padding-top: 5px;
 }
 
-.svgClass{
-  margin: 0 auto;
-  display: block;
+.svgClass {
+    margin: 0 auto;
+    display: block;
 }
 
 // MarkDown
 .named-fence-block {
-  background-color:#ffdde1;
-  position: relative;
-  padding-top: 2em;
+    background-color: #ffdde1;
+    position: relative;
+    padding-top: 2em;
 }
 pre {
-  background-color:#f6f8fa;
-  padding: 16px;
-overflow: auto;
-font-size: 85%;
-border-radius: 6px;
+    background-color: #f6f8fa;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    border-radius: 6px;
 }
 
 .named-fence-filename {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0 4px;
-  font-weight: bold;
-  color: #000000;
-  background: #c0c0c0;
-  opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 4px;
+    font-weight: bold;
+    color: #000000;
+    background: #c0c0c0;
+    opacity: 0.6;
 }
-.markdown-body h1,h2,h3 {
-    padding-bottom: .3em;
+.markdown-body h1,
+h2,
+h3 {
+    padding-bottom: 0.3em;
     border-bottom: 1px solid #eaecef;
-
 }
 
 // ........................DASHBOARD...........................
 .folder-box,
 .file-box {
-  padding: 1rem 1rem;
-  background: #53A453;
-  background: #ee9ca7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  border-radius: .5rem;
-  transition: 0.4s;
-  margin:10px;
-  margin-left: 0px;
+    padding: 1rem 1rem;
+    background: #53a453;
+    background: #ee9ca7; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        #ffdde1,
+        #ee9ca7
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #ffdde1,
+        #ee9ca7
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 0.5rem;
+    transition: 0.4s;
+    margin: 10px;
+    margin-left: 0px;
 
-  .folder-title,
-  .file-title {
-    font-family: Questrial,sans-serif;
-    margin-top: 3rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 15rem;
-  }
+    .folder-title,
+    .file-title {
+        font-family: Questrial, sans-serif;
+        margin-top: 3rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 15rem;
+    }
 
-  .folder-description,
-  .file-description {
-    font-family: Questrial,sans-serif;
-  }
+    .folder-description,
+    .file-description {
+        font-family: Questrial, sans-serif;
+    }
 }
 
 .new-folder,
 .new-file {
-  text-align: center;
-  background: rgb(241, 241, 241);
-  padding: 1rem 1rem;
-  border-radius: .5rem;
-  transition: 0.4s;
-  margin:10px;
-  margin-left: 0px;
+    text-align: center;
+    background: rgb(241, 241, 241);
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+    transition: 0.4s;
+    margin: 10px;
+    margin-left: 0px;
 }
 
 .folder-box:hover,
 .file-box:hover {
-  transform:translateY(-.2rem);
+    transform: translateY(-0.2rem);
 }
 
 .bd-grid {
-  display: grid;
+    display: grid;
 }
 .cbff-container {
-  grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
-#user-folders{
-  position: relative;
+#user-folders {
+    position: relative;
 }
 #user-files {
-  position: relative;
+    position: relative;
 }
-#not-found{
-  color: black;
-  opacity: 50%;
-  margin: 0;
-  position: absolute;
-  top: 6rem;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
+#not-found {
+    color: black;
+    opacity: 50%;
+    margin: 0;
+    position: absolute;
+    top: 6rem;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .mat-progress-bar.mat-warn .mat-progress-bar-buffer {
-  background-color: #ffccbc;
+    background-color: #ffccbc;
 }
 
 .mat-progress-bar.mat-warn .mat-progress-bar-fill::after {
-  background-color: red !important;
+    background-color: red !important;
 }
 
 .mat-progress-bar.mat-accent .mat-progress-bar-buffer {
-  background-color: lightblue !important;
+    background-color: lightblue !important;
 }
 
-.mat-progress-bar.mat-accent .mat-progress-bar-fill::after{
-  background-color: #1E90FF !important;
+.mat-progress-bar.mat-accent .mat-progress-bar-fill::after {
+    background-color: #1e90ff !important;
 }
 
 .mat-progress-bar.mat-primary .mat-progress-bar-buffer {
-  background-color: lightgreen !important;
+    background-color: lightgreen !important;
 }
 
-.mat-progress-bar.mat-primary .mat-progress-bar-fill::after{
-  background-color: green !important;
+.mat-progress-bar.mat-primary .mat-progress-bar-fill::after {
+    background-color: green !important;
 }
-
 
 @media (max-width: 990px) {
-  .cbff-container {
-    grid-template-columns: repeat(2,1fr);
-  }
-  .toolbox-main{
-    width: calc(100vw - 80px);
-    overflow-x: scroll;
-  }
+    .cbff-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .toolbox-main {
+        width: calc(100vw - 80px);
+        overflow-x: scroll;
+    }
 }
 
 @media (max-width: 576px) {
-  .cbff-container {
-    grid-template-columns: repeat(1,1fr);
-  }
+    .cbff-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 @media (max-width: 320px) {
-  #not-found{
-    top: 3rem;
-  }
+    #not-found {
+        top: 3rem;
+    }
 }
 
 #error-label {
-  display: none;
+    display: none;
 }
 
 .delete-popup {
-  float: right;
-  margin-right: 5px;
-  display:none;
+    float: right;
+    margin-right: 5px;
+    display: none;
 }
 
-html, body { height: 100%; }
+html,
+body {
+    height: 100%;
+}
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
-

@@ -3,15 +3,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 declare var $: any;
 
 export class AddUnOrderedListComponent implements PluginComponent {
-
-  constructor() {
-
-  }
+    constructor() {}
 
     // UnOrderedList HTML Tag
     addHTMLCode(uid) {
-
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
           <!-- Unordered list button -->
           <div class="tool box1 m-1" id="add-unordered-list-${uid}" title="Unordered List">
             <button class="btn btn-light">
@@ -30,21 +26,20 @@ export class AddUnOrderedListComponent implements PluginComponent {
     addClickFunction = (uid) => {
         // Adding UnOrderedList Tags
         $(`#add-unordered-list-${uid}`).click(() => {
-        $(`#original-${uid}`).append(
-          `<ul>
+            $(`#original-${uid}`).append(
+                `<ul>
           <li></li>
           </ul>`
-        );
-      });
-    }
+            );
+        });
+    };
 
     // Adding UnOrderedList
     addToolBox = (uid) => {
-     $(`#original-${uid}`).append(
-          `<ul>
+        $(`#original-${uid}`).append(
+            `<ul>
           <li></li>
           </ul>`
         );
-    }
-
+    };
 }

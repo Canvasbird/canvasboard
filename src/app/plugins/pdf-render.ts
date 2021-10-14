@@ -2,17 +2,14 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddPdfRenderComponent implements PluginComponent{
+export class AddPdfRenderComponent implements PluginComponent {
+    constructor() {}
 
-  constructor() {
+    // PdfRender HTML Tag
+    addHTMLCode(uid) {
+        // console.log('Calling PdfRender html');
 
-  }
-
-  // PdfRender HTML Tag
-  addHTMLCode(uid) {
-    // console.log('Calling PdfRender html');
-
-    $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
           <!-- PdfRender button -->
             <div class="tool box1 m-1" title="PdfRender">
               <button class="btn btn-light" id="add-pdf-render-box2-${uid}">
@@ -24,37 +21,35 @@ export class AddPdfRenderComponent implements PluginComponent{
               </button>
             </div>
       `);
-  }
+    }
 
-  // PdfRender HTML Tag Click Action
-  addClickFunction = (uid, file: string = '') => {
-    // PdfRender button
-    $(`#pdf-render-cb-box1-${uid}`).click(() => {
-      if (file !== '') {
-        $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
-        $(`#cb-box-2-${uid}`).append(`
+    // PdfRender HTML Tag Click Action
+    addClickFunction = (uid, file: string = '') => {
+        // PdfRender button
+        $(`#pdf-render-cb-box1-${uid}`).click(() => {
+            if (file !== '') {
+                $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
+                $(`#cb-box-2-${uid}`).append(`
         <embed src="${file}" height='600' width="100%" />
         `);
-      }
-    });
-  }
+            }
+        });
+    };
 
-  // Adding PdfRender
-  addToolBox = (uid, file: File, reader: FileReader) => {
-
-    let result: any;
-    console.log(file);
-    $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
-    reader.onloadend = () => {
-      // convert file to base64 string
-      result = reader.result;
-      $(`#cb-box-2-${uid}`).append(`
+    // Adding PdfRender
+    addToolBox = (uid, file: File, reader: FileReader) => {
+        let result: any;
+        // console.log(file);
+        $(`#cb-box-2-${uid} .cb-box-3`).css('display', 'none');
+        reader.onloadend = () => {
+            // convert file to base64 string
+            result = reader.result;
+            $(`#cb-box-2-${uid}`).append(`
       <embed src="${result}" height='600' width="100%" />
       `);
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
-
 }

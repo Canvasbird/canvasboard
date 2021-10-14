@@ -1,56 +1,56 @@
 <app-navbar></app-navbar>
 
-<div class="row searchBar" id="fuseSearch" style="display: none;">
-  <div class="bar">
-    <input
-      class="searchbar"
-      id="fuseInput"
-      type="text"
-      title="Search"
-      autocomplete="off"
-      (input)="textInputChange($event.target)"
-      (keyup.arrowup)="prevActiveMatch()"
-      (keyup.arrowdown)="nextActiveMatch()"
-      (keyup.enter)="enterFuseSearch()"
-    />
-    <div id="search_results">
-      <ul style="overflow:hidden;">
-        <!---------------------------- FUSE LIST ---------------------------------------------->
-        <li
-          *ngFor="let list of listFuseSearch; let i = index"
-          [ngClass]="{active: i==activeIndex}"
-          (click)="searchListClicked(list.item.id)"
-          id="{{ 'enter' + list.item.id }}"
-          style="padding: 10px;"
-        >
-          {{ list.item.name }}
-        </li>
-      </ul>
+<div class="row searchBar" id="fuseSearch" style="display: none">
+    <div class="bar">
+        <input
+            class="searchbar"
+            id="fuseInput"
+            type="text"
+            title="Search"
+            autocomplete="off"
+            (input)="textInputChange($event.target)"
+            (keyup.arrowup)="prevActiveMatch()"
+            (keyup.arrowdown)="nextActiveMatch()"
+            (keyup.enter)="enterFuseSearch()"
+        />
+        <div id="search_results">
+            <ul style="overflow: hidden">
+                <!---------------------------- FUSE LIST ---------------------------------------------->
+                <li
+                    *ngFor="let list of listFuseSearch; let i = index"
+                    [ngClass]="{ active: i == activeIndex }"
+                    (click)="searchListClicked(list.item.id)"
+                    id="{{ 'enter' + list.item.id }}"
+                    style="padding: 10px"
+                >
+                    {{ list.item.name }}
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
 
 <div id="content">
-  <span class="slide" style="display: none" title="Open Toolbox 🚀">
-    <a (click)="openSlideMenu()">
-      <svg
-        width="1.5em"
-        height="1.5em"
-        viewBox="0 0 16 16"
-        class="bi bi-justify"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-        />
-      </svg>
-    </a>
-  </span>
+    <span class="slide" style="display: none" title="Open Toolbox 🚀">
+        <a (click)="openSlideMenu()">
+            <svg
+                width="1.5em"
+                height="1.5em"
+                viewBox="0 0 16 16"
+                class="bi bi-justify"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+                />
+            </svg>
+        </a>
+    </span>
 
-  <div id="menu" class="nav shadow">
-    <!-- <a (click)="closeSlideMenu()" class="close" title="Close Toolbox 🚀">
+    <div id="menu" class="nav shadow">
+        <!-- <a (click)="closeSlideMenu()" class="close" title="Close Toolbox 🚀">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd"
@@ -58,397 +58,410 @@
       </svg>
     </a> -->
 
-    <div class="cb-ul">
-      <div class="header">
-        <h3><strong>Toolbox</strong></h3>
-      </div>
-      <!---------------------------- SAVE AND BACK ---------------------------------------------->
-      <div
-        class="container row mt-3"
-        style="margin-right: auto; margin-left: auto"
-      >
-        <button
-          type="button"
-          class="btn btn-success"
-          (click)="saveData()"
-          style="margin-right: 5px"
-        >
-          Save
-        </button>
+        <div class="cb-ul">
+            <div class="header">
+                <h3><strong>Toolbox</strong></h3>
+            </div>
+            <!---------------------------- SAVE AND BACK ---------------------------------------------->
+            <div
+                class="container row mt-3"
+                style="margin-right: auto; margin-left: auto"
+            >
+                <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="saveData()"
+                    style="margin-right: 5px"
+                >
+                    Save
+                </button>
 
-        <button
-          type="button"
-          class="btn btn-dark"
-          (click)="backButton()"
-          style="margin-right: 5px"
-        >
-          Back
-        </button>
+                <button
+                    type="button"
+                    class="btn btn-dark"
+                    (click)="backButton()"
+                    style="margin-right: 5px"
+                >
+                    Back
+                </button>
 
-        <button
-          class="btn btn-dark"
-          data-toggle="modal"
-          data-target="#presentModal"
-          data-backdrop="static"
-          (click)="cbToolboxPresent()"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-easel"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M8 0a.5.5 0 0 1 .473.337L9.046 2H14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.85l1.323 3.837a.5.5 0 1 1-.946.326L11.092 11H8.5v3a.5.5 0 0 1-1 0v-3H4.908l-1.435 4.163a.5.5 0 1 1-.946-.326L3.85 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.954L7.527.337A.5.5 0 0 1 8 0zM2 3v7h12V3H2z"
-            />
-          </svg>
-        </button>
-      </div>
-      <!---------------------------- TOOLS LIST ------------------------------------------------->
-      <div class="text-tools mt-3">
-        <p><strong>Basic tools</strong></p>
-        <!---------------------------- EDITOR LIST ---------------------------------------------->
-        <div class="button-tools d-flex flex-wrap">
-          <!-- H1 tag -->
-          <div class="m-1" title="H1">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddH1Component)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-type-h1"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.637 13V3.669H7.379V7.62H2.758V3.67H1.5V13h1.258V8.728h4.62V13h1.259zm5.329 0V3.669h-1.244L10.5 5.316v1.265l2.16-1.565h.062V13h1.244z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- h2 tag -->
-          <div class="m-1" title="H2">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddH2Component)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-type-h2"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.638 13V3.669H6.38V7.62H1.759V3.67H.5V13h1.258V8.728h4.62V13h1.259zm3.022-6.733v-.048c0-.889.63-1.668 1.716-1.668.957 0 1.675.608 1.675 1.572 0 .855-.554 1.504-1.067 2.085l-3.513 3.999V13H15.5v-1.094h-4.245v-.075l2.481-2.844c.875-.998 1.586-1.784 1.586-2.953 0-1.463-1.155-2.556-2.919-2.556-1.941 0-2.966 1.326-2.966 2.74v.049h1.223z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- h3 tag -->
-          <div class="m-1" title="H3">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddH3Component)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-type-h3"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.637 13V3.669H6.379V7.62H1.758V3.67H.5V13h1.258V8.728h4.62V13h1.259zm3.625-4.272h1.018c1.142 0 1.935.67 1.949 1.674.013 1.005-.78 1.737-2.01 1.73-1.08-.007-1.853-.588-1.935-1.32H9.108c.069 1.327 1.224 2.386 3.083 2.386 1.935 0 3.343-1.155 3.309-2.789-.027-1.51-1.251-2.16-2.037-2.249v-.068c.704-.123 1.764-.91 1.723-2.229-.035-1.353-1.176-2.4-2.954-2.385-1.873.006-2.857 1.162-2.898 2.358h1.196c.062-.69.711-1.299 1.696-1.299.998 0 1.695.622 1.695 1.525.007.922-.718 1.592-1.695 1.592h-.964v1.074z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- paragraph -->
-          <div class="m-1" title="Paragraph">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddParaComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-text-paragraph"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Save -->
-          <div class="m-1" title="Save">
-            <button class="btn btn-light" (click)="saveData()">
-              <svg
-                width=" 1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-file-arrow-down"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- delete button -->
-          <div class="tool box1 m-1" title="Delete Card">
-            <button class="btn btn-light" (click)="cbToolboxDeleteTag()">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-trash"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- top -->
-          <div class="tool box5 m-1" title="Add Top Card">
-            <button class="btn btn-light" (click)="cbToolboxTopTag()">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-arrow-bar-up"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- bottom -->
-          <div class="tool box5 m-1" title="Add Bottom Card">
-            <button class="btn btn-light" (click)="cbToolboxBottomTag()">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-arrow-bar-down"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <!---------------------------- COLOUR CARD LIST ----------------------------------------->
-        <div class="d-flex flex-wrap mt-2">
-          <!-- Red Background color button -->
-          <div class="m-1" title="Red Background">
-            <button
-              class="btn btn-danger"
-              (click)="cbToolbox(this.AddRedBackgroundComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-fonts"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Green Background color button -->
-          <div class="m-1" title="Green Background">
-            <button
-              class="btn btn-success"
-              (click)="cbToolbox(this.AddGreenBackgroundComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-fonts"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Yellow Background color button -->
-          <div class="m-1" title="Yellow Background">
-            <button
-              class="btn btn-warning"
-              (click)="cbToolbox(this.AddYellowBackgroundComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-fonts"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Blue Background color button -->
-          <div class="m-1" title="Blue Background">
-            <button
-              class="btn btn-primary"
-              (click)="cbToolbox(this.AddBlueBackgroundComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-fonts"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- fonts Styles-->
-      <div class="font-cards-tools mt-2">
-        <p><strong>Font Styles</strong></p>
-        <div class="d-flex flex-wrap mt-2">
-          <!-- Roboto -->
-          <div
-            class="m-1"
-            title="Roboto Font"
-            (click)="cbToolbox(this.AddClearFontComponent)"
-          >
-            <button class="btn btn-light">Roboto</button>
-          </div>
-          <!-- Monospace -->
-          <div class="m-1" title="Monospace Font">
-            <button
-              class="btn btn-light monospace"
-              (click)="cbToolbox(this.AddFontMonospaceComponent)"
-            >
-              Monospace
-            </button>
-          </div>
-          <!-- Playfair -->
-          <div class="m-1" title="Playfair Font">
-            <button
-              class="btn btn-light playfair"
-              (click)="cbToolbox(this.AddFontPlayfairComponent)"
-            >
-              Playfair
-            </button>
-          </div>
-          <!-- Kalam -->
-          <div class="m-1" title="Kalam Font">
-            <button
-              class="btn btn-light kalam"
-              (click)="cbToolbox(this.AddFontKalamComponent)"
-            >
-              Kalam
-            </button>
-          </div>
-          <!-- Clear Font -->
-          <!-- <div class="m-1" title="Clear Font" (click)="cbToolboxClearFont()">
+                <button
+                    class="btn btn-dark"
+                    data-toggle="modal"
+                    data-target="#presentModal"
+                    data-backdrop="static"
+                    (click)="cbToolboxPresent()"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-easel"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            d="M8 0a.5.5 0 0 1 .473.337L9.046 2H14a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1.85l1.323 3.837a.5.5 0 1 1-.946.326L11.092 11H8.5v3a.5.5 0 0 1-1 0v-3H4.908l-1.435 4.163a.5.5 0 1 1-.946-.326L3.85 11H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4.954L7.527.337A.5.5 0 0 1 8 0zM2 3v7h12V3H2z"
+                        />
+                    </svg>
+                </button>
+            </div>
+            <!---------------------------- TOOLS LIST ------------------------------------------------->
+            <div class="text-tools mt-3">
+                <p><strong>Basic tools</strong></p>
+                <!---------------------------- EDITOR LIST ---------------------------------------------->
+                <div class="button-tools d-flex flex-wrap">
+                    <!-- H1 tag -->
+                    <div class="m-1" title="H1">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddH1Component)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-type-h1"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M8.637 13V3.669H7.379V7.62H2.758V3.67H1.5V13h1.258V8.728h4.62V13h1.259zm5.329 0V3.669h-1.244L10.5 5.316v1.265l2.16-1.565h.062V13h1.244z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- h2 tag -->
+                    <div class="m-1" title="H2">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddH2Component)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-type-h2"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M7.638 13V3.669H6.38V7.62H1.759V3.67H.5V13h1.258V8.728h4.62V13h1.259zm3.022-6.733v-.048c0-.889.63-1.668 1.716-1.668.957 0 1.675.608 1.675 1.572 0 .855-.554 1.504-1.067 2.085l-3.513 3.999V13H15.5v-1.094h-4.245v-.075l2.481-2.844c.875-.998 1.586-1.784 1.586-2.953 0-1.463-1.155-2.556-2.919-2.556-1.941 0-2.966 1.326-2.966 2.74v.049h1.223z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- h3 tag -->
+                    <div class="m-1" title="H3">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddH3Component)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-type-h3"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M7.637 13V3.669H6.379V7.62H1.758V3.67H.5V13h1.258V8.728h4.62V13h1.259zm3.625-4.272h1.018c1.142 0 1.935.67 1.949 1.674.013 1.005-.78 1.737-2.01 1.73-1.08-.007-1.853-.588-1.935-1.32H9.108c.069 1.327 1.224 2.386 3.083 2.386 1.935 0 3.343-1.155 3.309-2.789-.027-1.51-1.251-2.16-2.037-2.249v-.068c.704-.123 1.764-.91 1.723-2.229-.035-1.353-1.176-2.4-2.954-2.385-1.873.006-2.857 1.162-2.898 2.358h1.196c.062-.69.711-1.299 1.696-1.299.998 0 1.695.622 1.695 1.525.007.922-.718 1.592-1.695 1.592h-.964v1.074z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- paragraph -->
+                    <div class="m-1" title="Paragraph">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddParaComponent)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-text-paragraph"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Save -->
+                    <div class="m-1" title="Save">
+                        <button class="btn btn-light" (click)="saveData()">
+                            <svg
+                                width=" 1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-file-arrow-down"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"
+                                />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M8 5a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5A.5.5 0 0 1 8 5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- delete button -->
+                    <div class="tool box1 m-1" title="Delete Card">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolboxDeleteTag()"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-trash"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                                />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- top -->
+                    <div class="tool box5 m-1" title="Add Top Card">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolboxTopTag()"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-arrow-bar-up"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- bottom -->
+                    <div class="tool box5 m-1" title="Add Bottom Card">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolboxBottomTag()"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-arrow-bar-down"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!---------------------------- COLOUR CARD LIST ----------------------------------------->
+                <div class="d-flex flex-wrap mt-2">
+                    <!-- Red Background color button -->
+                    <div class="m-1" title="Red Background">
+                        <button
+                            class="btn btn-danger"
+                            (click)="cbToolbox(this.AddRedBackgroundComponent)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-fonts"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Green Background color button -->
+                    <div class="m-1" title="Green Background">
+                        <button
+                            class="btn btn-success"
+                            (click)="
+                                cbToolbox(this.AddGreenBackgroundComponent)
+                            "
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-fonts"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Yellow Background color button -->
+                    <div class="m-1" title="Yellow Background">
+                        <button
+                            class="btn btn-warning"
+                            (click)="
+                                cbToolbox(this.AddYellowBackgroundComponent)
+                            "
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-fonts"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Blue Background color button -->
+                    <div class="m-1" title="Blue Background">
+                        <button
+                            class="btn btn-primary"
+                            (click)="cbToolbox(this.AddBlueBackgroundComponent)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-fonts"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12.258 3H3.747l-.082 2.46h.479c.26-1.544.758-1.783 2.693-1.845l.424-.013v7.827c0 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694 1.846h.479L12.258 3z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- fonts Styles-->
+            <div class="font-cards-tools mt-2">
+                <p><strong>Font Styles</strong></p>
+                <div class="d-flex flex-wrap mt-2">
+                    <!-- Roboto -->
+                    <div
+                        class="m-1"
+                        title="Roboto Font"
+                        (click)="cbToolbox(this.AddClearFontComponent)"
+                    >
+                        <button class="btn btn-light">Roboto</button>
+                    </div>
+                    <!-- Monospace -->
+                    <div class="m-1" title="Monospace Font">
+                        <button
+                            class="btn btn-light monospace"
+                            (click)="cbToolbox(this.AddFontMonospaceComponent)"
+                        >
+                            Monospace
+                        </button>
+                    </div>
+                    <!-- Playfair -->
+                    <div class="m-1" title="Playfair Font">
+                        <button
+                            class="btn btn-light playfair"
+                            (click)="cbToolbox(this.AddFontPlayfairComponent)"
+                        >
+                            Playfair
+                        </button>
+                    </div>
+                    <!-- Kalam -->
+                    <div class="m-1" title="Kalam Font">
+                        <button
+                            class="btn btn-light kalam"
+                            (click)="cbToolbox(this.AddFontKalamComponent)"
+                        >
+                            Kalam
+                        </button>
+                    </div>
+                    <!-- Clear Font -->
+                    <!-- <div class="m-1" title="Clear Font" (click)="cbToolboxClearFont()">
             <button class="btn btn-light">
               Clear Font
             </button>
           </div> -->
-        </div>
-      </div>
+                </div>
+            </div>
 
-      <!------------------------------ Plugins ------------------------------>
-      <div class="plugins mt-2">
-        <p><strong>Plugins</strong></p>
-        <div class="d-flex flex-wrap mt-2">
-          <!-- Ordered list button -->
-          <div class="m-1" title="Ordered List">
-            <button class="btn btn-light">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-list-ol"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"
-                />
-                <path
-                  d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Unordered list button -->
-          <div class="m-1" title="Unordered List">
-            <button class="btn btn-light">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-list-ul"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Image upload button -->
-          <!-- <div class="m-1" title="Image Upload">
+            <!------------------------------ Plugins ------------------------------>
+            <div class="plugins mt-2">
+                <p><strong>Plugins</strong></p>
+                <div class="d-flex flex-wrap mt-2">
+                    <!-- Ordered list button -->
+                    <div class="m-1" title="Ordered List">
+                        <button class="btn btn-light">
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-list-ol"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"
+                                />
+                                <path
+                                    d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Unordered list button -->
+                    <div class="m-1" title="Unordered List">
+                        <button class="btn btn-light">
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-list-ul"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Image upload button -->
+                    <!-- <div class="m-1" title="Image Upload">
             <button class="btn btn-light">
               <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
@@ -458,236 +471,250 @@
             </button>
           </div> -->
 
-          <!-- Canvas Board -->
-          <div class="m-1" title="Canvas Board">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddCanvasBoard, 'board')"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-square"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Left Align Text button -->
-          <div class="m-1" title="Left Align">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddLeftAlignComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-text-left"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Center Align Text button -->
-          <div class="m-1" title="Center Align">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddCenterAlignComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-text-center"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Right Align Text button -->
-          <div class="m-1" title="Right Align">
-            <button
-              class="btn btn-light"
-              (click)="cbToolbox(this.AddRightAlignComponent)"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-text-right"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Embed -->
-          <div class="tool box4 m-1" title="Embed link">
-            <button
-              class="btn btn-light"
-              data-toggle="modal"
-              data-target="#embedModal"
-            >
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-code-square"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- PdfRender button -->
-          <div
-            class="tool box1 m-1"
-            title="File Upload"
-            (click)="cbToolboxPdfRender()"
-          >
-            <input type="file" hidden id="pdfFile" />
-            <button class="btn btn-light" id="pdf-render-cb-box1-${uid}">
-              <svg
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                class="bi bi-file-earmark"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"
-                />
-                <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-              </svg>
-            </button>
-          </div>
-          <!-- Youtube button -->
-          <div class="tool box1 m-1" title="Youtube">
-            <input type="file" hidden id="youtube" />
-            <button
-              class="btn btn-light"
-              id="youtube-cb-box1-${uid}"
-              data-toggle="modal"
-              data-target="#youtubeModal"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-youtube"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Clock button -->
-          <div
-            class="tool box1 m-1"
-            title="Clock"
-            (click)="
-              cbToolbox(this.AddEmbedComponent, 'embed', 'plugins/clock')
-            "
-          >
-            <button class="btn btn-light" id="clock-cb-box1-${uid}">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-clock"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
-                />
-                <path
-                  d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Twitter button -->
-          <div class="tool box1 m-1" title="Twitter">
-            <input type="file" hidden id="twitter" />
-            <button
-              class="btn btn-light"
-              id="twitter-cb-box1-${uid}"
-              data-toggle="modal"
-              data-target="#twitterModal"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-twitter"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- Markdown button -->
-          <div
-            class="tool box1 m-1"
-            title="Markdown"
-            (click)="cbToolbox(this.AddMarkDownComponent, 'markdown')"
-          >
-            <button class="btn btn-light" id="markdown-cb-box1-${uid}">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-markdown-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.5 1a.5.5 0 0 0-.5.5v3.793L9.854 8.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L12 9.293V5.5a.5.5 0 0 0-.5-.5zM3.56 7.01h.056l1.428 3.239h.774l1.42-3.24h.056V11h1.073V5.001h-1.2l-1.71 3.894h-.039l-1.71-3.894H2.5V11h1.06V7.01z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!-- Graphs -->
-      <!-- <div class="cb-graphs">
+                    <!-- Canvas Board -->
+                    <div class="m-1" title="Canvas Board">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddCanvasBoard, 'board')"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-square"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Left Align Text button -->
+                    <div class="m-1" title="Left Align">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddLeftAlignComponent)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-text-left"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Center Align Text button -->
+                    <div class="m-1" title="Center Align">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddCenterAlignComponent)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-text-center"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M4 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Right Align Text button -->
+                    <div class="m-1" title="Right Align">
+                        <button
+                            class="btn btn-light"
+                            (click)="cbToolbox(this.AddRightAlignComponent)"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-text-right"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Embed -->
+                    <div class="tool box4 m-1" title="Embed link">
+                        <button
+                            class="btn btn-light"
+                            data-toggle="modal"
+                            data-target="#embedModal"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-code-square"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                                />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- PdfRender button -->
+                    <div
+                        class="tool box1 m-1"
+                        title="File Upload"
+                        (click)="cbToolboxPdfRender()"
+                    >
+                        <input type="file" hidden id="pdfFile" />
+                        <button
+                            class="btn btn-light"
+                            id="pdf-render-cb-box1-${uid}"
+                        >
+                            <svg
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 16 16"
+                                class="bi bi-file-earmark"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"
+                                />
+                                <path
+                                    d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Youtube button -->
+                    <div class="tool box1 m-1" title="Youtube">
+                        <input type="file" hidden id="youtube" />
+                        <button
+                            class="btn btn-light"
+                            id="youtube-cb-box1-${uid}"
+                            data-toggle="modal"
+                            data-target="#youtubeModal"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-youtube"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.122C.002 7.343.01 6.6.064 5.78l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Clock button -->
+                    <div
+                        class="tool box1 m-1"
+                        title="Clock"
+                        (click)="
+                            cbToolbox(
+                                this.AddEmbedComponent,
+                                'embed',
+                                'plugins/clock'
+                            )
+                        "
+                    >
+                        <button class="btn btn-light" id="clock-cb-box1-${uid}">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-clock"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"
+                                />
+                                <path
+                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Twitter button -->
+                    <div class="tool box1 m-1" title="Twitter">
+                        <input type="file" hidden id="twitter" />
+                        <button
+                            class="btn btn-light"
+                            id="twitter-cb-box1-${uid}"
+                            data-toggle="modal"
+                            data-target="#twitterModal"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-twitter"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Markdown button -->
+                    <div
+                        class="tool box1 m-1"
+                        title="Markdown"
+                        (click)="
+                            cbToolbox(this.AddMarkDownComponent, 'markdown')
+                        "
+                    >
+                        <button
+                            class="btn btn-light"
+                            id="markdown-cb-box1-${uid}"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-markdown-fill"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.5 1a.5.5 0 0 0-.5.5v3.793L9.854 8.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L12 9.293V5.5a.5.5 0 0 0-.5-.5zM3.56 7.01h.056l1.428 3.239h.774l1.42-3.24h.056V11h1.073V5.001h-1.2l-1.71 3.894h-.039l-1.71-3.894H2.5V11h1.06V7.01z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Graphs -->
+            <!-- <div class="cb-graphs">
         <p><strong>Graphs</strong></p>
         <div class="d-flex flex-wrap mt-2">
 
@@ -701,302 +728,314 @@
           </div>
         </div>
       </div> -->
-    </div>
-  </div>
-
-  <!---------------------------- NOTIFICATIONS ---------------------------------------------->
-
-  <div aria-live="polite" aria-atomic="true" style="position: relative">
-    <div id="toasts" style="position: absolute; top: 0; right: 0">
-      <!-- Toast tag -->
-      <div
-        class="toast"
-        id="saveToast"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-        data-delay="2000"
-      >
-        <div class="toast-header">
-          <img
-            src="../../../assets/home/logo_bw.png"
-            width="38"
-            height="40"
-            class="d-inline-block align-top mr-1"
-            alt="CB"
-            loading="lazy"
-          />
-          <strong class="mr-4">Canvasboard Beta</strong>
-          <small class="text-muted">just now</small>
-          <button
-            type="button"
-            class="ml-2 mb-1 close"
-            data-dismiss="toast"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
-        <div class="toast-body">Board is Saved.</div>
-      </div>
     </div>
-  </div>
 
-  <!---------------------------- MAIN BLOCK ------------------------------------------------>
-  <div class="container mt-2 cb-container-main">
-    <div class="main">
-      <div class="cb-title" id="cb-title">
-        <h2
-          id="title"
-          class="heading"
-          contenteditable="true"
-          data-text="Title"
-        ></h2>
-      </div>
+    <!---------------------------- NOTIFICATIONS ---------------------------------------------->
 
-      <div id="main-box" class="main-box">
-        <!---------------------------- TEMP CARD------------------------------------------------>
-        <div id="sub-title" class="demo"></div>
-
-        <!---------------------------- BLOCKS INJECTION ---------------------------------------->
-
-        <!---------------------------- BLOCKS INJECTION END------------------------------------->
-      </div>
-      <!-- --------------END OF NOTES BOX -->
-      <!-- Full screen modal -->
-      <div
-        class="modal"
-        id="presentModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="presentModalCenterTitle"
-        data-backdrop="static"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-fullscreen"
-          style="
-            max-width: 100vw;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-          "
-        >
-          <div class="modal-content" style="width: 100%; height: 95%">
-            <div class="modal-body" style="padding: 0%">
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-                style="padding-right: 20px"
-              >
-                <span aria-hidden="true" style="font-size: 3rem">&times;</span>
-              </button>
-              <div id="revealDiv" class="reveal">
-                <div class="slides">
-                  <section data-background-color="white">Demo Slide 1</section>
-                  <section data-background-color="white">Demo Slide 2</section>
+    <div aria-live="polite" aria-atomic="true" style="position: relative">
+        <div id="toasts" style="position: absolute; top: 0; right: 0">
+            <!-- Toast tag -->
+            <div
+                class="toast"
+                id="saveToast"
+                role="alert"
+                aria-live="assertive"
+                aria-atomic="true"
+                data-delay="2000"
+            >
+                <div class="toast-header">
+                    <img
+                        src="../../../assets/home/logo_bw.png"
+                        width="38"
+                        height="40"
+                        class="d-inline-block align-top mr-1"
+                        alt="CB"
+                        loading="lazy"
+                    />
+                    <strong class="mr-4">Canvasboard Beta</strong>
+                    <small class="text-muted">just now</small>
+                    <button
+                        type="button"
+                        class="ml-2 mb-1 close"
+                        data-dismiss="toast"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-              </div>
+                <div class="toast-body">Board is Saved.</div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <!--Embed Modal -->
-    <div
-      class="modal fade"
-      id="embedModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="embedModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="embedModalLongTitle">Embed Link URL</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
+    <!---------------------------- MAIN BLOCK ------------------------------------------------>
+    <div class="container mt-2 cb-container-main">
+        <div class="main">
+            <div class="cb-title" id="cb-title">
+                <h2
+                    id="title"
+                    class="heading"
+                    contenteditable="true"
+                    data-text="Title"
+                ></h2>
+            </div>
+
+            <div id="main-box" class="main-box">
+                <!---------------------------- TEMP CARD------------------------------------------------>
+                <div id="sub-title" class="demo"></div>
+
+                <!---------------------------- BLOCKS INJECTION ---------------------------------------->
+
+                <!---------------------------- BLOCKS INJECTION END------------------------------------->
+            </div>
+            <!-- --------------END OF NOTES BOX -->
+            <!-- Full screen modal -->
+            <div
+                class="modal"
+                id="presentModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="presentModalCenterTitle"
+                data-backdrop="static"
+                aria-hidden="true"
             >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div
-                class="form-group"
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  justify-content: space-around;
-                "
-              >
-                <input
-                  type="text"
-                  placeholder="Enter Embed link here"
-                  class="form-control"
-                  id="embedURL"
-                  #embedURL
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-dismiss="modal"
-              (click)="
-                cbToolbox(this.AddEmbedComponent, 'embed', embedURL.value)
-              "
-            >
-              Enter
-            </button>
-          </div>
+                <div
+                    class="modal-fullscreen"
+                    style="
+                        max-width: 100vw;
+                        height: 100vh;
+                        width: 100vw;
+                        overflow: hidden;
+                    "
+                >
+                    <div class="modal-content" style="width: 100%; height: 95%">
+                        <div class="modal-body" style="padding: 0%">
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                                style="padding-right: 20px"
+                            >
+                                <span aria-hidden="true" style="font-size: 3rem"
+                                    >&times;</span
+                                >
+                            </button>
+                            <div id="revealDiv" class="reveal">
+                                <div class="slides">
+                                    <section data-background-color="white">
+                                        Demo Slide 1
+                                    </section>
+                                    <section data-background-color="white">
+                                        Demo Slide 2
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!---------------------------- YOUTUBE MODAL ------------------------------------------------>
-    <div
-      class="modal fade"
-      id="youtubeModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="youtubeModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="youtubeModalLongTitle">
-              youtube Link URL
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div
-                class="form-group"
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  justify-content: space-around;
-                "
-              >
-                <input
-                  type="text"
-                  placeholder="Enter youtube link here"
-                  class="form-control"
-                  id="youtubeEmbedURL"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-dismiss="modal"
-              (click)="cbToolboxYoutube()"
-            >
-              Enter
-            </button>
-          </div>
+
+        <!--Embed Modal -->
+        <div
+            class="modal fade"
+            id="embedModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="embedModalCenterTitle"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="embedModalLongTitle">
+                            Embed Link URL
+                        </h5>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div
+                                class="form-group"
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: space-around;
+                                "
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="Enter Embed link here"
+                                    class="form-control"
+                                    id="embedURL"
+                                    #embedURL
+                                />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            (click)="
+                                cbToolbox(
+                                    this.AddEmbedComponent,
+                                    'embed',
+                                    embedURL.value
+                                )
+                            "
+                        >
+                            Enter
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!---------------------------- TWITTER MODAL ------------------------------------------------>
-    <div
-      class="modal fade"
-      id="twitterModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="twitterModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="twitterModalLongTitle">
-              Twitter Link URL
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div
-                class="form-group"
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  justify-content: space-around;
-                "
-              >
-                <input
-                  type="text"
-                  placeholder="Enter twitter link here"
-                  class="form-control"
-                  id="twitterEmbedURL"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-dismiss="modal"
-              (click)="cbToolboxTwitter()"
-            >
-              Enter
-            </button>
-          </div>
+        <!---------------------------- YOUTUBE MODAL ------------------------------------------------>
+        <div
+            class="modal fade"
+            id="youtubeModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="youtubeModalCenterTitle"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="youtubeModalLongTitle">
+                            youtube Link URL
+                        </h5>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div
+                                class="form-group"
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: space-around;
+                                "
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="Enter youtube link here"
+                                    class="form-control"
+                                    id="youtubeEmbedURL"
+                                />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            (click)="cbToolboxYoutube()"
+                        >
+                            Enter
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <!---------------------------- TWITTER MODAL ------------------------------------------------>
+        <div
+            class="modal fade"
+            id="twitterModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="twitterModalCenterTitle"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="twitterModalLongTitle">
+                            Twitter Link URL
+                        </h5>
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div
+                                class="form-group"
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: space-around;
+                                "
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="Enter twitter link here"
+                                    class="form-control"
+                                    id="twitterEmbedURL"
+                                />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            (click)="cbToolboxTwitter()"
+                        >
+                            Enter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

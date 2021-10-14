@@ -2,12 +2,12 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddRedBackgroundComponent implements PluginComponent{
-  constructor() { }
+export class AddRedBackgroundComponent implements PluginComponent {
+    constructor() {}
 
-  // Red background color HTML Tag
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    // Red background color HTML Tag
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
     <!-- Red Background color button -->
     <div class="tool box1 m-1" title="Red Background">
       <button class="btn btn-danger" id="add-background-cb-red-${uid}">
@@ -19,26 +19,26 @@ export class AddRedBackgroundComponent implements PluginComponent{
       </button>
     </div>
     `);
-  }
+    };
 
-  // Red Background HTML Tag Click Action
-  addClickFunction = (uid) => {
-    // Adding red background color
-    $(`#add-background-cb-red-${uid}`).click(() => {
-      $(`#cb-box-2-${uid}`)
-        .removeClass(
-          'cb-background-yellow cb-background-green cb-background-blue'
-        )
-        .addClass('cb-background-red');
-    });
-  }
+    // Red Background HTML Tag Click Action
+    addClickFunction = (uid) => {
+        // Adding red background color
+        $(`#add-background-cb-red-${uid}`).click(() => {
+            $(`#cb-box-2-${uid}`)
+                .removeClass(
+                    'cb-background-yellow cb-background-green cb-background-blue'
+                )
+                .addClass('cb-background-red');
+        });
+    };
 
-  // Adding Red background color
-  addToolBox = (uid) => {
-    $(`#cb-box-2-${uid}`)
-      .removeClass(
-        'cb-background-yellow cb-background-green cb-background-blue'
-      )
-      .addClass('cb-background-red');
-  }
+    // Adding Red background color
+    addToolBox = (uid) => {
+        $(`#cb-box-2-${uid}`)
+            .removeClass(
+                'cb-background-yellow cb-background-green cb-background-blue'
+            )
+            .addClass('cb-background-red');
+    };
 }

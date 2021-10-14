@@ -1,276 +1,274 @@
 .container {
-  .main {
-    .cb-title {
-      .heading {
-        margin-bottom: 0px;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        border-bottom: 1px solid #dbdbdb;
-        display: flex;
-        margin-left: 4.1%;
-        
-      }
-
-      .heading:focus {
-        outline: none;
-      }
-    }
-
-
-    .main-box {
-      display: block;
-      margin-top: 5px;
-      .cb-box-1 {
-        width: 100%;
-        // max-width: 630px;
-        margin-top: 1px;
-        margin-bottom: 1px;
-        position: relative;
-
-        .cb-top-toolbox {
-          position: absolute;
-          bottom: 15px;
-          width: 100%;
-        }
-.cb-bottom-toolbox {
-          position: absolute;
-          top: 10px;
-          width: 100%;
-        }
-
-        .cb-box-2 {
-          color: red;
-          background-color: pink;
-          padding-top: 3px;
-          padding-bottom: 3px;
-          border-radius: 5px;
-.cb-box-3 {
-  display: flex;
-
-  .edit {
-    max-width: 100%;
-    width: 100%;
-    white-space: pre-wrap;
-    word-break: break-all;
-  }
-
-  .edit:focus {
-              outline: none;
+    .main {
+        .cb-title {
+            .heading {
+                margin-bottom: 0px;
+                padding-top: 1px;
+                padding-bottom: 1px;
+                border-bottom: 1px solid #dbdbdb;
+                display: flex;
+                margin-left: 4.1%;
             }
-          }
+
+            .heading:focus {
+                outline: none;
+            }
         }
 
-        .cb-toolbox {
-          margin-top: 10%;
-          padding-left: 20px;
+        .main-box {
+            display: block;
+            margin-top: 5px;
+            .cb-box-1 {
+                width: 100%;
+                // max-width: 630px;
+                margin-top: 1px;
+                margin-bottom: 1px;
+                position: relative;
+
+                .cb-top-toolbox {
+                    position: absolute;
+                    bottom: 15px;
+                    width: 100%;
+                }
+                .cb-bottom-toolbox {
+                    position: absolute;
+                    top: 10px;
+                    width: 100%;
+                }
+
+                .cb-box-2 {
+                    color: red;
+                    background-color: pink;
+                    padding-top: 3px;
+                    padding-bottom: 3px;
+                    border-radius: 5px;
+                    .cb-box-3 {
+                        display: flex;
+
+                        .edit {
+                            max-width: 100%;
+                            width: 100%;
+                            white-space: pre-wrap;
+                            word-break: break-all;
+                        }
+
+                        .edit:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                .cb-toolbox {
+                    margin-top: 10%;
+                    padding-left: 20px;
+                }
+
+                .cb-more-toolbox {
+                    position: relative;
+                    display: none;
+                }
+            }
+        }
+    }
+    //................. TOOLBOX.....................
+    .toolbox {
+        margin-top: 10px;
+        .toolbox-main {
+            display: flex;
         }
 
-        .cb-more-toolbox {
-          position: relative;
-          display: none;
+        .quill {
+            padding: 20px;
         }
-      }
-    }
-  }
-  //................. TOOLBOX.....................
-  .toolbox {
-    margin-top: 10px;
-.toolbox-main {
-  display: flex;
-    }
 
-
-    .quill {
-      padding: 20px;
+        ::ng-deep .ql-toolbar.ql-snow {
+            border-radius: 10px;
+        }
     }
-
-    ::ng-deep .ql-toolbar.ql-snow {
-      border-radius: 10px;
-    }
-  }
 }
 .creative-board-main:focus {
-  outline: none;
+    outline: none;
 }
 
 .red {
-  background: red;
+    background: red;
 }
 
-[contentEditable=true]:empty:not(:focus):before {
-  content: attr(data-text);
-  display: inline-flex;
+[contentEditable='true']:empty:not(:focus):before {
+    content: attr(data-text);
+    display: inline-flex;
 }
 
 .inline-flex {
-  display: inline-flex;
+    display: inline-flex;
 }
 
 .col-cb-1-custom {
-  padding-top: 8px;
-  max-width: 3%;
+    padding-top: 8px;
+    max-width: 3%;
 
-  svg {
-    margin-top: 50%;
-  }
+    svg {
+        margin-top: 50%;
+    }
 }
-
 
 .cb-container-main {
-  min-height: 80vh;
-  margin-bottom: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  max-height: 88vh; 
-  overflow:visible;
+    min-height: 80vh;
+    margin-bottom: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    max-height: 88vh;
+    overflow: visible;
 }
-
 
 // navbar
 .nav {
-  height: 90%;
-  width: 250px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  margin-top: 60px;
-  // transition: 0.3s;
-  overflow-x: hidden;
-  // border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+    height: 90%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    margin-top: 60px;
+    // transition: 0.3s;
+    overflow-x: hidden;
+    // border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 
-  .close {
-    position: absolute;
-    top: 15px;
-    right: 22px;
-  }
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 22px;
+    }
 }
 .slider {
-  position: fixed;
-  margin-left: 0.5%;
+    position: fixed;
+    margin-left: 0.5%;
 }
 
 .cb-ul {
-  margin-top: 10px;
-  width: 100%;
-
-  .header {
-    margin-left: 5%;
     margin-top: 10px;
-  }
-.text-tools {
-    margin-left: 5%;
-  }
-  .color-cards-tools {
-    margin-left: 5%;
-  }
-  .font-cards-tools {
-    margin-left: 5%;
-  }
-  .plugins {
-    margin-left: 5%;
-  }
-  .cb-graphs {
-    margin-left: 5%;
-  }
+    width: 100%;
+
+    .header {
+        margin-left: 5%;
+        margin-top: 10px;
+    }
+    .text-tools {
+        margin-left: 5%;
+    }
+    .color-cards-tools {
+        margin-left: 5%;
+    }
+    .font-cards-tools {
+        margin-left: 5%;
+    }
+    .plugins {
+        margin-left: 5%;
+    }
+    .cb-graphs {
+        margin-left: 5%;
+    }
 }
 // ---------------- FONTS PLUGIN ---------------------------
 .monospace {
-  font-family: 'Courier Prime', monospace;
+    font-family: 'Courier Prime', monospace;
 }
 
 .playfair {
-  font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif;
 }
 
 .kalam {
-  font-family: 'Kalam', cursive;
+    font-family: 'Kalam', cursive;
 }
 
 // ----------------- FUSE SEARCH ----------------------
 .searchBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--gray-800);
-  z-index:1000000;
-  padding-top: 30vh;
-  .bar {
-      margin: 0 auto;
-      width: 50vw;
-      // border-radius: 30px;
-      // border: 1px solid #dcdcdc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--gray-800);
+    z-index: 1000000;
+    padding-top: 30vh;
+    .bar {
+        margin: 0 auto;
+        width: 50vw;
+        // border-radius: 30px;
+        // border: 1px solid #dcdcdc;
 
-      ul {
-        background-color: white;
-        list-style: none;
-        max-height: 400px;
-        overflow: scroll;
+        ul {
+            background-color: white;
+            list-style: none;
+            max-height: 400px;
+            overflow: scroll;
 
-        li {
-          padding: 6px 8px;
-          // padding-top: 0px;
-          white-space: nowrap;
-          border-radius: 4px;
-          // margin: 2px 0;
-          
-          line-height: 1;
-          font-weight: 600;
-          font-size: 15px;
-          cursor: pointer;
+            li {
+                padding: 6px 8px;
+                // padding-top: 0px;
+                white-space: nowrap;
+                border-radius: 4px;
+                // margin: 2px 0;
+
+                line-height: 1;
+                font-weight: 600;
+                font-size: 15px;
+                cursor: pointer;
+            }
+
+            li.active,
+            li:hover {
+                background-color: var(--blue-400-45);
+            }
         }
+    }
 
-        li.active,
-        li:hover {
-    background-color: var(--blue-400-45);
-  }
-      }
-  }
-
-  .bar:focus-within {
-      outline: none;
-  }
-  .searchbar {
-      height: 45px;
-      border: none;
-      width: 100%;
-      font-size: 16px;
-      outline: none;
-      padding-left: 45px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-  }
+    .bar:focus-within {
+        outline: none;
+    }
+    .searchbar {
+        height: 45px;
+        border: none;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        padding-left: 45px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
 }
 
 // -------------------------------------------------
-#content{
-  margin-left: 250px; 
-  padding-top: 80px;
-  overflow-y: auto;
-  -ms-overflow-style: auto;  /* IE and Edge */
-  scrollbar-width: thin; /* Firefox */
+#content {
+    margin-left: 250px;
+    padding-top: 80px;
+    overflow-y: auto;
+    -ms-overflow-style: auto; /* IE and Edge */
+    scrollbar-width: thin; /* Firefox */
 }
 
 #content::-webkit-scrollbar {
-  position: absolute;
-  right:0.5em;
-  width: 0.5rem; /* width of the entire scrollbar */
+    position: absolute;
+    right: 0.5em;
+    width: 0.5rem; /* width of the entire scrollbar */
 }
 
 #content::-webkit-scrollbar-thumb {
-  background-color: #b9b9b9;
-  border-radius: 0.75rem;
+    background-color: #b9b9b9;
+    border-radius: 0.75rem;
 }
 
 #menu {
-  margin-top: 85px;
+    margin-top: 85px;
 }
 
-#search_results li.active { background:#000; color:#fff; }
+#search_results li.active {
+    background: #000;
+    color: #fff;
+}

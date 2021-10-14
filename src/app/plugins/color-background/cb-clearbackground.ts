@@ -2,12 +2,12 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddClearBackgroundComponent implements PluginComponent{
-  constructor() {}
+export class AddClearBackgroundComponent implements PluginComponent {
+    constructor() {}
 
-  // Clear background color HTML Tag
-  addHTMLCode = (uid) => {
-    $(`#cb-buttons-${uid}`).append(`
+    // Clear background color HTML Tag
+    addHTMLCode = (uid) => {
+        $(`#cb-buttons-${uid}`).append(`
     <!-- light Background color button -->
           <div class="tool box1 m-1" title="Clear Background">
             <button class="btn btn-light" id="add-background-cb-light-${uid}">
@@ -20,22 +20,22 @@ export class AddClearBackgroundComponent implements PluginComponent{
             </button>
           </div>
     `);
-  }
+    };
 
-  // Clear Background HTML Tag Click Action
-  addClickFunction = (uid) => {
-    // Adding Original background color
-      $(`#add-background-cb-light-${uid}`).click(() => {
+    // Clear Background HTML Tag Click Action
+    addClickFunction = (uid) => {
+        // Adding Original background color
+        $(`#add-background-cb-light-${uid}`).click(() => {
+            $(`#cb-box-2-${uid}`).removeClass(
+                'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
+            );
+        });
+    };
+
+    // Adding Clear Background color
+    addToolBox = (uid) => {
         $(`#cb-box-2-${uid}`).removeClass(
-          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
+            'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
         );
-      });
-  }
-
-  // Adding Clear Background color
-  addToolBox = (uid) => {
-     $(`#cb-box-2-${uid}`).removeClass(
-          'cb-background-green cb-background-blue cb-background-red cb-background-yellow'
-        );
-  }
+    };
 }

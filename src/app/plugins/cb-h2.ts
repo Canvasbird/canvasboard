@@ -2,13 +2,12 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 
 declare var $: any;
 
-export class AddH2Component implements PluginComponent{
-  constructor() {}
+export class AddH2Component implements PluginComponent {
+    constructor() {}
 
     // H2 Tag HTML
     addHTMLCode = (uid) => {
-
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
       <!-- h2 tag -->
       <div class="tool box2 m-1" title="H2">
         <button class="btn btn-light" id="add-h2-box2-${uid}">
@@ -22,15 +21,15 @@ export class AddH2Component implements PluginComponent{
         </button>
       </div>
       `);
-    }
+    };
     // Add H2 tag click action
     addClickFunction = (uid) => {
-      $(`#add-h2-box2-${uid}`).click(() => {
-        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
-      });
-    }
+        $(`#add-h2-box2-${uid}`).click(() => {
+            $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
+        });
+    };
 
     addToolBox = (uid) => {
-      $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
-    }
+        $(`#cb-box-2-${uid}`).removeClass('cb-H1 cb-H3').addClass('cb-H2');
+    };
 }

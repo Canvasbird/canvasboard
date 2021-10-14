@@ -3,15 +3,11 @@ import { PluginComponent } from 'src/interfaces/plugin-component';
 declare var $: any;
 
 export class AddBottomComponent implements PluginComponent {
-
-  constructor() {
-
-  }
+    constructor() {}
 
     // Bottom HTML Tag
     addHTMLCode(uid) {
-
-      $(`#cb-buttons-${uid}`).append(`
+        $(`#cb-buttons-${uid}`).append(`
           <!-- bottom -->
             <div class="tool box5 m-1" title="Add Card Bottom">
               <button class="btn btn-light" id="add-new-box-${uid}">
@@ -28,15 +24,14 @@ export class AddBottomComponent implements PluginComponent {
 
     // Bottom HTML Tag Click Action
     addClickFunction = (uid, addBlockEditor) => {
-      //  Adding the click action of the below button
-      $(`#add-new-box-${uid}`).click(() => {
-        addBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this });
-      });
-    }
+        //  Adding the click action of the below button
+        $(`#add-new-box-${uid}`).click(() => {
+            addBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this });
+        });
+    };
 
     // Adding Bottom
     addToolBox = (uid, addAfterBlockEditor) => {
-      addAfterBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this});
-    }
-
+        addAfterBlockEditor({ id: `cb-box-1-${uid}`, pluginComponent: this });
+    };
 }
