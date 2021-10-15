@@ -42,6 +42,7 @@
                             placeholder="Password"
                             [(ngModel)]="password"
                             [ngModelOptions]="{ standalone: true }"
+                            (keyup.enter)="login()"
                         />
                     </div>
                     <div class="form-group">
