@@ -31,13 +31,13 @@ More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 ## The Problem
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/goliakshay357/hack-images/master/cb_problem.png" width="800">
+<img src="https://raw.githubusercontent.com/goliakshay357/hack-images/master/cb_problem.png" width="700">
 </p>
 
 ## Solution
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/goliakshay357/hack-images/master/cbsol.png" width="800">
+<img src="https://raw.githubusercontent.com/goliakshay357/hack-images/master/cbsol.png" width="700">
 </p>
 
 ## Goal
