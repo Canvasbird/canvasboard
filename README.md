@@ -25,14 +25,24 @@ The software is considered to be at a beta level of readiness; there are a few m
 
 More on [Wiki](https://github.com/Canvasbird/canvasboard/wiki)
 
+
+
+<!-- Our value proposition is to build an open-source community that is highly scalable and can host workspaces locally or on the cloud. -->
+## The Problem
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/goliakshay357/hack-images/master/cb_problem.png" width="800">
+</p>
+
+## Solution
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/goliakshay357/hack-images/master/cbsol.png" width="800">
+</p>
+
 ## Goal
 
 Build a standalone web application that has all your favorite tools(Plugins) so you need not switch between different platforms to accomplish your important tasks.
-
-<!-- Our value proposition is to build an open-source community that is highly scalable and can host workspaces locally or on the cloud. -->
-<p align="center">
-<img src="https://github.com/Canvasbird/canvasboard/blob/master/src/assets/readme/2.png?raw=true" width="800">
-</p>
 
 <!-- ## Screenshots [![Website Badge](https://img.shields.io/badge/Visit-Now-green?style=for-the-badge&logo=vercel)](https://canvasboard.live/)
 
@@ -48,7 +58,6 @@ Build a standalone web application that has all your favorite tools(Plugins) so 
 -   [Bootstrap](https://getbootstrap.com/)
 -   [Angular](https://angular.io/)
 -   [MongoDB](https://www.mongodb.com/)
--   [FastAPI](https://fastapi.tiangolo.com/)
 -   [Amazon Web Services](https://aws.amazon.com/)
 
 <!-- <p><img src="https://img.shields.io/badge/-Angular-FF0000?style=flat-square&amp;logo=angular" alt="Angular" class="screenshot">
