@@ -44,7 +44,7 @@ jobs:
 
             # Fix Vulnerabilities
             - name: Fix Vulnerabilities
-              run: npm audit fix
+              run: npm audit fix --force
 
             # Docker Login
             - name: Login to Docker
