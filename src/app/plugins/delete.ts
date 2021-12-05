@@ -11,8 +11,8 @@ export class AddDeleteComponent implements PluginComponent {
     addHTMLCode(uid) {
         $(`#cb-buttons-${uid}`).append(`
           <!-- delete button -->
-            <div class="tool box1 m-1" title="Delete Card">
-              <button class="btn btn-light" id="remove-cb-box1-${uid}">
+            <div class="tool box1 mx-1" style="margin-top:5px;margin-bottom:5px;" title="Delete Card">
+              <button class="btn btn-light d-flex align-items-center w-100" id="remove-cb-box1-${uid}" style="padding: 0.05rem 0.75rem;">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1
               .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -20,6 +20,7 @@ export class AddDeleteComponent implements PluginComponent {
               1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5
               3V2h11v1h-11z"/>
             </svg>
+            <span class="pl-2 text-center">Delete</span>
               </button>
             </div>
       `);
