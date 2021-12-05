@@ -42,9 +42,9 @@ jobs:
             - name: Run Unit Tests
               run: npm run ci:test
 
-#             # Fix Vulnerabilities
-#             - name: Fix Vulnerabilities
-#               run: npm audit fix --force
+            # Fix Vulnerabilities
+            - name: Fix Vulnerabilities
+              run: npm audit fix --force
 
             # Docker Login
             - name: Login to Docker

@@ -1,7 +1,7 @@
 # stage 1 (Build image)
 
 # pulling base image
-FROM node:latest as node
+FROM node:16 as node
 # Setting the remote DIR to /app
 WORKDIR /app
 # COPY the current folder
