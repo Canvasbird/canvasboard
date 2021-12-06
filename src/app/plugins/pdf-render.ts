@@ -11,13 +11,14 @@ export class AddPdfRenderComponent implements PluginComponent {
 
         $(`#cb-buttons-${uid}`).append(`
           <!-- PdfRender button -->
-            <div class="tool box1 m-1" title="PdfRender">
-              <button class="btn btn-light" id="add-pdf-render-box2-${uid}">
+            <div class="tool box1 mx-1" style="margin-bottom:5px;" title="PdfRender">
+              <button class="btn btn-light d-flex align-items-center w-100" id="add-pdf-render-box2-${uid}" style="padding: 0.05rem 0.75rem;">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi
               bi-file-earmark-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0
                 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0H4zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
               </svg>
+              <span class="pl-2">Pdf Render</span>
               </button>
             </div>
       `);
