@@ -141,12 +141,23 @@ $canvasboard-theme: mat-light-theme(
 }
 
 .toolbox-main {
+    top: 30px;
     position: absolute;
     display: flex;
     background-color: white;
     right: 0px;
     border-radius: 5px;
     z-index: 1000;
+    flex-direction: column;
+    width: 195px;
+    height: 300px;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.toolbox-main::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 // for background colors
