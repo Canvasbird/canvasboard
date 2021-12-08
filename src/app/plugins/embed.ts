@@ -8,8 +8,8 @@ export class AddEmbedComponent implements PluginComponent {
     addHTMLCode = (uid) => {
         $(`#cb-buttons-${uid}`).append(`
     <!-- Embed -->
-    <div class="tool box4 m-1" title="Embed link">
-      <button class="btn btn-light" id="add-embed-box2-${uid}">
+    <div class="tool box4 mx-1" style="margin-bottom:5px;" title="Embed link">
+      <button class="btn btn-light d-flex align-items-center w-100" id="add-embed-box2-${uid}" style="padding: 0.05rem 0.75rem;">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-code-square" fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -20,6 +20,7 @@ export class AddEmbedComponent implements PluginComponent {
                   708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .
                   708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z" />
               </svg>
+              <span class="p-2">Embed Link</span>
       </button>
     </div>
     `);

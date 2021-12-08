@@ -8,9 +8,9 @@ export class AddTwitterComponent implements PluginComponent {
     addHTMLCode = (uid) => {
         $(`#cb-buttons-${uid}`).append(`
     <!-- Twitter-->
-    <div class="tool box1 m-1" title="Twitter">
+    <div class="tool box1 mx-1" style="margin-bottom:5px;" title="Twitter">
             <input type="file" hidden id="twitter">
-            <button class=" btn btn-light" id="add-twitter-box2-${uid}" data-toggle="modal" data-target="#twitterModal">
+            <button class=" btn btn-light d-flex align-items-center w-100" id="add-twitter-box2-${uid}" data-toggle="modal" data-target="#twitterModal" style="padding: 0.05rem 0.75rem;">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter"
                 viewBox="0 0 16 16">
                 <path
@@ -22,6 +22,7 @@ export class AddTwitterComponent implements PluginComponent {
                   1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32
                   6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
               </svg>
+              <span class="p-2">Twitter</span>
             </button>
           </div>
     `);

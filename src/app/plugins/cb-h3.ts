@@ -9,8 +9,8 @@ export class AddH3Component implements PluginComponent {
     addHTMLCode = (uid) => {
         $(`#cb-buttons-${uid}`).append(`
     <!-- h3 tag -->
-    <div class="tool box3 m-1" title="H3">
-      <button class="btn btn-light" id="add-h3-box2-${uid}">
+    <div class="tool box3 mx-1" style="margin-bottom:5px;" title="H3">
+      <button class="btn btn-light d-flex align-items-center w-100" id="add-h3-box2-${uid}" style="padding: 0.05rem 0.75rem;">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-type-h3" fill="currentColor"
           xmlns="http://www.w3.org/2000/svg">
           <path
@@ -20,6 +20,7 @@ export class AddH3Component implements PluginComponent {
             1.723-2.229-.035-1.353-1.176-2.4-2.954-2.385-1.873.006-2.857 1.162-2.898
             2.358h1.196c.062-.69.711-1.299 1.696-1.299.998 0 1.695.622 1.695 1.525.007.922-.718 1.592-1.695 1.592h-.964v1.074z" />
         </svg>
+        <span class="p-2">Heading 3</span>
       </button>
     </div>
     `);
