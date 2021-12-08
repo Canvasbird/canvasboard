@@ -21,7 +21,7 @@ export class AddOrderedListComponent implements PluginComponent {
               .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33
               0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"/>
             </svg>
-            <span class="pl-2">Ordered List</span>
+            <span class="p-2">Ordered List</span>
             </button>
           </div>
       `);

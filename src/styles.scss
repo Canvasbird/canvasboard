@@ -149,14 +149,14 @@ $canvasboard-theme: mat-light-theme(
     border-radius: 5px;
     z-index: 1000;
     flex-direction: column;
-    width: 195px;
-    height: 300px;
+    width: 215px;
+    height: 310px;
     overflow: scroll;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
 
-.toolbox-main::-webkit-scrollbar { 
+.toolbox-main::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
 

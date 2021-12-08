@@ -17,7 +17,7 @@ export class AddBlueBackgroundComponent implements PluginComponent {
                 .663-.144.82-1.3.923v.52h4.082v-.52c-1.162-.103-1.306-.26-1.306-.923V3.602l.43.013c1.935.062 2.434.301 2.694
                 1.846h.479L12.258 3z"/>
               </svg>
-              <span class="pl-2 text-white">Blue Background</span>
+              <span class="p-2 text-white">Blue Background</span>
             </button>
           </div>
     `);

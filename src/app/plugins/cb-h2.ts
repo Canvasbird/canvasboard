@@ -18,7 +18,7 @@ export class AddH2Component implements PluginComponent {
               1.675.608 1.675 1.572 0 .855-.554 1.504-1.067 2.085l-3.513 3.999V13H15.5v-1.094h-4.245v-.075l2.481-2.844c.875-.998
               1.586-1.784 1.586-2.953 0-1.463-1.155-2.556-2.919-2.556-1.941 0-2.966 1.326-2.966 2.74v.049h1.223z" />
           </svg>
-          <span class="pl-2">Heading 2</span>
+          <span class="p-2">Heading 2</span>
         </button>
       </div>
       `);

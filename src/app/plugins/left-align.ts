@@ -17,7 +17,7 @@ export class AddLeftAlignComponent implements PluginComponent {
               1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0
               1-.5-.5z" />
           </svg>
-          <span class="pl-2">Left Align</span>
+          <span class="p-2">Left Align</span>
         </button>
       </div>
       `);

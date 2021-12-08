@@ -20,7 +20,7 @@ export class AddEmbedComponent implements PluginComponent {
                   708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .
                   708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z" />
               </svg>
-              <span class="pl-2">Embed Link</span>
+              <span class="p-2">Embed Link</span>
       </button>
     </div>
     `);

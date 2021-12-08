@@ -20,7 +20,7 @@ export class AddH3Component implements PluginComponent {
             1.723-2.229-.035-1.353-1.176-2.4-2.954-2.385-1.873.006-2.857 1.162-2.898
             2.358h1.196c.062-.69.711-1.299 1.696-1.299.998 0 1.695.622 1.695 1.525.007.922-.718 1.592-1.695 1.592h-.964v1.074z" />
         </svg>
-        <span class="pl-2">Heading 3</span>
+        <span class="p-2">Heading 3</span>
       </button>
     </div>
     `);

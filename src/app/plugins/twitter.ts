@@ -22,7 +22,7 @@ export class AddTwitterComponent implements PluginComponent {
                   1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32
                   6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
               </svg>
-              <span class="pl-2">Twitter</span>
+              <span class="p-2">Twitter</span>
             </button>
           </div>
     `);

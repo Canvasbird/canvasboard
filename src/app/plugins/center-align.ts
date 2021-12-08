@@ -18,7 +18,7 @@ export class AddCenterAlignComponent implements PluginComponent {
             1-.5-.5zm2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0
             1-.5-.5z" />
           </svg>
-          <span class="pl-2">Center Align</span>
+          <span class="p-2">Center Align</span>
         </button>
       </div>
       `);
