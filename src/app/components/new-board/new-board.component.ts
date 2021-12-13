@@ -1140,14 +1140,25 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
         });
     };
 
+    cbEmbedURL = () => {
+        var validate = /^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+        $('#embedURL').val().match(validate) ? this.addBlockEditor({
+            id: 'main-box',
+            pluginComponent: this.AddEmbedComponent,
+            embedUrl: $('#embedURL')
+                .val()
+        }) : alert('Please enter a valid URL');
+    }
+
     cbToolboxYoutube = () => {
-        this.addBlockEditor({
+        var validateYT = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        $('#youtubeEmbedURL').val().match(validateYT) ? this.addBlockEditor({
             id: 'main-box',
             pluginComponent: this.AddEmbedComponent,
             embedUrl: $('#youtubeEmbedURL')
                 .val()
                 .replace(/watch\?v=/gi, 'embed/'),
-        });
+        }) : alert('Please enter a valid YouTube URL');
     };
 
     cbToolboxClock = () => {
