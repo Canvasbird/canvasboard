@@ -169,6 +169,7 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         // ----------------------- SORTABLE JS -----------------------
         const mainEl = document.getElementById('main-box');
+        document.getElementById('slide').style.display = 'none';
 
         const sortable = new Sortable(mainEl, {
             handle: '.dragHandle',
@@ -874,6 +875,7 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
 
     // ----------------------- Reveal JS ------------------------------------------
     openSlideMenu = () => {
+        document.getElementById('slide').style.display = 'none';
         document.getElementById('menu').style.width = '250px';
         const divsToHide = document.getElementsByClassName('slider'); // divsToHide is an array
 
@@ -1084,6 +1086,7 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
         this.deck.toggleHelp(true);
     };
     closeSlideMenu = () => {
+        document.getElementById('slide').style.display = 'unset';
         document.getElementById('menu').style.width = '0';
         document.getElementById('content').style.marginLeft = '0';
         const divsToHide = document.getElementsByClassName('slider'); // divsToHide is an array
