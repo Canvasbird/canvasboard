@@ -31,7 +31,7 @@
 </div>
 
 <div id="content">
-    <span class="slide" style="display: none" title="Open Toolbox 🚀">
+    <div class="slide" title="Open Toolbox" style="position: fixed; z-index: 999; padding: 0.5rem 0.5rem; height:100vh; background-color: #e8e8e8; margin-top:0.3rem;" id="slide">
         <a (click)="openSlideMenu()">
             <svg
                 width="1.5em"
@@ -47,16 +47,16 @@
                 />
             </svg>
         </a>
-    </span>
+    </div>
 
     <div id="menu" class="nav shadow">
-        <!-- <a (click)="closeSlideMenu()" class="close" title="Close Toolbox 🚀">
+        <a (click)="closeSlideMenu()" class="close" title="Close Toolbox">
       <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd"
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
       </svg>
-    </a> -->
+    </a>
 
         <div class="cb-ul">
             <div class="header">
