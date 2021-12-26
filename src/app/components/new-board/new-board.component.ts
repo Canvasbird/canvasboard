@@ -167,6 +167,19 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
     public activeIndex = 0;
 
     ngOnInit() {
+        // ---------------------- Remove CSS for pasted text in title -----------------------
+        var myElement = document.getElementById('cb-title');
+        myElement.onpaste = function(e) {
+        var pastedText = undefined;
+        if ((window as any).clipboardData && (window as any).clipboardData.getData) { // IE
+            pastedText = (window as any).clipboardData.getData('Text');
+        } else if (e.clipboardData && e.clipboardData.getData) {
+            pastedText = e.clipboardData.getData('text/plain');
+        }
+        document.execCommand('insertText', false, pastedText); // Process and handle text...
+        return false; // Prevent the default handler from running.
+        };
+
         // ----------------------- SORTABLE JS -----------------------
         const mainEl = document.getElementById('main-box');
         document.getElementById('slide').style.display = 'none';
