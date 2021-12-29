@@ -90,6 +90,15 @@
     outline: none;
 }
 
+.slide {
+  position: fixed;
+  z-index: 999;
+  padding: 0.5rem 0.5rem;
+  height:100vh;
+  background-color: #e8e8e8;
+  margin-top:0.3rem;
+}
+
 .red {
     background: red;
 }
