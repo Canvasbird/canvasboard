@@ -167,8 +167,22 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
     public activeIndex = 0;
 
     ngOnInit() {
+        // ---------------------- Remove CSS for pasted text in title -----------------------
+        var myElement = document.getElementById('cb-title');
+        myElement.onpaste = function(e) {
+        var pastedText = undefined;
+        if ((window as any).clipboardData && (window as any).clipboardData.getData) { // IE
+            pastedText = (window as any).clipboardData.getData('Text');
+        } else if (e.clipboardData && e.clipboardData.getData) {
+            pastedText = e.clipboardData.getData('text/plain');
+        }
+        document.execCommand('insertText', false, pastedText); // Process and handle text...
+        return false; // Prevent the default handler from running.
+        };
+
         // ----------------------- SORTABLE JS -----------------------
         const mainEl = document.getElementById('main-box');
+        document.getElementById('slide').style.display = 'none';
 
         const sortable = new Sortable(mainEl, {
             handle: '.dragHandle',
@@ -874,6 +888,7 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
 
     // ----------------------- Reveal JS ------------------------------------------
     openSlideMenu = () => {
+        document.getElementById('slide').style.display = 'none';
         document.getElementById('menu').style.width = '250px';
         const divsToHide = document.getElementsByClassName('slider'); // divsToHide is an array
 
@@ -1084,6 +1099,7 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
         this.deck.toggleHelp(true);
     };
     closeSlideMenu = () => {
+        document.getElementById('slide').style.display = 'unset';
         document.getElementById('menu').style.width = '0';
         document.getElementById('content').style.marginLeft = '0';
         const divsToHide = document.getElementsByClassName('slider'); // divsToHide is an array
@@ -1140,14 +1156,25 @@ export class NewBoardComponent implements OnInit, AfterViewInit {
         });
     };
 
+    cbEmbedURL = () => {
+        var validate = /^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+        $('#embedURL').val().match(validate) ? this.addBlockEditor({
+            id: 'main-box',
+            pluginComponent: this.AddEmbedComponent,
+            embedUrl: $('#embedURL')
+                .val()
+        }) : alert('Please enter a valid URL');
+    }
+
     cbToolboxYoutube = () => {
-        this.addBlockEditor({
+        var validateYT = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        $('#youtubeEmbedURL').val().match(validateYT) ? this.addBlockEditor({
             id: 'main-box',
             pluginComponent: this.AddEmbedComponent,
             embedUrl: $('#youtubeEmbedURL')
                 .val()
                 .replace(/watch\?v=/gi, 'embed/'),
-        });
+        }) : alert('Please enter a valid YouTube URL');
     };
 
     cbToolboxClock = () => {

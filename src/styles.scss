@@ -150,7 +150,7 @@ $canvasboard-theme: mat-light-theme(
     z-index: 1000;
     flex-direction: column;
     width: 215px;
-    height: 310px;
+    max-height: 310px;
     overflow: scroll;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
