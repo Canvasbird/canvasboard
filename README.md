@@ -12,8 +12,6 @@
 
 ## Project Overview:
 
-<!--  > <strong>The whole purpose of education is to turn mirrors into windows.<br>- Sydney J. Harris</strong> -->
-
 Canvasboard is an interactive board with plugins focusing on replacing the need of multiple platforms for teaching, presenting, managing or explaining your ideas. The interactive plugins are built using web technologies to ease your work right within a single platform.
 
 ## Why is it important?
