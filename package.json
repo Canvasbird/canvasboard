@@ -54,7 +54,7 @@
     "mousetrap": "^1.6.5",
     "ngx-markdown-editor": "^3.3.1",
     "popper.js": "^1.16.1",
-    "reveal.js": "^4.1.3",
+    "reveal.js": "^4.3.0",
     "rimraf": "^3.0.2",
     "rxjs": "~6.6.3",
     "sortablejs": "^1.13.0",
